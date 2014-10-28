@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- NOTICE_LOG -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="NOTICE_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="TARGET_OFFICE" data-type="code" not-null="false" />
+	<column name="DELETED_BY" data-type="ref-id" not-null="false" />
+	<column name="DELETED_AT" data-type="datetime" not-null="false" />
+	<column name="TITLE" data-type="name" not-null="false" />
+	<column name="DESCRIPTION" data-type="freetext" not-null="false" />
+	<column name="TARGET_SCHED_ITEM" data-type="code" not-null="false" />
+	<column name="TARGET_DEVICE" data-type="code" not-null="false" />
+    
+    <foreign-key parent-table="OFFICE">
+        <column name="TARGET_OFFICE" referColumn="OFFICE_CODE"/>
+        <column name="IS_DELETED" referColumn="IS_DELETED"/>
+    </foreign-key>
+    <foreign-key parent-table="DEVICE">
+        <column name="TARGET_DEVICE" referColumn="DEV_CODE"/>
+        <column name="IS_DELETED" referColumn="IS_DELETED"/>
+    </foreign-key>
+    <foreign-key parent-table="SCHEDULE_ITEM">
+        <column name="TARGET_SCHED_ITEM" referColumn="SCHED_CODE"/>
+        <column name="IS_DELETED" referColumn="IS_DELETED"/>
+    </foreign-key>
+    
+    <foreign-key parent-table="COUNT_SCHEDULE_ITEM">
+        <column name="TARGET_SCHED_ITEM" referColumn="COUNT_SCHED_CODE"/>
+        <column name="IS_DELETED" referColumn="IS_DELETED"/>
+    </foreign-key>
+</table>

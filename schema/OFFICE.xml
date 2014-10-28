@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- OFFICE -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="OFFICE_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="OFFICE_CODE" data-type="code" not-null="false" />
+	<column name="CORP_CODE" data-type="code" not-null="false" />
+	<column name="NAME" data-type="name" not-null="false" />
+	<column name="ADDR_CODE" data-type="code" not-null="false" />
+	<column name="TEL" data-type="name" not-null="false" />
+	<column name="FAX" data-type="name" not-null="false" />
+	<column name="MANAGER_PSN" data-type="code" not-null="false" />
+	<column name="ACCOUNTANT_PSN" data-type="code" not-null="false" />
+	<column name="TECHNICIAN_PSN" data-type="code" not-null="false" />
+	<column name="EQUIPMENT_MGR_PSN" data-type="code" not-null="false" />
+	<column name="TAX_CODE" data-type="long-code" not-null="false" />
+	<foreign-key parent-table="CORPORATE">
+		<column name="CORP_CODE" referColumn="CORP_CODE"/>
+		<column name="IS_DELETED" referColumn="IS_DELETED"/>
+	</foreign-key>
+	<foreign-key parent-table="ADDRESS">
+		<column name="ADDR_CODE" referColumn="ADDR_CODE"/>
+		<column name="IS_DELETED" referColumn="IS_DELETED"/>
+	</foreign-key>
+</table>

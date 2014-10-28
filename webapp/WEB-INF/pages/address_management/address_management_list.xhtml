@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+
+	<h:form>
+		<p:panel>
+			<p:commandButton value="#{messages.add}" icon=" ui-icon-plus" action="#{addressManagementBean.addAddress()}" update=":contentPane" process="@this" />
+			<p:commandButton value="#{messages.edit}" icon="ui-icon-pencil" action="#{addressManagementBean.editAddress()}" update=":contentPane" disabled="#{!addressManagementBean.enableEdit}" process="@this" />
+			<p:commandButton value="#{messages.close}" icon="ui-icon-close" process="@this" action="#{screenMonitor.close()}" update=":contentPane" onstart="PF('globalBlockUI_js').block()"
+				oncomplete="PF('globalBlockUI_js').unblock()" />
+		</p:panel>
+		<ac:dataTable value="#{addressManagementBean.listAddresses}" var="address" id="addressTable" rowIndexVar="index" rowStyleClass="#{address.isPendingApprove() ? 'pending' : ''}">
+			<p:column styleClass="display-select">
+				<p:selectBooleanCheckbox value="#{address.selected}">
+					<p:ajax process="@this" update="@form" listener="#{addressManagementBean.toggleSelection(address)}" />
+				</p:selectBooleanCheckbox>
+			</p:column>
+			<p:column headerText="#{messages.no}" styleClass="display-index">
+			    #{index + 1}
+			</p:column>
+			<p:column styleClass="display-code">
+				<f:facet name="header">
+					<ac:columnHeader value="#{messages.addressCode}" process="@this" parentTable="addressTable" sorter="#{addressManagementBean.listAddresses.sort('addressCode')}"
+						filter="#{addressManagementBean.listAddresses.filter('addressCode')}"></ac:columnHeader>
+				</f:facet>
+			    #{address.addrCode}
+			</p:column>
+			<p:column styleClass="display-text">
+				<f:facet name="header">
+					<ac:columnHeader value="#{messages.country}" parentTable="addressTable" sorter="#{addressManagementBean.listAddresses.sort('country')}"
+						filter="#{addressManagementBean.listAddresses.filter('country')}"></ac:columnHeader>
+				</f:facet>
+				#{address.mtCountry.name}
+			</p:column>
+			<p:column styleClass="display-text">
+				<f:facet name="header">
+					<ac:columnHeader value="#{messages.zipCode}" parentTable="addressTable" sorter="#{addressManagementBean.listAddresses.sort('zipCode')}"
+						filter="#{addressManagementBean.listAddresses.filter('zipCode')}"></ac:columnHeader>
+				</f:facet>
+				#{address.zipCode}
+			</p:column>
+			<p:column styleClass="display-text">
+				<f:facet name="header">
+					<ac:columnHeader value="#{messages.province}" parentTable="addressTable" sorter="#{addressManagementBean.listAddresses.sort('province')}"
+						filter="#{addressManagementBean.listAddresses.filter('province')}"></ac:columnHeader>
+				</f:facet>
+				#{address.province}
+			</p:column>
+			<p:column styleClass="display-text">
+				<f:facet name="header">
+					<ac:columnHeader value="#{messages.city}" parentTable="addressTable" sorter="#{addressManagementBean.listAddresses.sort('city')}" filter="#{addressManagementBean.listAddresses.filter('city')}"></ac:columnHeader>
+				</f:facet>
+				#{address.city}
+			</p:column>
+			<p:column styleClass="display-text">
+				<f:facet name="header">
+					<ac:columnHeader value="#{messages.address1}" parentTable="addressTable" sorter="#{addressManagementBean.listAddresses.sort('address1')}"
+						filter="#{addressManagementBean.listAddresses.filter('address1')}"></ac:columnHeader>
+				</f:facet>
+				#{address.address1}
+			</p:column>
+			<p:column styleClass="display-text">
+				<f:facet name="header">
+					<ac:columnHeader value="#{messages.address2}" parentTable="addressTable" sorter="#{addressManagementBean.listAddresses.sort('address2')}"
+						filter="#{addressManagementBean.listAddresses.filter('address2')}"></ac:columnHeader>
+				</f:facet>
+				#{address.address2}
+			</p:column>
+		</ac:dataTable>
+	</h:form>
+</ui:composition>

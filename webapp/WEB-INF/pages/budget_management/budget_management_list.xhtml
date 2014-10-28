@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:o="http://omnifaces.org/ui"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pe="http://primefaces.org/ui/extensions">
+    
+    <h:form id="formBudgetManagement">
+        <ac:dataTable value="#{budgetManagementBean.listBudget}" var="budget" id="budgetTable"> 
+            <p:column styleClass="display-select">
+                <p:selectBooleanCheckbox value="#{budget.selected}">
+                    <p:ajax event="change" update=":contentPane" listener="#{budgetManagementBean.toggleSelection(budget)}"/>
+                </p:selectBooleanCheckbox>
+            </p:column>
+            <p:column headerText="#{messages.no}" styleClass="display-index">
+                <h:outputText value="#{index+1}"/>
+            </p:column>
+            <p:column styleClass="display-number" >
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.budget}"
+                        parentTable="budgetTable">
+                    </ac:columnHeader> 
+                </f:facet>
+                <h:outputText value="#{budget.budget}" styleClass="display-number ten-char" converter="#{converterStorage.moneyConverter}"/>  
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.startDate}"
+                        parentTable="budgetTable">
+                    </ac:columnHeader> 
+                </f:facet>
+                <ac:outputTime value="#{budget.startDate}" styleClass="display-date" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.endDate}"
+                    parentTable="budgetTable">
+                    </ac:columnHeader> 
+                </f:facet>
+                <ac:outputTime value="#{budget.endDate}" styleClass="display-date" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.createdBy}"
+                        parentTable="budgetTable">
+                    </ac:columnHeader> 
+                </f:facet>
+                <h:outputText value="#{budget.createdByUser.name}" styleClass="display-text" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.createdAt}"
+                        parentTable="budgetTable">
+                    </ac:columnHeader> 
+                </f:facet>
+                <ac:outputTime value="#{budget.createdAt}" styleClass="display-date" showTime="true"/>
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.checkedBy}"
+                        parentTable="budgetTable">
+                    </ac:columnHeader> 
+                </f:facet>
+                <h:outputText value="#{budget.checkedByUser.name}" styleClass="display-number" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.checkedAt}"
+                        parentTable="budgetTable">
+                    </ac:columnHeader> 
+                </f:facet>
+                <h:outputText value="#{budget.checkedAt}" styleClass="display-number" />
+            </p:column>
+        </ac:dataTable>
+        
+        <p:panel>
+            <p:commandButton value="#{messages.addBudget}" icon=" ui-icon-plus" actionListener="#{budgetManagementBean.addNewBudget}" update=":contentPane" process="@this" immediate="true"/>
+            <p:commandButton value="#{messages.edit}" icon="ui-icon-pencil" actionListener="#{budgetManagementBean.editBudget}" update="@form" process="@this" disabled="#{!budgetManagementBean.enableEdit}" immediate="true"/>
+            <p:commandButton value="#{messages.delete}" icon="ui-icon-trash" action="#{budgetManagementBean.deleteBudget()}" update="@form" process="@this" disabled="#{!budgetManagementBean.enableDelete}" immediate="true">
+                <p:confirm header="#{messages.confirmation}" message="#{messages.MMI00003}" icon="ui-icon-alert" />
+            </p:commandButton>  
+        
+            <table> 
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['budget']}" for="budget" /></td>
+                    <td>
+                        <p:inputText id="budget" value="#{budgetManagementBean.currentBudget.budget}" label="#{messages['budget']}" validatorMessage="#{messages['MFM00008']}" maxlength="20" styleClass="fifteen-char display-number" converter="#{converterStorage.moneyConverter}">
+                            <p:ajax process="@this" update="@this"/>
+                        </p:inputText>
+                        <pe:keyFilter for="budget" mask="num"/> 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['budgetTime']}" for="buttonStartDate" /></td>
+                    <td>
+                     <p:calendar id="buttonStartDate" value="#{budgetManagementBean.currentBudget.startDate}" showOn="button" locale="#{localeSelector.locale}" navigator="true" mask="true" pattern="dd/MM/yyyy">
+                            <p:ajax event="dateSelect" update=":formBudgetManagement:buttonStartDate :formBudgetManagement:buttonEndDate"/>
+                     </p:calendar>
+                      ~ <p:calendar id="buttonEndDate" value="#{budgetManagementBean.currentBudget.endDate}"  showOn="button" locale="#{localeSelector.locale}" navigator="true" mask="true" pattern="dd/MM/yyyy">
+                            <p:ajax event="dateSelect" update=":formBudgetManagement:buttonEndDate :formBudgetManagement:buttonStartDate"/>
+                      </p:calendar>
+                       <p:commandButton value="#{messages.save}" icon=" ui-icon-plus" action="#{budgetManagementBean.saveBudgetTemporary}" update=":contentPane" process="@form"/>
+                    </td>
+                </tr>
+            </table>
+       
+            <br />
+            <p:commandButton value="#{messages.apply}" icon=" ui-icon-plus" actionListener="#{budgetManagementBean.applyChange()}" action="#{screenMonitor.close()}" update="@form,:contentPane" process="@this">
+                <f:setPropertyActionListener value="#{budgetManagementBean.listBudgetAdd}" target="#{hospitalManagementBean.listBudgetAdd}" />
+                <f:setPropertyActionListener value="#{budgetManagementBean.listBudgetDelete}" target="#{hospitalManagementBean.listBudgetDelete}" />
+                <f:setPropertyActionListener value="#{budgetManagementBean.listBudgetAdd}" target="#{hospitalDeptManagementBean.listBudgetAdd}" />
+                <f:setPropertyActionListener value="#{budgetManagementBean.listBudgetDelete}" target="#{hospitalDeptManagementBean.listBudgetDelete}" />
+            </p:commandButton>
+            <p:commandButton value="#{messages.discard}" icon="ui-icon-trash" actionListener="#{budgetManagementBean.discardChange}" update=":contentPane" process="@this" immediate="true">
+                <p:confirm header="#{messages.confirmation}" message="#{messages.MFM00019}" icon="ui-icon-alert" />
+            </p:commandButton>
+            <p:commandButton id="btnCancel" value="#{messages['cancel']}" action="#{screenMonitor.close()}" update=":contentPane" immediate="true" icon="ui-icon-close" />
+        </p:panel>
+    </h:form>
+    
+    <h:form rendered="#{budgetManagementBean.isAllowProcess(budgetManagementBean.currentBudget)}">
+        <ac:approval entityId="#{budgetManagementBean.entityId}" dataType="#{budgetManagementBean.dataType}">
+        </ac:approval>
+    </h:form>
+</ui:composition>

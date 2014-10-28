@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ROLE_MASTER -->
+<table>
+	<primary-key>
+		<column name="ROLE_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="ROLE_CODE" data-type="code" not-null="false" />
+	<column name="COUNTRY" data-type="integer" not-null="false" />
+	<column name="LABEL" data-type="label" not-null="false" />
+</table>

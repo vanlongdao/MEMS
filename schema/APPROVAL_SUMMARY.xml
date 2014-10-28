@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- APPROVAL SUMMARY -->
+<table parent-table="ABSTRACT_ENTITY">
+	<primary-key>
+		<column name="APPROVAL_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="LEVEL_ID" data-type="integer" not-null="true" />
+	<column name="ITEM_CODE" data-type="code" not-null="true" />
+	<column name="REQUESTOR" data-type="integer" not-null="true" />
+	<column name="REQUEST_AT" data-type="datetime" not-null="true" />
+    <column name="ITEM_LABEL" data-type="name" not-null="false" />
+	<foreign-key parent-table="APPROVAL_LEVEL">
+		<column name="LEVEL_ID" referColumn="LEVEL_ID"/>
+	</foreign-key>
+</table>

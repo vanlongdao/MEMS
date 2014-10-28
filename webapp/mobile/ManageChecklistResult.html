@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="dependencies/platform/platform.js"></script>
+
+  	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
+  	<link rel="stylesheet" href="dependencies/bootstrap/dist/css/bootstrap.min.css">
+    
+	<link rel="stylesheet" href="dependencies/ui-select/select.min.css">
+	
+	<link rel="import" href="dependencies/paper-input/paper-input.html">
+	<link rel="import" href="dependencies/core-selector/core-selector.html">
+	<link rel="import" href="dependencies/paper-checkbox/paper-checkbox.html">
+	<link  rel="import" href="dependencies/paper-dialog/paper-dialog.html">
+	<link rel="stylesheet" href="css/ReplacePartStyle.css">
+	
+	<style>
+    body {
+      padding: 15px;
+    }
+
+    .select2 > .select2-choice.ui-select-match {
+      /* Because of the inclusion of Bootstrap */
+      height: 29px;
+    }
+
+    .selectize-control > .selectize-dropdown {
+      top: 36px;
+    }
+    
+    paper-dialog::shadow  #main
+    {
+    	height: 250px !important;
+    }
+    
+    #popupMDevChecklist
+    {
+    	width: 100%;
+    }
+    
+    paper-checkbox::shadow #ink
+    {
+    	width: 18px;
+    	height: 18px;
+    }
+  </style>
+</head>
+<body unresolved vertical layout>
+<div ng-app="MyApp" ng-controller="ChecklistController">
+
+<table> 
+	<tr>
+		<td>Select checklist: </td>
+		<td>
+			<ui-select id="txtMDevChecklist" ng-model="checklistSelected.selected" theme="select2" ng-disabled="disabled" style="width: 300px;">
+			    <ui-select-match placeholder="Select a checklist">Checklist:  </p3>{{$select.selected.checklistName}}</ui-select-match>
+	            <ui-select-choices group-by="'group'" repeat="item in listChecklist | filter: $select.search">
+	              <p3>Name:  </p3><span ng-bind-html="trustAsHtml((item.checklistName | highlight: $select.search))"></span><br/>
+	              <p3>Check date:  </p3><span ng-if="item.checklistDate != null || item.checklistDate != undefined" ng-bind-html="trustAsHtml((item.checklistDate.monthValue + '/' + item.checklistDate.dayOfMonth + '/' + item.checklistDate.year | highlight: $select.search))"></span>
+	            </ui-select-choices>
+			  </ui-select>
+		</td>
+	</tr>
+	
+	<tr>
+		<td colspan="2">
+			<input type="button" value="Setup checklist" ng-click="setupchecklist()">
+			<input type="button" value="Delete" ng-click="deleteSelectedChecklist()">
+		</td>
+	</tr>
+</table>
+	<paper-dialog id="popup">
+		<ui-select id="popupMDevChecklist" ng-model="mdev_checklistSelected.selected" theme="select2" ng-disabled="disabled" style="width: 300px;">
+	    	<ui-select-match placeholder="Select a checklist">Checklist:  </p3>{{$select.selected.name}}</ui-select-match>
+           	<ui-select-choices group-by="'group'" repeat="item in mdev_checklist | filter: $select.search">
+	             <p3>Name:  </p3><span ng-bind-html="trustAsHtml((item.name | highlight: $select.search))"></span><br/>
+	             <p3>Checklist code:  </p3><span ng-bind-html="trustAsHtml((item.cklistCode | highlight: $select.search))"></span><br/>
+	             <p3>Create at:  </p3><span ng-bind-html="trustAsHtml((item.createAt | highlight: $select.search))"></span>
+	        </ui-select-choices>
+	  	</ui-select>
+	  	<div>
+	  		<h4>Checklist name:</h4>
+	  		<p>{{mdev_checklistSelected.selected.name}}</p>
+	  	</div>
+	  	<div>
+	  		<h4>Checklist code:</h4>
+	  		<p>{{mdev_checklistSelected.selected.cklistCode}}</p>
+	  	</div>
+	  	<div>
+	  		<h4>Create at:</h4>
+	  		<p>{{mdev_checklistSelected.selected.createAt}}</p>
+	  	</div>
+	  	<div>
+	  		<input type="button" value="Apply" ng-click="applyMDevChecklist()">
+	  		<input type="button" value="Cancel" ng-click="cancelPopup()">
+	  	</div>
+	</paper-dialog>
+	
+	<fieldset>
+		<legend>Related information</legend>
+		<table>
+			<tr>
+				<td>Measurement device 1:</td>
+				<td>
+					<ui-select id="popupMDevChecklist" ng-model="measureDev1.selected" theme="select2" ng-disabled="disabled" style="width: 300px;">
+				    	<ui-select-match placeholder="Select a checklist">Serial:  </p3>{{$select.selected.serial}}</ui-select-match>
+			           	<ui-select-choices group-by="'group'" repeat="item in listMeasureDev1 | filter: $select.search">
+				             <p3>Serial:  </p3><span ng-bind-html="trustAsHtml((item.serial | highlight: $select.search))"></span><br/>
+				             <p3>Model:  </p3><span ng-bind-html="trustAsHtml((item.model | highlight: $select.search))"></span><br/>
+				        </ui-select-choices>
+				  	</ui-select>
+				</td>
+			</tr>
+			<tr>
+				<td>Measurement device 2:</td>
+				<td>
+					<ui-select id="popupMDevChecklist" ng-model="measureDev2.selected" theme="select2" ng-disabled="disabled" style="width: 300px;">
+				    	<ui-select-match placeholder="Select a checklist">Serial:  </p3>{{$select.selected.serial}}</ui-select-match>
+			           	<ui-select-choices group-by="'group'" repeat="item in listMeasureDev2 | filter: $select.search">
+				             <p3>Serial:  </p3><span ng-bind-html="trustAsHtml((item.serial | highlight: $select.search))"></span><br/>
+				             <p3>Model:  </p3><span ng-bind-html="trustAsHtml((item.model | highlight: $select.search))"></span><br/>
+				        </ui-select-choices>
+				  	</ui-select>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<paper-input ng-model="personName" floatingLabel label="Client person"></paper-input>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="button" value="Apply and back" ng-click="applyAndBack()">
+					<input type="button" value="Discard and back" ng-click="discardAndBack()">
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+
+	<p>Recorded checklist</p>	
+	<table st-table="mdev_checklist" class="table">
+		<thead>
+			<tr>
+				<th></th>
+				<th>Description</th>
+				<th>Result value</th>
+				<th>Is OK?</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="row in mdev_checklist" ng-click="rowSelect(row)">
+				<th>
+					<paper-checkbox></paper-checkbox>
+				</th>
+				<td>{{row.description}}</td>
+				<td>{{row.resultValue}}</td>
+				<td ng-if="row.isOk == 0">No</td>
+				<td ng-if="row.isOk == 1">Yes</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="5" class="text-center">
+					<div st-pagination="" st-items-by-page="1" st-displayed-pages="7"></div>
+				</td>
+			</tr>
+		</tfoot>
+		
+	</table>			
+			
+<fieldset>
+	<legend>Checklist item</legend>
+	<table>
+		<tr>
+			<td>
+				<paper-input ng-model="mdev_checklistItemSelected.description" floatingLabel label="Checkpoint" disabled></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<paper-input ng-model="mdev_checklistItemSelected.resultValue" floatingLabel label="Result value"></paper-input>
+			</td>
+		</tr>
+		<tr>
+		<td colspan="2">
+			Is OK?
+			<select ng-model="mdev_checklistItemSelected.isOk" id="cbIsDelete">
+				<option value="0" id="optNo">NO</option>
+				<option value="1" id="optYes">YES</option>
+			</select>		
+		</td>
+		</tr>
+		<tr>
+			<td>
+				<paper-input ng-model="mdev_checklistItemSelected.resultDescription" floatingLabel label="Memo"></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="button" value="Apply this checklist item" ng-click="applyChecklist()">
+				<input type="button" value="Discard changes" ng-click="discard()">
+			</td>
+		</tr>
+	</table>
+</fieldset>
+
+<script src="dependencies/jquery-2.1.1.min.js"></script>
+<script src="dependencies/angular/angular.js"></script>
+<script src="dependencies/angular-bootstrap/ui-bootstrap.min.js"></script>
+<script src="lib/ng-polymer-elements.js"></script>
+<script src="dependencies/ngStorage-master/ngStorage.js"></script>
+<script src="dependencies/ui-select/select.min.js"></script>
+<script src="dependencies/smart-table.debug.js"></script>
+<script src="app.js"></script>
+
+<script src="controller/ChecklistController.js"></script>
+
+</div>
+</body>
+</html>

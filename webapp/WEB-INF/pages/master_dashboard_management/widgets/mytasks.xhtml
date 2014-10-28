@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
+    xmlns:pe="http://primefaces.org/ui/extensions" xmlns:o="http://omnifaces.org/ui">
+
+<p:panel>
+   <table>
+        <tr>
+            <td><p:outputLabel value="#{messages.totalRepairOfCurrentMonth}" /></td>
+            <td><p:inputText value="#{engineerSupplierDashboardBean.totalRepairTasksByUser(userId)}" disabled="true" styleClass="display-number ten-char" converter="#{converterStorage.quatityConverter}"/></td>
+            <td><p:outputLabel value="#{messages.totalRepairDoing}" /></td>
+            <td><p:inputText value="#{engineerSupplierDashboardBean.totalRepairDoingTasksByUser(userId)}" disabled="true" styleClass="display-number ten-char"  converter="#{converterStorage.quatityConverter}"/></td>
+        </tr>
+        <tr>
+            <td><p:outputLabel value="#{messages.totalRepairCostOfCurrentMonth}" /></td>
+            <td><p:inputText value="#{engineerSupplierDashboardBean.totalRepairCostTasksByUser(userId)}" disabled="true" styleClass="display-number ten-char" converter="#{converterStorage.moneyConverter}"/></td>
+            <td><p:outputLabel value="#{messages.totalRepairNotStart}" /></td>
+            <td><p:inputText value="#{engineerSupplierDashboardBean.totalRepairNotStartTasksByUser(userId)}" disabled="true" styleClass="display-number ten-char"  converter="#{converterStorage.moneyConverter}"/></td>
+        </tr>
+    </table>
+    </p:panel>
+   <ac:dataTable value="#{engineerSupplierDashboardBean.listActionLogOfTasksByUser(userId)}" var="contact">
+        <p:column headerText="#{messages.hospitalContact}">
+            <p:outputLabel value="#{contact.hospitalContactPsn.name}" />
+        </p:column>
+        <p:column headerText="#{messages.supplierContact}">
+            <p:outputLabel value="#{contact.person.name}" />
+        </p:column>
+        <p:column headerText="#{messages.status}" filterMatchMode="contains" filterBy="#{masterDashboardBean.getStatusName(contact)}">
+            <p:outputLabel value="#{masterDashboardBean.getStatusName(contact)}" />
+        </p:column>
+    </ac:dataTable>
+    <p:fieldset legend="#{messages.chart}" >
+        <p:graphicImage library="img" name="chart_demo.jpg" width="300px" height="200px"></p:graphicImage>
+    </p:fieldset>
+</ui:composition>

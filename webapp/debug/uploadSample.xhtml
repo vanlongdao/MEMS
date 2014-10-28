@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template/web.xhtml">
+    <ui:define name="content">
+        <h:form>
+        Upload Document file Sample:
+        <table>
+            <tr>
+                <td class="label">Manual</td>
+                <td>
+                    <p:inputText disabled="true" value="#{uploadSample.filename}" id="fileName"></p:inputText>
+                </td>
+                
+                <td>
+                    <ac:uploadDocument id="testDoc" fileLimit="1" process="@this" update="@this, @([id$=fileName])" listener="#{uploadSample.handleUploadEvent}">
+                    </ac:uploadDocument>
+                </td>
+            
+            </tr>
+        </table>
+        </h:form>
+        
+        <h:form>
+        Upload Image file Sample:
+        <table>
+            <tr>
+                <td class="label">Manual</td>
+                <td>
+                    <p:inputText disabled="true" value="#{uploadSample.filename}" id="fileName"></p:inputText>
+                </td>
+                
+                <td>
+                    <ac:uploadImage id="testDoc" fileLimit="1" process="@this" update="@this, @([id$=fileName])" auto="false" listener="#{uploadSample.handleUploadEvent}">
+                    </ac:uploadImage>
+                </td>
+            
+            </tr>
+        </table>
+        </h:form>
+        
+    </ui:define>
+</ui:composition>    

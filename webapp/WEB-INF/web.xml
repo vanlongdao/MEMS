@@ -1,0 +1,232 @@
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>mems</display-name>
+	<welcome-file-list>
+		<welcome-file>index.xhtml</welcome-file>
+	</welcome-file-list>
+	<!-- Set timeout for Session: 30 minutes -->
+	<session-config>
+		<session-timeout>60</session-timeout>
+	</session-config>
+	<servlet>
+		<servlet-name>facesServlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>facesServlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>resteasy-servlet</servlet-name>
+		<servlet-class>
+			org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher
+		</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>resteasy-servlet</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>MemsResourceServlet</servlet-name>
+		<servlet-class>arrow.mems.servlet.MemsResourceServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MemsResourceServlet</servlet-name>
+		<url-pattern>/mResources/*</url-pattern>
+	</servlet-mapping>
+	
+	
+	<context-param>
+		<param-name>PARAMETER_ENCODING</param-name>
+		<param-value>UTF-8</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+		<param-value>.xhtml</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Development</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.FACELETS_DEVELOPMENT</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
+		<param-value>0</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.FACELETS_BUFFER_SIZE</param-name>
+		<param-value>1024000</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.FACELETS_LIBRARIES</param-name>
+		<param-value>/WEB-INF/tags/arrow-taglib.xml</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+
+	<!-- Primefaces additional configuration -->
+	<context-param>
+		<param-name>primefaces.SUBMIT</param-name>
+		<param-value>partial</param-value>
+	</context-param>
+	<context-param>
+		<param-name>primefaces.TRANSFORM_METADATA</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>#{userCredential.preferences.theme}</param-value>
+	</context-param>
+
+	<!-- Auto scan REST service -->
+	<context-param>
+		<param-name>resteasy.scan</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<!-- this need same with resteasy servlet url-pattern -->
+	<context-param>
+		<param-name>resteasy.servlet.mapping.prefix</param-name>
+		<param-value>/rest</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>resteasy.scan.providers</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>resteasy.scan.resources</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<!-- Upload -->
+	<!-- <context-param> <param-name>primefaces.UPLOADER</param-name> <param-value>auto</param-value> 
+		</context-param> -->
+
+	<!-- Custom Context Param -->
+	<context-param>
+		<param-name>arrow.mems.UPLOAD_DIR</param-name>
+		<param-value>/var/mems</param-value>
+	</context-param>
+	<context-param>
+		<param-name>arrow.mems.UPLOAD_TEMP_DIR</param-name>
+		<param-value>/tmp/mems</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>arrow.mems.ENABLE_COLUMN_TOGGLER</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<filter>
+		<filter-name>CustomCharacterEncodingFilter</filter-name>
+		<filter-class>arrow.framework.faces.filter.CharacterEncodingFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>CustomCharacterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- Ominifaces -->
+	<filter>
+		<filter-name>facesExceptionFilter</filter-name>
+		<filter-class>org.omnifaces.filter.FacesExceptionFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>facesExceptionFilter</filter-name>
+		<servlet-name>facesServlet</servlet-name>
+	</filter-mapping>
+	<filter>
+		<filter-name>gzipResponseFilter</filter-name>
+		<filter-class>org.omnifaces.filter.GzipResponseFilter</filter-class>
+
+		<!-- all filter have to support async to enable push feature -->
+		<async-supported>true</async-supported>
+	</filter>
+	<filter-mapping>
+		<filter-name>gzipResponseFilter</filter-name>
+		<servlet-name>facesServlet</servlet-name>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+	</filter-mapping>
+
+	<!-- Upload -->
+	<filter>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+		<init-param>
+			<param-name>uploadDirectory</param-name>
+			<param-value>#{appConfig.uploadDir}</param-value>
+		</init-param>
+		<init-param>
+			<param-name>thresholdSize</param-name>
+			<param-value>1</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<servlet-name>facesServlet</servlet-name>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+	
+	
+	<!-- Security -->
+	<security-constraint>
+		<display-name>Restrict direct access to composite component</display-name>
+		<web-resource-collection>
+			<web-resource-name>Resources</web-resource-name>
+			<url-pattern>/resources/arrowtags/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint/>
+	</security-constraint>	
+	
+
+	<!-- Exception handling -->
+	<!-- We are using OmniFaces FullAjaxExceptionHandler which is capable of 
+		handling exception from Ajax request -->
+	<!-- We must have at least one error page for java.lang.Throwable to cache 
+		unspecified exception -->
+	<!-- While FullAjaxExceptionHandler is capable of accessing WEB-INF folder, 
+		the built-in Servlet exception handler is not. -->
+	<!-- Thus we must put the error pages outside WEB-INF -->
+	<error-page>
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/errorpages/error.xhtml?nocid=true</location>
+	</error-page>
+
+	<error-page>
+		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
+		<location>/errorpages/view_expired.xhtml?nocid=true</location>
+	</error-page>
+	<error-page>
+		<exception-type>javax.enterprise.context.NonexistentConversationException</exception-type>
+		<location>/errorpages/error.xhtml?nocid=true</location>
+	</error-page>
+	<listener>
+		<listener-class>
+			org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap
+		</listener-class>
+	</listener>
+
+</web-app>

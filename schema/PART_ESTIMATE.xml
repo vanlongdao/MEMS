@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- PART_ESTIMATE -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="PE_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="PE_CODE" data-type="code" not-null="true"/>
+	<column name="ACTION_CODE" data-type="code" not-null="false" />
+	<column name="CLIENT_SIDE_MGMT_CODE" data-type="code" not-null="false" />
+	<column name="DIST_OFFICE" data-type="code" not-null="false" />
+	<column name="DIST_PSN" data-type="code" not-null="false" />
+	<column name="SERVICE_OFFICE" data-type="code" not-null="false" />
+	<column name="SERVICE_PSN" data-type="code" not-null="false" />
+	<column name="REQUESTER_OFFICE" data-type="code" not-null="false" />
+	<column name="REQUESTER_PSN" data-type="code" not-null="false" />
+	<column name="PE_TYPE" data-type="type-code" not-null="false" />
+	<column name="REQUEST_DATE" data-type="date" not-null="false" />
+	<column name="PRINT_DATE" data-type="date" not-null="false" />
+	<column name="RECEIVE_DATE" data-type="date" not-null="false" />
+	<column name="EXPIRE_DATE" data-type="date" not-null="false" />
+	<column name="REQ_DEST_OFFICE" data-type="code" not-null="false" />
+	<column name="REQ_DELIVERY_DATE" data-type="date" not-null="false" />
+	<column name="NOTICE" data-type="freetext" not-null="false" />
+	<column name="P_CCY" data-type="integer" not-null="false" />
+	<column name="TOTAL_PRICE" data-type="cost" not-null="false" />
+	<column name="TAX" data-type="cost" not-null="false" />
+	<column name="IMAGE_FILE" data-type="image" not-null="false" />
+</table>

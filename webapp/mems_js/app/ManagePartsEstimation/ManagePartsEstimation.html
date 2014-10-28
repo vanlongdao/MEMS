@@ -1,0 +1,224 @@
+
+<div>
+
+<table>
+	<tr>
+		<td>Select Estimation:</td>
+		<td>
+			<ui-select id="txtEstimationList" ng-model="partEstimateSelected.selected" theme="bootstrap" ng-disabled="disabled" style="width:300px;">
+				<ui-select-match placeholder="Select a part estimation">Estimation:  </p3>{{$select.selected.peType}}</ui-select-match>
+	            <ui-select-choices group-by="'group'" repeat="item in listPartsEstimate | filter: $select.search">
+	              <p3>Type:  </p3><span ng-bind-html="trustAsHtml((item.peType | highlight: $select.search))"></span><br/>
+	              <p3>Request date:  </p3><span ng-if="item.requestDate != null || item.requestDate != undefined" ng-bind-html="trustAsHtml((item.requestDate.monthValue + '/' + item.requestDate.dayOfMonth + '/' + item.requestDate.year | highlight: $select.search))"></span><br/>
+	              <p3>Total price:  </p3><span ng-bind-html="trustAsHtml((item.totalPrice.toString() | highlight: $select.search))"></span><br/>
+	            </ui-select-choices>
+			</ui-select>
+		</td>
+	</tr>
+	
+	<tr>
+		<td colspan="2">
+			<input type="button" value="Delete" ng-click="delPartEstimate()">
+		</td>
+	</tr>
+</table>
+
+<fieldset>
+	<legend>Estimate</legend>
+	<table>
+		<tr>
+			<td colspan="2">
+				<paper-input label="Repair code" disabled floatingLabel ng-if="!partEstimateSelected.selected"></paper-input>
+				<paper-input label="Repair code" disabled floatingLabel ng-model="partEstimateSelected.selected.actionCode" ng-if="partEstimateSelected.selected"></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input label="Parts distributor" floatingLabel ng-if="!partEstimateSelected.selected"></paper-input>
+				<paper-input label="Parts distributor" floatingLabel ng-model="partEstimateSelected.selected.distributorOffice.name" ng-if="partEstimateSelected.selected"></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input label="Person of parts dist" floatingLabel ng-if="!partEstimateSelected.selected"></paper-input>
+				<paper-input label="Person of parts dist" floatingLabel ng-model="partEstimateSelected.selected.distributorPerson.name" ng-if="partEstimateSelected.selected "></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input label="Client" disabled floatingLabel ng-if="!partEstimateSelected.selected"></paper-input>
+				<paper-input label="Client" floatingLabel ng-model="partEstimateSelected.selected.supplierOffice.name" ng-if="partEstimateSelected.selected "></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input label="Person of client hospital" floatingLabel ng-if="!partEstimateSelected.selected"></paper-input>
+				<paper-input label="Person of client hospital" floatingLabel ng-model="partEstimateSelected.selected.supplierPerson.name" ng-if="partEstimateSelected.selected "></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input label="Repair by" floatingLabel ng-if="!partEstimateSelected.selected"></paper-input>
+				<paper-input label="Repair by" floatingLabel ng-model="partEstimateSelected.selected.clientOffice.name" ng-if="partEstimateSelected.selected "></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input label="Person of repairt service" floatingLabel ng-if="!partEstimateSelected.selected"></paper-input>
+				<paper-input label="Person of repairt service" floatingLabel ng-model="partEstimateSelected.selected.clientPerson.name" ng-if="partEstimateSelected.selected "></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td>Estimation status</td>
+			<td>
+				<select>
+					<option value="1">
+					<option value="2">
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input label="Request date" floatingLabel ng-if="!partEstimateSelected.selected"></paper-input>
+				<paper-input label="Request date" floatingLabel ng-model="partEstimateSelected.selected.requestDate" ng-if="partEstimateSelected.selected "></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input label="Print date" floatingLabel ng-if="!partEstimateSelected.selected"></paper-input>
+				<paper-input label="Print date" floatingLabel ng-model="partEstimateSelected.selected.printDate" ng-if="partEstimateSelected.selected "></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input label="Receive date" floatingLabel ng-if="!partEstimateSelected.selected"></paper-input>
+				<paper-input label="Receive date" floatingLabel ng-model="partEstimateSelected.selected.receiveDate" ng-if="partEstimateSelected.selected "></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input label="Expiration date" floatingLabel ng-if="!partEstimateSelected.selected"></paper-input>
+				<paper-input label="Expiration date" floatingLabel ng-model="partEstimateSelected.selected.expireDate" ng-if="partEstimateSelected.selected "></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input label="Deliver to" floatingLabel ng-if="!partEstimateSelected.selected"></paper-input>
+				<paper-input label="Deliver to" floatingLabel ng-model="partEstimateSelected.selected.deliveryToOffice.name" ng-if="partEstimateSelected.selected "></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input label="Deliver date" floatingLabel ng-if="!partEstimateSelected.selected"></paper-input>
+				<paper-input label="Deliver date" floatingLabel ng-model="partEstimateSelected.selected.reqDeliveryDate" ng-if="partEstimateSelected.selected "></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input label="Code (distributor)" floatingLabel ng-if="!partEstimateSelected.selected"></paper-input>
+				<paper-input label="Code (distributor)" floatingLabel ng-model="partEstimateSelected.selected.clientSideMgmtCode" ng-if="partEstimateSelected.selected "></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input label="Total with tax" floatingLabel ng-if="!partEstimateSelected.selected"></paper-input>
+				<paper-input label="Total with tax" floatingLabel ng-model="partEstimateSelected.selected.totalPrice" ng-if="partEstimateSelected.selected "></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input label="Tax" floatingLabel ng-if="!partEstimateSelected.selected"></paper-input>
+				<paper-input label="Tax" floatingLabel ng-model="partEstimateSelected.selected.tax" ng-if="partEstimateSelected.selected "></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input label="PDF/Image" floatingLabel ng-if="!partEstimateSelected.selected"></paper-input>
+				<paper-input label="PDF/Image" floatingLabel ng-model="partEstimateSelected.selected.imageFile" ng-if="partEstimateSelected.selected "></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+                <ui-select id="partEstimateItem" ng-model="partEstimateItemSelected.selected" theme="bootstrap" style="width: 300px;">
+                    <ui-select-match placeholder="Select a part estimate item">Item:  </p3>{{$select.selected.partName}}</ui-select-match>
+                    <ui-select-choices group-by="'group'" repeat="item in listPartEstimateItems | filter: $select.search ">
+                        <p3>Name:  </p3><span ng-bind-html="trustAsHtml((item.partName | highlight: $select.search))"></span>
+                        <p3>Model:  </p3><span ng-bind-html="trustAsHtml((item.partModelNo | highlight: $select.search))"></span><br/>
+                        <p3>Number items:  </p3><span ng-bind-html="trustAsHtml((item.numItems.toString() | highlight: $select.search))"></span>
+                        <p3>Price:  </p3><span ng-bind-html="trustAsHtml((item.itemPrice.toString() | highlight: $select.search))"></span><br/>
+                        <p3>Taxrate:  </p3><span ng-bind-html="trustAsHtml((item.taxRate.toString() | highlight: $select.search))"></span>
+                        <p3>Price with tax:  </p3><span ng-bind-html="trustAsHtml((item.priceWithTax.toString() | highlight: $select.search))"></span>
+                    </ui-select-choices>
+                </ui-select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="button" value="Add new item" ng-click="addNewItem()">
+				<input type="button" value="Delete item" ng-click="delPartEstimateItem()">
+			</td>
+		</tr>
+		<tr>
+			<td>Select parts</td>
+			<td>
+				<ui-select id="txtItemEstimate" ng-model="partItemsEstimateSelected.selected" theme="select2" ng-disabled="disabled" style="width:300px;">
+					<ui-select-match placeholder="Select a part estimation">Part:  </p3>{{$select.selected.name}}</ui-select-match>
+		            <ui-select-choices group-by="'group'" repeat="item in listPartItemsEstimate | filter: $select.search">
+		              <p3>Part:  </p3><span ng-bind-html="trustAsHtml((item.name | highlight: $select.search))"></span>
+		            </ui-select-choices>
+				</ui-select>
+			</td>
+		</tr>
+		<tr ng-if="partItemsEstimateSelected.selected.name == 'Other'">
+			<td colspan="2">
+                <paper-input label="Part name" ng-model="newPartItemEstimate.name" floatingLabel></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+                <paper-input label="Unit price" ng-model="newPartItemEstimate.itemPrice" floatingLabel ng-if="((!partEstimateItemSelected.selected && mode == 0) || partItemsEstimateSelected.selected.name == 'Other' || mode == 1) || partItemsEstimateSelected.selected.name == 'Other' || mode == 1"></paper-input>
+				<paper-input label="Unit price" ng-model="partEstimateItemSelected.selected.itemPrice" floatingLabel ng-if="partEstimateItemSelected.selected && partItemsEstimateSelected.selected.name != 'Other' && mode == 0"></paper-input>
+<!-- 				<paper-input label="Unit price" ng-model="newPartItemEstimate.itemPrice" floatingLabel ng-if=""></paper-input> -->
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input label="Number of item" ng-model="newPartItemEstimate.numItems" floatingLabel ng-if="(!partEstimateItemSelected.selected && mode == 0) || partItemsEstimateSelected.selected.name == 'Other' || mode == 1"></paper-input>
+                <paper-input label="Number of item" ng-model="partEstimateItemSelected.selected.numItems" floatingLabel ng-if="partEstimateItemSelected.selected && partItemsEstimateSelected.selected.name != 'Other' && mode == 0"></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input label="Subtotal" ng-model="newPartItemEstimate.totPrice" floatingLabel ng-if="(!partEstimateItemSelected.selected && mode == 0) || partItemsEstimateSelected.selected.name == 'Other' || mode == 1"></paper-input>
+                <paper-input label="Subtotal" ng-model="partEstimateItemSelected.selected.totPrice" floatingLabel ng-if="partEstimateItemSelected.selected && partItemsEstimateSelected.selected.name != 'Other' && mode == 0"></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input label="Tax rate(%)" ng-model="newPartItemEstimate.taxRate" floatingLabel ng-if="(!partEstimateItemSelected.selected && mode == 0) || partItemsEstimateSelected.selected.name == 'Other' || mode == 1"></paper-input>
+                <paper-input label="Tax rate(%)" floatingLabel ng-model="partEstimateItemSelected.selected.taxRate" ng-if="partEstimateItemSelected.selected && partItemsEstimateSelected.selected.name != 'Other' && mode == 0"></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input label="Tax" ng-model="newPartItemEstimate.tax" floatingLabel ng-if="(!partEstimateItemSelected.selected && mode == 0) || partItemsEstimateSelected.selected.name == 'Other' || mode == 1"></paper-input>
+                <paper-input label="Tax" floatingLabel ng-model="partEstimateItemSelected.selected.tax" ng-if="partEstimateItemSelected.selected && partItemsEstimateSelected.selected.name != 'Other' && mode == 0"></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input label="Subtotal with tax" ng-model="newPartItemEstimate.priceWithTax" floatingLabel ng-if="(!partEstimateItemSelected.selected && mode == 0) || partItemsEstimateSelected.selected.name == 'Other' || mode == 1"></paper-input>
+                <paper-input label="Subtotal with tax" ng-model="partEstimateItemSelected.selected.priceWithTax" floatingLabel ng-if="partEstimateItemSelected.selected && partItemsEstimateSelected.selected.name != 'Other' && mode == 0"></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="button" value="Apply this to items" ng-click="applyItem()">
+				<input type="button" value="Clear this item" ng-click="clearItem()">
+			</td>
+		</tr>
+	</table>				
+</fieldset>
+<input type="button" value="Apply and Back" ng-click="applyAndBack()">
+<input type="button" value="Discard and Back" ng-click="discardAndBack()"> 
+</div>

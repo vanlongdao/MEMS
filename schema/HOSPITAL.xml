@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- HOSPITAL -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="HOSP_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="HOSP_CODE" data-type="code" not-null="false" />
+	<column name="NAME" data-type="name" not-null="false"/>
+	<column name="CORP_CODE" data-type="code" not-null="false"/>
+	<column name="OFFICE_CODE" data-type="code" not-null="false" />
+	<column name="NUM_BEDS" data-type="integer" not-null="false" />
+    <foreign-key parent-table="CORPORATE">
+        <column name="CORP_CODE" referColumn="CORP_CODE"/>
+        <column name="IS_DELETED" referColumn="IS_DELETED"/>
+    </foreign-key>
+    <foreign-key parent-table="OFFICE">
+        <column name="OFFICE_CODE" referColumn="OFFICE_CODE"/>
+        <column name="IS_DELETED" referColumn="IS_DELETED"/>
+    </foreign-key>
+
+</table>

@@ -1,0 +1,275 @@
+/*
+ * General HTML
+ */
+html {
+	overflow-y: scroll;
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 11px;
+}
+
+body * {
+/* 	font-family: Verdana, sans-serif !important; */
+}
+
+form {
+	margin: 0px;
+	border: 0px;
+	padding: 0px;
+}
+
+a:link,a:visited {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:active {
+	text-decoration: none;
+}
+
+a label {
+	cursor: pointer;
+	cursor: hand;
+}
+
+textarea {
+	width: 400px;
+	height: 100px;
+}
+
+#topBar {
+	position: relative;
+}
+
+#themeSwitcher {
+	position: absolute;
+	right:0;
+}
+
+#menuBar {
+	position:  absolute;
+}
+
+/* Select column in summary table */
+/* sequence column */
+.select-column, .seq-column {
+	min-width: 18px !important;
+	max-width: 18px !important;
+	width: 18px !important;
+}
+
+.one-char {width: 10px !important;}
+.two-char {width: 20px !important;}
+.three-char {width: 30px !important;}
+.five-char {width: 50px !important;}
+.six-char {width: 60px !important;}
+.eight-char {width: 80px !important;}
+.ten-char {width: 100px !important;}
+.twelve-char {width: 120px !important;}
+.fifteen-char {width: 150px !important;}
+.twenty-char {width: 200px !important;}
+.twenty-five-char {width: 250px !important;}
+.thirty-char {width: 300px !important;}
+.fifty-char {width: 500px !important;}
+.hundred-char {width: 800px !important;}
+.remark-textarea {width: 800px !important; height: 100px !important;}
+.desc-textarea {width: 250px !important; height: 50px !important;}
+.desc-textarea-expand {width: 450px !important; height: 100px !important;}
+
+.display-number{
+    text-align: right;
+}
+
+.display-number input {
+    text-align: right;
+}
+.display-text{
+    text-align: left;
+}
+.display-code{
+    text-align: center;
+}
+.display-index{
+    text-align: center;
+    width: 20px;
+}
+.display-select{
+    width: 15px;
+    text-align: center;
+}
+
+.display-date {
+	text-align: right;
+}
+#screenTitle {
+	width:100%;
+}
+
+#screenLabel {
+	float:left;
+}
+.textboxInput{
+    width: 100%;
+}
+
+
+#contentPanel_header > .ui-panel-title {
+	padding:0px;
+	margin:0px;
+}
+
+.cell-box {
+	width:100%;
+	height: 1em;
+	margin-top: 5px;
+}
+
+.cell-left {
+    display: inline-block;
+	padding-left: 0px;
+}
+
+.cell-right {
+    display: inline-block;
+    position: absolute;
+}
+
+.dashboard-right{
+    width: 79%;
+}
+
+.dashboard-left{
+    width: 20%;
+}
+
+.ui-dialog {
+	width: 50% !important;
+}
+
+/*
+* fixed bug MEMS-143 Show message error when login on Chrome and Safari
+*/
+#growl_container div {
+	display: block;
+}
+
+#officeForm\:hiddenPanel {
+	display: none;
+}
+
+.leftContainer {
+	width: 29%;
+	float: left;
+}
+
+.rightContainer {
+	width: 70%;
+	float: right;
+}
+
+#approvalForm\:approveTable .ui-datatable-tablewrapper .display-select {
+	width: 50px;
+}
+.icon {
+/* 	width: 20px !important; */
+}
+
+ /*
+* Custom for form master dashboard 
+* 2014/09/30
+* longdv
+*/
+.container_engineer_supplier {
+	width: 100%;
+	align: center;
+}
+
+#left_engineer_supplier {
+	float: left;
+	width: 52%;
+}
+
+#left_dailyreport {
+	float: right;
+	width: 48%;
+}
+
+.left_container_manager_system{
+    float: left;
+	width: 30%;
+}
+
+.datalist_ordered {
+    text-align: left;
+}
+
+.narrowDropDown {
+	
+}
+.panelRemovedDeviceCode{
+    width: 550px !important;
+}
+
+.narrowDropDown .ui-inputfield {
+	width: 50px !important;
+}
+.btnRegisterMdevice{
+    margin-left: 5px !important;
+}
+
+#panelViewDetailQRcode .label{
+    width: 150px !important;
+} 
+
+.viewDocumentFile{
+    margin: 0 auto !important;
+    width: 100% !important;
+    height: 150px;
+    vertical-align: top;
+}
+.view_detail_repair{
+    width: 60px !important;
+    text-align: center !important;
+}
+
+.fullHeight {
+	height: 99%;
+}
+#null_dlg {
+    width:405px !important;
+    
+}
+.pending {
+	color:red;
+}
+
+.approved{
+}
+
+/* .ui-dialog[id*='opendrawing_dlg']{ */
+/* 	width: 600px !important; */
+/* 	height: 600px !important; */
+	
+/* } */
+
+#tabView\:popupSetup {
+	width: 20% !important;
+	height: 20% !important;
+	left: 500px;
+}
+.viewVideoFile{
+    margin: 0 auto;
+    
+}
+.localeSwitcher{
+	display: inline-block;
+	position: relative;
+	top: -6px;
+}

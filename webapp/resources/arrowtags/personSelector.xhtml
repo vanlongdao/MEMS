@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+    xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+    <composite:attribute name="id"/>
+    <composite:attribute name="value"/>
+</composite:interface>
+
+<composite:implementation>
+    <p:autoComplete id="#{cc.attrs.id}" value="#{cc.attrs.value}"
+        converter="#{converterStorage.personConverter}"
+        completeMethod="#{commonAutoCompleteBean.filterPerson}"  forceSelection="true" cache="true" cacheTimeout="300"
+        dropdown="true" scrollHeight="200" var="person" itemLabel="#{person.name}" itemValue="#{person}" title="#{messages.typeToFindPerson}" emptyMessage="#{messages.noPersonFound}">
+        <p:ajax event="itemSelect" process="@this" update="@this"/>
+        <p:column headerText="#{messages.psnCode}">
+            #{person.psnCode}
+        </p:column>
+        <p:column headerText="#{messages.name}">
+            #{person.name}
+        </p:column>
+    </p:autoComplete>
+</composite:implementation>
+</html>

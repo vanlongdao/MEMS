@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+	<h:form>
+		<p:outputPanel>
+			<ac:dataTable value="#{repairHistoryBean.listPartOrder}" var="order" rowIndexVar="index" rowKey="#{order.poCode}" selectionMode="single" selection="#{repairHistoryBean.selectedOrder}">
+				<p:column styleClass="display-index">
+				#{index+1}
+			</p:column>
+				<p:column headerText="#{messages.code}" styleClass="display-text">
+				#{order.poCode}
+			</p:column>
+				<p:column headerText="#{messages.etaDate}" styleClass="display-text">
+				#{order.etaDate}
+			</p:column>
+				<p:column headerText="#{messages.totalPrice}" styleClass="display-number">
+				#{order.totalPrice}
+			</p:column>
+				<p:ajax event="rowSelect" process="@this" update="@form"></p:ajax>
+			</ac:dataTable>
+		</p:outputPanel>
+		<p:fieldset rendered="#{repairHistoryBean.selectedOrder ne null}" legend="#{messages.partOrderInfo}">
+			<ac:dataTable value="#{repairHistoryBean.listPartOrderItem}" var="item" rowIndexVar="index">
+				<p:column styleClass="display-index">
+					#{index+1}
+				</p:column>
+				<p:column styleClass="display-text" headerText="#{messages.parts}">
+					#{item.MDevice.name}
+				</p:column>
+				<p:column styleClass="display-number" headerText="#{messages.price}">
+					#{item.itemPrice}
+				</p:column>
+				<p:column styleClass="display-number" headerText="#{messages.numItems}">
+					#{item.numItems}
+				</p:column>
+				<p:column styleClass="display-number" headerText="#{messages.subTotal}">
+					#{item.totPrice}
+				</p:column>
+			</ac:dataTable>
+		</p:fieldset>
+	</h:form>
+</ui:composition>

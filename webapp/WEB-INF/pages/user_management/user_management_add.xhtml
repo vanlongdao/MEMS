@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+
+	<o:importConstants type="arrow.mems.constant.CommonConstants"></o:importConstants>
+	<h:form id="form">
+		<table>
+			<tr>
+				<td class="label"><p:outputLabel value="#{messages['loginName']}" for="loginName" /></td>
+				<td><p:inputText id="loginName" value="#{userManagementBean.currentUser.loginName}" label="#{messages['loginName']}" maxlength="#{CommonConstants.LOGIN_NAME_MAX_LENGTH}"
+						styleClass="fifteen-char">
+						<p:ajax event="change" process="@this" update="@this"></p:ajax>
+					</p:inputText></td>
+			</tr>
+
+			<tr>
+				<td class="label"><p:outputLabel value="#{messages['accountType']}" for="account_type" /></td>
+				<td><p:selectOneMenu id="account_type" value="#{userManagementBean.currentUser.accountType}" label="#{messages.accountType}">
+						<f:selectItems value="#{userManagementBean.accountTypes}" />
+						<p:ajax event="change" process="@this" update="@this"></p:ajax>
+					</p:selectOneMenu></td>
+			</tr>
+
+			<tr>
+				<td class="label"><p:outputLabel value="#{messages['office']}" for="office" /></td>
+				<td><p:autoComplete value="#{userManagementBean.currentUser.office}" label="#{messages.office}" id="office" converter="#{converterStorage.officeConverter}" forceSelection="true"
+						completeMethod="#{userManagementBean.filterOffice}" emptyMessage="#{messages.noOfficeFound}" var="office" itemValue="#{office}" itemLabel="#{office.name}" dropdown="true">
+						<p:column headerText="#{messages.code}">
+							<h:outputText value="#{office.officeCode}" />
+						</p:column>
+
+						<p:column headerText="#{messages.name}">
+							<h:outputText value="#{office.name}" />
+						</p:column>
+						<p:ajax event="itemSelect" process="@this" update="@form" />
+					</p:autoComplete></td>
+			</tr>
+
+			<tr>
+				<td class="label"><p:outputLabel rendered="#{userManagementBean.currentUser.officeCode ne null}" value="#{messages['person']}" for="person" id="lbPerson" /></td>
+				<td><p:autoComplete autocomplete="off" rendered="#{userManagementBean.currentUser.officeCode ne null}" value="#{userManagementBean.currentUser.person}" label="#{messages.person}" id="person"
+						converter="#{converterStorage.personConverter}" forceSelection="true" completeMethod="#{userManagementBean.filterPerson}" emptyMessage="#{messages.noPersonFound}" var="person"
+						itemValue="#{person}" itemLabel="#{person.name}" dropdown="true">
+						<p:column headerText="#{messages.code}">
+							<h:outputText value="#{person.psnCode}" />
+						</p:column>
+
+						<p:column headerText="#{messages.name}">
+							<h:outputText value="#{person.name}" />
+						</p:column>
+						<p:ajax event="itemSelect" process="@this" update="person" />
+					</p:autoComplete></td>
+			</tr>
+
+			<tr>
+				<td class="label"><p:outputLabel value="#{messages['password']}" for="password" /></td>
+				<td><p:password autocomplete="off" id="password" value="#{userManagementBean.currentUser.password}" redisplay="false" label="#{messages['password']}" maxlength="#{CommonConstants.PASSWORD_MAX_LENGTH}" styleClass="fifteen-char">
+					</p:password></td>
+			</tr>
+			<tr>
+				<td class="label"><p:outputLabel value="#{messages['supervisor']}" for="supervisor" /></td>
+				<td><p:selectBooleanCheckbox value="#{userManagementBean.currentUser.supervisor}" id="supervisor">
+						<p:ajax event="change" process="@this" update="@this"></p:ajax>
+					</p:selectBooleanCheckbox></td>
+			</tr>
+
+			<tr>
+				<td class="label"><p:outputLabel value="#{messages.email}" for="email" /></td>
+				<td><p:inputText id="email" value="#{userManagementBean.currentUser.email}" maxlength="#{CommonConstants.TEXT_MAX_LENGTH}" styleClass="fifteen-char">
+						<p:ajax event="change" process="@this" update="@this"></p:ajax>
+					</p:inputText></td>
+			</tr>
+			<tr>
+				<td class="label"><p:outputLabel value="#{messages.name}" for="name" /></td>
+				<td><p:inputText id="name" value="#{userManagementBean.currentUser.name}" maxlength="#{CommonConstants.TEXT_MAX_LENGTH}" styleClass="fifteen-char">
+						<p:ajax event="change" process="@this" update="@this"></p:ajax>
+					</p:inputText></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="left"><p:commandButton id="btnAddNewUser" value="#{messages['save']}" action="#{userManagementBean.saveUser}" process="@form" update=":contentPane" icon="ui-icon-disk" />
+					<p:commandButton actionListener="#{userManagementBean.cancel}" id="btnclose" value="#{messages['cancel']}" update=":contentPane" immediate="true" icon="ui-icon-close" process="@this" /> <p:commandButton
+						value="#{messages.delete}" icon="ui-icon-trash" action="#{userManagementBean.deleteSelectedUser}" disabled="#{!userManagementBean.enableBtnDelete}" process="@this" update=":contentPane">
+						<p:confirm header="#{messages.confirmation}" message="#{messages.MMI00003}" icon="ui-icon-alert" />
+					</p:commandButton></td>
+			</tr>
+		</table>
+	</h:form>
+</ui:composition>

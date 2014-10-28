@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+
+	<h:form>
+		<table>
+            <tr>
+                <td><p:outputLabel value="#{messages.deviceCode}" for="deviceCode" /></td>
+                <td>
+                    <p:inputText id="deviceCode" value="#{printQRCodeBean.currentDevice.devCode}" label="#{messages.deviceCode}" styleClass="twenty-char" maxlength="255" readonly="true" disabled="true">
+                    </p:inputText>
+                </td>
+            </tr>
+            <tr>
+                <td><p:outputLabel value="#{messages.deviceName}" for="deviceName" /></td>
+                <td><p:inputText id="deviceName" value="#{printQRCodeBean.currentDevice.MDevice.name}" label="#{messages.deviceName}" styleClass="twenty-char" maxlength="255" readonly="true" disabled="true">
+                    </p:inputText></td>
+            </tr>
+            <tr>
+                <td><p:outputLabel value="#{messages.url}" for="url" /></td>
+                <td><p:inputText id="url" value="#{printQRCodeBean.url}" label="#{messages.url}" styleClass="twenty-char" maxlength="255" readonly="true" disabled="true">
+                </p:inputText></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="left">
+                    <p:commandButton value="#{messages.generateQRCode}" process="@form" update=":contentPane" action="#{printQRCodeBean.generateQRCode}" icon="ui-icon-disk" />
+                </td>
+            </tr>
+          </table>
+         <p:panel id="QRCodePanel" rendered="#{printQRCodeBean.display}">
+              <table>  
+                <tr>
+                    <td><p:outputLabel value="#{messages.image}"/></td>
+                    <td>
+                        <p:graphicImage value="#{printQRCodeBean.imageContent}" width="150" height="150" id="imagePreview" cache="false">
+                        </p:graphicImage>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" colspan="2">
+                            <p:commandButton value="#{messages.printQRCode}" process="@form" update=":contentPane" type="button" icon="ui-icon-print">
+                                <p:printer target="imagePreview" />
+                            </p:commandButton>
+                            <p:commandButton value="#{messages.cancel}" actionListener="#{screenMonitor.close}" process="@this" update=":contentPane" icon="ui-icon-close" immediate="true" />
+                    </td>
+                </tr>
+            </table>
+        </p:panel>
+    </h:form>
+</ui:composition>

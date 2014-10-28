@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+
+	<h:form id="officeForm">
+		<table>
+			<tr>
+				<td><p:outputLabel value="#{messages.officeCode}" rendered="#{officeManagementBean.currentOffice.persisted}" /></td>
+				<td><p:inputText rendered="#{officeManagementBean.currentOffice.persisted}" value="#{officeManagementBean.currentOffice.officeCode}" disabled="true" label="#{messages.officeCode}"  styleClass="fifteen-char display-text">
+						<p:ajax event="change" process="@this" update="@this" />
+					</p:inputText></td>
+			</tr>
+			<tr>
+				<td><p:outputLabel value="#{messages.name}" for="officeName" /></td>
+				<td><p:inputText id="officeName" value="#{officeManagementBean.currentOffice.name}" label="#{messages.name}" maxlength="255" styleClass="fifteen-char display-text">
+						<p:ajax event="change" process="@this" update="@this" />
+					</p:inputText></td>
+			</tr>
+			<tr>
+				<td><p:outputLabel value="#{messages.corporateName}" for="autoCompleteCorporate" /></td>
+				<td><p:autoComplete id="autoCompleteCorporate" value="#{officeManagementBean.currentOffice.corporate}" converter="#{converterStorage.corporateConverter}"
+						title="#{messages.typeToFindCorporate}" var="corporate" itemLabel="#{corporate.name}" forceSelection="true" emptyMessage="#{messages.noCorporateFound}" cache="true" cacheTimeout="300"
+						dropdown="true" scrollHeight="200" itemValue="#{corporate}" completeMethod="#{commonAutoCompleteBean.filterCorporate}">
+						<p:column headerText="#{messages.corporateId}">
+							<h:outputText value="#{corporate.corpId}" />
+						</p:column>
+
+						<p:column headerText="#{messages.corporateName}">
+							<h:outputText value="#{corporate.name}" />
+						</p:column>
+						<p:ajax event="itemSelect" process="@this" update="autoCompleteCorporate" />
+					</p:autoComplete></td>
+			</tr>
+			<tr>
+				<td><p:outputLabel value="#{messages.address}" for="autoCompleteAddress" /></td>
+				<td><p:autoComplete id="autoCompleteAddress" value="#{officeManagementBean.currentOffice.address}" converter="#{converterStorage.addressConverter}" title="#{messages.typeToFindAddress}"
+						var="address" itemLabel="#{address.address1}" forceSelection="true" emptyMessage="#{messages.noAddressFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200"
+						itemValue="#{address}" completeMethod="#{commonAutoCompleteBean.filterAddress}">
+						<p:column headerText="#{messages.addressId}">
+							<h:outputText value="#{address.addrId}" />
+						</p:column>
+
+						<p:column headerText="#{messages.address}">
+							<h:outputText value="#{address.address1}" />
+						</p:column>
+						<p:ajax event="itemSelect" process="@this" update="autoCompleteAddress" />
+					</p:autoComplete></td>
+			</tr>
+            <tr>
+                <td><p:outputLabel value="#{messages.tel}" for="tel" /></td>
+                <td><p:inputText id="tel" value="#{officeManagementBean.currentOffice.tel}" label="#{messages.tel}" styleClass="fifteen-char" maxlength="255">
+                        <p:ajax event="change" process="@this" update="@this" />
+                    </p:inputText></td>
+            </tr>
+            <tr>
+                <td><p:outputLabel value="#{messages.fax}" for="fax" /></td>
+                <td><p:inputText id="fax" value="#{officeManagementBean.currentOffice.fax}" label="#{messages.fax}" styleClass="fifteen-char" maxlength="255">
+                        <p:ajax event="change" process="@this" update="@this" />
+                    </p:inputText></td>
+            </tr>
+            
+			<p:panel id="hiddenPanel" rendered="#{officeManagementBean.currentOffice.persisted}">
+				<tr>
+					<td><p:outputLabel value="#{messages.manager}" for="autoCompleteManager"></p:outputLabel></td>
+					<td><p:autoComplete id="autoCompleteManager" value="#{officeManagementBean.currentOffice.managerPerson}" converter="#{converterStorage.personConverter}" title="#{messages.typeToFindPerson}"
+							var="manager" itemLabel="#{manager.name}" forceSelection="true" emptyMessage="#{messages.noPersonFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200"
+							itemValue="#{manager}" completeMethod="#{commonAutoCompleteBean.filterPerson}">
+							<p:column headerText="#{messages.managerId}">
+								<h:outputText value="#{manager.psnId}" />
+							</p:column>
+
+							<p:column headerText="#{messages.managerName}">
+								<h:outputText value="#{manager.name}" />
+							</p:column>
+							<p:ajax event="itemSelect" process="@this" update="autoCompleteManager" />
+						</p:autoComplete></td>
+				</tr>
+				<tr>
+					<td><p:outputLabel value="#{messages.accountant}" for="autoCompleteAccountant"></p:outputLabel></td>
+					<td><p:autoComplete id="autoCompleteAccountant" value="#{officeManagementBean.currentOffice.accountantPerson}" converter="#{converterStorage.personConverter}"
+							title="#{messages.typeToFindPerson}" var="accountant" itemLabel="#{accountant.name}" forceSelection="true" emptyMessage="#{messages.noPersonFound}" cache="true" cacheTimeout="300"
+							dropdown="true" scrollHeight="200" itemValue="#{accountant}" completeMethod="#{commonAutoCompleteBean.filterPerson}">
+							<p:column headerText="#{messages.accountantId}">
+								<h:outputText value="#{accountant.psnId}" />
+							</p:column>
+
+							<p:column headerText="#{messages.name}">
+								<h:outputText value="#{accountant.name}" />
+							</p:column>
+							<p:ajax event="itemSelect" process="@this" update="autoCompleteManager" />
+						</p:autoComplete></td>
+				</tr>
+				<tr>
+					<td><p:outputLabel value="#{messages.technician}" for="autoCompleteTechnician"></p:outputLabel></td>
+					<td><p:autoComplete id="autoCompleteTechnician" value="#{officeManagementBean.currentOffice.technicianPerson}" converter="#{converterStorage.personConverter}"
+							title="#{messages.typeToFindPerson}" var="technician" itemLabel="#{technician.name}" forceSelection="true" emptyMessage="#{messages.noPersonFound}" cache="true" cacheTimeout="300"
+							dropdown="true" scrollHeight="200" itemValue="#{technician}" completeMethod="#{commonAutoCompleteBean.filterPerson}">
+							<p:column headerText="#{messages.technicianId}">
+								<h:outputText value="#{technician.psnId}" />
+							</p:column>
+
+							<p:column headerText="#{messages.name}">
+								<h:outputText value="#{technician.name}" />
+							</p:column>
+							<p:ajax event="itemSelect" process="@this" update="autoCompleteTechnician" />
+						</p:autoComplete></td>
+				</tr>
+				<tr>
+					<td><p:outputLabel value="#{messages.equipmentManager}" for="autoCompleteTechnician"></p:outputLabel></td>
+					<td><p:autoComplete id="autoCompleteEquipmentManager" value="#{officeManagementBean.currentOffice.equipmentPerson}" converter="#{converterStorage.personConverter}"
+							title="#{messages.typeToFindPerson}" var="equipmentManager" itemLabel="#{equipmentManager.name}" forceSelection="true" emptyMessage="#{messages.noPersonFound}" cache="true" cacheTimeout="300"
+							dropdown="true" scrollHeight="200" itemValue="#{equipmentManager}" completeMethod="#{commonAutoCompleteBean.filterPerson}">
+							<p:column headerText="#{messages.equipmentManagerId}">
+								<h:outputText value="#{equipmentManager.psnId}" />
+							</p:column>
+
+							<p:column headerText="#{messages.name}">
+								<h:outputText value="#{equipmentManager.name}" />
+							</p:column>
+							<p:ajax event="itemSelect" process="@this" update="autoCompleteEquipmentManager" />
+						</p:autoComplete></td>
+				</tr>
+			</p:panel>
+			<tr>
+				<td><p:outputLabel value="#{messages.taxCode}" for="taxCode" /></td>
+				<td><p:inputText id="taxCode" value="#{officeManagementBean.currentOffice.taxCode}" label="#{messages.taxCode}" maxlength="255"  styleClass="fifteen-char display-text">
+						<p:ajax event="change" process="@this" update="@this" />
+					</p:inputText></td>
+			</tr>
+			<tr>
+			<td></td>
+				<td align="left"><p:commandButton value="#{messages.save}" process="@form" update=":contentPane" action="#{officeManagementBean.saveOffice()}" icon="ui-icon-disk" /> <p:commandButton
+						rendered="#{officeManagementBean.currentOffice.persisted}" value="#{messages.requestApprove}" icon="ui-icon-mail-closed" action="#{officeManagementBean.requestApprove()}" /> <p:commandButton
+						value="#{messages.delete}" icon="ui-icon-trash" action="#{officeManagementBean.deleteOffice()}" process="@this" update=":contentPane" rendered="#{officeManagementBean.currentOffice.persisted}"
+						immediate="true">
+						<p:confirm header="#{messages.confirmation}" message="#{messages.areYouSureDelete}" icon="ui-icon-alert" />
+					</p:commandButton> <p:commandButton value="#{messages.close}" actionListener="#{officeManagementBean.closeOffice}" process="@this" update=":contentPane" icon="ui-icon-close" immediate="true" /></td>
+			</tr>
+		</table>
+	</h:form>
+	
+    <h:form>
+    	<p:fieldset legend="#{messages.approvingSection}" rendered="#{officeManagementBean.currentOffice.persisted}" id="approvalSection">
+	        <ac:approval entityId="#{officeManagementBean.entityId}" dataType="#{officeManagementBean.dataType}" itemLabel="#{officeManagementBean.itemLabel}">
+	        </ac:approval>
+        </p:fieldset>
+    </h:form>
+    
+</ui:composition>

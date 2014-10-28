@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CHECKLIST -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="CKLIST_LOG_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="REFER_CKLIST_CODE" data-type="code" not-null="true"/>
+	<column name="CKLIST_LOG_CODE" data-type="code" not-null="false" />
+	<column name="ACTION_CODE" data-type="code" not-null="false" />
+	<column name="SERVICE_OFFICE" data-type="code" not-null="false" />
+	<column name="SERVICE_PSN" data-type="code" not-null="false" />
+	<column name="HOSP_PSN" data-type="code" not-null="false" />
+	<column name="CHECK_DATE" data-type="date" not-null="false" />
+	<column name="MEASURE_DEV1" data-type="code" not-null="false" />
+	<column name="MEASURE_DEV2" data-type="code" not-null="false" />
+    
+</table>

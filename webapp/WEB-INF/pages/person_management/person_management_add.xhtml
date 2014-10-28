@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:o="http://omnifaces.org/ui"
+    xmlns:p="http://primefaces.org/ui">
+    <h:form id="form">
+    <p:panel>
+        <table>
+            <tr>
+                <td class="label">#{messages['personCode']}</td>
+                <td>
+                	<p:inputText id="personCode" value="#{personManagementBean.currentPerson.psnCode}" label="#{messages['personCode']}" disabled="true" styleClass="fifteen-char"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><p:outputLabel value="#{messages['personName']}" for="personName" /></td>
+                <td>
+                	<p:inputText id="personName" value="#{personManagementBean.currentPerson.name}" label="#{messages['personName']}" styleClass="fifteen-char" maxlength="255"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><p:outputLabel value="#{messages['address']}" for="addressCode" /></td>
+                <td>
+                    <p:autoComplete id="addressCode" value="#{personManagementBean.currentPerson.address}" converter="#{converterStorage.addressConverter}" title="#{messages.address}"
+                                forceSelection="true" emptyMessage="#{messages.noAddressFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200"
+                                var="add" itemLabel="#{add.address1}" itemValue="#{add}" completeMethod="#{commonAutoCompleteBean.filterAddress}">
+                                <p:column headerText="#{messages.code}">
+                                    <h:outputText value="#{add.addrCode}" />
+                                </p:column>
+                     
+                                <p:column headerText="#{messages.address1}">
+                                    <h:outputText value="#{add.address1}" />
+                                </p:column>
+                    <p:ajax event="itemSelect" process="@this" update="addressCode"/>            
+                    </p:autoComplete>
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><p:outputLabel value="#{messages['office']}" for="office" /></td>
+                <td><p:autoComplete value="#{personManagementBean.currentPerson.office}" label="#{messages.office}" id="office" converter="#{converterStorage.officeConverter}" forceSelection="true"
+                        completeMethod="#{commonAutoCompleteBean.filterOffice}" emptyMessage="#{messages.noOfficeFound}" var="office" itemValue="#{office}" itemLabel="#{office.name}" dropdown="true">
+                        <p:column headerText="#{messages.code}">
+                            <h:outputText value="#{office.officeCode}" />
+                        </p:column>
+
+                        <p:column headerText="#{messages.name}">
+                            <h:outputText value="#{office.name}" />
+                        </p:column>
+                        <p:ajax event="itemSelect" process="@this" update="office" />
+                    </p:autoComplete></td>
+            </tr>
+            <tr>
+                <td class="label">#{messages['contactMethod']}</td>
+                <td>
+                    <p:inputTextarea id="contactMethod" value="#{personManagementBean.currentPerson.contactMethod}" label="#{messages['contactMethod']}"  styleClass="desc-textarea"/>
+                </td>
+            </tr>
+            <tr>
+                <td><p:outputLabel value="#{messages.tel}" for="tel" /></td>
+                <td><p:inputText id="tel" value="#{personManagementBean.currentPerson.tel}" label="#{messages.tel}" styleClass="fifteen-char" maxlength="255">
+                        <p:ajax event="change" process="@this" update="@this" />
+                    </p:inputText></td>
+            </tr>
+            <tr>
+                <td><p:outputLabel value="#{messages.fax}" for="fax" /></td>
+                <td><p:inputText id="fax" value="#{personManagementBean.currentPerson.fax}" label="#{messages.fax}" styleClass="fifteen-char" maxlength="255">
+                        <p:ajax event="change" process="@this" update="@this" />
+                    </p:inputText></td>
+            </tr>
+            <tr>
+                <td><p:outputLabel value="#{messages.email}" for="email" /></td>
+                <td><p:inputText id="email" value="#{personManagementBean.currentPerson.email}" label="#{messages.email}" styleClass="thirty-char" maxlength="255">
+                        <p:ajax event="change" process="@this" update="@this" />
+                    </p:inputText></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td align="left">
+                    <p:commandButton id="btnInsert" value="#{messages['save']}" action="#{personManagementBean.savePerson()}" update=":contentPane" icon="ui-icon-disk" />
+                    <p:commandButton id="btnCancel" value="#{messages['cancel']}" actionListener="#{personManagementBean.closeUpdatePerson}" update=":contentPane" immediate="true" icon="ui-icon-close" process="@this"/>
+                    <p:commandButton value="#{messages.delete}" icon="ui-icon-trash" action="#{personManagementBean.deletePerson()}" update=":contentPane" rendered="#{personManagementBean.currentPerson.persisted}" immediate="true">
+                        <p:confirm header="#{messages.confirmation}" message="#{messages.MMI00003}" icon="ui-icon-alert" />
+                    </p:commandButton>
+                </td>
+            </tr>
+        </table>
+        </p:panel>
+    </h:form>
+    <h:form>
+        <p:fieldset legend="#{messages.approvingSection}" rendered="#{personManagementBean.currentPerson.persisted}" id="approvalSection">
+            <ac:approval entityId="#{personManagementBean.entityId}" dataType="#{personManagementBean.dataType}" itemLabel="#{personManagementBean.itemLabel}">
+            </ac:approval>
+        </p:fieldset>
+    </h:form>
+</ui:composition>

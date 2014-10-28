@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+	<h:form>
+		<p:outputPanel>
+			 <table>
+                 <tr>
+                    <td class="label"><p:outputLabel value="#{messages['part']} :" /></td>
+                    <td><p:outputLabel  value="#{repairHistoryBean.currentActionLog.actionBill.feeParts}" /></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['shipping']} :" /></td>
+                    <td><p:outputLabel  value="#{repairHistoryBean.currentActionLog.actionBill.feeShipping}" /></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['sundryExpenses']} :" /></td>
+                    <td><p:outputLabel  value="#{repairHistoryBean.currentActionLog.actionBill.feeOther}" /></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['tax']} :" /></td>
+                    <td><p:outputLabel  value="#{repairHistoryBean.currentActionLog.actionBill.tax}" /></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['total']} :" /></td>
+                    <td><p:outputLabel  value="#{repairHistoryBean.currentActionLog.actionBill.totalPay}" /></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['payDate']} :" /></td>
+                    <td><ac:outputTime  value="#{repairHistoryBean.currentActionLog.actionBill.payDate}" /></td>
+                </tr>    
+            </table>
+		</p:outputPanel>
+	</h:form>
+</ui:composition>

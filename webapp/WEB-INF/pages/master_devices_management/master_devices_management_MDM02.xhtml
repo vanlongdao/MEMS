@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pe="http://primefaces.org/ui/extensions" xmlns:o="http://omnifaces.org/ui">
+   <o:importConstants type="arrow.mems.ui.ScreenCodes" />
+   <p:panel>
+        <h:form style="width: 100%;">
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                        <p:commandButton value="#{messages.save}" process="@form" action="#{devicesManagementBean.saveMdevice}" icon="ui-icon-disk" 
+                           onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"  update=":contentPane">
+                        </p:commandButton>
+                        <p:commandButton value="#{messages.clearAndMarkNew}" icon="ui-icon-newwin" action="#{devicesManagementBean.clearAndMarkNew}" process="@this"
+                            update=":contentPane" />
+                        <p:commandButton value="#{messages.back}" icon="ui-icon-circle-arrow-w" process="@this" update=":contentPane" action="#{devicesManagementBean.resetData}"/>
+                        <p:commandButton rendered="#{devicesManagementBean.currentDevice.persisted}" value="#{messages.delete}" icon="ui-icon-trash" action="#{devicesManagementBean.deleteMasterDevice}" update=":contentPane" >
+                            <p:confirm header="#{messages.confirmation}" message="#{messages.MDM00014}" icon="ui-icon-alert" />
+                        </p:commandButton>
+                    </td>
+                </tr>
+            </table>
+            <p:panel>
+            <table>
+                <tr>
+                    <td><p:outputLabel value="#{messages.deviceMasterCode}" /></td>
+                    <td colspan="2"><p:outputLabel value="#{devicesManagementBean.currentDevice.mdevCode}" /></td>
+                </tr>
+                <tr>
+                    <td><p:outputLabel value="#{messages.deviceType}" for="deviceType" /></td>
+                    <td>
+                        <p:selectOneMenu id="deviceType" value="#{devicesManagementBean.currentDevice.mdevType}">
+                            <f:selectItems value="#{appConfig.masterDevicesType}" itemValue="#{deviceType.value}" var="deviceType" itemLabel="#{deviceType.label}"/>
+                        </p:selectOneMenu>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><p:outputLabel value="#{messages.modelNo}" for="modelNo"/></td>
+                    <td colspan="2">
+                        <p:inputText value="#{devicesManagementBean.currentDevice.modelNo}" id="modelNo">
+                            <p:ajax event="change" update="@this" process="@this"/>
+                        </p:inputText>
+                    </td>
+                </tr>
+                <tr>
+                    <td><p:outputLabel value="#{messages.deviceName}" for="deviceName"/></td>
+                    <td colspan="2">
+                        <p:inputText value="#{devicesManagementBean.currentDevice.name}" id="deviceName">
+                            <p:ajax event="change" update="@this" process="@this"/>
+                        </p:inputText>
+                    </td>
+                </tr>
+                <tr>
+                    <td><p:outputLabel value="#{messages.deviceCatName}" for="catName"/></td>
+                    <td colspan="2">
+                        <p:inputText value="#{devicesManagementBean.currentDevice.catName}" id="catName">
+                            <p:ajax event="change" update="@this" process="@this"/>
+                        </p:inputText>
+                    </td>
+                </tr>
+            </table>
+            </p:panel>
+        </h:form>
+   </p:panel>
+        <p:tabView dynamic="true" activeIndex="#{devicesManagementBean.tabIndex}">
+            <p:tab title="#{messages.generalInfo}">
+                <ui:include src="/WEB-INF/pages/master_devices_management/master_devices_management_general_info.xhtml" />
+            </p:tab>
+            
+            <p:tab title="#{messages.description}">
+                <ui:include src="/WEB-INF/pages/master_devices_management/master_devices_management_description.xhtml" />
+            </p:tab>
+
+            <p:tab title="#{messages.partList}" id="tabViewPartlist" >
+                <ui:include src="/WEB-INF/pages/master_devices_management/master_devices_management_MDM02_04.xhtml" />
+            </p:tab>
+            
+            <p:tab title="#{messages.document}">
+                <ui:include src="/WEB-INF/pages/master_devices_management/master_devices_management_MDM02_03.xhtml" />
+            </p:tab>
+
+            <p:tab title="#{messages.checklist}" id="tabViewChecklist">
+                <ui:include src="/WEB-INF/pages/master_devices_management/master_devices_management_MDM02_02.xhtml" />
+            </p:tab>
+            
+            <p:tab title="#{messages.schedule}" id="tabViewSchedule">
+                <ui:include src="/WEB-INF/pages/master_devices_management/master_devices_management_MDM02_07.xhtml" />
+            </p:tab>
+            
+             <p:tab title="#{messages.scheduleAlertByCount}" id="tabViewScheduleByCount">
+                <ui:include src="/WEB-INF/pages/master_devices_management/master_devices_management_MDM02_08.xhtml" />
+            </p:tab>
+        </p:tabView>
+    <h:form>
+        <p:fieldset legend="#{messages.approvingSection}" rendered="#{devicesManagementBean.currentDevice.persisted and devicesManagementBean.currentDevice.checkedBy eq NULL}" id="approvalSection">
+            <ac:approval entityId="#{devicesManagementBean.entityId}" dataType="#{devicesManagementBean.dataType}" itemLabel="#{devicesManagementBean.itemLabel}">
+            </ac:approval>
+        </p:fieldset>
+    </h:form>
+    
+</ui:composition>

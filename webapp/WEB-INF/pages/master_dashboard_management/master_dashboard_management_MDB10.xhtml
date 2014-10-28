@@ -1,0 +1,288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:o="http://omnifaces.org/ui">
+    <o:importConstants type="arrow.mems.ui.ScreenCodes" />
+    <div class="cell-left dashboard-left">
+        <h:form id="manageSystemForm">
+            <p:fieldset>
+                <table align="center">
+                    <tr>
+                        <td><p:commandButton value="#{messages.manageEquipment}" styleClass="button-size"
+                                onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                                action="#{screenMonitor.switchScreen(ScreenCodes.LIST_SEARCH_DEVICE)}" update=":contentPane" /></td>
+                    </tr>
+                    <tr>
+                        <td><p:commandButton value="#{messages.checkRepairInfo}" action="#{screenMonitor.switchScreen(ScreenCodes.VIEW_REPAIR_REQUEST)}" 
+                                onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" update=":contentPane" styleClass="button-size" /></td>
+                    </tr>
+                    <tr>
+                        <td><p:commandButton value="#{messages.checkRepairHistory}" action="#{screenMonitor.switchScreen(ScreenCodes.REPAIR_HISTORY)}"
+                                onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"  update=":contentPane" styleClass="button-size" /></td>
+                    </tr>
+                </table>
+            </p:fieldset>
+            <p:fieldset legend="#{messages.systemManagement}" styleClass="fullHeight">
+                <table align="center">
+                    <tr>
+                        <td><p:commandButton value="#{messages.manageDeviceMaster}" styleClass="button-size"
+                                onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                                action="#{screenMonitor.switchScreen(ScreenCodes.MASTER_DEVICES_MANAGEMENT_LIST_SEARCH)}"
+                                update=":contentPane" /></td>
+                    </tr>
+                    <tr>
+                        <td><p:commandButton value="#{messages.companyName}" styleClass="button-size"
+                                onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                                action="#{screenMonitor.switchScreen(ScreenCodes.CORPORATE_MANAGEMENT)}" update=":contentPane" /></td>
+                    </tr>
+                    <tr>
+                        <td><p:commandButton value="#{messages.companyOffice}" styleClass="button-size"
+                                onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                                action="#{screenMonitor.switchScreen(ScreenCodes.OFFICE_MANAGEMENT)}" update=":contentPane" /></td>
+                    </tr>
+                    <tr>
+                        <td><p:commandButton value="#{messages.manageHospital}" styleClass="button-size"
+                                onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                                action="#{screenMonitor.switchScreen(ScreenCodes.HOSPITAL_MANAGEMENT)}" update=":contentPane" /></td>
+                    </tr>
+                    <tr>
+                        <td><p:commandButton value="#{messages.managePerson}" styleClass="button-size"
+                                onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                                action="#{screenMonitor.switchScreen(ScreenCodes.PERSON_MANAGEMENT)}" update=":contentPane" /></td>
+                    </tr>
+                    <tr>
+                        <td><p:commandButton value="#{messages.manageGenerateName}" styleClass="button-size" 
+                                action="#{screenMonitor.switchScreen(ScreenCodes.MANAGE_PRESET_PHRASES)}" update=":contentPane"
+                                onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"  /></td>
+                    </tr>
+                    <!-- Add button -->
+                    <tr>
+                        <td><p:commandButton value="#{messages.addressManagement}" styleClass="button-size" 
+                                action="#{screenMonitor.switchScreen(ScreenCodes.ADDRESS_MANAGEMENT)}" update=":contentPane"
+                                onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"  /></td>
+                    </tr>
+                    <tr>
+                        <td><p:commandButton value="#{messages.userManagement}" styleClass="button-size" 
+                                action="#{screenMonitor.switchScreen(ScreenCodes.USER_MANAGEMENT)}" update=":contentPane"
+                                onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"  /></td>
+                    </tr>
+                    <tr>
+                        <td><p:commandButton value="#{messages.approveConfiguration}" styleClass="button-size" 
+                                action="#{screenMonitor.switchScreen(ScreenCodes.APPROVE_FEATURE)}" update=":contentPane"
+                                onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"  /></td>
+                    </tr>
+                    <tr>
+                        <td><p:commandButton value="#{messages.approveSummary}" styleClass="button-size" 
+                                action="#{screenMonitor.switchScreen(ScreenCodes.APPROVE_SUMMARY)}" update=":contentPane"
+                                onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"  /></td>
+                    </tr>
+                    <tr>
+                        <td><p:commandButton value="#{messages.humanResourceManagement}" styleClass="button-size" 
+                                action="#{screenMonitor.switchScreen(ScreenCodes.HUMAN_RESOURCE_MANAGEMENT)}" update=":contentPane"
+                                onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"  /></td>
+                    </tr>
+                    
+                    <tr>
+                        <td><p:commandButton value="#{messages.mergeData}" styleClass="button-size"
+                                onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" /></td>
+                    </tr>
+                </table>
+            </p:fieldset>
+            <p:fieldset>
+                <table align="center">
+                    <tr>
+                        <td><p:commandButton value="#{messages.logout}" styleClass="button-size" 
+                                action="#{authenticationBean.logout}" update="@all"
+                                onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"  /></td>
+                    </tr>
+                </table>
+            </p:fieldset>
+        </h:form>
+    </div>
+
+
+    <div class="cell-right dashboard-right">
+        <h:form id="repairRequestForm">
+            <p:fieldset legend="#{messages.repairRequestRegistrationScreen}" id="repairRequestField">
+                <table>
+                    <tr>
+                        <td><p:outputLabel value="#{messages.requestNo}" /></td>
+                        <td><p:autoComplete id="listRequestNoAutoComplete"
+                                value="#{manageSystemDashboardBean.currentActionLog}" title="#{messages.typeToFindName}"
+                                forceSelection="true" cache="true" cacheTimeout="300"
+                                converter="#{converterStorage.actionLogConverter}" dropdown="true" scrollHeight="200"
+                                var="action" itemLabel="#{action.actionCode}" itemValue="#{action}"
+                                completeMethod="#{manageSystemDashboardBean.autoCompleteActionCode}">
+                                <p:ajax event="itemSelect" update="@([id$=repairRequestField])"
+                                    process="@this"/>
+                                <p:column headerText="#{messages.actionType}">
+                                    <p:outputLabel value="#{action.actionTypeMaster.label}" />
+                                </p:column>
+                                <p:column headerText="#{messages.actionTypeCode}">
+                                    <p:outputLabel value="#{action.actionCode}" />
+                                </p:column>
+                                <p:column headerText="#{messages.deviceCode}">
+                                    <p:outputLabel value="#{action.device.devCode}" />
+                                </p:column>
+                                <p:column headerText="#{messages.deviceName}">
+                                    <h:outputText value="#{action.device.MDevice.name}" />
+                                </p:column>
+                                <p:column headerText="#{messages.modelNo}">
+                                    <h:outputText value="#{action.device.MDevice.modelNo}" />
+                                </p:column>
+                                <p:column headerText="#{messages.serialNo}">
+                                    <h:outputText value="#{action.device.serialNo}" />
+                                </p:column>
+                                <p:column headerText="#{messages.hospitalContact}">
+                                    <h:outputText value="#{action.hospitalContactPsn.name}" />
+                                </p:column>
+                                <p:column headerText="#{messages.manufacturerName}">
+                                    <h:outputText value="#{action.device.MDevice.manufacturerPerson.name}" />
+                                </p:column>
+                                <p:column headerText="#{messages.supplierName}">
+                                    <h:outputText value="#{action.device.supplierPerson.name}" />
+                                </p:column>
+                            </p:autoComplete></td>
+                    </tr>
+                    <tr>
+                        <td><p:outputLabel value="#{messages.deviceCode}" /></td>
+                        <td><p:outputLabel value="#{manageSystemDashboardBean.currentActionLog.devCode}" /></td>
+                    </tr>
+                    <tr>
+                        <td><p:outputLabel value="#{messages.deviceName}" /></td>
+                        <td><p:outputLabel value="#{manageSystemDashboardBean.currentActionLog.device.MDevice.name}" /></td>
+                    </tr>
+                    <tr>
+                        <td><p:outputLabel value="#{messages.actionType}" for="actionType" /></td>
+                        <td><p:outputLabel id="actionType" value="#{manageSystemDashboardBean.currentActionLog.actionTypeMaster.label}" /></td>
+                    </tr>
+                    <tr>
+                        <td><p:outputLabel value="#{messages.compliant}" /></td>
+                        <td><p:outputLabel value="#{manageSystemDashboardBean.currentActionLog.complaint}" /></td>
+                    </tr>
+                    <tr>
+                        <td><p:outputLabel value="#{messages.occurred}" /></td>
+                        <td><ac:outputTime value="#{manageSystemDashboardBean.currentActionLog.occurDate}" /></td>
+                    </tr>
+                    <tr>
+                        <td><p:outputLabel value="#{messages.manufacturerContact}" /></td>
+                        <td><p:outputLabel
+                                value="#{manageSystemDashboardBean.currentActionLog.device.MDevice.manufacturerPerson.name}">
+                            </p:outputLabel></td>
+                    </tr>
+                    <tr>
+                        <td><p:outputLabel value="#{messages.supplierContact}" /></td>
+                        <td><p:outputLabel
+                                value="#{manageSystemDashboardBean.currentActionLog.device.supplierPerson.name}">
+                            </p:outputLabel></td>
+                    </tr>
+                    <tr>
+                        <td><p:outputLabel value="#{messages.hospitalContact}" /></td>
+                        <td><p:outputLabel
+                                value="#{manageSystemDashboardBean.currentActionLog.hospitalContactPsn.name}">
+                            </p:outputLabel></td>
+                    </tr>
+                    <tr>
+                        <td><p:commandButton value="#{messages.editCheckRepair}" icon="ui-icon-pencil" disabled="#{manageSystemDashboardBean.currentActionLog eq null}"
+                                action="#{manageSystemDashboardBean.editCheckRepair}" onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                                actionListener="#{screenMonitor.switchScreen(ScreenCodes.INPUT_REPAIR_REQUEST)}" update=":contentPane" /></td>
+                        <td align="center"><p:commandButton value="#{messages.older}" icon="ui-icon-seek-prev" disabled="#{manageSystemDashboardBean.currentActionLog eq null}"
+                                onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"
+                                action="#{manageSystemDashboardBean.getOlderRequestNo}"
+                                update="@([id$=repairRequestField])" />
+                            <p:commandButton value="#{messages.newer}" icon="ui-icon-seek-next" disabled="#{manageSystemDashboardBean.currentActionLog eq null}"
+                                onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"
+                                action="#{manageSystemDashboardBean.getNewerRequestNo}"
+                                update="@([id$=repairRequestField])" /></td>
+                    </tr>
+                </table>
+            </p:fieldset>
+        </h:form>
+
+        <h:form id="detailDeviceForm">
+            <p:fieldset id="repairDeviceField">
+                <table>
+                    <tr>
+                        <td><p:outputLabel value="#{messages.deviceCode}" /></td>
+                        <td><p:autoComplete id="listDeviceIdAutoComplete"
+                                value="#{manageSystemDashboardBean.currentDevice}" title="#{messages.typeToFindName}"
+                                forceSelection="true" cache="true" cacheTimeout="300"
+                                converter="#{converterStorage.deviceConverter}" dropdown="true" scrollHeight="200" var="device"
+                                itemLabel="#{device.devCode}" itemValue="#{device}"
+                                completeMethod="#{manageSystemDashboardBean.autoCompleteDevice}">
+                                <p:ajax event="itemSelect" update="@([id$=repairDeviceField])" process="@this" />
+                                <p:column headerText="#{messages.modelNo}">
+                                    <h:outputText value="#{device.MDevice.modelNo}" />
+                                </p:column>
+                                <p:column headerText="#{messages.deviceCode}">
+                                    <h:outputText value="#{device.devCode}" />
+                                </p:column>
+                                <p:column headerText="#{messages.deviceName}">
+                                    <h:outputText value="#{device.MDevice.name}" />
+                                </p:column>
+                                <p:column headerText="#{messages.serialNo}">
+                                    <h:outputText value="#{device.serialNo}" />
+                                </p:column>
+                                <p:column headerText="#{messages.manufacturerName}">
+                                    <h:outputText value="#{device.MDevice.manufacturerPerson.name}" />
+                                </p:column>
+                                <p:column headerText="#{messages.supplierName}">
+                                    <h:outputText value="#{device.supplierOffice.name}" />
+                                </p:column>
+                            </p:autoComplete></td>
+                    </tr>
+                    <tr>
+                        <td><p:outputLabel value="#{messages.deviceName}" /></td>
+                        <td><p:outputLabel value="#{manageSystemDashboardBean.currentDevice.MDevice.name}" /></td>
+                    </tr>
+                    <tr>
+                        <td><p:outputLabel value="#{messages.modelNo}" /></td>
+                        <td>
+                            <p:outputLabel value="#{manageSystemDashboardBean.currentDevice.MDevice.modelNo}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><p:outputLabel value="#{messages.serialNo}" /></td>
+                        <td>
+                            <p:outputLabel value="#{manageSystemDashboardBean.currentDevice.serialNo}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><p:outputLabel value="#{messages.manufacturerContact}" /></td>
+                        <td><p:commandLink
+                                value="#{manageSystemDashboardBean.currentDevice.MDevice.manufacturerPerson.name}"
+                                onclick="PF('wg_manufacturerDlg').show();">
+                            </p:commandLink></td>
+                    </tr>
+                    <tr>
+                        <td><p:outputLabel value="#{messages.supplierContact}" /></td>
+                        <td><p:commandLink value="#{manageSystemDashboardBean.currentDevice.supplierPerson.name}"
+                                onclick="PF('wg_supplierDlg').show();">
+                            </p:commandLink></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><p:commandButton value="#{messages.addCheckRepair}" icon="ui-icon-plus" disabled="#{manageSystemDashboardBean.currentDevice eq null}"
+                                action="#{manageSystemDashboardBean.addCheckRepair}" onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"
+                                actionListener="#{screenMonitor.switchScreen(ScreenCodes.INPUT_REPAIR_REQUEST)}" update=":contentPane" /></td>
+                    </tr>
+                </table>
+            </p:fieldset>
+            <p:dialog modal="true" appendTo="@(body)" id="manufacturerDlg" widgetVar="wg_manufacturerDlg" resizable="false"
+                header="#{messages.manufaturerInfo}" dynamic="true">
+                <p:ajax event="close" update="manufacturerDlg" />
+                <ui:include src="/WEB-INF/pages/master_dashboard_management/popup/contact_popup.xhtml">
+                    <ui:param name="contactInfo" value="true" />
+                </ui:include>
+            </p:dialog>
+            <p:dialog modal="true" appendTo="@(body)" id="supplierDlg" widgetVar="wg_supplierDlg" resizable="false"
+                header="#{messages.supplierInfo}" dynamic="true">
+                <p:ajax event="close" update="supplierDlg" />
+                <ui:include src="/WEB-INF/pages/master_dashboard_management/popup/contact_popup.xhtml">
+                    <ui:param name="contactInfo" value="false" />
+                </ui:include>
+            </p:dialog>
+        </h:form>
+    </div>
+
+</ui:composition>

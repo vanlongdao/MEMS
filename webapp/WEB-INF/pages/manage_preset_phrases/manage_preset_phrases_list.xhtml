@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:o="http://omnifaces.org/ui"
+    xmlns:p="http://primefaces.org/ui">
+    <h:form>
+        <p:panel>
+            <p:commandButton value="#{messages.add}" process="@this" immediate="true" icon=" ui-icon-plus" action="#{managePresetPhrasesBean.addNewPresetPhrases()}" update=":contentPane"/>
+            <p:commandButton value="#{messages.edit}" process="@this" immediate="true" icon="ui-icon-pencil" action="#{managePresetPhrasesBean.editPresetPhrases()}" update=":contentPane" disabled="#{!managePresetPhrasesBean.enableEdit}" />
+            <p:commandButton id="btnClose" value="#{messages['close']}" action="#{screenMonitor.close}" onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                            update="@all" icon="ui-icon-close" process="@form"/>
+        </p:panel>
+        <ac:dataTable value="#{managePresetPhrasesBean.listPresetPhrases}" var="presetPhrases" id="presetPhrasesTable"> 
+            
+            <p:column styleClass="display-select">
+                <p:selectBooleanCheckbox value="#{presetPhrases.selected}">
+                    <p:ajax event="change" update=":contentPane" listener="#{managePresetPhrasesBean.toggleSelection(presetPhrases)}"/>
+                </p:selectBooleanCheckbox>
+            </p:column>
+            <p:column headerText="#{messages.no}" styleClass="display-index">
+                <h:outputText value="#{index+1}"/>
+            </p:column>
+            <p:column styleClass="display-code" >
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.inputString}"
+                        parentTable="presetPhrasesTable"
+                        sorter="#{managePresetPhrasesBean.listPresetPhrases.sort('inputString')}"
+                        filter="#{managePresetPhrasesBean.listPresetPhrases.filter('inputString')}">
+                    </ac:columnHeader> 
+                </f:facet>
+                <h:outputText value="#{presetPhrases.inputStr}"/>  
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.showString}"
+                        parentTable="presetPhrasesTable"
+                        sorter="#{managePresetPhrasesBean.listPresetPhrases.sort('showString')}"
+                        filter="#{managePresetPhrasesBean.listPresetPhrases.filter('showString')}">
+                    </ac:columnHeader> 
+                </f:facet>
+                <h:outputText value="#{presetPhrases.showStr}" styleClass="display-text" />
+            </p:column>
+            <p:column styleClass="display-text">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.createdBy}" parentTable="presetPhrasesTable">
+                    </ac:columnHeader>
+                </f:facet>
+                <h:outputText value="#{presetPhrases.createdByUser.name}" styleClass="display-text" />
+            </p:column>
+            <p:column styleClass="display-date">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.createdAt}" parentTable="presetPhrasesTable">
+                    </ac:columnHeader>
+                </f:facet>
+                <ac:outputTime value="#{presetPhrases.createdAt}" styleClass="display-date" showTime="true" />
+            </p:column>
+        </ac:dataTable>
+    </h:form>
+</ui:composition>

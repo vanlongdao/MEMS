@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="dependencies/platform/platform.js"></script>
+
+</head>
+<body>
+<div ng-app="myapp" ng-controller="SignatureController">
+    <div>
+        <select ng-model="color">
+            <option value="Black">Black</option>
+            <option value="Red">Red</option>
+            <option value="Green">Green</option>
+            <option value="Yellow">Yellow</option>
+            <option value="Brown">Brown</option>
+        </select>
+
+    </div>
+    <div id="sketch" style="width: 500px;height: 500px;border-width: 1px;">
+        <canvas ng-mousedown="startDraw($event)" ng-mouseup="endDraw()" ng-mousemove="drawing($event)" ng-mouseleave="endDraw()" id="paint"></canvas>
+    </div>
+    <div>
+        <button ng-click="clear()">Clear</button>
+        <button ng-click="done()">Done</button>
+    </div>
+    <img src="{{image}}">
+    <p>{{image}}</p>
+</div>
+
+<script src="dependencies/angular/angular.js"></script>
+    <script src="controller/signaturecontroller.js"></script>
+</body>
+</html>

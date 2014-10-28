@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+    
+    <td class="label">
+        <p:outputLabel value="#{label}" for="#{id}" />
+    </td>
+    <td>
+        <p:inputText id="#{id}" value="#{value}" disabled="true" />
+    </td>
+
+    <td>
+        <ac:uploadVideo listener="#{listener}" id="#{id}_fileupload"
+            value="#{fileValue}" process="@this" update="@this, @([id$=#{id}])">
+        </ac:uploadVideo>
+    </td>
+</ui:composition>

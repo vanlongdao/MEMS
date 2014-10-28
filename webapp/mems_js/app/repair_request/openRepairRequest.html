@@ -1,0 +1,66 @@
+<div ng-controller="mems.controller.repairrequest" unresolved>
+    <core-header>
+    <div ng-include="'repair_request/includes/header.html'" onload="stickHeader('.fixedHeader');"></div>
+    </core-header>
+    <!-- General Information -->
+    <div class="ui-accordion panel-default" navigation flex>
+        <div class="panel-heading"><a href><h3 class="panel-title" onclick="toggleOnlyOne('#generalInfo');">General
+            Information</h3></a></div>
+    </div>
+
+    <core-collapse id="generalInfo" >
+        <div class="panel-body" ng-include="'repair_request/includes/generalInfo.html'" onload="refreshDepartmentPerson('');">
+        </div>
+    </core-collapse>
+
+    <!-- Replaced part -->
+    <div class="ui-accordion  panel-default">
+        <div class="panel-heading"><a href><h3 class="panel-title" onclick="toggleOnlyOne('#replacedPart');">Replaced
+            Part</h3></a></div>
+    </div>
+    <core-collapse id="replacedPart" opened="false">
+        <div class="panel-body" ng-include="'repair_request/includes/replacedPart.html'">
+        </div>
+    </core-collapse>
+
+    <!-- Checklist -->
+    <div class="ui-accordion  panel-default">
+        <div class="panel-heading"><a href><h3 class="panel-title" onclick="toggleOnlyOne('#checklist');">Checklist</h3>
+        </a></div>
+    </div>
+    <core-collapse id="checklist" opened="false">
+        <div class="panel-body" ng-include="'repair_request/includes/checklist.html'">
+        </div>
+    </core-collapse>
+
+    <!-- Part Estimation -->
+    <div class="ui-accordion  panel-default">
+        <div class="panel-heading"><a href><h3 class="panel-title" onclick="toggleOnlyOne('#partEstimation');">Part Estimation</h3>
+        </a></div>
+    </div>
+    <core-collapse id="partEstimation" opened="false">
+        <div class="panel-body" ng-include="'repair_request/includes/partEstimation.html'">
+        </div>
+    </core-collapse>
+
+    <!-- Part Order -->
+    <div class="ui-accordion  panel-default">
+        <div class="panel-heading"><a href><h3 class="panel-title" onclick="toggleOnlyOne('#partOrder');">Part Order</h3>
+        </a></div>
+    </div>
+    <core-collapse id="partOrder" opened="false">
+        <div class="panel-body" ng-include="'repair_request/includes/partOrder.html'">
+        </div>
+    </core-collapse>
+
+    <!-- Fee -->
+    <div class="ui-accordion  panel-default">
+        <div class="panel-heading"><a href><h3 class="panel-title" onclick="toggleOnlyOne('#fee');">Fee</h3>
+        </a></div>
+    </div>
+    <core-collapse id="fee" opened="false">
+        <div class="panel-body" ng-include="'repair_request/includes/fee.html'">
+        </div>
+    </core-collapse>
+
+</div>

@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:ac="http://arrow-tech.vn/ui" xmlns:ar="http://java.sun.com/jsf/composite/compositeComponent" xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:o="http://omnifaces.org/ui">
+	<p:outputPanel id="orderDetail">
+		<h:form>
+			<table>
+				<tr>
+					<td><h:outputLabel value="#{messages.orderDate}" /></td>
+					<td><ac:calendar id="orderDate" value="#{partsOrderBean.selectedPartOrder.orderDate}" /></td>
+				</tr>
+
+				<tr>
+					<td><h:outputLabel value="#{messages.orderDeliveryDate}" /></td>
+					<td><ac:calendar id="deliveryDate" value="#{partsOrderBean.selectedPartOrder.etaDate}" /></td>
+				</tr>
+
+				<tr>
+					<td><h:outputLabel value="#{messages.payDate}" /></td>
+					<td><ac:calendar id="payDate" value="#{partsOrderBean.selectedPartOrder.payDate}" /></td>
+				</tr>
+
+				<tr>
+					<td><h:outputLabel value="#{messages.deliverTo}" /></td>
+					<td><ac:officeSelector id="deliverToOffice" value="#{partsOrderBean.selectedPartOrder.destinationOffice}" /></td>
+				</tr>
+
+				<tr>
+					<td><h:outputLabel value="#{messages.status}" /></td>
+					<td><p:inputText value="#{partsOrderBean.selectedPartOrder.status}">
+							<p:ajax event="change" process="@this" update="@this" />
+						</p:inputText></td>
+				</tr>
+
+				<tr>
+					<td><h:outputLabel value="#{messages.paymentTerms}" /></td>
+					<td><p:inputText value="#{partsOrderBean.selectedPartOrder.paymentTerms}">
+							<p:ajax event="change" process="@this" update="@this" />
+						</p:inputText></td>
+				</tr>
+
+				<tr>
+					<td><h:outputLabel value="#{messages.total}" /></td>
+					<td><p:inputText value="#{partsOrderBean.selectedPartOrder.totalPrice}">
+							<p:ajax event="change" process="@this" update="@this" />
+						</p:inputText></td>
+				</tr>
+
+				<tr>
+					<td><h:outputLabel value="#{messages.tax}" /></td>
+					<td><p:inputText value="#{partsOrderBean.selectedPartOrder.tax}">
+							<p:ajax event="change" process="@this" update="@this" />
+						</p:inputText></td>
+				</tr>
+
+				<tr>
+					<td class="label"><p:outputLabel value="#{messages.image}" /></td>
+					<td><p:graphicImage value="#{imageStreamBean.orderImageAsStream}" width="50" height="50" id="imagePreview" cache="false">
+							<f:param name="poCode" value="#{partsOrderBean.currentOrderKey}"></f:param>
+						</p:graphicImage> <ac:upload listener="#{partsOrderBean.fileImageUploadListener}" id="imageUpload" value="#{partsOrderBean.image}" allowTypes="#{appConfig.imageFileTypesAllowed}"
+							sizeLimit="#{appConfig.imageFileSizeLimit}" update="@([id$=imagePreview])">
+						</ac:upload></td>
+				</tr>
+			</table>
+		</h:form>
+	</p:outputPanel>
+</ui:composition>

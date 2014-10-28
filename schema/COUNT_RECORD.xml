@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- COUNT_RECORD -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="COUNT_RECORD_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="COUNT_REC_CODE" data-type="code" not-null="false" />
+	<column name="HOSP_DEPT_CODE" data-type="code" not-null="false" />
+	<column name="COUNT_BASE_CODE" data-type="code" not-null="false" />
+	<column name="DEV_CODE" data-type="code" not-null="false" />
+	<column name="CKLIST_CODE" data-type="code" not-null="false" />
+	<column name="RECORD_AT" data-type="datetime" not-null="false" />
+	<column name="RAW_VALUE" data-type="numeric" not-null="false" />
+	<column name="UNIT" data-type="code" not-null="false" />
+</table>

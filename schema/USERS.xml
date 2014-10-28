@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- USERS -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="USER_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="LOGIN_NAME" data-type="name" not-null="false" />
+	<column name="PASSWORD" data-type="name" not-null="false" />
+	<column name="SALT" data-type="name" not-null="false" />
+	<column name="EMAIL" data-type="email" not-null="false" />
+	<column name="NAME" data-type="freetext" not-null="false" />
+	<column name="ACCOUNT_TYPE" data-type="integer" not-null="false" />
+	<column name="IS_SUPERVISOR" data-type="integer" not-null="false" />
+	<column name="PSN_CODE" data-type="code" not-null="false" />
+    <column name="SESSIONID" data-type="name" not-null="false" />
+    <column name="THEME" data-type="code" not-null="false" />
+    <column name="USER_APP_KEY" data-type="code" not-null="false" />
+    <column name="OFFICE_CODE" data-type="name" not-null="false" />
+</table>

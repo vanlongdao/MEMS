@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+	<p:outputPanel>
+		<p:fieldset styleClass="fieldset-#{userCredential.preferences.theme}">
+			<h:form id="selectEstimationForm">
+				<table>
+					<tr>
+						<td><p:commandButton value="#{messages.addNew}" process="@this" icon="ui-icon-plus" update="@([id$=selectEstimationForm]), @([id$=partEstimationDetail])"
+								actionListener="#{partEstimationBean.addNewEstimate()}" /> <p:commandButton disabled="#{empty partEstimationBean.listEstimateShow or partEstimationBean.currentEstimate eq null}"
+								value="#{messages.delete}" icon="ui-icon-trash" action="#{partEstimationBean.deleteEstimate}" process="@this" update="@([id$=partEstimationDetail]), @([id$=selectEstimationForm])">
+								<p:confirm header="#{messages.confirmation}" message="#{messages.areYouSureDelete}" icon="ui-icon-alert" />
+							</p:commandButton> <p:commandButton value="#{messages.discardChanges}" process="@this" update="@([id$=selectEstimationForm]), @([id$=partEstimationDetail])"
+								actionListener="#{partEstimationBean.discardChanges()}">
+								<p:confirm header="#{messages.confirmation}" message="#{messages.areYouSureDiscardChanges}" icon="ui-icon-alert" />
+							</p:commandButton></td>
+					</tr>
+					<tr>
+						<td><ac:dataTable value="#{partEstimationBean.listEstimateShow}" var="estimate" id="selectEstimation" rowIndexVar="index">
+								<p:column styleClass="display-select">
+									<p:selectBooleanCheckbox value="#{estimate.selected}">
+										<p:ajax process="@this" update="@form, @([id$=partEstimationDetail])" listener="#{partEstimationBean.toggleSelection(estimate)}" />
+									</p:selectBooleanCheckbox>
+								</p:column>
+								<p:column styleClass="display-index">
+						#{index + 1}
+					</p:column>
+								<p:column styleClass="display-text" headerText="#{messages.requestDate}">
+						#{estimate.requestDate}
+					</p:column>
+								<p:column styleClass="display-text" headerText="#{messages.totalPrice}">
+						#{estimate.totalPrice}
+					</p:column>
+								<p:ajax event="rowSelect" process="@this" update="@form" />
+							</ac:dataTable></td>
+					</tr>
+				</table>
+			</h:form>
+			<p:outputPanel id="partEstimationDetail">
+				<p:fieldset legend="#{messages.estimationDetail}" rendered="#{partEstimationBean.selectedEstimate ne null}" styleClass="fieldset-#{userCredential.preferences.theme}">
+					<h:form>
+						<p:commandButton value="#{messages.save}" icon="ui-icon-disk" action="#{partEstimationBean.saveThisEstimate}" process="@this" update="@([id$=partEstimationDetail]), @([id$=selectEstimation])" />
+					</h:form>
+					<h:form>
+						<table>
+							<tr>
+								<td class="label"><p:outputLabel value="#{messages.partDistributor}" for="distOffice" /></td>
+								<td><p:autoComplete id="distOffice" value="#{partEstimationBean.selectedEstimate.distributorOffice}" converter="#{converterStorage.officeConverter}"
+										completeMethod="#{commonAutoCompleteBean.filterOffice}" forceSelection="true" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200" var="office" itemLabel="#{office.name}"
+										itemValue="#{office}" title="#{messages.typeToFindOffice}" emptyMessage="#{messages.noOfficeFound}">
+										<p:column headerText="#{messages.officeCode}">
+						            #{office.officeCode}
+						        </p:column>
+										<p:column headerText="#{messages.name}">
+						            #{office.name}
+						        </p:column>
+										<p:ajax event="itemSelect" process="@this" update="distOffice distOfficeContact" />
+										<p:ajax event="change" process="@this" update="@this" />
+									</p:autoComplete></td>
+							</tr>
+
+
+							<tr>
+								<td class="label"><p:outputLabel value="#{messages.contact}" for="distOfficeContact" /></td>
+								<td><p:autoComplete id="distOfficeContact" disabled="#{partEstimationBean.selectedEstimate.distributorOffice eq null}" value="#{partEstimationBean.selectedEstimate.distributorPerson}"
+										converter="#{converterStorage.personConverter}" completeMethod="#{partEstimationBean.filterDistributorPerson}" forceSelection="true" cache="true" cacheTimeout="300" dropdown="true"
+										scrollHeight="200" var="person" itemLabel="#{person.name}" itemValue="#{person}" title="#{messages.typeToFindPerson}" emptyMessage="#{messages.noPersonFound}">
+										<p:column headerText="#{messages.psnCode}">
+						            #{person.psnCode}
+						        </p:column>
+										<p:column headerText="#{messages.name}">
+						            #{person.name}
+						        </p:column>
+										<p:ajax event="itemSelect" process="@this" update="distOfficeContact"></p:ajax>
+										<p:ajax event="change" process="@this" update="@this" />
+									</p:autoComplete></td>
+							</tr>
+
+
+							<tr>
+								<td class="label"><p:outputLabel value="#{messages.client}" for="clientOffice" /></td>
+								<td><h:outputText value="#{messageCodeClientIdMappingManager.put('MRR00033','clientOffice',null)}"></h:outputText> <p:autoComplete id="clientOffice"
+										value="#{partEstimationBean.selectedEstimate.clientOffice}" converter="#{converterStorage.officeConverter}" completeMethod="#{commonAutoCompleteBean.filterOffice}" forceSelection="true"
+										cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200" var="office" itemLabel="#{office.name}" itemValue="#{office}" title="#{messages.typeToFindOffice}"
+										emptyMessage="#{messages.noOfficeFound}">
+										<p:column headerText="#{messages.officeCode}">
+						            #{office.officeCode}
+						        </p:column>
+										<p:column headerText="#{messages.name}">
+						            #{office.name}
+						        </p:column>
+										<p:ajax event="itemSelect" process="@this" update="clientOffice clientOfficeContact" />
+										<p:ajax event="change" process="@this" update="@this" />
+									</p:autoComplete></td>
+							</tr>
+
+
+							<tr>
+								<td class="label"><p:outputLabel value="#{messages.contact}" for="clientOfficeContact" /></td>
+								<td><h:outputText value="#{messageCodeClientIdMappingManager.put('MRR00034','clientOfficeContact',null)}"></h:outputText> <p:autoComplete id="clientOfficeContact"
+										disabled="#{partEstimationBean.selectedEstimate.clientOffice eq null}" value="#{partEstimationBean.selectedEstimate.clientPerson}" converter="#{converterStorage.personConverter}"
+										completeMethod="#{partEstimationBean.filterClientPerson}" forceSelection="true" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200" var="person" itemLabel="#{person.name}"
+										itemValue="#{person}" title="#{messages.typeToFindPerson}" emptyMessage="#{messages.noPersonFound}">
+										<p:column headerText="#{messages.psnCode}">
+						            #{person.psnCode}
+						        </p:column>
+										<p:column headerText="#{messages.name}">
+						            #{person.name}
+						        </p:column>
+										<p:ajax event="itemSelect" process="@this" update="clientOfficeContact" />
+										<p:ajax event="change" process="@this" update="@this" />
+									</p:autoComplete></td>
+							</tr>
+
+
+							<tr>
+								<td class="label"><p:outputLabel value="#{messages.repairedBy}" for="supplierOffice" /></td>
+								<td><p:autoComplete id="supplierOffice" value="#{partEstimationBean.selectedEstimate.supplierOffice}" converter="#{converterStorage.officeConverter}"
+										completeMethod="#{commonAutoCompleteBean.filterOffice}" forceSelection="true" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200" var="office" itemLabel="#{office.name}"
+										itemValue="#{office}" title="#{messages.typeToFindOffice}" emptyMessage="#{messages.noOfficeFound}">
+										<p:column headerText="#{messages.officeCode}">
+						            #{office.officeCode}
+						        </p:column>
+										<p:column headerText="#{messages.name}">
+						            #{office.name}
+						        </p:column>
+										<p:ajax event="itemSelect" process="@this" update="supplierOffice supplierOfficeContact" />
+										<p:ajax event="change" process="@this" update="@this" />
+									</p:autoComplete></td>
+							</tr>
+
+
+							<tr>
+								<td class="label"><p:outputLabel value="#{messages.contact}" for="supplierOfficeContact" /></td>
+								<td><p:autoComplete id="supplierOfficeContact" disabled="#{partEstimationBean.selectedEstimate.supplierOffice eq null}" value="#{partEstimationBean.selectedEstimate.supplierPerson}"
+										converter="#{converterStorage.personConverter}" completeMethod="#{partEstimationBean.filterSupplier}" forceSelection="true" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200"
+										var="person" itemLabel="#{person.name}" itemValue="#{person}" title="#{messages.typeToFindPerson}" emptyMessage="#{messages.noPersonFound}">
+										<p:column headerText="#{messages.psnCode}">
+						            #{person.psnCode}
+						        </p:column>
+										<p:column headerText="#{messages.name}">
+						            #{person.name}
+						        </p:column>
+										<p:ajax event="itemSelect" process="@this" update="supplierOfficeContact" />
+										<p:ajax event="change" process="@this" update="@this" />
+									</p:autoComplete></td>
+							</tr>
+						</table>
+					</h:form>
+					<p:tabView dynamic="true">
+						<p:tab title="#{messages.generalInformation}">
+							<ui:include src="part_estimation/general_info.xhtml" />
+						</p:tab>
+
+						<p:tab title="#{messages.detail}">
+							<ui:include src="part_estimation/detail.xhtml" />
+						</p:tab>
+					</p:tabView>
+				</p:fieldset>
+			</p:outputPanel>
+		</p:fieldset>
+	</p:outputPanel>
+</ui:composition>

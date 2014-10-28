@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+    xmlns:ac="http://arrow-tech.vn/ui"
+    xmlns:composite="http://java.sun.com/jsf/composite">
+<composite:interface>
+    <composite:attribute name="id" type="java.lang.String"/>
+    <composite:attribute name="process" default="@this"/>
+    <composite:attribute name="update" default="@this"/>
+    <composite:attribute name="fileLimit" default="1"/>
+    <composite:attribute name="fileValue"/>
+    <composite:attribute name="auto" default="true" />
+    <composite:attribute name="listener" method-signature="void listener(org.primefaces.event.FileUploadEvent)"/>
+    
+</composite:interface>
+
+<composite:implementation>
+    <p:fileUpload fileUploadListener="#{cc.attrs.listener}" mode="advanced" fileLimit="#{cc.attrs.fileLimit}" id="#{cc.attrs.id}" widgetVar="wg_#{cc.attrs.id}"
+        invalidFileMessage="#{messages.SYS00014}" invalidSizeMessage="#{messages.SYS00015}" fileLimitMessage="#{messages.SYS00016}" auto="#{cc.attrs.auto}"
+        value="#{cc.attrs.fileValue}" sizeLimit="#{appConfig.videoFileSizeLimit}" allowTypes="#{appConfig.videoFileTypesAllowed}" process="#{cc.attrs.process}" update="#{cc.attrs.update}">
+    </p:fileUpload>
+        
+</composite:implementation>
+
+</html>

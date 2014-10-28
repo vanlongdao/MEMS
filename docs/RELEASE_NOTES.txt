@@ -1,0 +1,23 @@
+Version 1.0.2:
+
+[Screens]:
+
+* Login
+* User Management
+* Address Management
+* Office Management
+* Person Management
+* Hospital Management
+* Hospital Department Management
+* Human Resource Management
+* Corporation Management
+* Approval Configuration
+
+[Features]:
+
+* Change Theme
+* Selected Theme is persisted as User's information
+
+[Demo]
+
+* Master Devices Management

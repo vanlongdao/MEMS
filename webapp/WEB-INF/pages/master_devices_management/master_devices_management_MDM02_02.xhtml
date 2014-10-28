@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:o="http://omnifaces.org/ui">
+    <!-- Area CheckList Devices -->
+    <h:form id="checklistForm">
+        <ac:dataTable rows="15" id="checkListDevices" rowIndexVar="index" var="checklist"
+            value="#{masterDeviceChecklistManageBean.checklists}">
+            <p:column styleClass="display-select">
+                <p:selectBooleanCheckbox value="#{checklist.selected}" styleClass="checkbox">
+                    <p:ajax
+                        update="@([id$=panelInputFormCheckList]), @([id$=checklistButtonForm]), @([id$=checklistDetail]), @(.checkbox)"
+                        listener="#{masterDeviceChecklistManageBean.toggleSelectChecklist(checklist)}" />
+                </p:selectBooleanCheckbox>
+                </p:column>
+            <p:column headerText="#{messages.no}" width="10">
+                        #{index+1}
+                    </p:column>
+            <p:column headerText="#{messages.checklistCode}" filterMatchMode="contains"
+                rendered="#{masterDeviceChecklistManageBean.currentDevice.persisted}">
+                <h:outputText value="#{checklist.cklistCode}" />
+            </p:column>
+            <p:column headerText="#{messages.name}" filterMatchMode="contains">
+                <h:outputText value="#{checklist.name}" />
+            </p:column>
+            <p:column headerText="#{messages.createdBy}" filterMatchMode="contains">
+                <h:outputText value="#{checklist.createdByUser.name}" />
+            </p:column>
+            <p:column headerText="#{messages.createdAt}" filterMatchMode="contains">
+                <ac:outputTime value="#{checklist.createdAt}" showTime="true" />
+            </p:column>
+        </ac:dataTable>
+    </h:form>
+    <h:form id="checklistButtonForm">
+        <p:commandButton value="#{messages.createNewCheckList}" icon="ui-icon-plus" process="@this" immediate="true"
+            update="@([id$=checkListDevices]), @([id$=checklistButtonForm]), @([id$=checklistDetail]), @(.checkbox)"
+            action="#{masterDeviceChecklistManageBean.clickCreateNewChecklist}" />
+
+        <p:commandButton value="#{messages.delete}" icon="ui-icon-trash" id="deleteChecklistBtn" process="@this"
+            action="#{masterDeviceChecklistManageBean.deleteSelectedChecklist}" update=":contentPane"
+            disabled="#{masterDeviceChecklistManageBean.selectedChecklist eq null}"
+            actionListener="#{masterDeviceChecklistManageBean.setTabIndex}">
+            <p:confirm message="#{messages.MDM00004}" icon="ui-icon-question"></p:confirm>
+        </p:commandButton>
+        <p:commandButton value="#{messages.discardChange}" icon="ui-icon-close" process="@this"
+            update="@([id$=checklistForm]), @([id$=checklistButtonForm]), @([id$=checklistDetail]), @([id$=dialogConfirm])"
+            actionListener="#{masterDeviceChecklistManageBean.showConfirmDiscardChange}">
+            <!-- <p:confirm message="#{messages.MDM00020}" icon="ui-icon-question"></p:confirm> -->
+        </p:commandButton>
+
+        <p:dialog visible="true" rendered="#{masterDeviceChecklistManageBean.renderConfirmDlg}" appendTo=":contentPage" closable="false"
+            id="dialogConfirm" modal="true" header="#{messages.MDM00020}" widgetVar="confirmation_edit">
+            <div style="text-align: center;">
+                <p:commandButton id="btnok" value="#{messages.yes}" update=":contentPane" process="@this"
+                    action="#{masterDeviceChecklistManageBean.discardChangeChecklist}" actionListener="#{masterDeviceChecklistManageBean.setTabIndex}"
+                    oncomplete="PF('confirmation_edit').hide()" icon="ui-icon-check" />
+                <p:commandButton id="btncancel" value="#{messages.no}" update="@form" process="@this"
+                    actionListener="#{masterDeviceChecklistManageBean.closeConfirmDlg}"
+                    oncomplete="PF('confirmation_edit').hide()" icon="ui-icon-close" />
+            </div>
+        </p:dialog>
+
+    </h:form>
+
+    <!-- Area FORM  General Informations Devices -->
+    <p:outputPanel id="checklistDetail">
+        <p:fieldset id="panelInputFormCheckList" legend="#{messages.checklist}"
+            rendered="#{masterDeviceChecklistManageBean.currentChecklist ne null}">
+            <h:form>
+                <ui:param name="currentChecklist" value="#{masterDeviceChecklistManageBean.currentChecklist}" />
+                <table>
+                    <tr>
+                        <td align="left" colspan="2"><p:commandButton icon="ui-icon-disk" value="#{messages.save}"
+                                disabled="#{currentChecklist eq null}" process="@form"
+                                update="@([id$=checklistDetail]), @([id$=checklistSchedule]), @([id$=checkListDevices]), @([id$=checklistScheduleByCount])"
+                                action="#{masterDeviceChecklistManageBean.saveChecklist}" /></td>
+                    </tr>
+                    <tr>
+                        <td><p:outputLabel value="#{messages.name}" for="checklistName" /></td>
+                        <td><p:inputText value="#{currentChecklist.name}" disabled="#{currentChecklist eq null}"
+                                id="checklistName" required="true">
+                            </p:inputText></td>
+                    </tr>
+                </table>
+            </h:form>
+            <p:fieldset legend="#{messages.checkitems}">
+                <h:form>
+                    <table>
+                        <tr>
+                            <td><p:dataList value="#{masterDeviceChecklistManageBean.checklistItems}" var="item"
+                                    type="unordered" itemType="none">
+                                    <f:facet name="header">
+                                #{messages.checklistItems}
+                            </f:facet>
+                                    <div class="cell-box">
+                                        <div class="cell-left">
+                                            <p:commandLink value="#{messages.select}" styleClass="ui-icon ui-icon-pencil"
+                                                process="@this" update="@form"
+                                                action="#{masterDeviceChecklistManageBean.editChecklistItem(item)}">
+                                            </p:commandLink>
+                                        </div>
+                                        <div class="cell-right">
+                                            <h:outputText value="#{item.description}" />
+                                        </div>
+                                        <br />
+                                    </div>
+                                </p:dataList></td>
+                        </tr>
+
+                        <tr>
+                            <td><p:commandButton icon="ui-icon-plus"
+                                    disabled="#{masterDeviceChecklistManageBean.currentChecklist eq null || masterDeviceChecklistManageBean.currentChecklistItem ne null}"
+                                    value="#{messages.addItem}" process="@this"
+                                    update="itemDescription, saveChecklistItem, @this"
+                                    action="#{masterDeviceChecklistManageBean.addNewChecklistItem}" /> <p:commandButton
+                                    value="#{messages.saveItem}" id="saveChecklistItem" icon="ui-icon-disk"
+                                    disabled="#{masterDeviceChecklistManageBean.currentChecklistItem eq null}" process="@form"
+                                    update="@form" action="#{masterDeviceChecklistManageBean.saveChecklistItem}" /> <p:commandButton
+                                    icon="ui-icon-trash"
+                                    disabled="#{masterDeviceChecklistManageBean.currentChecklistItem eq null}"
+                                    value="#{messages.deleteItem}" process="@this" update="@form"
+                                    action="#{masterDeviceChecklistManageBean.deleteChecklistItem}">
+                                    <p:confirm message="#{messages.MDM00006}" />
+                                </p:commandButton></td>
+                        </tr>
+                        <tr>
+                            <td><p:outputLabel value="#{messages.itemDescription}" for="itemDescription" /></td>
+                        </tr>
+                        <tr>
+                            <td><p:inputTextarea
+                                    value="#{masterDeviceChecklistManageBean.currentChecklistItem.description}"
+                                    styleClass="textarea" id="itemDescription"
+                                    disabled="#{masterDeviceChecklistManageBean.currentChecklistItem eq null}">
+                                </p:inputTextarea></td>
+                        </tr>
+
+                    </table>
+                </h:form>
+            </p:fieldset>
+        </p:fieldset>
+    </p:outputPanel>
+</ui:composition>

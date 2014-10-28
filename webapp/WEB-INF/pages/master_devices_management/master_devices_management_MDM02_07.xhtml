@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
+    xmlns:pe="http://primefaces.org/ui/extensions" xmlns:o="http://omnifaces.org/ui">
+    <!-- Area CheckList Devices -->
+        <p:panel id="panelScheduleDevices">
+            <h:form id="scheduleForm">
+                <ac:dataTable rows="15" id="scheduleTable" rowIndexVar="index" value="#{scheduleBean.listMasterSchedule}"
+                    var="schedule">
+                    <p:column style="width:2%;">
+                        <p:selectBooleanCheckbox value="#{schedule.selected}">
+                            <p:ajax event="change" update="@form" listener="#{scheduleBean.toggleSelectSchedule(schedule)}" />
+                        </p:selectBooleanCheckbox>
+                    </p:column>
+                    <p:column headerText="#{messages.scheduleName}">
+                        <h:outputText value="#{schedule.name}" />
+                    </p:column>
+                    <p:column headerText="#{messages.description}">
+                        <h:outputText value="#{schedule.description}"/>
+                    </p:column>
+                    <p:column headerText="#{messages.timePeriod}">
+                        <h:outputText value="#{schedule.intervalMonth}"/>
+                    </p:column>
+                    <p:column headerText="#{messages.checklist}">
+                        <h:outputText value="#{schedule.mdevChecklist.name}"/>
+                    </p:column>
+                </ac:dataTable>
+                <p:commandButton value="#{messages.addNew}" icon="ui-icon-document" process="@this" action="#{scheduleBean.createNewSchedule}"
+                    update="@([id$=panelScheduleDevices])" />
+
+                <p:commandButton value="#{messages.edit}" icon="ui-icon-pencil" process="@this" disabled="#{scheduleBean.selectedSchedule eq null}"
+                    update="@([id$=panelScheduleDevices])" action="#{scheduleBean.editSchedule}" />
+
+                <p:commandButton value="#{messages.delete}" icon="ui-icon-trash" process="@this" disabled="#{scheduleBean.selectedSchedule eq null}"
+                    update="@([id$=panelScheduleDevices])" action="#{scheduleBean.deleteSchedule}">
+                    <p:confirm message="#{messages.MDM00015}" icon="ui-icon-question"></p:confirm>
+                </p:commandButton>
+                <p:commandButton value="#{messages.discardChange}" actionListener="#{scheduleBean.showConfirmDiscardScheChange}" update="@form" process="@this">
+                </p:commandButton>
+                
+                <p:dialog visible="true" rendered="#{scheduleBean.renderConfirmScheDlg}" appendTo=":contentPage" closable="false"
+                    id="dialogScheConfirm" modal="true" header="#{messages.MDM00021}" widgetVar="confirmation_edit">
+                    <div style="text-align: center;">
+                        <p:commandButton id="btSchnok" value="#{messages.yes}" update="@form" process="@this"
+                            action="#{scheduleBean.discardChange}"
+                            oncomplete="PF('confirmation_edit').hide()" icon="ui-icon-check" />
+                        <p:commandButton id="btnSchcancel" value="#{messages.no}" update="@form" process="@this"
+                            actionListener="#{scheduleBean.closeConfirmScheDlg}"
+                            oncomplete="PF('confirmation_edit').hide()" icon="ui-icon-close" />
+                    </div>
+                </p:dialog>
+                
+                <p:panel id="panelScheduleInput" rendered="#{scheduleBean.currentSchedule ne null}">
+                    <table>
+                        <tr>
+                            <td><p:outputLabel value="#{messages.scheduleName}" for="scheduleName" /></td>
+                            <td><p:inputText id="scheduleName" value="#{scheduleBean.currentSchedule.name}" disabled="#{scheduleBean.currentSchedule eq null}" styleClass="fifteen-char"/></td>
+                        </tr>
+                        <tr>
+                            <td><p:outputLabel value="#{messages.description}" for="scheduleDescription" /></td>
+                            <td><p:inputText id="scheduleDescription" value="#{scheduleBean.currentSchedule.description}"  disabled="#{scheduleBean.currentSchedule eq null}" styleClass="thirty-char" /></td>
+                        </tr>
+                        <tr>
+                            <td><p:outputLabel value="#{messages.timePeriod}" for="timePeriod" /></td>
+                            <td>
+                                <p:inputText id="timePeriod" value="#{scheduleBean.currentSchedule.intervalMonth}" converter="#{converterStorage.quatityConverter}" disabled="#{scheduleBean.currentSchedule eq null}">
+                                </p:inputText>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><p:outputLabel value="#{messages.checklist}" for="checklistSchedule" /></td>
+                            <td>
+                                <p:selectOneMenu id="checklistSchedule" value="#{scheduleBean.indentifiedChecklist}" disabled="#{scheduleBean.currentSchedule eq null}">
+                                    <f:selectItem />
+                                    <f:selectItems value="#{masterDeviceChecklistManageBean.checklists}" var="checklist" itemValue="#{checklist.cklistId}" itemLabel="#{checklist.name}" />
+                                </p:selectOneMenu>
+                             </td>
+                        </tr>
+                        <tr>
+                            <td><p:commandButton value="#{messages.save}" action="#{scheduleBean.saveSchedule}" process="@form" update="@form" disabled="#{scheduleBean.currentSchedule eq null}"/></td>
+                            <td>
+                            </td>
+                        </tr>
+                    </table>
+                </p:panel>
+            </h:form>
+        </p:panel>
+
+</ui:composition>

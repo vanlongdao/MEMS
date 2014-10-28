@@ -1,0 +1,10 @@
+#NOTE: This is an internal implementation file, its format can be changed without prior notice.
+#Sun Jul 27 12:58:52 ICT 2014
+https\://repository.jboss.org/nexus/content/groups/public-jboss/.error=
+http\://artifactory.itcrowd.pl/libs-release/.error=
+http\://artifactory.itcrowd.pl/libs-snapshot/.lastUpdated=1406440727420
+https\://repository.jboss.org/nexus/content/groups/public-jboss/.lastUpdated=1406440714321
+http\://artifactory.itcrowd.pl/libs-release/.lastUpdated=1406440719413
+http\://repository.primefaces.org/.error=
+http\://artifactory.itcrowd.pl/libs-snapshot/.error=
+http\://repository.primefaces.org/.lastUpdated=1406440732439

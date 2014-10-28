@@ -1,0 +1,14 @@
+<div class="panel panel-default" ng-controller="mems.controller.dashboard" >
+    <div class="panel-body">
+
+        <tabset>
+            <tab heading="Find Tasks">
+                <ng-include src="'dashboard/findTasks.html'" onload="refreshActionsOfOffice('')"></ng-include>
+            </tab>
+            <tab heading="Find Device">
+                <div class="container-fluid" ng-include="'dashboard/findDevice.html'">
+                </div>
+            </tab>
+        </tabset>
+    </div>
+</div>

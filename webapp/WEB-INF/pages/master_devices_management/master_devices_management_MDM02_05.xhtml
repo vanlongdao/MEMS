@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+    xmlns:o="http://omnifaces.org/ui">
+    
+    <h:outputLabel value="#{forSupplier ? manufacturerDeviceMasterBean.disableEidtManufacturer() : manufacturerDeviceMasterBean.enableEidtManufacturer()}" />
+    
+    <h:form id="#{forSupplier ? 'supplier' : 'manufacturer'}-searchBox">
+        <p:panel>
+            <table>
+                <tr>
+                    <td><p:outputLabel value="#{messages.searchByName}" /></td>
+                    <td colspan="2"><p:autoComplete id="autoCompleteName" value="#{manufacturerDeviceMasterBean.keywordOffice}"
+                            completeMethod="#{manufacturerDeviceMasterBean.autocompleteOfficeCandidate}" /></td>
+                </tr>
+                <tr>
+                    <td><p:outputLabel value="#{messages.searchByProduct}" /></td>
+                    <td colspan="2"><p:autoComplete id="autoCompleteProduct" value="#{manufacturerDeviceMasterBean.keywordDevice}"
+                            completeMethod="#{manufacturerDeviceMasterBean.autocompleteMDeviceCandidate}" /></td>
+                </tr>
+                <tr>
+                    <td><p:outputLabel value="#{messages.searchByContact}" /></td>
+                    <td colspan="2"><p:autoComplete id="autoCompleteContact" value="#{manufacturerDeviceMasterBean.keywordPerson}"
+                            completeMethod="#{manufacturerDeviceMasterBean.autocompletePersonCandidate}" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><p:commandButton value="#{messages.search}" icon="ui-icon-search" action="#{manufacturerDeviceMasterBean.searchManufacturer}" process="@form"
+                            update="@([id$=manufacturerTable])" /></td>
+                </tr>
+            </table>
+        </p:panel>
+    </h:form>
+    <h:form id="#{forSupplier ? 'supplier' : 'manufacturer'}-officerForm">
+        <p:panel>
+            <table>
+                <tr>
+                    <td><p:outputLabel value="#{messages.selectOne}" />
+                        <ac:dataTable rows="15" id="manufacturerTable" rowIndexVar="index" rowKey="#{listSearchOffice}" selectionMode="single"
+                            value="#{manufacturerDeviceMasterBean.listSearchOffice}" var="listSearchOffice">
+                            <p:ajax event="rowSelect" listener="#{manufacturerDeviceMasterBean.selectRowListOfficeSearch}" immediate="true" update="@([id$=contactTable])" />
+                            <p:column headerText="#{messages.officeCode}" styleClass="display-code">
+                                #{listSearchOffice.officeCode}
+                            </p:column>
+                            <p:column headerText="#{messages.companyName}" styleClass="display-text">
+                                #{listSearchOffice.name}
+                            </p:column>
+                            <p:column headerText="#{messages.address}" styleClass="display-text">
+                                #{listSearchOffice.address.address1}
+                            </p:column>
+                            <p:column headerText="#{messages.phone}" styleClass="display-text">
+                                #{listSearchOffice.tel}
+                            </p:column>
+                        </ac:dataTable>
+                    </td>
+                </tr>
+              </table>
+              <table>
+
+                <tr>
+                    <td ><p:outputLabel value="#{messages.selectContact}" /></td>
+                </tr>
+                <tr>    
+                    <td><ac:dataTable rows="15" id="contactTable" rowIndexVar="index" rowKey="#{person}" selectionMode="single" value="#{manufacturerDeviceMasterBean.listPersonByOffice}" var="person">
+                            <p:ajax event="rowSelect" listener="#{manufacturerDeviceMasterBean.selectRowListPesonByOffice}" immediate="true" update="@form" />
+                            <p:column headerText="#{messages.personName}">
+                                #{person.name}
+                            </p:column>
+                            <p:column headerText="#{messages.email}">
+                                #{person.email}
+                            </p:column>
+                            <p:column headerText="#{messages.phone}">
+                                #{person.tel}
+                            </p:column>
+                        </ac:dataTable></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p:commandButton icon="ui-icon-plus" value="#{messages.selectCompanyAndContact}" action="#{manufacturerDeviceMasterBean.chooseOfficeAndContactPerson}" process="@this" update="panelSelectedContactAndManufacturer"
+                            disabled="#{manufacturerDeviceMasterBean.selectedPerson eq null}" />
+                    </td>
+                </tr>
+            </table>
+        </p:panel>
+        <p:panel id="panelSelectedContactAndManufacturer">
+            <table>
+                <tr>
+                    <td><p:outputLabel value="#{messages.selectedCompany}" /></td>
+                    <td><p:outputLabel value="#{manufacturerDeviceMasterBean.realSeletedOffice.name}" /></td>
+                </tr>
+                <tr>
+                    <td><p:outputLabel value="#{messages.selectedContact}" /></td>
+                    <td><p:outputLabel value="#{manufacturerDeviceMasterBean.realSeletedPerson.name}" /></td>
+                </tr>
+                <tr>
+                    <td><p:commandButton value="#{messages.setCompanyAndContact}" icon="ui-icon-check" process="@this" update="@([id$=panelGeneralInfoDevices])"
+                            onclick="PF('#{forSupplier ? 'wg_supplierDlg' : 'wg_manufacturerDlg'}').close()" actionListener="#{manufacturerDeviceMasterBean.setOfficeAndPerson()}"
+                            disabled="#{manufacturerDeviceMasterBean.realSeletedPerson eq null and manufacturerDeviceMasterBean.realSeletedOffice eq null}" /></td>
+                    <td><p:commandButton value="#{messages.close}" icon="ui-icon-close" onclick="PF('#{forSupplier ? 'wg_supplierDlg' : 'wg_manufacturerDlg'}').close()" update="@([id$=panelGeneralInfoDevices])"
+                            actionListener="#{manufacturerDeviceMasterBean.closeManufacturerForm}"/>
+                        
+                    </td>
+                </tr>
+            </table>
+        </p:panel>
+    </h:form>
+</ui:composition>

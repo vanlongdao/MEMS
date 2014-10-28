@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+
+	<h:form>
+		<table>
+			<tr>
+				<td><p:outputLabel rendered="#{addressManagementBean.currentAddress.persisted}" value="#{messages.addressCode}" for="addressCode" /></td>
+				<td><p:inputText rendered="#{addressManagementBean.currentAddress.persisted}" id="addressCode" value="#{addressManagementBean.currentAddress.addrCode}" disabled="true"
+						label="#{messages.addressCode}">
+						<p:ajax event="change" process="@this" update="@this" />
+					</p:inputText></td>
+			</tr>
+			<tr>
+				<td><p:outputLabel value="#{messages.country}" for="autoCompleteCountry" /></td>
+				<td><p:autoComplete id="autoCompleteCountry" value="#{addressManagementBean.currentAddress.mtCountry}" converter="#{converterStorage.countryConverter}" title="#{messages.typeToFindCountry}"
+						var="country" itemLabel="#{country.name}" forceSelection="true" emptyMessage="#{messages.noCountryFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200"
+						itemValue="#{country}" completeMethod="#{countryManagementBean.filterCountry}">
+						<p:column headerText="#{messages.countryId}">
+							<h:outputText value="#{country.countryId}" />
+						</p:column>
+
+                        <p:column headerText="#{messages.countryName}">
+                            <h:outputText value="#{country.name}" />
+                        </p:column>
+                        <p:ajax event="itemSelect" process="@this" update="autoCompleteCountry" />
+                    </p:autoComplete></td>
+            </tr>
+            <tr>
+                <td><p:outputLabel value="#{messages.zipCode}" for="zipCode" /></td>
+                <td><p:inputText id="zipCode" value="#{addressManagementBean.currentAddress.zipCode}" label="#{zipCode}" styleClass="five-char" maxlength="32">
+                        <p:ajax event="change" process="@this" update="@this" />
+                    </p:inputText></td>
+            </tr>
+            <tr>
+                <td><p:outputLabel value="#{messages.province}" for="province" /></td>
+                <td><p:inputText id="province" value="#{addressManagementBean.currentAddress.province}" label="#{messages.province}" styleClass="fifteen-char" maxlength="255">
+                        <p:ajax event="change" process="@this" update="@this" />
+                    </p:inputText></td>
+            </tr>
+            <tr>
+                <td><p:outputLabel value="#{messages.city}" for="city" /></td>
+                <td><p:inputText id="city" value="#{addressManagementBean.currentAddress.city}" label="#{messages.city}" styleClass="fifteen-char" maxlength="255">
+                        <p:ajax event="change" process="@this" update="@this" />
+                    </p:inputText></td>
+            </tr>
+            <tr>
+                <td><p:outputLabel value="#{messages.address1}" for="address1" /></td>
+                <td><p:inputText id="address1" value="#{addressManagementBean.currentAddress.address1}" label="#{messages.address1}" styleClass="thirty-char" maxlength="255">
+                        <p:ajax event="change" process="@this" update="@this" />
+                    </p:inputText></td>
+            </tr>
+            <tr>
+                <td><p:outputLabel value="#{messages.address2}" for="address2" /></td>
+                <td><p:inputText id="address2" value="#{addressManagementBean.currentAddress.address2}" label="#{messages.address2}" styleClass="thirty-char" maxlength="255">
+                        <p:ajax event="change" process="@this" update="@this" />
+                    </p:inputText></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td align="left"><p:commandButton value="#{messages.save}" process="@form" update=":contentPane" action="#{addressManagementBean.saveAddress()}" icon="ui-icon-disk" /> 
+                    <p:commandButton rendered="#{addressManagementBean.currentAddress.persisted}" value="#{messages.delete}" process="@this" icon="ui-icon-trash"
+                        action="#{addressManagementBean.deleteAddress()}" update=":contentPane" immediate="true">
+                        <p:confirm header="#{messages.confirmation}" message="#{messages.areYouSureDelete}" icon="ui-icon-alert" />
+                    </p:commandButton> <p:commandButton value="#{messages.cancel}" actionListener="#{addressManagementBean.closeAddress}" process="@this" update=":contentPane" icon="ui-icon-close" immediate="true" /></td>
+            </tr>
+        </table>
+    </h:form>
+    
+    <h:form>
+    	<p:fieldset legend="#{messages.approvingSection}" rendered="#{addressManagementBean.currentAddress.persisted}" id="approvalSection">
+	        <ac:approval entityId="#{addressManagementBean.entityId}" dataType="#{addressManagementBean.dataType}" itemLabel="#{addressManagementBean.itemLabel}">
+	        </ac:approval>
+        </p:fieldset>
+    </h:form>
+    
+</ui:composition>

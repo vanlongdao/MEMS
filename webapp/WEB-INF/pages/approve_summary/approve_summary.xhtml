@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+    <h:panelGrid columns="2">
+        <h:form id="approveSummaryForm">
+            <p:commandButton value="#{messages.submit}" process="@form" action="#{approveManagementBean.approveData}" update=":contentPane"
+            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" />
+            <p:dataTable rowIndexVar="index" value="#{approveManagementBean.listApprovalSummaries}" var="approvalSummary">
+                <p:column headerText="#{messages.no}" styleClass="display-index">
+                    #{index + 1}
+                </p:column>
+                <!-- <p:column headerText="#{messages.viewDetailRepair}" styleClass="eight-char" >
+                    <p:commandButton value="#{messages.viewDetailRepair}" icon="ui-icon-circle-arrow-e"
+                    onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                    action="#{approveManagementBean.openApproveDetail(approvalSummary)}" update=":contentPane" />
+                </p:column> -->
+                <p:column headerText="#{messages.itemType}" styleClass="display-select ten-char">
+                    #{approvalSummary.approvalLevel.approvalConfig.dataTypeName}
+                </p:column>
+                <p:column headerText="#{messages.itemCode}" styleClass="display-select ten-char">
+                    <p:commandLink value="#{approvalSummary.itemCode}" action="#{approveManagementBean.openApproveDetail(approvalSummary)}"  update=":contentPane" 
+                                    onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" />
+                </p:column>
+                <p:column headerText="#{messages.itemLabel}" styleClass="display-select ten-char">
+                	#{approvalSummary.itemLabel}
+                </p:column>
+                <p:column headerText="#{messages.requestor}" styleClass="display-select ten-char">
+                    #{approvalSummary.requestorUser.name}
+                </p:column>
+                <p:column headerText="#{messages.requestDate}" styleClass="display-select ten-char">
+                    <ac:outputTime value="#{approvalSummary.requestAt}" />
+                </p:column>
+                <p:column styleClass="display-select twenty-char" >
+                    <p:selectOneMenu value="#{approvalSummary.actionType}">
+                        <f:selectItem itemLabel="#{messages.approve}" itemValue="Approval" />
+                        <f:selectItem itemLabel="#{messages.reject}" itemValue="Reject" />
+                        <f:selectItem itemLabel="#{messages.revise}" itemValue="Revise" />
+                        <f:selectItem itemLabel="#{messages.none}" itemValue="None" />
+                        <p:ajax event="valueChange" process="@this" update="@this"/>
+                    </p:selectOneMenu>
+                </p:column>
+                <p:column headerText="#{messages.comment}" styleClass="display-select twenty-char">
+                    <p:inputTextarea styleClass="comment-textArea small-textarea" value="#{approvalSummary.comment}">
+                        <p:ajax process="@this" update="@this"></p:ajax>
+                    </p:inputTextarea>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </h:panelGrid>
+   <script type="text/javascript">
+        jQuery(document).ready(function(){
+            jQuery(".comment-textArea").focus(function(){
+            	jQuery(this).removeClass("small-textarea");
+                jQuery(this).addClass("big-textarea");
+            });
+            jQuery(".comment-textArea").blur(function(){
+            	jQuery(this).removeClass("big-textarea");
+                jQuery(this).addClass("small-textarea");
+            });                  
+
+          });
+
+    </script>
+</ui:composition>

@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
+    xmlns:pe="http://primefaces.org/ui/extensions" xmlns:o="http://omnifaces.org/ui">
+   <!-- To access constants -->
+   <!--  <o:importConstants type="arrow.mems.ui.ScreenCodes" /> -->
+    <h:form enctype="multipart/form-data">
+        <div id="infoDeviceDescriptionDiv">
+            <p:panel id="panelInfoDeviceDescription">
+                <table>
+                    <tr>
+                        <td><p:outputLabel value="#{messages.picture}" /></td>
+                        <td><p:panel id="imageUploadPanel">
+                            <!-- <p:outputLabel value="#{devicesManagementBean.currentDevice.picture}"/> --> <p:graphicImage cache="false"
+                                value="#{imageStreamBean.image}" width="50" height="50"  binding="#{image}">
+                                <f:param name="mdeviceCode" value="#{devicesManagementBean.currentDevice.mdevCode}" />
+                            </p:graphicImage>
+                            </p:panel>
+                        </td>
+                        <td><p:fileUpload mode="advanced" value="#{devicesManagementBean.file}" binding="#{upload}" invalidFileMessage="#{messages.MDM00018}" 
+                                update="imageUploadPanel" immediate="true" fileUploadListener="#{devicesManagementBean.handFileUpload}" 
+                                allowTypes="/(\.|\/)(jpe?g|png)$/">
+                            </p:fileUpload></td>
+                    </tr>
+                    <tr>
+                        <td><p:outputLabel value="#{messages.catalog}" for="catalog"/></td>
+                        <td colspan="2">
+                            <p:inputTextarea value="#{devicesManagementBean.currentDevice.catalog}" id="catalog" >
+                                <p:ajax event="change" update="@this" process="@this"/>
+                            </p:inputTextarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><p:outputLabel value="#{messages.specification}" for="specification"/></td>
+                        <td colspan="2">
+                            <p:inputTextarea value="#{devicesManagementBean.currentDevice.specification}" id="specification" >
+                                <p:ajax event="change" update="@this" process="@this"/>
+                            </p:inputTextarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><p:outputLabel value="#{messages.notice}" for="notice"/></td>
+                        <td colspan="2">
+                            <p:inputTextarea value="#{devicesManagementBean.currentDevice.notice}" id="notice">
+                                <p:ajax event="change" update="@this" process="@this"/>
+                            </p:inputTextarea>
+                        </td>
+                    </tr>
+                </table>
+            </p:panel>
+        </div>
+    </h:form>
+</ui:composition>

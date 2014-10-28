@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- NYUUSYU_MASTER -->
+<table>
+	<primary-key>
+		<column name="ACQ_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="ACQ_CODE" data-type="code" not-null="false" />
+	<column name="COUNTRY" data-type="integer" not-null="false" />
+	<column name="MSG_LOCAL" data-type="name" not-null="false" />
+	<column name="IS_NEED_PRICE" data-type="integer" not-null="false" />
+	<column name="MSG_PRICE_ENTRY" data-type="freetext" not-null="false" />
+</table>

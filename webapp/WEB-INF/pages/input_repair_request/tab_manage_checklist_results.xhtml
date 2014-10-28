@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui" xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	<p:outputPanel>
+		<p:fieldset styleClass="fieldset-#{userCredential.preferences.theme}">
+			<h:form>
+				<table>
+					<tr>
+						<td><p:commandButton value="#{messages.setupNewChecklist}" icon="ui-icon-gear" process="@this" onclick="PF('setup').show();" /> <p:commandButton
+								disabled="#{empty checklistResultsBean.listChecklistShow}" value="#{messages.delete}" process="@this" icon="ui-icon-trash" update="@form"
+								actionListener="#{checklistResultsBean.deleteThisChecklist()}">
+								<p:confirm header="#{messages.confirmation}" message="#{messages.areYouSureDelete}" icon="ui-icon-alert" />
+							</p:commandButton> <p:commandButton value="#{messages.discardChanges}" process="@this" update="@form" action="#{checklistResultsBean.discardChanges()}">
+								<p:confirm header="#{messages.confirmation}" message="#{messages.areYouSureDiscardChanges}" icon="ui-icon-alert" />
+							</p:commandButton></td>
+					</tr>
+					<tr>
+						<td><ac:dataTable value="#{checklistResultsBean.listChecklistShow}" var="checklist" id="checklistTable" rowIndexVar="index" rowKey="#{checklist.mdevChecklist.cklistCode}"
+								selectionMode="single" selection="#{checklistResultsBean.currentChecklist}">
+								<p:column styleClass="display-index">
+						#{index + 1}
+					</p:column>
+								<p:column styleClass="display-text" headerText="#{messages.name}">
+						#{checklist.mdevChecklist.name}
+					</p:column>
+								<p:column styleClass="display-text" headerText="#{messages.checkDate}">
+						#{checklist.checkDate}
+					</p:column>
+								<p:ajax event="rowSelect" process="@this" update="@form" />
+							</ac:dataTable></td>
+					</tr>
+					<tr>
+						<td><p:panel header="#{messages.checklistInfo}" rendered="#{checklistResultsBean.selectedChecklist ne null}">
+								<table>
+									<tr>
+										<td><h:outputText value="#{messages.checklistName}" /></td>
+										<td><p:inputText value="#{checklistResultsBean.selectedChecklist.mdevChecklist.name}">
+												<p:ajax event="change" process="@this" update="@this" />
+											</p:inputText></td>
+									</tr>
+									<tr>
+										<td><h:outputText value="#{messages.measurementDevice1}" /></td>
+										<td><p:autoComplete id="autoMeasure1" value="#{checklistResultsBean.selectedChecklist.measurement1}" converter="#{converterStorage.deviceConverter}"
+												title="#{messages.typeToFindMeasurement1}" var="measure1" itemLabel="#{measure1.MDevice.modelNo}" forceSelection="true" emptyMessage="#{messages.noMeasurementFound}" cache="true"
+												cacheTimeout="300" dropdown="true" scrollHeight="200" itemValue="#{measure1}" completeMethod="#{commonAutoCompleteBean.filterMeasurement}">
+												<p:column headerText="#{messages.modelNo}">
+												#{measure1.MDevice.modelNo}
+											</p:column>
+												<p:column headerText="#{messages.serialNo}">
+												#{measure1.serialNo}
+											</p:column>
+												<p:ajax event="itemSelect" process="@this" update="@this" />
+												<p:ajax event="change" process="@this" update="@this" />
+											</p:autoComplete></td>
+									</tr>
+									<tr>
+										<td><h:outputText value="#{messages.measurementDevice2}" /></td>
+										<td><p:autoComplete id="autoMeasure2" value="#{checklistResultsBean.selectedChecklist.measurement2}" converter="#{converterStorage.deviceConverter}"
+												title="#{messages.typeToFindMeasurement2}" var="measure2" itemLabel="#{measure2.MDevice.modelNo}" forceSelection="true" emptyMessage="#{messages.noMeasurementFound}" cache="true"
+												cacheTimeout="300" dropdown="true" scrollHeight="200" itemValue="#{measure2}" completeMethod="#{commonAutoCompleteBean.filterMeasurement}">
+												<p:column headerText="#{messages.modelNo}">
+												#{measure2.MDevice.modelNo}
+											</p:column>
+												<p:column headerText="#{messages.serialNo}">
+												#{measure2.serialNo}
+											</p:column>
+												<p:ajax event="itemSelect" process="@this" update="@this" />
+												<p:ajax event="change" process="@this" update="@this" />
+											</p:autoComplete></td>
+									</tr>
+									<tr>
+										<td><h:outputText value="#{messages.clientPerson}" /></td>
+										<td><p:autoComplete id="autoHospitalPerson" value="#{checklistResultsBean.selectedChecklist.hospitalPerson}" converter="#{converterStorage.personConverter}"
+												title="#{messages.typeToFindPerson}" var="person" itemLabel="#{person.name}" forceSelection="true" emptyMessage="#{messages.noPersonFound}" cache="true" cacheTimeout="300" dropdown="true"
+												scrollHeight="200" itemValue="#{person}" completeMethod="#{commonAutoCompleteBean.filterHospitalPerson}">
+												<p:column headerText="#{messages.code}">
+												#{person.psnCode}
+											</p:column>
+												<p:column headerText="#{messages.name}">
+												#{person.name}
+											</p:column>
+												<p:ajax event="itemSelect" process="@this" update="@this" />
+											</p:autoComplete></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><p:commandButton value="#{messages.save}" icon="ui-icon-disk" process="@this" update="@form" actionListener="#{checklistResultsBean.saveThisChecklist()}"></p:commandButton></td>
+									</tr>
+								</table>
+							</p:panel></td>
+					</tr>
+					<tr>
+						<td><p:panel id="panelChecklistItem" header="#{messages.checklistItemInfo}" rendered="#{checklistResultsBean.currentChecklist != null}">
+								<ac:dataTable id="recordChecklist" value="#{checklistResultsBean.listChecklistItemShow}" var="checklistItem" rowIndexVar="index" rowKey="#{checklistItem.ckiLogCode}" selectionMode="single"
+									selection="#{checklistResultsBean.currentChecklistItem}">
+									<p:column styleClass="display-index">
+							#{index + 1}
+						</p:column>
+									<p:column headerText="#{messages.description}" styleClass="display-text">
+							#{fn:substring(checklistItem.mdevChecklistItem.description, 0, 29)}
+						</p:column>
+									<p:column headerText="#{messages.resultValue}" styleClass="display-text">
+							#{checklistItem.resultValue}
+						</p:column>
+									<p:column headerText="#{messages.resultStatus}" styleClass="display-number">
+							#{checklistItem.isOk eq 1 ? messages.passed : (checklistItem.isOk eq 0 ? messages.ng : "")}
+						</p:column>
+									<p:column headerText="#{messages.resultDescription}" styleClass="display-text">
+								#{checklistItem.resultDescription}
+							</p:column>
+									<p:ajax event="rowSelect" process="@this" update="@form" resetValues="true" />
+								</ac:dataTable>
+							</p:panel></td>
+					</tr>
+					<tr>
+						<td><p:panel id="checklistItemDetail" header="#{messages.checklistItem}" rendered="#{checklistResultsBean.selectedChecklistItem != null}">
+								<table>
+									<tr>
+										<td><h:outputText value="#{messages.checkPoint}" /></td>
+										<td><p:inputText disabled="true" value="#{checklistResultsBean.selectedChecklistItem.mdevChecklistItem.description}" /></td>
+									</tr>
+									<tr>
+										<td><h:outputText value="#{messages.resultValue}" /></td>
+										<td><h:outputText value="#{messageCodeClientIdMappingManager.put('MRR00030','resultValue',null)}"></h:outputText> <p:inputText id="resultValue"
+												value="#{checklistResultsBean.selectedChecklistItem.resultValue}">
+												<p:ajax event="change" process="@this" update="@this" />
+											</p:inputText></td>
+									</tr>
+									<tr>
+										<td><h:outputText value="#{messages.resultStatus}" /></td>
+										<td><h:outputText value="#{messageCodeClientIdMappingManager.put('MRR00031','resultStatus',null)}"></h:outputText> <p:selectOneMenu id="resultStatus"
+												value="#{checklistResultsBean.verify}">
+												<f:selectItem itemLabel="----" itemValue="#{null}" noSelectionOption="true" />
+												<f:selectItems value="#{checklistResultsBean.verifies}" />
+												<p:ajax event="change" process="@this" update="@this" resetValues="true" />
+											</p:selectOneMenu></td>
+									</tr>
+									<tr>
+										<td><h:outputText value="#{messages.memo}" /></td>
+										<td><p:inputText value="#{checklistResultsBean.selectedChecklistItem.resultDescription}">
+												<p:ajax event="change" process="@this" update="@this" />
+											</p:inputText></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><p:commandButton value="#{messages.save}" icon="ui-icon-disk" process="@this" update="@form" action="#{checklistResultsBean.saveThisChecklistItem()}"></p:commandButton></td>
+									</tr>
+								</table>
+							</p:panel></td>
+					</tr>
+				</table>
+			</h:form>
+		</p:fieldset>
+	</p:outputPanel>
+	<p:dialog header="#{messages.setupNewChecklist}" widgetVar="setup" id="popupSetup">
+		<ui:include src="checklist_result/setup_checklist.xhtml" />
+	</p:dialog>
+</ui:composition>

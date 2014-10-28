@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+    xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+    <composite:attribute name="id" />
+    <composite:attribute name="value" />
+    <composite:editableValueHolder name="value" targets="text" />
+    <composite:attribute name="validator" method-signature="void Action(javax.faces.context.FacesContext, javax.faces.component.UIComponent,Object)" />
+    <composite:attribute name="update" />
+    <composite:attribute name="process" default="@this" />
+    <composite:attribute name="readonly" />
+    <composite:attribute name="required" />
+    <composite:attribute name="requiredMessage" default="#{messages['javax.faces.component.UIInput.REQUIRED']}" />
+    <composite:attribute name="disabled" />
+    <composite:attribute name="errorCodes" />
+    <composite:attribute name="label" />
+    <composite:attribute name="autocomplete" />
+    <composite:attribute name="mask" default="true" />
+    <composite:attribute name="styleClass" default="value" />
+    <composite:attribute name="showButtonPanel" default="true" />
+    <composite:attribute name="showOn" default="both" />
+    <composite:attribute name="navigator" default="false" />
+</composite:interface>
+
+<composite:implementation>
+    <p:calendar id="#{cc.attrs.id}" showOn="#{cc.attrs.showOn}" showButtonPanel="#{cc.attrs.showButtonPanel}" mode="popup" mask="#{cc.attrs.mask}"
+        converter="#{converterStorage.arrowTimeConverter}"
+        pattern="#{cc.attrs.showTime ? 'dd/MM/yyyy HH:mm:ss' : 'dd/MM/yyyy'}" value="#{cc.attrs.value}" navigator="#{cc.attrs.navigator}" disabled="#{cc.attrs.disabled}"
+        required="#{cc.attrs.required}" requiredMessage="#{cc.attrs.requiredMessage}">
+        <p:ajax event="dateSelect" process="@this" update="#{cc.attrs.update}" />
+        <p:ajax event="change" process="@this" update="#{cc.attrs.update}" />
+    </p:calendar>
+</composite:implementation>
+
+</html>

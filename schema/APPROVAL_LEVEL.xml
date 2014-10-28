@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- APPROVAL LEVEL -->
+<table parent-table="ABSTRACT_ENTITY">
+	<primary-key>
+		<column name="LEVEL_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="CONFIG_ID" data-type="internal-id" not-null="true" />
+	<column name="LEVEL_INDEX" data-type="integer" not-null="true" />
+	<foreign-key parent-table="APPROVAL_CONFIG">
+		<column name="CONFIG_ID" referColumn="CONFIG_ID"/>
+	</foreign-key>
+</table>

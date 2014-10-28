@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+	<h:form>
+		<table>
+			<tr>
+				<td><p:outputLabel rendered="#{corporateManagementBean.currentCorporate.persisted}" value="#{messages.corporateCode}" /></td>
+				<td><p:inputText rendered="#{corporateManagementBean.currentCorporate.persisted}" value="#{corporateManagementBean.currentCorporate.corpCode}" disabled="true"
+						label="#{messages.corporateCode}">
+						<p:ajax event="change" process="@this" update="@this" />
+					</p:inputText></td>
+			</tr>
+			<tr>
+				<td><p:outputLabel value="#{messages.corporateName}" for="name" /></td>
+				<td><p:inputText id="name" value="#{corporateManagementBean.currentCorporate.name}" label="#{messages.corporateName}" maxlength="255">
+						<p:ajax event="change" process="@this" update="@this" />
+					</p:inputText></td>
+			</tr>
+			<tr>
+				<td><p:outputLabel value="#{messages.country}" for="autoCompleteCountry" /></td>
+				<td><p:autoComplete id="autoCompleteCountry" value="#{corporateManagementBean.currentCorporate.mtCountry}" converter="#{converterStorage.countryConverter}"
+						title="#{messages.typeToFindCountry}" var="country" itemLabel="#{country.name}" forceSelection="true" emptyMessage="#{messages.noCountryFound}" cache="true" cacheTimeout="300" dropdown="true"
+						scrollHeight="200" itemValue="#{country}" completeMethod="#{countryManagementBean.filterCountry}">
+						<p:column headerText="#{messages.countryId}">
+							<h:outputText value="#{country.countryId}" />
+						</p:column>
+
+						<p:column headerText="#{messages.countryName}">
+							<h:outputText value="#{country.name}" />
+						</p:column>
+						<p:ajax event="itemSelect" process="@this" update="autoCompleteCountry" />
+					</p:autoComplete></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td align="left"><p:commandButton value="#{messages.save}" process="@form" update=":contentPane" action="#{corporateManagementBean.saveCorporate()}" icon="ui-icon-disk" /> <p:commandButton
+						rendered="#{corporateManagementBean.currentCorporate.persisted}" value="#{messages.requestApprove}" icon="ui-icon-mail-closed" action="#{corporateManagementBean.requestApprove()}" /> <p:commandButton
+						rendered="#{corporateManagementBean.currentCorporate.persisted}" value="#{messages.delete}" icon="ui-icon-trash" action="#{corporateManagementBean.deleteCorporate()}" update=":contentPane"
+						process="@this" immediate="true">
+						<p:confirm header="#{messages.confirmation}" message="#{messages.areYouSureDelete}" icon="ui-icon-alert" />
+					</p:commandButton> <p:commandButton value="#{messages.close}" actionListener="#{corporateManagementBean.closeCorporate}" process="@this" update=":contentPane" icon="ui-icon-close" immediate="true" /></td>
+			</tr>
+		</table>
+	</h:form>
+	
+	<h:form>
+    	<p:fieldset legend="#{messages.approvingSection}" rendered="#{corporateManagementBean.currentCorporate.persisted}" id="approvalSection">
+	        <ac:approval entityId="#{corporateManagementBean.entityId}" dataType="#{corporateManagementBean.dataType}" itemLabel="#{corporateManagementBean.itemLabel}">
+	        </ac:approval>
+        </p:fieldset>
+    </h:form>
+	
+</ui:composition>

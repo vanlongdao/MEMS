@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+
+	<o:importConstants type="arrow.mems.ui.ScreenCodes" />
+
+	<h:form id="searchForm">
+		<p:outputPanel>
+			<p:fieldset legend="#{messages.conditionsSearch}" styleClass="fieldset-#{userCredential.preferences.theme}">
+				<table>
+					<tr>
+						<td><h:outputLabel value="#{messages.hospital}" rendered="#{commonAutoCompleteBean.listActiveHospitalFromHumanResource.size() ne 0}" /></td>
+						<td><p:autoComplete rendered="#{commonAutoCompleteBean.listActiveHospitalFromHumanResource.size() ne 0}" id="autoHospital" value="#{viewRepairRequestBean.selectedHospital}"
+								converter="#{converterStorage.hospitalConverter}" title="#{messages.typeToFindHospital}" var="hospital" itemValue="#{hospital}" itemLabel="#{hospital.name}" forceSelection="true"
+								emptyMessage="#{messages.noHospitalFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200" completeMethod="#{commonAutoCompleteBean.filterHospitalFromHumanResource}">
+								<p:column headerText="#{messages.code}">
+									#{hospital.hospCode}
+								</p:column>
+
+								<p:column headerText="#{messages.name}">
+									#{hospital.name}
+								</p:column>
+
+								<p:ajax event="itemSelect" process="@this" update="@form" />
+							</p:autoComplete></td>
+					</tr>
+
+					<tr id="hospitalPhone">
+						<td><h:outputLabel value="#{messages.phone}" /></td>
+						<td><p:inputText disabled="true" value="#{viewRepairRequestBean.selectedHospital.office.tel}" /></td>
+					</tr>
+
+					<tr>
+						<td><h:outputLabel value="#{messages.contactPerson}" /></td>
+						<td><p:autoComplete id="autoPerson" value="#{viewRepairRequestBean.selectedPerson}" converter="#{converterStorage.personConverter}" title="#{messages.typeToFindPerson}" var="person"
+								itemValue="#{person}" itemLabel="#{person.name}" forceSelection="true" emptyMessage="#{messages.noPersonFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200"
+								completeMethod="#{commonAutoCompleteBean.filterPerson}">
+								<p:column headerText="#{messages.code}">
+									#{person.psnCode}
+								</p:column>
+
+								<p:column headerText="#{messages.name}">
+									#{person.name}
+								</p:column>
+
+								<p:ajax event="itemSelect" process="@this" update="@form" />
+							</p:autoComplete></td>
+					</tr>
+
+					<tr id="personPhone">
+						<td><h:outputLabel value="#{messages.phone}" /></td>
+						<td><h:inputText disabled="true" value="#{viewRepairRequestBean.selectedPerson.tel}" /></td>
+					</tr>
+				</table>
+
+				<p:outputPanel>
+					<p:commandButton value="#{messages.search}" process="@this" update=":formDisplayResult, @form" actionListener="#{viewRepairRequestBean.searchRepairRequest}"
+						onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" />
+
+					<p:commandButton value="#{messages.resetSearch}" process="@this" update="@form, :formDisplayResult, :formDetail" actionListener="#{viewRepairRequestBean.resetSearch}"
+						onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" />
+
+					<p:commandButton value="#{messages.close}" icon="ui-icon-close" process="@this" action="#{screenMonitor.close()}" update=":contentPane"
+						id="menuitem-#{ScreenCodes.MASTER_DASHBOARD_MANAGEMENT_MANAGER_SYSTEM}" onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" />
+
+				</p:outputPanel>
+			</p:fieldset>
+		</p:outputPanel>
+
+		<p:outputPanel id="panelFilter">
+			<p:fieldset legend="#{messages.filterRepairRequest}" rendered="#{viewRepairRequestBean.listRepairRequest ne null}" styleClass="fieldset-#{userCredential.preferences.theme}">
+				<p:selectManyCheckbox value="#{viewRepairRequestBean.conditions}" layout="grid" columns="#{viewRepairRequestBean.conditionsView.size()}">
+					<f:selectItems value="#{viewRepairRequestBean.conditionsView}" />
+					<p:ajax event="change" process="@this" update="@([id$=formDisplayResult]), @([id$=formDetail])" onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" />
+				</p:selectManyCheckbox>
+			</p:fieldset>
+		</p:outputPanel>
+	</h:form>
+
+	<p:outputPanel id="formDisplayResult">
+		<h:form>
+			<p:fieldset legend="#{messages.repairRequest}" rendered="#{viewRepairRequestBean.listRepairRequest ne null}" styleClass="fieldset-#{userCredential.preferences.theme}">
+				<ac:dataTable id="repairRequestTable" value="#{viewRepairRequestBean.listRepairRequest}" rowIndexVar="index" var="repairRequest" rowKey="#{repairRequest.actionCode}" selectionMode="single"
+					selection="#{viewRepairRequestBean.selectedRepairRequest}">
+
+					<p:column styleClass="display-index">
+						#{index+1}
+					</p:column>
+
+					<p:column headerText="#{messages.occurredDate}" styleClass="display-text">
+						#{repairRequest.occurDate}
+					</p:column>
+
+					<p:column headerText="#{messages.deviceName}" styleClass="display-text">
+						#{repairRequest.device.MDevice.name}
+					</p:column>
+
+					<p:column headerText="#{messages.compliant}" styleClass="display-text">
+						#{repairRequest.complaint}
+					</p:column>
+
+					<p:column headerText="#{messages.contactPerson}" styleClass="display-text">
+						#{repairRequest.contactPerson.person.name}
+					</p:column>
+
+					<p:column headerText="#{messages.checkedBy}" styleClass="display-text">
+						#{repairRequest.checkedByUser.name}
+					</p:column>
+
+					<p:ajax event="rowSelect" process="@this" update="@([id$=formDetail])" onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"/>
+
+				</ac:dataTable>
+			</p:fieldset>
+		</h:form>
+	</p:outputPanel>
+
+	<p:outputPanel id="formDetail">
+		<p:fieldset legend="#{messages.detail}" rendered="#{viewRepairRequestBean.selectedRepairRequest ne null}" styleClass="fieldset-#{userCredential.preferences.theme}">
+			<p:commandButton process="@this" value="#{messages.printThisRequest}" onclick="PF('wg_printRequestDlg').show();" />
+			<p:tabView>
+				<p:tab title="#{messages.generalInfo}">
+					<ui:include src="/WEB-INF/pages/view_repair_request/info/general_info.xhtml" />
+				</p:tab>
+
+				<p:tab title="#{messages.replacePartInfo}">
+					<ui:include src="/WEB-INF/pages/view_repair_request/info/replace_part_info.xhtml" />
+				</p:tab>
+
+				<p:tab title="#{messages.checklistResultInfo}">
+					<ui:include src="/WEB-INF/pages/view_repair_request/info/checklist_result_info.xhtml" />
+				</p:tab>
+
+				<p:tab title="#{messages.partEstimationInfo}">
+					<ui:include src="/WEB-INF/pages/view_repair_request/info/part_estimation_info.xhtml" />
+				</p:tab>
+
+				<p:tab title="#{messages.partOrderInfo}">
+					<ui:include src="/WEB-INF/pages/view_repair_request/info/part_order_info.xhtml" />
+				</p:tab>
+
+				<p:tab title="#{messages.feeInfo}">
+					<ui:include src="/WEB-INF/pages/view_repair_request/info/fee_info.xhtml" />
+				</p:tab>
+			</p:tabView>
+		</p:fieldset>
+	</p:outputPanel>
+	<p:dialog id="printRequestDlg" dynamic="true" modal="true" appendTo="@(body)" resizable="false" header="#{messages.printRequest}" widgetVar="wg_printRequestDlg">
+		<!-- <p:ajax event="close" update="printRequestDlg"></p:ajax> -->
+		<p:scrollPanel style="height: 600px;" mode="native">
+			<ui:include src="/WEB-INF/pages/input_repair_request/input_repair_request_MRR05.html">
+			</ui:include>
+		</p:scrollPanel>
+	</p:dialog>
+</ui:composition>

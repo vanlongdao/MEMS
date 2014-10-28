@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+	<h:form>
+		<p:outputPanel id="panelSetup">
+			<table>
+				<tr>
+					<td><h:outputText value="#{messageCodeClientIdMappingManager.put('MRR00027','autoCompleteMdevChecklist',null)}"></h:outputText> <p:autoComplete id="autoCompleteMdevChecklist"
+							value="#{checklistResultsBean.newChecklist.mdevChecklist}" converter="#{converterStorage.mdevChecklistConverter}" title="#{messages.typeToFindMdevChecklist}" var="mdevChecklist"
+							itemLabel="#{mdevChecklist.name}" forceSelection="true" emptyMessage="#{messages.noMdevChecklistFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200"
+							itemValue="#{mdevChecklist}" completeMethod="#{checklistResultsBean.filterMdevChecklist}">
+							<p:column headerText="#{messages.name}">
+								<h:outputText value="#{mdevChecklist.name}" />
+							</p:column>
+							<p:column headerText="#{messages.checklistCode}">
+								<h:outputText value="#{mdevChecklist.cklistCode}" />
+							</p:column>
+							<p:ajax event="itemSelect" process="@this" update="@form" />
+						</p:autoComplete></td>
+				</tr>
+				<tr>
+					<td><p:commandButton value="#{messages.addChecklist}" process="@form" update="@([id$=checklistTable]), @([id$=overPanel]), @([id$=panelSetup])"
+							action="#{checklistResultsBean.createdNewChecklist()}" />
+						<p:commandButton value="#{messages.close}" process="@this" onclick="PF('setup').hide();" /></td>
+				</tr>
+			</table>
+		</p:outputPanel>
+	</h:form>
+</ui:composition>

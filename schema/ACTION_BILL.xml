@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ACTION_BILL -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="ACTION_BILL_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="ACTION_CODE" data-type="code" not-null="false" />
+	<column name="CONTRACT_CODE" data-type="code" not-null="false" />
+	<column name="P_CCY" data-type="integer" not-null="false" />
+	<column name="FEE_DIAGNOSIS" data-type="cost" not-null="false" />
+	<column name="FEE_TECHNICAL" data-type="cost" not-null="false" />
+	<column name="FEE_VISIT" data-type="cost" not-null="false" />
+	<column name="FEE_PARTS" data-type="cost" not-null="false" />
+	<column name="FEE_SHIPPING" data-type="cost" not-null="false" />
+	<column name="FEE_HOTEL" data-type="cost" not-null="false" />
+	<column name="FEE_OTHER" data-type="cost" not-null="false" />
+	<column name="DISCOUNT_BY_CONTRACT" data-type="cost" not-null="false" />
+	<column name="TOTAL" data-type="cost" not-null="false" />
+	<column name="TAX" data-type="cost" not-null="false" />
+	<column name="TOTAL_PAY" data-type="cost" not-null="false" />
+    <column name="PAY_DATE" data-type="date" not-null="false" />
+    
+    <foreign-key parent-table="ACTION_LOG">
+        <column name="ACTION_CODE" referColumn="ACTION_CODE"/>
+        <column name="IS_DELETED" referColumn="IS_DELETED"/>
+    </foreign-key>
+</table>

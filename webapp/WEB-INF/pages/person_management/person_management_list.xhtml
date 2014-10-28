@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:o="http://omnifaces.org/ui"
+    xmlns:p="http://primefaces.org/ui">
+    <h:form>
+        <p:panel>
+            <p:commandButton value="#{messages.add}" process="@this" immediate="true" icon=" ui-icon-plus" action="#{personManagementBean.addNewPerson()}" update=":contentPane"/>
+            <p:commandButton value="#{messages.edit}" process="@this" immediate="true" icon="ui-icon-pencil" action="#{personManagementBean.editPerson()}" update=":contentPane" disabled="#{!personManagementBean.enableEdit}" />
+            <p:commandButton value="#{messages.close}" process="@this" immediate="true" icon="ui-icon-close" action="#{screenMonitor.close(true)}" update=":contentPane"/>
+        </p:panel>
+        <ac:dataTable value="#{personManagementBean.listPerson}" var="person" id="personTable"> 
+            
+            <p:column styleClass="display-select">
+                <p:selectBooleanCheckbox value="#{person.selected}">
+                    <p:ajax event="change" update=":contentPane" listener="#{personManagementBean.toggleSelection(person)}"/>
+                </p:selectBooleanCheckbox>
+            </p:column>
+            <p:column headerText="#{messages.no}" styleClass="display-index">
+                <h:outputText value="#{index+1}"/>
+            </p:column>
+            <p:column styleClass="display-code" >
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.personCode}"
+                        parentTable="personTable"
+                        sorter="#{personManagementBean.listPerson.sort('psnCode')}"
+                        filter="#{personManagementBean.listPerson.filter('psnCode')}">
+                    </ac:columnHeader> 
+                </f:facet>
+                <h:outputText value="#{person.psnCode}"/>  
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.personName}"
+                        parentTable="personTable"
+                        sorter="#{personManagementBean.listPerson.sort('personName')}"
+                        filter="#{personManagementBean.listPerson.filter('personName')}">
+                    </ac:columnHeader> 
+                </f:facet>
+                <h:outputText value="#{person.name}" styleClass="display-text" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.officeName}"
+                        parentTable="personTable"
+                        sorter="#{personManagementBean.listPerson.sort('officeName')}"
+                        filter="#{personManagementBean.listPerson.filter('officeName')}">
+                    </ac:columnHeader> 
+                </f:facet>
+                <h:outputText value="#{person.office.name}" styleClass="display-text" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.country}"
+                    parentTable="personTable"
+                       sorter="#{personManagementBean.listPerson.sort('country')}"
+                       filter="#{personManagementBean.listPerson.filter('country')}">
+                    </ac:columnHeader> 
+                </f:facet>
+                <h:outputText value="#{person.address.mtCountry.name}" styleClass="display-text" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.province}"
+                        parentTable="personTable"
+                       sorter="#{personManagementBean.listPerson.sort('province')}"
+                        filter="#{personManagementBean.listPerson.filter('province')}">
+                    </ac:columnHeader> 
+                </f:facet>
+                <h:outputText value="#{person.address.province}" styleClass="display-text" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.city}"
+                        parentTable="personTable"
+                        sorter="#{personManagementBean.listPerson.sort('city')}"
+                        filter="#{personManagementBean.listPerson.filter('city')}">
+                    </ac:columnHeader> 
+                </f:facet>
+                <h:outputText value="#{person.address.city}" styleClass="display-text" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.address1}"
+                        parentTable="personTable"
+                        sorter="#{personManagementBean.listPerson.sort('address1')}"
+                        filter="#{personManagementBean.listPerson.filter('address1')}">
+                    </ac:columnHeader> 
+                </f:facet>
+                <h:outputText value="#{person.address.address1}" styleClass="display-text" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.tel}"
+                        parentTable="personTable"
+                        sorter="#{personManagementBean.listPerson.sort('tel')}"
+                        filter="#{personManagementBean.listPerson.filter('tel')}">
+                    </ac:columnHeader> 
+                </f:facet>
+                <h:outputText value="#{person.tel}" styleClass="display-number" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.fax}"
+                        parentTable="personTable"
+                        sorter="#{personManagementBean.listPerson.sort('fax')}"
+                        filter="#{personManagementBean.listPerson.filter('fax')}">
+                    </ac:columnHeader> 
+                </f:facet>
+                <h:outputText value="#{person.fax}" styleClass="display-number" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.email}"
+                        parentTable="personTable"
+                        sorter="#{personManagementBean.listPerson.sort('email')}"
+                        filter="#{personManagementBean.listPerson.filter('email')}">
+                    </ac:columnHeader> 
+                </f:facet>
+                <h:outputText value="#{person.email}" styleClass="display-text" />
+            </p:column>
+        </ac:dataTable>
+    </h:form>
+</ui:composition>

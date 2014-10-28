@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://omnifaces.org/ui"
+    xmlns:p="http://primefaces.org/ui">
+    
+    <o:importConstants type="arrow.mems.ui.ScreenCodes" />
+    
+    <h:form id="form">
+        <p:panel>
+            <table>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['hospital']}" for="hospitalCode" /></td>
+                    <td colspan="3">
+                        <p:outputLabel value="#{hospitalDeptManagementBean.currentHospitalDept.hospital.name}" rendered="#{hospitalDeptManagementBean.hospCode ne null}"/>
+                        <p:autoComplete id="hospitalCode" value="#{hospitalDeptManagementBean.currentHospitalDept.hospital}"
+                            converter="#{converterStorage.hospitalConverter}" title="#{messages.hospital}"
+                            forceSelection="true" emptyMessage="#{messages.noHospitalFound}" cache="true" cacheTimeout="300"
+                            dropdown="true" scrollHeight="200" var="hosp" itemLabel="#{hosp.name}" itemValue="#{hosp}"
+                            completeMethod="#{commonAutoCompleteBean.filterHospital}" styleClass="fifteen-char" rendered="#{(hospitalDeptManagementBean.hospCode eq null) or hospitalDeptManagementBean.hospCode eq ''}">
+                            <p:column headerText="#{messages.code}">
+                                <h:outputText value="#{hosp.hospCode}" />
+                            </p:column>
+
+                            <p:column headerText="#{messages.name}">
+                                <h:outputText value="#{hosp.name}" />
+                            </p:column>
+                            <p:ajax event="itemSelect" process="@this" update="hospitalCode" />
+                        </p:autoComplete></td>
+                </tr>
+                <tr>
+                    <td class="label">#{messages['hospDeptCode']}</td>
+                    <td colspan="3"><p:inputText id="hospitalDeptCode" value="#{hospitalDeptManagementBean.currentHospitalDept.deptCode}"
+                            label="#{messages['hospitalDeptCode']}" disabled="true" styleClass="fifteen-char"/></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['hospDeptName']}" for="hospitalDeptName" /></td>
+                    <td colspan="3"><p:inputText id="hospitalDeptName" value="#{hospitalDeptManagementBean.currentHospitalDept.name}"
+                            label="#{messages['hospitalDeptName']}" styleClass="fifteen-char" maxlength="255"/></td>
+                </tr>
+                
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['bedNumber']}" for="numbed" /></td>
+                    <td colspan="3">
+                        <p:inputMask id="numbed" value="#{hospitalDeptManagementBean.currentHospitalDept.numBeds}" mask="9?9999" styleClass="ten-char display-number" maxlength="255" placeHolder=""/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">#{messages['pickupDay']}</td>
+                    <td>
+                         <p:inputMask id="pickDay" value="#{hospitalDeptManagementBean.currentHospitalDept.pickupDays}" mask="9?9999" styleClass="ten-char display-number" maxlength="255" placeHolder=""/>   
+                     </td>
+                    <td class="label">#{messages['noticeDay']}</td>
+                    <td>
+                       <p:inputMask id="noticeDay" value="#{hospitalDeptManagementBean.currentHospitalDept.noticeDaysBefore}" mask="9?9999" styleClass="ten-char display-number" maxlength="255" placeHolder=""/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">#{messages['checkedDayMargin']}</td>
+                    <td colspan="3">
+                        <p:inputMask id="checkDayMargin" value="#{hospitalDeptManagementBean.currentHospitalDept.checkDaysMargin}" mask="9?9999" styleClass="ten-char display-number" maxlength="255" placeHolder=""/>    
+                    </td>
+                </tr>
+                <tr>
+                        <td class="label">#{messages['budget']} </td>
+                        <td><p:commandButton id="btnEdit"
+                                value="#{messages['addEdit']}" action="#{screenMonitor.switchScreen(ScreenCodes.BUDGET_MANAGEMENT)}" update=":contentPane" process="@this"
+                                icon="ui-icon-pencil" >
+                                <f:setPropertyActionListener value="#{hospitalDeptManagementBean.currentHospitalDept.deptCode}" target="#{budgetManagementBean.hospCode}" />
+                            </p:commandButton>    
+                         </td>
+                </tr>
+                <tr>
+                    <td colspan="4" align="left">
+                        <p:commandButton id="btnInsert" value="#{messages['save']}"
+                            action="#{hospitalDeptManagementBean.saveHospitalDept()}" update=":contentPane" icon="ui-icon-disk" /> 
+                        <p:commandButton value="#{messages.delete}" icon="ui-icon-trash" action="#{hospitalDeptManagementBean.deleteHospitalDept()}" rendered="#{hospitalDeptManagementBean.currentHospitalDept.persisted}"
+                            update=":contentPane" disabled="#{!hospitalDeptManagementBean.enableDelete}" immediate="true">
+                            <p:confirm header="#{messages.confirmation}" message="#{messages.MMI00003}" icon="ui-icon-alert" />
+                        </p:commandButton> <p:commandButton id="btnCancel" value="#{messages['cancel']}"
+                            action="#{hospitalDeptManagementBean.closeUpdateHospitalDept()}" update=":contentPane" immediate="true"
+                            icon="ui-icon-close" /></td>
+                </tr>
+            </table>
+        </p:panel>
+    </h:form>
+    <h:form>
+        <p:fieldset legend="#{messages.approvingSection}" rendered="#{hospitalDeptManagementBean.currentHospitalDept.persisted}" id="approvalSection">
+            <ac:approval entityId="#{hospitalDeptManagementBean.entityId}" dataType="#{hospitalDeptManagementBean.dataType}" itemLabel="#{hospitalDeptManagementBean.itemLabel}">
+            </ac:approval>
+        </p:fieldset>
+    </h:form>
+</ui:composition>

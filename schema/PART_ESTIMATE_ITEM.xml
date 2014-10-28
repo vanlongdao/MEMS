@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- PART_ESTIMATE_ITEM -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="PEI_ID" data-type="integer" not-null="true"/>
+	</primary-key>
+	<column name="PE_CODE" data-type="code" not-null="false" />
+	<column name="PART_CODE" data-type="code" not-null="false" />
+	<column name="PART_MODEL_NO" data-type="name" not-null="false" />
+	<column name="PART_NAME" data-type="name" not-null="false" />
+	<column name="ITEM_PRICE" data-type="cost" not-null="false" />
+	<column name="NUM_ITEMS" data-type="integer" not-null="false" />
+	<column name="TOT_PRICE" data-type="cost" not-null="false" />
+	<column name="TAX_RATE" data-type="cost" not-null="false" />
+	<column name="TAX" data-type="cost" not-null="false" />
+	<column name="PRICE_WITH_TAX" data-type="cost" not-null="false" />
+</table>

@@ -1,0 +1,19 @@
+<!-- by default, WildFly will open this page first, so we will redirect to index.jsf instead -->
+
+<head>
+<script type="text/javascript" src="resources/js/lib/detect-browser.js">
+</script>
+<script type="text/javascript">
+<!--
+if(!SmartPhone.isAny()){
+	document.write("<meta http-equiv='refresh' content='0; url=index.xhtml' />");
+}
+else{
+
+    //TODO: change to ipad.jsf if need
+	document.write("<meta http-equiv='refresh' content='0; url=index.xhtml' />");
+}
+-->
+</script>
+
+</head>

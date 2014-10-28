@@ -1,0 +1,791 @@
+INSERT INTO parts_list
+(
+  mdev_code,
+  part_code,
+  checked_at,
+  checked_by,
+  created_at,
+  created_by,
+  is_deleted,
+  object_version
+)
+VALUES
+(
+  '1',
+  '1',
+  NULL,
+  NULL,
+  NULL,
+  3,
+  0,
+  0
+);
+
+INSERT INTO parts_list
+(
+  mdev_code,
+  part_code,
+  checked_at,
+  checked_by,
+  created_at,
+  created_by,
+  is_deleted,
+  object_version
+)
+VALUES
+(
+  '2',
+  '2',
+  NULL,
+  NULL,
+  NULL,
+  3,
+  0,
+  0
+);
+
+INSERT INTO part_order_item
+(
+  item_price,
+  num_items,
+  part_code,
+  part_model_no,
+  part_name,
+  po_code,
+  tax,
+  tot_price,
+  checked_at,
+  checked_by,
+  created_at,
+  created_by,
+  is_deleted,
+  object_version
+)
+VALUES
+(
+  NULL,
+  NULL,
+  '1',
+  '1',
+  'What',
+  '1',
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  3,
+  0,
+  0
+);
+
+INSERT INTO part_order_item
+(
+  item_price,
+  num_items,
+  part_code,
+  part_model_no,
+  part_name,
+  po_code,
+  tax,
+  tot_price,
+  checked_at,
+  checked_by,
+  created_at,
+  created_by,
+  is_deleted,
+  object_version
+)
+VALUES
+(
+  NULL,
+  NULL,
+  '2',
+  '2',
+  'What 2',
+  '1',
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  3,
+  0,
+  0
+);
+
+INSERT INTO part_order_item
+(
+  item_price,
+  num_items,
+  part_code,
+  part_model_no,
+  part_name,
+  po_code,
+  tax,
+  tot_price,
+  checked_at,
+  checked_by,
+  created_at,
+  created_by,
+  is_deleted,
+  object_version
+)
+VALUES
+(
+  NULL,
+  NULL,
+  '4',
+  'model2',
+  'Part Order',
+  '1',
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  3,
+  0,
+  0
+);
+
+INSERT INTO repl_part
+(
+  action_code,
+  delivery_method,
+  device_code,
+  image_file,
+  memo_removed,
+  removed_dev_code,
+  checked_at,
+  checked_by,
+  created_at,
+  created_by,
+  is_deleted,
+  object_version
+)
+VALUES
+(
+  '1',
+  'delivery1',
+  '1',
+  NULL,
+  'memo_removed1',
+  '2',
+  NULL,
+  NULL,
+  NULL,
+  3,
+  0,
+  0
+);
+
+INSERT INTO repl_part
+(
+  action_code,
+  delivery_method,
+  device_code,
+  image_file,
+  memo_removed,
+  removed_dev_code,
+  checked_at,
+  checked_by,
+  created_at,
+  created_by,
+  is_deleted,
+  object_version
+)
+VALUES
+(
+  '1',
+  'delivery2',
+  '2',
+  NULL,
+  'momo_removed2',
+  '3',
+  NULL,
+  NULL,
+  NULL,
+  3,
+  1,
+  1
+);
+
+INSERT INTO repl_part
+(
+  action_code,
+  delivery_method,
+  device_code,
+  image_file,
+  memo_removed,
+  removed_dev_code,
+  checked_at,
+  checked_by,
+  created_at,
+  created_by,
+  is_deleted,
+  object_version
+)
+VALUES
+(
+  '1',
+  NULL,
+  '4',
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  TIMESTAMP '2014-09-30 10:13:36.260',
+  3,
+  0,
+  0
+);
+
+INSERT INTO repl_part
+(
+  action_code,
+  delivery_method,
+  device_code,
+  image_file,
+  memo_removed,
+  removed_dev_code,
+  checked_at,
+  checked_by,
+  created_at,
+  created_by,
+  is_deleted,
+  object_version
+)
+VALUES
+(
+  '1',
+  NULL,
+  '4',
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  TIMESTAMP '2014-09-30 10:13:57.105',
+  3,
+  1,
+  1
+);
+
+INSERT INTO repl_part
+(
+  action_code,
+  delivery_method,
+  device_code,
+  image_file,
+  memo_removed,
+  removed_dev_code,
+  checked_at,
+  checked_by,
+  created_at,
+  created_by,
+  is_deleted,
+  object_version
+)
+VALUES
+(
+  '1',
+  NULL,
+  '2',
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  TIMESTAMP '2014-09-30 10:20:18.328',
+  3,
+  0,
+  0
+);
+
+INSERT INTO m_device
+(
+  catalog,
+  cat_name,
+  country,
+  manufacturer_code,
+  manufacturer_psn,
+  mdev_code,
+  model_no,
+  name,
+  notice,
+  picture,
+  specification,
+  supplier_code,
+  supplier_psn,
+  checked_at,
+  checked_by,
+  created_at,
+  created_by,
+  is_deleted,
+  object_version,
+  mdev_type,
+  owner_corp_code
+)
+VALUES
+(
+  NULL,
+  NULL,
+  NULL,
+  '030041400004',
+  NULL,
+  '1',
+  '1',
+  'What the hoi',
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  TIMESTAMP '2014-09-18 18:39:05.000',
+  3,
+  0,
+  0,
+  2,
+  NULL
+);
+
+INSERT INTO m_device
+(
+  catalog,
+  cat_name,
+  country,
+  manufacturer_code,
+  manufacturer_psn,
+  mdev_code,
+  model_no,
+  name,
+  notice,
+  picture,
+  specification,
+  supplier_code,
+  supplier_psn,
+  checked_at,
+  checked_by,
+  created_at,
+  created_by,
+  is_deleted,
+  object_version,
+  mdev_type,
+  owner_corp_code
+)
+VALUES
+(
+  NULL,
+  NULL,
+  NULL,
+  '030041400005',
+  NULL,
+  '2',
+  '2',
+  'Quat',
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  TIMESTAMP '2014-09-18 18:39:05.000',
+  3,
+  0,
+  0,
+  2,
+  NULL
+);
+
+INSERT INTO m_device
+(
+  catalog,
+  cat_name,
+  country,
+  manufacturer_code,
+  manufacturer_psn,
+  mdev_code,
+  model_no,
+  name,
+  notice,
+  picture,
+  specification,
+  supplier_code,
+  supplier_psn,
+  checked_at,
+  checked_by,
+  created_at,
+  created_by,
+  is_deleted,
+  object_version,
+  mdev_type,
+  owner_corp_code
+)
+VALUES
+(
+  NULL,
+  NULL,
+  NULL,
+  '030041400005',
+  NULL,
+  '3',
+  'model1',
+  'Part 1',
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  TIMESTAMP '2014-09-18 18:39:05.000',
+  3,
+  0,
+  0,
+  2,
+  NULL
+);
+
+INSERT INTO m_device
+(
+  catalog,
+  cat_name,
+  country,
+  manufacturer_code,
+  manufacturer_psn,
+  mdev_code,
+  model_no,
+  name,
+  notice,
+  picture,
+  specification,
+  supplier_code,
+  supplier_psn,
+  checked_at,
+  checked_by,
+  created_at,
+  created_by,
+  is_deleted,
+  object_version,
+  mdev_type,
+  owner_corp_code
+)
+VALUES
+(
+  NULL,
+  NULL,
+  NULL,
+  '030041400005',
+  NULL,
+  '4',
+  'model2',
+  'Part Order',
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  TIMESTAMP '2014-09-18 18:39:05.000',
+  3,
+  0,
+  0,
+  2,
+  NULL
+);
+
+INSERT INTO device
+(
+  acceptance_date,
+  acq_code,
+  client_mgmt_code,
+  dev_code,
+  expire_date,
+  hosp_dept_code,
+  image_file,
+  install_date,
+  last_service_office,
+  last_service_psn,
+  location,
+  mdev_code,
+  no_serial_confirm,
+  price,
+  p_ccy,
+  serial_no,
+  software_rev,
+  supllier_office,
+  supplier_psn,
+  target_dev_code,
+  checked_at,
+  checked_by,
+  created_at,
+  created_by,
+  is_deleted,
+  object_version
+)
+VALUES
+(
+  NULL,
+  NULL,
+  NULL,
+  '1',
+  NULL,
+  '122000114000031440008',
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  'Ha Noi',
+  '1',
+  NULL,
+  NULL,
+  NULL,
+  '1',
+  NULL,
+  '030041400004',
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  TIMESTAMP '2014-09-18 18:39:05.000',
+  3,
+  0,
+  0
+);
+
+INSERT INTO device
+(
+  acceptance_date,
+  acq_code,
+  client_mgmt_code,
+  dev_code,
+  expire_date,
+  hosp_dept_code,
+  image_file,
+  install_date,
+  last_service_office,
+  last_service_psn,
+  location,
+  mdev_code,
+  no_serial_confirm,
+  price,
+  p_ccy,
+  serial_no,
+  software_rev,
+  supllier_office,
+  supplier_psn,
+  target_dev_code,
+  checked_at,
+  checked_by,
+  created_at,
+  created_by,
+  is_deleted,
+  object_version
+)
+VALUES
+(
+  NULL,
+  NULL,
+  NULL,
+  '2',
+  NULL,
+  '122000114000031440008',
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  'Ha Noi',
+  '2',
+  NULL,
+  NULL,
+  NULL,
+  '2',
+  NULL,
+  '030041400004',
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  TIMESTAMP '2014-09-18 18:39:05.000',
+  3,
+  0,
+  0
+);
+
+INSERT INTO device
+(
+  acceptance_date,
+  acq_code,
+  client_mgmt_code,
+  dev_code,
+  expire_date,
+  hosp_dept_code,
+  image_file,
+  install_date,
+  last_service_office,
+  last_service_psn,
+  location,
+  mdev_code,
+  no_serial_confirm,
+  price,
+  p_ccy,
+  serial_no,
+  software_rev,
+  supllier_office,
+  supplier_psn,
+  target_dev_code,
+  checked_at,
+  checked_by,
+  created_at,
+  created_by,
+  is_deleted,
+  object_version
+)
+VALUES
+(
+  NULL,
+  NULL,
+  NULL,
+  '3',
+  NULL,
+  '122000114000031440008',
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  'Ha Noi',
+  '3',
+  NULL,
+  NULL,
+  NULL,
+  '2',
+  NULL,
+  '030041400004',
+  NULL,
+  '2',
+  NULL,
+  NULL,
+  TIMESTAMP '2014-09-18 18:39:05.000',
+  3,
+  0,
+  0
+);
+
+INSERT INTO device
+(
+  acceptance_date,
+  acq_code,
+  client_mgmt_code,
+  dev_code,
+  expire_date,
+  hosp_dept_code,
+  image_file,
+  install_date,
+  last_service_office,
+  last_service_psn,
+  location,
+  mdev_code,
+  no_serial_confirm,
+  price,
+  p_ccy,
+  serial_no,
+  software_rev,
+  supllier_office,
+  supplier_psn,
+  target_dev_code,
+  checked_at,
+  checked_by,
+  created_at,
+  created_by,
+  is_deleted,
+  object_version
+)
+VALUES
+(
+  NULL,
+  NULL,
+  NULL,
+  '4',
+  NULL,
+  '122000114000031440008',
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  'Ha Noi',
+  '4',
+  NULL,
+  NULL,
+  NULL,
+  '4',
+  NULL,
+  '030041400004',
+  NULL,
+  '',
+  NULL,
+  NULL,
+  TIMESTAMP '2014-09-18 18:39:05.000',
+  3,
+  0,
+  0
+);
+
+INSERT INTO action_log
+(
+  action_code,
+  action_type,
+  check_start_confirm_img,
+  client_side_mgmt_code,
+  complaint,
+  dev_code,
+  hosp_code,
+  hosp_dept_code,
+  install_confirm_img,
+  checked_at,
+  checked_by,
+  created_at,
+  created_by,
+  is_deleted,
+  object_version,
+  action_date,
+  action_start_confirm_img,
+  contact_date,
+  contact_psn,
+  delivery_method,
+  finish_date,
+  hosp_contact_psn,
+  occur_date
+)
+VALUES
+(
+  '1',
+  1,
+  NULL,
+  '1',
+  NULL,
+  '1',
+  '1',
+  '1',
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  3,
+  0,
+  0,
+  NULL,
+  NULL,
+  NULL,
+  '',
+  NULL,
+  NULL,
+  '200011400004',
+  NULL
+);
+

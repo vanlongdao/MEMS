@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+    
+    <o:importConstants type="arrow.mems.ui.ScreenCodes" />
+    <div>
+        <p:panel>
+            <o:form id="loginForm">
+                <!-- because ac:inputtext will append :text to id of inputtext -->
+                <p:focus for="username:text"/>
+                <table align="center">
+                    <tr>
+                        <td><p:outputLabel for="username" value="#{messages.username}"></p:outputLabel></td>
+                        <td><ac:inputText id="username" value="#{authenticationBean.username}" autocomplete="false" required="true" placeholder="#{messages['user_name']}" /></td>
+                    </tr>
+                    <tr>
+                        <td><p:outputLabel for="passwd" value="#{messages.password}"></p:outputLabel></td>
+                        <td><ac:password autocomplete="false" value="#{authenticationBean.password}" id="passwd" required="true" placeholder="#{messages['password']}" /></td>
+                    </tr>
+                    
+                    <tr>
+                        <td align="left">
+                            <p:commandButton value="#{messages['login']}" id="loginButton" action="#{authenticationBean.login}" update="@all" onstart="PF('globalBlockUI_js').block()">
+                            </p:commandButton>
+                        </td>
+                        <td align="right">
+                            <p:commandLink value="#{messages['forgotPassword']}?" action="#{screenMonitor.openScreen(ScreenCodes.FORGOT_PASSWORD)}" process="@this" update="@all" disabled="true"/>
+                        </td>
+                    </tr>
+                </table>
+            </o:form>
+        </p:panel>
+    </div>
+</ui:composition>

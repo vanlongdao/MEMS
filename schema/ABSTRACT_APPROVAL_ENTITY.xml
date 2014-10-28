@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ABSTRACT_APPROVAL_ENTITY -->
+<table parent-table="ABSTRACT_DELETABLE">
+	<column name="CHECKED_AT" data-type="datetime" not-null="false" />
+	<column name="CHECKED_BY" data-type="ref-id" not-null="false" />
+</table>

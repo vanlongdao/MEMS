@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+    <!-- To access constants -->
+    <o:importConstants type="arrow.mems.ui.ScreenCodes" />
+    <h:form>
+        <div id="condictionDiv">
+            <p:panel id="panelConditionSearch">
+                <table>
+                    <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td><p:outputLabel value="#{messages.device}" /></td>
+                                    <td colspan="2">
+                                        <p:autoComplete id="chooseDevice" value="#{repairHistoryBean.device}" converter="#{converterStorage.deviceConverter}" title="#{messages.device}"
+                                                forceSelection="true" emptyMessage="#{messages.noDeviceFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200"
+                                                var="device" itemLabel="#{device.devCode}" itemValue="#{device}" completeMethod="#{commonAutoCompleteBean.filterActiveDevice}">
+                                                <p:column headerText="#{messages.code}">
+                                                    <h:outputText value="#{device.devCode}" />
+                                                </p:column>
+                                                <p:column headerText="#{messages.name}">
+                                                    <h:outputText value="#{device.MDevice.name}" />
+                                                </p:column>
+                                        <p:ajax event="itemSelect" process="@this" update="chooseDevice deviceName"/>            
+                                        </p:autoComplete> 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><p:outputLabel value="#{messages.deviceName}" /></td>
+                                    <td colspan="2"><p:inputText value="#{repairHistoryBean.device.MDevice.name}" id="deviceName"/></td>
+                                </tr>
+                            </table>
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td><div style="display: inline-block; padding-left: 0px;">
+                                <p:commandButton icon="ui-icon-search" value="#{messages.search}"
+                                    action="#{repairHistoryBean.searchRepairHistory}" update="@form" process="@this"/>
+                            </div>
+                            <div style="display: inline-block;">
+                                <p:commandButton value="#{messages.resetSearch}" icon="ui-icon-plus" update="@form" process="@this"
+                                    action="#{repairHistoryBean.resetSearchCondition}" />
+                            </div>
+                            <div style="display: inline-block;">
+                                <p:commandButton value="#{messages.close}" icon="ui-icon-close" process="@this" action="#{screenMonitor.close()}" update=":contentPane"
+				                 onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" />
+                            </div>
+                            </td>
+                    </tr>
+                </table>
+                <p:fieldset legend="#{messages.filterByAction}" toggleable="true">
+                    <table>
+                        <tr>
+                        <td valign="top">
+                            <table>
+                                <tr>
+                                    <td><p:selectBooleanCheckbox value="#{repairHistoryBean.maintenance}" disabled="#{!repairHistoryBean.enableFilter}">
+                                            <p:ajax event="change" update="actionLogTable" listener="#{repairHistoryBean.searchRepairHistory}"/>
+                                        </p:selectBooleanCheckbox>
+                                    </td>
+                                    <td colspan="2"><p:outputLabel value="#{messages.maintenance}" /></td>
+                                </tr>
+                                <tr>
+                                    <td><p:selectBooleanCheckbox value="#{repairHistoryBean.safetyTesting}" disabled="#{!repairHistoryBean.enableFilter}">
+                                            <p:ajax event="change" update="actionLogTable" listener="#{repairHistoryBean.searchRepairHistory}"/>
+                                        </p:selectBooleanCheckbox>
+                                    </td>
+                                    <td colspan="2"><p:outputLabel value="#{messages.safetyTesting}" /></td>
+                                </tr>
+                                <tr>
+                                    <td><p:selectBooleanCheckbox value="#{repairHistoryBean.management}" disabled="#{!repairHistoryBean.enableFilter}">
+                                                <p:ajax event="change" update="actionLogTable" listener="#{repairHistoryBean.searchRepairHistory}"/>
+                                        </p:selectBooleanCheckbox>
+                                    </td>
+                                    <td colspan="2"><p:outputLabel value="#{messages.management}" /></td>
+                                </tr>
+                                <tr>
+                                    <td><p:selectBooleanCheckbox value="#{repairHistoryBean.performanceTesting}" disabled="#{!repairHistoryBean.enableFilter}">
+                                            <p:ajax event="change" update="actionLogTable" listener="#{repairHistoryBean.searchRepairHistory}"/>
+                                        </p:selectBooleanCheckbox>
+                                    </td>
+                                    <td colspan="2"><p:outputLabel value="#{messages.performanceTesting}" /></td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td valign="top">
+                            <table>
+                                <tr>
+                                    <td><p:selectBooleanCheckbox value="#{repairHistoryBean.calibration}" disabled="#{!repairHistoryBean.enableFilter}">
+                                            <p:ajax event="change" update="actionLogTable" listener="#{repairHistoryBean.searchRepairHistory}"/>
+                                        </p:selectBooleanCheckbox>
+                                    </td>
+                                    <td colspan="2"><p:outputLabel value="#{messages.calibration}" /></td>
+                                </tr>
+                                <tr>
+                                    <td><p:selectBooleanCheckbox value="#{repairHistoryBean.repair}" disabled="#{!repairHistoryBean.enableFilter}">
+                                            <p:ajax event="change" update="actionLogTable" listener="#{repairHistoryBean.searchRepairHistory}"/>
+                                        </p:selectBooleanCheckbox>
+                                    </td>
+                                    <td colspan="2"><p:outputLabel value="#{messages.repair}" /></td>
+                                </tr>
+                                <tr>
+                                    <td><p:selectBooleanCheckbox value="#{repairHistoryBean.qualifiedVerification}" disabled="#{!repairHistoryBean.enableFilter}">
+                                        <p:ajax event="change" update="actionLogTable" listener="#{repairHistoryBean.searchRepairHistory}"/>
+                                        </p:selectBooleanCheckbox>
+                                    </td>
+                                    <td colspan="2"><p:outputLabel value="#{messages.qualifiedVerification}" /></td>
+                                </tr>
+                                <tr>
+                                    <td><p:selectBooleanCheckbox value="#{repairHistoryBean.testing}" disabled="#{!repairHistoryBean.enableFilter}">
+                                            <p:ajax event="change" update="actionLogTable" listener="#{repairHistoryBean.searchRepairHistory}"/>
+                                        </p:selectBooleanCheckbox>
+                                    </td>
+                                    <td colspan="2"><p:outputLabel value="#{messages.testing}" /></td>
+                                </tr>
+                                <tr>
+                                    <td><p:selectBooleanCheckbox value="#{repairHistoryBean.consulting}" disabled="#{!repairHistoryBean.enableFilter}">
+                                            <p:ajax event="change" update="actionLogTable" listener="#{repairHistoryBean.searchRepairHistory}"/>
+                                        </p:selectBooleanCheckbox>
+                                    </td>
+                                    <td colspan="2"><p:outputLabel value="#{messages.consulting}" /></td>
+                                </tr>
+                                
+                            </table>
+                        </td>
+                    </tr>
+                    </table>
+                </p:fieldset>
+            </p:panel>
+        </div>
+        <p:fieldset id="repairHistorysearch" legend="#{messages.searchResult}">
+            <h:outputText value="#{messages.clickSearchToFindRepairHistory}"
+                rendered="#{repairHistoryBean.listActionLogs eq null}" />
+
+            <ac:dataTable id="actionLogTable" rowIndexVar="index" value="#{repairHistoryBean.listActionLogs}"
+                rendered="#{repairHistoryBean.listActionLogs ne null}" var="actionLog">
+                <p:column styleClass="view_detail_repair" headerText="#{messages.viewDetailRepair}">
+                    <p:selectBooleanCheckbox value="#{actionLog.selected}">
+                        <p:ajax event="change" update="@form, @([id$=repairHistorySearchResult])" listener="#{repairHistoryBean.toggleSelectionViewDetailRepairHistory(actionLog)}"/>
+                    </p:selectBooleanCheckbox>
+                    </p:column>
+                <p:column headerText="#{messages.no}" width="15">
+                        #{index+1}
+                    </p:column>
+                <p:column toggleable="false">
+                    <f:facet name="header">
+                        <ac:columnHeader value="#{messages.actionCode}" parentTable="actionLogTable">
+                        </ac:columnHeader>
+                    </f:facet>
+                    <h:outputText value="#{actionLog.actionCode}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <ac:columnHeader value="#{messages.actionDate}" parentTable="actionLogTable">
+                        </ac:columnHeader>
+                    </f:facet>
+                    <h:outputText value="#{actionLog.actionDate}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <ac:columnHeader value="#{messages.complaint}" parentTable="actionLogTable">
+                        </ac:columnHeader>
+                    </f:facet>
+                    <h:outputText value="#{actionLog.complaint}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <ac:columnHeader value="#{messages.contactPerson}" parentTable="actionLogTable">
+                        </ac:columnHeader>
+                    </f:facet>
+                    <h:outputText value="#{actionLog.contactPerson.name}" />
+                </p:column>
+                <p:column headerText="#{messages.createdBy}">
+                    <h:outputText value="#{actionLog.createdByUser.name}" />
+                </p:column>
+                <p:column headerText="#{messages.createdAt}">
+                    <ac:outputTime value="#{actionLog.createdAt}" showTime="true" />
+                </p:column>
+                <p:column headerText="#{messages.checkedBy}">
+                    <h:outputText value="#{actionLog.checkedByUser.name}" />
+                </p:column>
+                <p:column headerText="#{messages.checkedAt}">
+                    <ac:outputTime value="#{actionLog.checkedAt}" showTime="true" />
+                </p:column>
+            </ac:dataTable>
+        </p:fieldset>
+    <p:fieldset id="repairHistorySearchResult" legend="#{messages.detailRepairHistory}" rendered="#{repairHistoryBean.currentActionLog ne null}">
+        <p:tabView>
+            <p:tab title="#{messages.generalInfo}" dynamic="true" cache="false">
+                <ui:include src="/WEB-INF/pages/repair_history/info/general_info.xhtml" />
+            </p:tab>
+            <p:tab title="#{messages.replacePartInfo}" dynamic="true" cache="false">
+                <ui:include src="/WEB-INF/pages/repair_history/info/replace_part_info.xhtml" />
+            </p:tab>
+            <p:tab title="#{messages.checklistResultInfo}" dynamic="true" cache="false">
+                <ui:include src="/WEB-INF/pages/repair_history/info/checklist_result_info.xhtml" />
+            </p:tab>
+            <p:tab title="#{messages.partEstimationInfo}" dynamic="true" cache="false">
+                <ui:include src="/WEB-INF/pages/repair_history/info/part_estimation_info.xhtml" />
+            </p:tab>
+            <p:tab title="#{messages.partOrderInfo}" dynamic="true" cache="false">
+                <ui:include src="/WEB-INF/pages/repair_history/info/part_order_info.xhtml" />
+            </p:tab>
+            <p:tab title="#{messages.feeInfo}" dynamic="true" cache="false">
+                <ui:include src="/WEB-INF/pages/repair_history/info/fee_info.xhtml" />
+            </p:tab>
+        </p:tabView>
+    </p:fieldset>
+   </h:form>
+</ui:composition>

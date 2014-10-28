@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+	<h:form>
+		<p:outputPanel>
+			<table>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['clientSideMgmtCode']} :" /></td>
+                    <td><p:outputLabel  value="#{repairHistoryBean.currentActionLog.clientSideMgmtCode}" /></td>
+                </tr>
+                 <tr>
+                    <td class="label"><p:outputLabel value="#{messages['type']} :" /></td>
+                    <td><p:outputLabel  value="#{repairHistoryBean.currentActionLog.actionTypeMaster.label}" /></td>
+                </tr>
+                 <tr>
+                    <td class="label"><p:outputLabel value="#{messages['deviceCode']} :" /></td>
+                    <td><p:outputLabel  value="#{repairHistoryBean.currentActionLog.device.devCode}" /></td>
+                </tr>
+                 <tr>
+                    <td class="label"><p:outputLabel value="#{messages['deviceName']} :" /></td>
+                    <td><p:outputLabel  value="#{repairHistoryBean.currentActionLog.device.MDevice.name}" /></td>
+                </tr>
+                 <tr>
+                    <td class="label"><p:outputLabel value="#{messages['modelNo']} :" /></td>
+                    <td><p:outputLabel  value="#{repairHistoryBean.currentActionLog.device.MDevice.modelNo}" /></td>
+                </tr>
+                 <tr>
+                    <td class="label"><p:outputLabel value="#{messages['manufacturer']} :" /></td>
+                    <td><p:outputLabel  value="#{repairHistoryBean.currentActionLog.device.MDevice.manufacturerOffice.name}" /></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['supplier']} :" /></td>
+                    <td><p:outputLabel  value="#{repairHistoryBean.currentActionLog.device.supplierOffice.name}" /></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['contactToSupplier']} :" /></td>
+                    <td><p:outputLabel  value="#{repairHistoryBean.currentActionLog.device.supplierPerson.name}" /></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['repairer']} :" /></td>
+                    <td><p:outputLabel  value="#{repairHistoryBean.currentActionLog.device.repairedByOffice.name}" /></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['contactToRepair']} :" /></td>
+                    <td><p:outputLabel  value="#{repairHistoryBean.currentActionLog.device.repairedPerson.name}" /></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['location']} :" /></td>
+                    <td><p:outputLabel  value="#{repairHistoryBean.currentActionLog.device.location}" /></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['hospitalContact']} :" /></td>
+                    <td><p:outputLabel  value="#{repairHistoryBean.currentActionLog.hospitalContactPerson.name}" /></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['faultFoundDate']} :" /></td>
+                    <td><ac:outputTime  value="#{repairHistoryBean.currentActionLog.occurDate}" /></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['complaint']} :" /></td>
+                    <td><p:outputLabel  value="#{repairHistoryBean.currentActionLog.complaint}" /></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['callToRepairDate']} :" /></td>
+                    <td><ac:outputTime  value="#{repairHistoryBean.currentActionLog.contactDate}" /></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['workStartDate']} :" /></td>
+                    <td><ac:outputTime  value="#{repairHistoryBean.currentActionLog.actionDate}" /></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['workEndDate']} :" /></td>
+                    <td><ac:outputTime  value="#{repairHistoryBean.currentActionLog.finishDate}" /></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['failure']} :" /></td>
+                    <td><p:outputLabel  value="#{repairHistoryBean.faultDto.description}" /></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['repair']} :" /></td>
+                    <td><p:outputLabel  value="#{repairHistoryBean.faultDto.repair}" /></td>
+                </tr>
+                <tr>
+                <td class="label"><p:outputLabel value="#{messages['cause']} :" /></td>
+                <td><p:outputLabel  value="#{repairHistoryBean.faultDto.cause}" /></td>
+                </tr>
+                 <tr>
+                    <td class="label"><p:outputLabel value="#{messages['prevention']} :" /></td>
+                    <td><p:outputLabel  value="#{repairHistoryBean.faultDto.prevention}" /></td>
+                </tr>
+			</table>
+		</p:outputPanel>
+	</h:form>
+</ui:composition>

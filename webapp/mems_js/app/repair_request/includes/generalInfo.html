@@ -1,0 +1,170 @@
+<div class="ui-accordion  panel-default">
+    <div class="panel-heading">
+        <a href>
+            <h3 class="panel-title" onclick="toggleCurrent('#deviceInfo');">Device Information</h3>
+        </a>
+    </div>
+</div>
+
+<core-collapse id="deviceInfo" opened="false">
+    <div class="panel-body">
+        <paper-input disabled ng-model="deviceInfo.mdevName" floatingLabel label="Device Name"></paper-input>
+
+        <div class="form-group">
+            <paper-input disabled ng-model="deviceInfo.mdevModelNo" floatingLabel label="Model No"></paper-input>
+        </div>
+
+
+        <div class="form-group">
+            <paper-input disabled ng-model="deviceInfo.serialNo" floatingLabel label="S/N"></paper-input>
+        </div>
+
+        <div class="form-group">
+            <paper-input disabled ng-model="deviceInfo.manufactureName" floatingLabel label="Manufacturer"></paper-input>
+        </div>
+
+
+        <div class="form-group">
+            <paper-input disabled ng-model="deviceInfo.supplierName" floatingLabel label="Supplier"></paper-input>
+        </div>
+
+        <div class="form-group">
+            <paper-input disabled ng-model="deviceInfo.hospitalDepartmentName" floatingLabel label="Location"></paper-input>
+        </div>
+    </div>
+</core-collapse>
+
+
+<div class="form-group">
+    <label>Fault found by: {{faultFoundBy.selected.name}}</label>
+    <br/>
+    <ui-select ng-model="faultFoundBy.selected"
+               theme="select2"
+               reset-search-input="false"
+               style="width: 300px;">
+        <ui-select-match placeholder="Type to search Peron">{{$select.selected.name}}</ui-select-match>
+        <ui-select-choices repeat="person in allDepartmentPersons track by $index"
+                           refresh="refreshDepartmentPerson($select.search)"
+                           refresh-delay="0">
+            <small>
+                <table>
+                    <tr>
+                        <td>Person Code:</td>
+                        <td><span ng-bind-html="trustAsHtml((person.psnCode | highlight: $select.search))"/></td>
+                    </tr>
+                    <tr>
+                        <td>Name:</td>
+                        <td><span ng-bind-html="trustAsHtml((person.name | highlight: $select.search))"/></td>
+                    </tr>
+                    <tr>
+                        <td>Tel:</td>
+                        <td><span ng-bind-html="trustAsHtml((person.tel | highlight: $select.search))"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Fax:</td>
+                        <td><span ng-bind-html="trustAsHtml((person.fax | highlight: $select.search))"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Email:</td>
+                        <td><span ng-bind-html="trustAsHtml((person.email | highlight: $select.search))"/></td>
+                    </tr>
+                </table>
+            </small>
+        </ui-select-choices>
+    </ui-select>
+
+
+</div>
+
+<div class="form-group">
+    <label>Found Date</label>
+    <paper-input type="date" ng-model="requestReg.occurDate" placeholder="Found Date" />
+</div>
+
+<div class="form-group">
+    <paper-input ng-model="requestReg.complaint" multiline rows="fit" floatingLabel label="Complaint"></paper-input>
+</div>
+
+<div class="form-group">
+    <label>Call To Repair Date</label>
+    <paper-input type="date" ng-model="requestReg.contactDate"/>
+</div>
+
+
+<div class="form-group">
+    <label>Hospital Contact Person: {{hosptialContactPerson.selected.name}}</label>
+    <br/>
+    <ui-select ng-model="hosptialContactPerson.selected"
+               theme="select2"
+               reset-search-input="false"
+               style="width: 300px;">
+        <ui-select-match placeholder="Type to search Peron">{{$select.selected.name}}</ui-select-match>
+        <ui-select-choices repeat="person in allHospitalContactPersons track by $index"
+                           refresh="refreshContactPersons($select.search)"
+                           refresh-delay="0">
+            <small>
+                <table>
+                    <tr>
+                        <td>Person Code:</td>
+                        <td><span ng-bind-html="trustAsHtml((person.psnCode | highlight: $select.search))"/></td>
+                    </tr>
+                    <tr>
+                        <td>Name:</td>
+                        <td><span ng-bind-html="trustAsHtml((person.name | highlight: $select.search))"/></td>
+                    </tr>
+                    <tr>
+                        <td>Tel:</td>
+                        <td><span ng-bind-html="trustAsHtml((person.tel | highlight: $select.search))"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Fax:</td>
+                        <td><span ng-bind-html="trustAsHtml((person.fax | highlight: $select.search))"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Email:</td>
+                        <td><span ng-bind-html="trustAsHtml((person.email | highlight: $select.search))"/></td>
+                    </tr>
+                </table>
+            </small>
+        </ui-select-choices>
+    </ui-select>
+
+</div>
+
+<div class="form-group">
+    <label>Work start date</label>
+    <paper-input type="date" ng-model="requestReg.actionDate"/>
+</div>
+
+<div class="form-group">
+    <label>Work end date</label>
+    <paper-input type="date" ng-model="requestReg.finishDate"/>
+</div>
+
+<div class="form-group">
+    <paper-input ng-model="requestReg.fault.description" multiline floatingLabel label="Failure"></paper-input>
+</div>
+
+
+<div class="form-group">
+    <paper-input ng-model="requestReg.fault.repair" multiline floatingLabel label="Repair"></paper-input>
+</div>
+
+<div class="form-group">
+    <paper-input ng-model="requestReg.fault.cause" floatingLabel multiline label="Cause"></paper-input>
+</div>
+
+
+<div class="form-group">
+    <paper-input ng-model="requestReg.fault.prevention" floatingLabel label="Prevention"></paper-input>
+</div>
+
+

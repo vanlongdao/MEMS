@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ac="http://arrow-tech.vn/ui"
+	xmlns:o="http://omnifaces.org/ui">
+
+<h:head>
+	<style type="text/css">
+.ui-widget {
+	font-size: 90%;
+}
+.loginForm {
+height: 200px;
+width: 350px;
+}
+
+.error {
+height: 3em;
+}
+</style>
+</h:head>
+
+<h:body>
+<div id="supervisorLogin">
+	<h:form>
+		
+		<p:focus for="username:text" />
+		<table align="center" class="loginForm" >
+			<tr class="error">
+			<td colspan="2">
+			<p:messages id="growl"/>
+			</td>
+			</tr>
+			<tr>
+
+				<td><p:outputLabel for="username" value="#{messages.username}"></p:outputLabel></td>
+				<td><ac:inputText id="username" value="#{supervisorAuthenticationBean.username}"/></td>
+			</tr>
+			<tr>
+				<td><p:outputLabel for="passwd" value="#{messages.password}"></p:outputLabel>
+				</td>
+				<td><ac:password
+						value="#{supervisorAuthenticationBean.password}" id="passwd"/></td>
+			</tr>
+			<td></td>
+			<td><p:commandButton value="#{messages['login']}" id="loginButton"
+						actionListener="#{supervisorAuthenticationBean.login}" update="growl"/> <p:commandButton
+					value="#{messages['cancel']}" id="cancel"
+					actionListener="#{supervisorAuthenticationBean.cancel}" /></td>
+		</table>
+	</h:form>
+</div>
+</h:body>
+</html>

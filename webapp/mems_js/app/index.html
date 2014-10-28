@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Medical Equipment Management System</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
+
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">
+
+  <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css">
+  <link rel="stylesheet" href="bower_components/select2/select2.css">
+
+  <link rel="stylesheet" href="bower_components/angular-ui-grid/ui-grid.css">
+
+  <link rel="stylesheet" href="bower_components/polymer-ui-base-css/base.css">
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
+
+  <link rel="stylesheet" href="app.css">
+
+  <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+
+  <script src="bower_components/platform/platform.js"></script>
+
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script src="bower_components/angular/angular.js"></script>
+
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+
+  <script src="bower_components/ng-polymer-elements/ng-polymer-elements.js"/>
+
+  <script src="bower_components/angular-ui-select/dist/select.js"></script>
+
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+
+  <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
+  <script src="bower_components/angular-ui-grid/ui-grid.js"></script>
+
+  <script src="bower_components/angular-smart-table/dist/smart-table.debug.js"></script>
+
+  <script src="bower_components/angular-ui-select/dist/select.min.js"></script>
+
+  <script src="bower_components/ngDialog/js/ngDialog.js"></script>
+
+
+  <script src="bower_components/angular-i18n/angular-locale_en.js" ></script>
+  <script src="i18n/locale_en.js"></script>
+
+  <script src="app.js"></script>
+  <script src="utils/common.js"></script>
+
+  <!-- Configuration -->
+  <script src="components/appConfig.js"></script>
+
+  <!-- Directives -->
+  <script src="directives/validSubmit.js"></script>
+  <script src="bower_components/autofill-event/src/autofill-event.js"></script>
+
+  <!-- Polymer elements -->
+  <link rel="import" href="import/polymerComponents.html"/>
+
+
+  <!-- filters -->
+  <script src="filters/propertiesFilter.js"></script>
+
+  <!-- Proxies -->
+  <script src="proxies/actionLogProxy.js"></script>
+  <script src="proxies/deviceProxy.js"></script>
+  <script src="proxies/actionTypeProxy.js"></script>
+  <script src="proxies/departmentProxy.js"></script>
+
+  <!-- Services -->
+  <script src="services/exceptionHandler.js"></script>
+  <script src="services/workingContextFactory.js"></script>
+  <script src="services/authService.js"></script>
+  <script src="services/httpInterceptor.js"></script>
+  <script src="services/deviceService.js"></script>
+  <script src="services/hospitalDeptService.js"></script>
+  <script src="services/screenMonitorService.js"></script>
+  <script src="services/actionLogService.js"></script>
+
+
+  <!-- Controller -->
+  <script src="login/login.js"></script>
+  <script src="dashboard/dashboard.js"></script>
+  <script src="repair_request/repair_request.js"></script>
+  <script src="ManageReplaceParts/ManageReplacedPartsController.js"></script>
+  <script src="ManageChecklist/ManageChecklistController.js"></script>
+  <script src="ManagePartsEstimation/PartsEstimateController.js"></script>
+  <script src="ManagePartsOrder/ManagePartsOrder.js"></script>
+
+</head>
+<body ng-app="memsJsApp" fullbleed layout vertical>
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+  <core-header-panel flex layout vertical>
+    <core-toolbar id="navheader" >
+      <div class="btn-group" dropdown ng-show="context.isLoggedIn()">
+        <button type="button" class="btn btn-primary dropdown-toggle" ng-disabled="disabled">
+          {{messages.menu}}<span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li><a>{{messages.hello}}, {{context.userInfo().username}}</a></li>
+          <li><a href="#" ng-click="logout()">{{messages.logout}}</a></li>
+          <li><a href="#/dashboard">{{messages.dashboard}}</a></li>
+        </ul>
+      </div>
+      <span class="title">MEMS</span>
+
+      <div class="feature-menu" ng-show="getMenuPath()">
+        <ng-include src="getMenuPath()"></ng-include>
+      </div>
+    </core-toolbar>
+
+    <ng-view></ng-view>
+
+  </core-header-panel>
+
+
+</body>
+</html>
+

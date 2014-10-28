@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- APPROVAL CONFIG -->
+<table parent-table="ABSTRACT_ENTITY">
+	<primary-key>
+		<column name="CONFIG_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="DATA_TYPE" data-type="code" not-null="true" />
+	<column name="DISABLE_APPROVE" data-type="integer" not-null="true" default-value="0" />
+</table>

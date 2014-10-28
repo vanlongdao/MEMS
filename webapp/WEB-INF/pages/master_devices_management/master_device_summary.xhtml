@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+    xmlns:o="http://omnifaces.org/ui">
+<!-- To access constants -->
+    <o:importConstants type="arrow.mems.ui.ScreenCodes" />
+    <o:importConstants type="arrow.mems.config.AppConfig" />
+    <h:form id="formListSearchDevices" onkeypress="return event.keyCode != 13">
+            <p:fieldset id="panelConditionSearch" legend="#{messages.searchConditions}">
+                <table>
+                    <tr>
+                        <td><p:outputLabel value="#{messages.manufacturer}" for="manufactureName"/></td>
+                        <td colspan="2"><p:inputText value="#{devicesManagementBean.manufactoryValue}" id="manufactureName"/></td>
+                    </tr>
+                    <tr>
+                        <td><p:outputLabel value="#{messages.generalName}" for="generalName"/></td>
+                        <td colspan="2"><p:inputText value="#{devicesManagementBean.genaralValue}" id="generalName"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><p:outputLabel value="#{messages.name}" for="name"/></td>
+                        <td colspan="2"><p:inputText value="#{devicesManagementBean.nameValue}" id="name"/></td>
+                    </tr>
+                </table>
+			<p:fieldset legend="#{messages.extraConditions}" id="extraConditionPanel" toggleable="true">
+				<table>
+					<tr>
+						<td colspan="4"><p:selectOneMenu
+								value="#{devicesManagementBean.rememberSearchCriteria.compareSearchType}">
+								<f:selectItems value="#{appConfig.compareSearchType}" />
+							</p:selectOneMenu></td>
+					</tr>
+					<ui:repeat var="condition"
+						value="#{devicesManagementBean.listSearchConditions}">
+						<tr>
+							<td><p:selectOneMenu value="#{condition.type}">
+									<f:selectItems value="#{appConfig.conditionSearchDevices}" />
+								</p:selectOneMenu></td>
+							<td><p:selectOneMenu value="#{condition.operator}">
+									<f:selectItems value="#{appConfig.compareOperator}" />
+								</p:selectOneMenu></td>
+							<td><p:inputText value="#{condition.param}" /></td>
+							<td>
+								<p:commandButton icon="ui-icon-plus" styleClass="icon"
+									action="#{devicesManagementBean.addNewCondition}"
+									update="@([id$=extraConditionPanel])" /> 
+								<p:commandButton
+									icon="ui-icon-minus"
+									rendered="#{devicesManagementBean.listSearchConditions.size() >1}"
+									styleClass="icon"
+									action="#{devicesManagementBean.removeCondition(condition)}"
+									update="@([id$=extraConditionPanel])" /></td>
+						</tr>
+					</ui:repeat>
+					<tr>
+						<td><p:outputLabel value="#{messages.rememberFilterAs}" for="rememberFilter" /></td>
+						<td><p:inputText id="rememberFilter" value="#{devicesManagementBean.rememberSearchCriteria.rememberSearchContain}" /></td>
+						<td> <p:selectBooleanCheckbox value="#{devicesManagementBean.rememberSearchCriteria.shareCondition}" styleClass="checkbox"  itemLabel="#{messages.shareFilter}" /> </td>
+						<td><p:commandButton styleClass="icon" value="#{messages.rememberFilter}" action="#{devicesManagementBean.saveConditions()}" update="@([id$=resultConditionPanel])" /></td>
+					</tr>
+				</table>
+			</p:fieldset>
+			<p:fieldset legend="#{messages.filterResult}"
+				id="resultConditionPanel" toggleable="true" collapsed="true">
+				<p:ajax event="toggle" listener="#{devicesManagementBean.handleSearchResultToggle}" update="@([id$=resultConditionPanel])" />
+				<ac:dataTable id="searchConditionsTable" rowIndexVar="index"
+					value="#{devicesManagementBean.listResultConditions}" var="resultConditions">
+                    <p:column headerText="#{messages.description}">
+                    	<p:commandLink id="filterByRecentConditions" update="@([id$=listSearchDeviceDiv])" actionListener="#{devicesManagementBean.filterByRecentConditions(resultConditions)}">
+        					<h:outputText value="#{resultConditions.label}" />
+    					</p:commandLink>
+					</p:column>
+					 <p:column headerText="#{messages.removeRecent}">
+                    	<p:commandButton id="removeRecent" update="@([id$=resultConditionPanel])" styleClass="icon" value="#{messages.removeRecent}" actionListener="#{devicesManagementBean.removeRecentConditions(resultConditions)}">
+    					</p:commandButton>
+					</p:column>
+				</ac:dataTable>
+			</p:fieldset>
+			<table>
+				<tr>
+					<td align="left"><p:commandButton icon="ui-icon-search"
+							value="#{messages.search}"
+							action="#{devicesManagementBean.searchDevices}"
+							onstart="PF('globalBlockUI_js').block()"
+							oncomplete="PF('globalBlockUI_js').unblock()"
+							update="@([id$=listSearchDeviceDiv]), @([id$=globalBlockUI])"
+							process="@form" /> 
+							<p:commandButton value="#{messages.addNew}"
+							icon="ui-icon-plus" update=":contentPane"
+							action="#{devicesManagementBean.addNewDeviceAction}" /></td>
+				</tr>
+			</table>
+		</p:fieldset>
+	</h:form>
+	<h:form>
+        <p:fieldset id="listSearchDeviceDiv" legend="#{messages.searchResult}">
+                <h:outputText value="#{messages.clickSearchToFindDevices}" rendered="#{devicesManagementBean.listSearchDevices eq null}" />
+                <ac:dataTable id="mdevicesTable" rowIndexVar="index" value="#{devicesManagementBean.listSearchDevices}" rendered="#{devicesManagementBean.listSearchDevices ne null}"
+                    scrollable="true" scrollWidth="#{appConfig.maxWidth}"
+                    var="mdevices">
+                    <p:column styleClass="select-column display-select" toggleable="false">
+                        <p:selectBooleanCheckbox value="#{mdevices.selected}" styleClass="checkbox">
+                            <p:ajax event="change" update="@(.checkbox) @(button[id$=openDevice])"
+                                listener="#{devicesManagementBean.toggleSelection(mdevices)}" process="@this" />
+                        </p:selectBooleanCheckbox>
+                    </p:column>
+                    <p:column headerText="#{messages.no}" width="10"  toggleable="false" styleClass="display-index">
+                        #{index+1}
+                    </p:column>
+                    <p:column toggleable="false" styleClass="display-text twelve-char">
+                        <f:facet name="header">
+                            <ac:columnHeader value="#{messages.name}" parentTable="mdevicesTable" filter="#{devicesManagementBean.listSearchDevices.filter('name')}"
+                                sorter="#{devicesManagementBean.listSearchDevices.sort('name')}">
+                            </ac:columnHeader>
+                        </f:facet>
+                        <h:outputText value="#{mdevices.name}" />
+                    </p:column>
+                    <p:column toggleable="false" styleClass="display-text twelve-char">
+                         <f:facet name="header">
+                            <ac:columnHeader value="#{messages.generalName}" parentTable="mdevicesTable" filter="#{devicesManagementBean.listSearchDevices.filter('catName')}"
+                                sorter="#{devicesManagementBean.listSearchDevices.sort('catName')}">
+                            </ac:columnHeader>
+                        </f:facet>
+                        <h:outputText value="#{mdevices.catName}" />
+                    </p:column>
+                    <p:column toggleable="false" styleClass="display-text twelve-char">
+                         <f:facet name="header">
+                            <ac:columnHeader value="#{messages.manufacturer}" parentTable="mdevicesTable" filter="#{devicesManagementBean.listSearchDevices.filter('manufacturerName')}"
+                                sorter="#{devicesManagementBean.listSearchDevices.sort('manufacturerName')}">
+                            </ac:columnHeader>
+                        </f:facet>
+                        <h:outputText value="#{mdevices.manufacturerOffice.name}" />
+                    </p:column>
+                    <p:column toggleable="false" styleClass="display-text twelve-char">
+                         <f:facet name="header">
+                            <ac:columnHeader value="#{messages.manufactureContactPerson}" escape="false" parentTable="mdevicesTable"
+                                >
+                            </ac:columnHeader>
+                        </f:facet>
+                        <h:outputText value="#{mdevices.manufacturerPerson.name}" />
+                    </p:column>
+                    <p:column styleClass="display-text twelve-char">
+                        <f:facet name="header">
+                            <ac:columnHeader value="#{messages.country}" parentTable="mdevicesTable" filter="#{devicesManagementBean.listSearchDevices.filter('country')}"
+                                sorter="#{devicesManagementBean.listSearchDevices.sort('country')}">
+                            </ac:columnHeader>
+                        </f:facet>
+                        <h:outputText value="#{mdevices.mtCountry.name}" />
+                    </p:column>
+
+                    <p:column headerText="#{messages.catalog}" filterMatchMode="contains" styleClass="display-text twelve-char">
+                        <h:outputText value="#{mdevices.catalog}" />
+                    </p:column>
+
+                    <p:column headerText="#{messages.picture}" filterMatchMode="contains" styleClass="display-text twelve-char">
+                        <p:graphicImage value="#{imageStreamBean.image}" width="50" height="50" rendered="#{mdevices.picture ne null}">
+                                <f:param name="mdeviceCode" value="#{mdevices.mdevCode}" />
+                        </p:graphicImage>
+                    </p:column>
+                    <p:column headerText="#{messages.specification}" styleClass="display-text twelve-char">
+                        <h:outputText value="#{mdevices.specification}" />
+                    </p:column>
+                    <p:column headerText="#{messages.notice}" styleClass="display-text twelve-char">
+                        <h:outputText value="#{mdevices.notice}" />
+                    </p:column>
+                    <p:column headerText="#{messages.createdBy}" styleClass="display-text twelve-char">
+                        <h:outputText value="#{mdevices.createdByUser.name}" />
+                    </p:column>
+                    <p:column headerText="#{messages.createdAt}" styleClass="display-date twelve-char">
+                        <ac:outputTime value="#{mdevices.createdAt}" showTime="true"/>
+                    </p:column>
+                    <p:column headerText="#{messages.checkedBy}" styleClass="display-text twelve-char">
+                        <h:outputText value="#{mdevices.checkedByUser.name}" />
+                    </p:column>
+                    <p:column headerText="#{messages.checkedAt}" styleClass="display-date twelve-char">
+                        <ac:outputTime value="#{mdevices.checkedAt}" showTime="true" />
+                    </p:column>
+                </ac:dataTable>
+                <table>
+                    <tr>
+                        <td style="float: right;"><p:commandButton value="#{messages.close}" icon="ui-icon-close"
+                                action="#{screenMonitor.close(true)}" update=":contentPane" process="@this" /></td>
+                        <td><p:commandButton value="#{messages.open}" icon="ui-icon-pencil" id="openDevice"
+                                disabled="#{devicesManagementBean.selectedDevice eq null}"
+                                process="@this" action="#{devicesManagementBean.openToEditDevice}" update=":contentPane" >
+                            <f:setPropertyActionListener value="#{devicesManagementBean.currentDevice.mdevCode}" target="#{managementDocumentOfMasterDeviceBean.masterDeviceCode}" />
+                            </p:commandButton>      
+                        </td>
+                    </tr>
+                </table>
+        </p:fieldset>
+        </h:form>
+</ui:composition>

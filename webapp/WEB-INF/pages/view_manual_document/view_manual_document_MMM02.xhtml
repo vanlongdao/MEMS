@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+    <o:importConstants type="arrow.mems.config.AppConfig"></o:importConstants>
+    <p:outputPanel>
+            <h:form>
+                <p:tabView dynamic="true" cache="false">
+                    <p:tab title="#{messages['documentSet']}">
+                           <p:tabView orientation="left" dynamic="true" cache="false" id="tabDocument">
+                           <p:ajax event="tabChange" update="tabDocument" process="@form"/>
+                                <p:tab title="#{messages.userManual}">
+                                    <h:panelGrid columns="2"  styleClass="viewDocumentFile">
+                                        <p:media value="#{viewManualDocumentBean.getDocumentData(viewManualDocumentBean.currentDocument.docId,viewManualDocumentBean.currentDocument.inst01)}" width="100%" height="650px" player="pdf">
+                                         </p:media>
+                                         <p:outputLabel value="#{messages.noManualDocument}" rendered="#{viewManualDocumentBean.currentDocument.inst01 ==null}"/>
+                                    </h:panelGrid>
+                                </p:tab>
+                                <p:tab title="#{messages.serviceManual}">
+                                    <h:panelGrid columns="2"  styleClass="viewDocumentFile">
+                                        <p:outputLabel value="#{messages.noManualDocument}" rendered="#{viewManualDocumentBean.currentDocument.service01 ==null}"/>
+                                        <p:media value="#{viewManualDocumentBean.getDocumentData(viewManualDocumentBean.currentDocument.docId,viewManualDocumentBean.currentDocument.service01)}" width="100%" height="650px" player="pdf" >
+                                         </p:media>
+                                    </h:panelGrid>
+                                </p:tab>
+                                <p:tab title="#{messages.serviceGuide}">
+                                    <h:panelGrid columns="2"  styleClass="viewDocumentFile">
+                                        <p:outputLabel value="#{messages.noManualDocument}" rendered="#{viewManualDocumentBean.currentDocument.service02==null}"/>
+                                         <p:media value="#{viewManualDocumentBean.getDocumentData(viewManualDocumentBean.currentDocument.docId,viewManualDocumentBean.currentDocument.service02)}" width="100%" height="650px" player="pdf">
+                                         </p:media>
+                                    </h:panelGrid>
+                                </p:tab>
+                                <p:tab title="#{messages.safetyTest}">
+                                    <h:panelGrid columns="2"  styleClass="viewDocumentFile">
+                                         <p:outputLabel value="#{messages.noManualDocument}" rendered="#{viewManualDocumentBean.currentDocument.safety01 ==null}"/>
+                                         <p:media value="#{viewManualDocumentBean.getDocumentData(viewManualDocumentBean.currentDocument.docId,viewManualDocumentBean.currentDocument.safety01)}" width="100%" height="650px" player="pdf">
+                                         </p:media>
+                                         
+                                    </h:panelGrid>
+                                </p:tab>
+                                <p:tab title="#{messages.performanceTest}">
+                                    <h:panelGrid columns="2"  styleClass="viewDocumentFile">
+                                         <p:outputLabel value="#{messages.noManualDocument}" rendered="#{viewManualDocumentBean.currentDocument.performance01 ==null}"/>
+                                         <p:media value="#{viewManualDocumentBean.getDocumentData(viewManualDocumentBean.currentDocument.docId,viewManualDocumentBean.currentDocument.performance01)}" width="100%" height="650px" player="pdf">
+                                         </p:media>
+                                    </h:panelGrid>
+                                </p:tab>
+                            </p:tabView>
+                    </p:tab>
+                    <p:tab title="#{messages['video']}">
+                           <p:tabView orientation="left" dynamic="true" cache="false" id="tabVideo">
+                            <p:ajax event="tabChange" update="tabVideo" process="@form"/>
+                                <p:tab title="#{messages.userManualVideo}" id="manualDoc">
+                                    <h:panelGrid columns="2"  styleClass="viewVideoFile">
+                                        <p:outputLabel value="#{messages.noManualDocumentVideo}" rendered="#{viewManualDocumentBean.currentDocument.instV ==null}"/>
+                                        <ac:playvideo id="usermanualVideoPlay" rendered="#{viewManualDocumentBean.currentDocument.instV ne null}"
+                                            data="#{viewManualDocumentBean.getDocumentVideoData(viewManualDocumentBean.currentDocument.docId,viewManualDocumentBean.currentDocument.instV)}"
+                                            mimetype="#{viewManualDocumentBean.getMimeType(viewManualDocumentBean.currentDocument, viewManualDocumentBean.currentDocument.instV)}">
+                                        </ac:playvideo>
+                                    </h:panelGrid>
+                                </p:tab>
+                                <p:tab title="#{messages.serviceManualVideo}" id="replaceVideo">
+                                    <h:panelGrid columns="2"  styleClass="viewVideoFile">
+                                        <p:outputLabel value="#{messages.noManualDocumentVideo}" rendered="#{viewManualDocumentBean.currentDocument.replacePartV ==null}"/>
+                                        <ac:playvideo id="serviceManualVideoPlay" rendered="#{viewManualDocumentBean.currentDocument.replacePartV ne null}"
+                                            data="#{viewManualDocumentBean.getDocumentVideoData(viewManualDocumentBean.currentDocument.docId,viewManualDocumentBean.currentDocument.replacePartV)}"
+                                            mimetype="#{viewManualDocumentBean.getMimeType(viewManualDocumentBean.currentDocument, viewManualDocumentBean.currentDocument.replacePartV)}">
+                                        </ac:playvideo>
+                                    </h:panelGrid>
+                                </p:tab>
+                                <p:tab title="#{messages.safetyTestVideo}" id="safetyVideo">
+                                    <h:panelGrid columns="2"  styleClass="viewVideoFile">
+                                        <p:outputLabel value="#{messages.noManualDocumentVideo}" rendered="#{viewManualDocumentBean.currentDocument.safetyV ==null}"/>
+                                        <ac:playvideo id="safetyVideoPlay" rendered="#{viewManualDocumentBean.currentDocument.safetyV ne null}"
+                                            data="#{viewManualDocumentBean.getDocumentVideoData(viewManualDocumentBean.currentDocument.docId,viewManualDocumentBean.currentDocument.safetyV)}"
+                                            mimetype="#{viewManualDocumentBean.getMimeType(viewManualDocumentBean.currentDocument, viewManualDocumentBean.currentDocument.safetyV)}">
+                                        </ac:playvideo>
+                                    </h:panelGrid>
+                                </p:tab>
+                                <p:tab title="#{messages.performanceTestVideo}"  id="performanceVideo">
+                                    <h:panelGrid columns="2"  styleClass="viewVideoFile">
+                                        <p:outputLabel value="#{messages.noManualDocumentVideo}" rendered="#{viewManualDocumentBean.currentDocument.performanceV ==null}"/>
+                                        <ac:playvideo id="performanceVideoPlay" rendered="#{viewManualDocumentBean.currentDocument.performanceV ne null}"
+                                            data="#{viewManualDocumentBean.getDocumentVideoData(viewManualDocumentBean.currentDocument.docId,viewManualDocumentBean.currentDocument.performanceV)}"
+                                            mimetype="#{viewManualDocumentBean.getMimeType(viewManualDocumentBean.currentDocument, viewManualDocumentBean.currentDocument.performanceV)}">
+                                        </ac:playvideo>
+                                    </h:panelGrid>
+                                </p:tab>
+                            </p:tabView>
+                    </p:tab>
+                </p:tabView>
+            </h:form>
+    </p:outputPanel>
+</ui:composition>

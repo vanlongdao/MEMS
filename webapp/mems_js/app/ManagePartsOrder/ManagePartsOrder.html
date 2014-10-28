@@ -1,0 +1,350 @@
+
+<div>
+
+<table>
+    <tr>
+        <td>Select Estimation:</td>
+        <td>
+            <ui-select id="txtOrderList" ng-model="partOrderSelected.selected" theme="bootstrap" ng-disabled="disabled" style="width:300px;">
+                <ui-select-match placeholder="Select a Order">Order:  </p3>{{$select.selected.peType}}</ui-select-match>
+                <ui-select-choices group-by="'group'" repeat="item in listPartsOrder | filter: $select.search">
+                    <table>
+                        <tr>
+                            <td><p3>Request date:</p3></td>
+                            <td>
+                                <span ng-if="item.requestDate != null || item.requestDate != undefined" ng-bind-html="trustAsHtml((item.requestDate.monthValue + '/' + item.requestDate.dayOfMonth + '/' + item.requestDate.year | highlight: $select.search))"></span>
+                                <span ng-if="item.requestDate == null || item.requestDate == undefined">unknown</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><p3>Total price:</p3></td>
+                            <td>
+                                <span ng-bind-html="trustAsHtml((item.totalPrice.toString() | highlight: $select.search))"></span>
+                            </td>
+                        </tr>
+                    </table>
+                </ui-select-choices>
+            </ui-select>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <input type="button" value="Add new" ng-click="addNewPartOrder()">
+            <input type="button" value="Delete" ng-click="delPartOrder()">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="button" value="Copy from Estimation" ng-click="copyFromEstimation()">
+        </td>
+    </tr>
+</table>
+
+<paper-dialog id="partOrderDialog">
+    <table>
+        <tr>
+            <td>Select estimate:</td>
+        </tr>
+        <tr>
+            <input type="radio" ng-model="rdoEstimateChoice" value="RP" name="rdoEstimateChoice">Repair
+            <input type="radio" ng-model="rdoEstimateChoice" value="RL" name="rdoEstimateChoice">Reply
+        </tr>
+        <tr>
+            <td>
+                <ui-select ng-if="!rdoEstimateChoice" id="txtEstimationList" ng-model="partEstimateSelected.selected" theme="bootstrap" ng-disabled="disabled" style="width:300px;">
+                    <ui-select-match placeholder="Select a part estimation">Estimation:  </p3>{{$select.selected.peType}}</ui-select-match>
+                    <ui-select-choices group-by="'group'" repeat="item in listPartsEstimate | filter: $select.search">
+                        <p3>Type:  </p3><span ng-bind-html="trustAsHtml((item.peType | highlight: $select.search))"></span><br/>
+                        <p3>Request date:  </p3><span ng-if="item.requestDate != null || item.requestDate != undefined" ng-bind-html="trustAsHtml((item.requestDate.monthValue + '/' + item.requestDate.dayOfMonth + '/' + item.requestDate.year | highlight: $select.search))"></span><br/>
+                        <p3>Total price:  </p3><span ng-bind-html="trustAsHtml((item.totalPrice.toString() | highlight: $select.search))"></span><br/>
+                    </ui-select-choices>
+                </ui-select>
+                
+                <ui-select ng-if="rdoEstimateChoice" id="txtEstimationList" ng-model="partEstimateSelected.selected" theme="bootstrap" ng-disabled="disabled" style="width:300px;">
+                    <ui-select-match placeholder="Select a part estimation">Estimation:  </p3>{{$select.selected.peType}}</ui-select-match>
+                    <ui-select-choices group-by="'group'" repeat="item in listPartsEstimate | filter: {peType:rdoEstimateChoice} | filter: $select.search">
+                        <p3>Type:  </p3><span ng-bind-html="trustAsHtml((item.peType | highlight: $select.search))"></span><br/>
+                        <p3>Request date:  </p3><span ng-if="item.requestDate != null || item.requestDate != undefined" ng-bind-html="trustAsHtml((item.requestDate.monthValue + '/' + item.requestDate.dayOfMonth + '/' + item.requestDate.year | highlight: $select.search))"></span><br/>
+                        <p3>Total price:  </p3><span ng-bind-html="trustAsHtml((item.totalPrice.toString() | highlight: $select.search))"></span><br/>
+                    </ui-select-choices>
+                </ui-select>
+            </td>
+        </tr>
+        <tr>
+            <td>Estimation data:</td>
+        </tr>
+        <tr>
+            <td>Parts distributor:</td>
+            <td>
+                <input type="text" ng-model="partEstimateSelected.selected.peType">
+            </td>
+        </tr>
+        <tr>
+            <td>Request date:</td>
+            <td>
+                <input type="text" ng-model="partEstimateSelected.selected.requestDate">
+            </td>
+        </tr>
+        <tr>
+            <td>Expire date:</td>
+            <td>
+                <input type="text" ng-model="partEstimateSelected.selected.expireDate">
+            </td>
+        </tr>
+        <tr>
+            <td>Code(distributor):</td>
+            <td>
+                <input type="text" ng-model="partEstimateSelected.selected.distOffice">
+            </td>
+        </tr>
+        <tr>
+            <td>Tax:</td>
+            <td>
+                <input type="text" ng-model="partEstimateSelected.selected.tax">
+            </td>
+        </tr>
+        <tr>
+            <td>Total:</td>
+            <td>
+                <input type="text" ng-model="partEstimateSelected.selected.totalPrice">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <ui-select id="partEstimateItem" ng-model="partEstimateItemSelected.selected" theme="bootstrap" style="width: 300px;">
+                    <ui-select-match placeholder="Select a part estimate item">Item:  </p3>{{$select.selected.partName}}</ui-select-match>
+                    <ui-select-choices group-by="'group'" repeat="item in listPartEstimateItems | filter: $select.search ">
+                        <p3>Name:  </p3><span ng-bind-html="trustAsHtml((item.partName | highlight: $select.search))"></span>
+                        <p3>Model:  </p3><span ng-bind-html="trustAsHtml((item.partModelNo | highlight: $select.search))"></span><br/>
+                        <p3>Number items:  </p3><span ng-bind-html="trustAsHtml((item.numItems.toString() | highlight: $select.search))"></span>
+                        <p3>Price:  </p3><span ng-bind-html="trustAsHtml((item.itemPrice.toString() | highlight: $select.search))"></span><br/>
+                        <p3>Taxrate:  </p3><span ng-bind-html="trustAsHtml((item.taxRate.toString() | highlight: $select.search))"></span>
+                        <p3>Price with tax:  </p3><span ng-bind-html="trustAsHtml((item.priceWithTax.toString() | highlight: $select.search))"></span>
+                    </ui-select-choices>
+                </ui-select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="button" value="Select" ng-click="selectEstimate()">
+                <input type="button" value="Back" ng-click="back()">
+            </td>
+        </tr>
+    </table>
+</paper-dialog>
+
+<fieldset>
+    <legend>Order</legend>
+    <table>
+        <tr>
+            <td>Repair code</td>
+            <td>
+                <input type="text" label="Repair code"  ng-if="!partOrderSelected.selected">
+                <input type="text" label="Repair code"  ng-model="partOrderSelected.selected.actionCode" ng-if="partOrderSelected.selected">
+            </td>
+        </tr>
+        <tr>
+            <td>Estimation</td>
+            <td>
+                <input type="text" ng-if="!partOrderSelected.selected">
+                <input type="text" ng-model="partOrderSelected.selected.distributorPerson.name" ng-if="partOrderSelected.selected ">
+            </td>
+        </tr>
+        <tr>
+            <td>Parts distributor</td>
+            <td>
+                <input type="text" ng-if="!partOrderSelected.selected">
+                <input type="text" ng-model="partOrderSelected.selected.distributorOffice.name" ng-if="partOrderSelected.selected">
+            </td>
+        </tr>
+        <tr>
+            <td>Client</td>
+            <td>
+                <input type="text" ng-if="!partOrderSelected.selected">
+                <input type="text" ng-model="partOrderSelected.selected.entityServiceOffice.name" ng-if="partOrderSelected.selected ">
+            </td>
+        </tr>
+        <tr>
+            <td>Repair by</td>
+            <td>
+                <input type="text" ng-if="!partOrderSelected.selected">
+                <input type="text" ng-model="partOrderSelected.selected.entityRequestOffice.name" ng-if="partOrderSelected.selected ">
+            </td>
+        </tr>
+        <tr>
+            <td>Order date</td>
+            <td>
+                <input type="text" ng-if="!partOrderSelected.selected">
+                <input type="text" ng-model="partOrderSelected.selected.orderDate" ng-if="partOrderSelected.selected ">
+            </td>
+        </tr>
+        <tr>
+            <td>Estimated delivery date</td>
+            <td>
+                <input type="text" ng-if="!partOrderSelected.selected">
+                <input type="text" ng-model="partOrderSelected.selected.etaDate" ng-if="partOrderSelected.selected ">
+            </td>
+        </tr>
+        <tr>
+            <td>Pay date</td>
+            <td>
+                <input type="text" ng-if="!partOrderSelected.selected">
+                <input type="text" ng-model="partOrderSelected.selected.payDate" ng-if="partOrderSelected.selected ">
+            </td>
+        </tr>
+        <tr>
+            <td>Deliver to</td>
+            <td>
+                <input type="text" ng-if="!partOrderSelected.selected">
+                <input type="text" ng-model="partOrderSelected.selected.destinationOffice.name" ng-if="partOrderSelected.selected ">
+            </td>
+        </tr>
+        <tr>
+            <td>Status</td>
+            <td>
+                <input type="text" floatingLabel ng-if="!partOrderSelected.selected">
+                <input type="text" ng-model="partOrderSelected.selected.reqDeliveryDate" ng-if="partOrderSelected.selected ">
+            </td>
+        </tr>
+        <tr>
+            <td>Payment terms</td>
+            <td>
+                <input type="text" floatingLabel ng-if="!partOrderSelected.selected">
+                <input type="text" floatingLabel ng-model="partOrderSelected.selected.paymentTerms" ng-if="partOrderSelected.selected ">
+            </td>
+        </tr>
+        <tr>
+            <td>Total</td>
+            <td>
+                <input type="text" ng-if="!partOrderSelected.selected">
+                <input type="text" ng-model="partOrderSelected.selected.totalPrice" ng-if="partOrderSelected.selected ">
+            </td>
+        </tr>
+        <tr>
+            <td>Tax</td>
+            <td>
+                <input type="text" ng-if="!partOrderSelected.selected">
+                <input type="text" ng-model="partOrderSelected.selected.tax" ng-if="partOrderSelected.selected ">
+            </td>
+        </tr>
+        <tr>
+            <td>PDF/Image</td>
+            <td>
+                <input type="text" ng-if="!partOrderSelected.selected">
+                <input type="text" ng-model="partOrderSelected.selected.imageFile" ng-if="partOrderSelected.selected ">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <ui-select id="partOrderItem" ng-model="partOrderItemSelected.selected" theme="bootstrap" style="width: 300px;">
+                    <ui-select-match placeholder="Select a part Order item">Item:  </p3>{{$select.selected.partName}}</ui-select-match>
+                    <ui-select-choices group-by="'group'" repeat="item in listPartOrderItems | filter: $select.search">
+                        <table>
+                            <tr>
+                                <td><p3>Model:</p3></td>
+                                <td>
+                                    <span ng-bind-html="trustAsHtml((item.partModelNo | highlight: $select.search))"></span>
+                                </td>
+                                <td><p3>Number items:</p3></td>
+                                <td>
+                                    <span ng-bind-html="trustAsHtml((item.numItems.toString() | highlight: $select.search))"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><p3>Price:</p3></td>
+                                <td>
+                                    <span ng-bind-html="trustAsHtml((item.itemPrice.toString() | highlight: $select.search))"></span>
+                                </td>
+                                <td><p3>Taxrate:</p3></td>
+                                <td>
+                                    <span ng-bind-html="trustAsHtml((item.taxRate.toString() | highlight: $select.search))"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><p3>Price with tax:</p3></td>
+                                <td>
+                                    <span ng-bind-html="trustAsHtml((item.priceWithTax.toString() | highlight: $select.search))"></span>
+                                </td>
+                            </tr>
+                        </table>
+                    </ui-select-choices>
+                </ui-select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" value="Add new item" ng-click="addNewItem()">
+                <input type="button" value="Delete item" ng-click="delPartOrderItem()">
+            </td>
+        </tr>
+        <tr>
+            <td>Select parts</td>
+            <td>
+                <ui-select id="txtItemOrder" ng-model="partItemsOrderSelected.selected" theme="select2" ng-disabled="disabled" style="width:300px;">
+                    <ui-select-match placeholder="Select a part estimation">Part:  </p3>{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices group-by="'group'" repeat="item in listPartItemsOrder | filter: $select.search">
+                        <p3>Part:  </p3><span ng-bind-html="trustAsHtml((item.name | highlight: $select.search))"></span>
+                    </ui-select-choices>
+                </ui-select>
+            </td>
+        </tr>
+        <tr ng-if="partItemsOrderSelected.selected.name == 'Other'">
+            <td>
+                <input type="text" label="Part name" ng-model="newPartItemOrder.name">
+            </td>
+        </tr>
+        <tr>
+            <td>Unit price</td>
+            <td>
+                <input type="text" ng-model="newPartItemOrder.itemPrice" ng-if="((!partOrderItemSelected.selected && mode == 0) || partItemsOrderSelected.selected.name == 'Other' || mode == 1) || partItemsOrderSelected.selected.name == 'Other' || mode == 1">
+                <input type="text" ng-model="partOrderItemSelected.selected.itemPrice" ng-if="partOrderItemSelected.selected && partItemsOrderSelected.selected.name != 'Other' && mode == 0">
+                <!-- 				<input type="text" label="Unit price" ng-model="newPartItemOrder.itemPrice" floatingLabel ng-if=""> -->
+            </td>
+        </tr>
+        <tr>
+            <td>Number of item</td>
+            <td>
+                <input type="text" ng-model="newPartItemOrder.numItems" ng-if="(!partOrderItemSelected.selected && mode == 0) || partItemsOrderSelected.selected.name == 'Other' || mode == 1">
+                <input type="text" ng-model="partOrderItemSelected.selected.numItems" ng-if="partOrderItemSelected.selected && partItemsOrderSelected.selected.name != 'Other' && mode == 0">
+            </td>
+        </tr>
+        <tr>
+            <td>Subtotal</td>
+            <td>
+                <input type="text" ng-model="newPartItemOrder.totPrice" ng-if="(!partOrderItemSelected.selected && mode == 0) || partItemsOrderSelected.selected.name == 'Other' || mode == 1">
+                <input type="text" ng-model="partOrderItemSelected.selected.totPrice" ng-if="partOrderItemSelected.selected && partItemsOrderSelected.selected.name != 'Other' && mode == 0">
+            </td>
+        </tr>
+        <tr>
+            <td>Tax rage(%)</td>
+            <td>
+                <input type="text" ng-model="newPartItemOrder.taxRate" ng-if="(!partOrderItemSelected.selected && mode == 0) || partItemsOrderSelected.selected.name == 'Other' || mode == 1">
+                <input type="text" ng-model="partOrderItemSelected.selected.taxRate" ng-if="partOrderItemSelected.selected && partItemsOrderSelected.selected.name != 'Other' && mode == 0">
+            </td>
+        </tr>
+        <tr>
+            <td>Tax</td>
+            <td>
+                <input type="text" ng-model="newPartItemOrder.tax" ng-if="(!partOrderItemSelected.selected && mode == 0) || partItemsOrderSelected.selected.name == 'Other' || mode == 1">
+                <input type="text" ng-model="partOrderItemSelected.selected.tax" ng-if="partOrderItemSelected.selected && partItemsOrderSelected.selected.name != 'Other' && mode == 0">
+            </td>
+        </tr>
+        <tr>
+            <td>Subtotal with tax</td>
+            <td>
+                <input type="text" ng-model="newPartItemOrder.priceWithTax" ng-if="(!partOrderItemSelected.selected && mode == 0) || partItemsOrderSelected.selected.name == 'Other' || mode == 1">
+                <input type="text" ng-model="partOrderItemSelected.selected.priceWithTax" ng-if="partOrderItemSelected.selected && partItemsOrderSelected.selected.name != 'Other' && mode == 0">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" value="Apply this to items" ng-click="applyItem()">
+                <input type="button" value="Clear this item" ng-click="clearItem()">
+            </td>
+        </tr>
+    </table>
+</fieldset>
+<input type="button" value="Apply and Back" ng-click="applyAndBack()">
+<input type="button" value="Discard and Back" ng-click="discardAndBack()">
+</div>

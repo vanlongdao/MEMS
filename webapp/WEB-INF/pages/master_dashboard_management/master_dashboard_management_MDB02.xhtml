@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:o="http://omnifaces.org/ui">
+    <o:importConstants type="arrow.mems.ui.ScreenCodes" />
+    <h:form id="taskForm">
+        <div id="container_engineer_supplier">
+            <p:tabView dynamic="true">
+                <p:tab title="#{messages.repairInfo}">
+                    <div id="left_engineer_supplier">
+                        <p:panel>
+                            <table>
+                                <tr>
+                                    <td><p:outputLabel value="#{messages.totalRepairOfCurrentMonth}" /></td>
+                                    <td><p:inputText value="#{hospitalAccountantDashboardBean.totalRepairAllTask}"
+                                            disabled="true" styleClass="display-number"/></td>
+                                </tr>
+                                <tr>
+                                    <td><p:outputLabel value="#{messages.totalRepairCostOfCurrentMonth}" /></td>
+                                    <td><p:inputText value="#{hospitalAccountantDashboardBean.totalRepairCostAllTask}"
+                                            disabled="true" styleClass="display-number"/></td>
+                                </tr>
+                            </table>
+                        </p:panel>
+                        <ac:dataTable value="#{hospitalAccountantDashboardBean.listActionLogOfAllTask}" var="contact">
+                            <p:column headerText="#{messages.hospitalContact}">
+                                <p:outputLabel value="#{contact.hospitalContactPsn.name}" />
+                            </p:column>
+                            <p:column headerText="#{messages.supplierContact}">
+                                <p:outputLabel value="#{contact.person.name}" />
+                            </p:column>
+                            <p:column headerText="#{messages.status}" filterMatchMode="contains" filterBy="#{masterDashboardBean.getStatusName(contact)}">
+                                <p:outputLabel value="#{masterDashboardBean.getStatusName(contact)}" />
+                            </p:column>
+                        </ac:dataTable>
+                        <p:fieldset legend="#{messages.chart}">
+                            <p:graphicImage library="img" name="chart_demo.jpg" width="300px" height="200px"></p:graphicImage>
+                        </p:fieldset>
+
+                    </div>
+                    <div id="right_engineer_supplier">
+                        <p:fieldset id="panelRightEngSup" style="height:auto;">
+                            <ui:include src="widgets/button.xhtml" />
+                            <ui:include src="/WEB-INF/pages/master_dashboard_management/widgets/notification_widget.xhtml">
+                            </ui:include>
+                        </p:fieldset>
+                    </div>
+                </p:tab>
+
+                <p:tab title="#{messages.paymentAndBudgetStatus}">
+                    <p:fieldset id="panelPaymentAndBudget" legend="#{messages.waitingPaymentList}">
+                        <ac:dataTable id="waitingPaymentTable" value="#{hospitalAccountantDashboardBean.listWaitingPaymentList}"
+                            var="payment">
+                            <p:column headerText="#{messages.paymentDate}">
+                                <ac:outputTime value="#{payment.actionBill.payDate}" />
+                            </p:column>
+                            <p:column headerText="#{messages.totalPay}">
+                                <p:outputLabel value="#{payment.actionBill.totalPay}" />
+                            </p:column>
+                            <p:column headerText="#{messages.deviceName}">
+                                <p:outputLabel value="#{payment.device.MDevice.name}" />
+                            </p:column>
+                        </ac:dataTable>
+                    </p:fieldset>
+                    <p:fieldset id="panelPaidList" legend="#{messages.paidList}">
+                        <ac:dataTable id="paidListTable" value="#{hospitalAccountantDashboardBean.paidList}" var="paid">
+                            <p:column headerText="#{messages.paymentDate}">
+                                <ac:outputTime value="#{paid.actionBill.payDate}" />
+                            </p:column>
+                            <p:column headerText="#{messages.totalPay}">
+                                <p:outputLabel value="#{paid.actionBill.totalPay}" />
+                            </p:column>
+                            <p:column headerText="#{messages.deviceName}">
+                                <p:outputLabel value="#{paid.device.MDevice.name}" />
+                            </p:column>
+                        </ac:dataTable>
+                    </p:fieldset>
+                    <p:fieldset id="panelBudgetStatus" legend="#{messages.budgetStatus}">
+                        <ac:dataTable id="budgetStatus" value="#{hospitalAccountantDashboardBean.listBudgetStatus}" var="budgetStatus" >
+                            <p:column headerText="#{messages.startDate}">
+                                <ac:outputTime value="#{budgetStatus.startDate}" />
+                            </p:column>
+                             <p:column headerText="#{messages.startDate}">
+                                <ac:outputTime value="#{budgetStatus.endDate}" />
+                            </p:column>
+                            <p:column headerText="#{messages.hospitalDept}">
+                                <p:outputLabel value="#{budgetStatus.hospitalDept.name}" />
+                            </p:column>
+                            <p:column headerText="#{messages.ratePaidOnBudget}">
+                                <p:outputLabel value="#{hospitalAccountantDashboardBean.getRatePaidAndBudget(budgetStatus.budgetId, budgetStatus.organizationCode, budgetStatus.budget)}" />
+                            </p:column>
+                        </ac:dataTable>
+                    </p:fieldset>
+                </p:tab>
+            </p:tabView>
+        </div>
+    </h:form>
+</ui:composition>

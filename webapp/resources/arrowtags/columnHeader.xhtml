@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:ac="http://arrow-tech.vn/ui">
+
+<!-- Shortcut for Column headers. Can improve more for Sorter and filter -->
+<composite:interface>
+	<composite:attribute name="value"/>
+	<composite:attribute name="id"/>
+	<composite:editableValueHolder name="value" targets="text" />
+	
+	<composite:attribute name="parentTable" default="@parent" type="java.lang.String"/>
+	<composite:attribute name="process" default="@this" />
+	<composite:attribute name="escape" default="true" type="java.lang.Boolean"/>
+	<composite:attribute name="sorter" method-signature="void sort(java.lang.String)"/>
+	<composite:attribute name="filter" />
+	<composite:attribute name="autocomplete" default="false"/>
+	
+	<composite:attribute name="columnKey" required="false"/>
+</composite:interface>
+
+<composite:implementation>
+		<!-- without sorter, just display title -->
+		<h:outputLabel value="#{cc.attrs.value}" escape="#{cc.attrs.escape}" rendered="#{cc.attrs.sorter eq null}" />
+		
+		<!-- with sorter -->
+		<p:commandLink id="sorter" styleClass="sorter" update=":#{p:component(cc.attrs.parentTable)}" action="#{cc.attrs.sorter}" process="#{cc.attrs.process}" rendered="#{cc.attrs.sorter ne null}">
+			<h:outputLabel value="#{cc.attrs.value}" escape="#{cc.attrs.escape}" />
+		</p:commandLink>
+		
+		<!-- with filter -->
+		<ui:fragment rendered="#{cc.attrs.filter ne null}">
+		<br />
+		<ui:fragment rendered="#{cc.attrs.filter.type eq 'DATE_FROM_TO'}">
+		<table style="text-align: left;" class="arrow-ui-filter arrow-filter-date-from-to">
+			<tr>
+				<td></td>
+				<td class="value">
+					<ac:calendar navigator="true" showOn="focus" value="#{cc.attrs.filter.dateFrom}" update=":#{p:component(cc.attrs.parentTable)}"/>
+				</td>
+			</tr>
+			
+			<tr>
+				<td class="label">
+					<p:outputLabel value="#{messages.to}"></p:outputLabel>
+				</td>
+				
+				<td class="value">
+					<ac:calendar navigator="true" showOn="focus" value="#{cc.attrs.filter.dateTo}" update=":#{p:component(cc.attrs.parentTable)}"/>
+				</td>
+			</tr>
+		</table>
+		</ui:fragment>
+		<ui:fragment rendered="#{cc.attrs.filter.type eq 'STRING'}">
+			<p:inputText value="#{cc.attrs.filter.value}" onkeypress="if (event.keyCode == 13) { onchange(); return false; }" styleClass="ui-column-filter">
+				<p:ajax event="change" update=":#{p:component(cc.attrs.parentTable)}" process="#{cc.attrs.process}" />
+			</p:inputText>
+		</ui:fragment>
+        
+        <ui:fragment rendered="#{cc.attrs.filter.type eq 'NUMBER'}">
+            <p:inputText value="#{cc.attrs.filter.value}" onkeypress="if (event.keyCode == 13) { onchange(); return false; }">
+                <p:ajax event="change" update=":#{p:component(cc.attrs.parentTable)}" process="#{cc.attrs.process}" />
+            </p:inputText>
+        </ui:fragment>
+		
+		</ui:fragment>
+</composite:implementation>
+
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+	<h:form>
+		<table>
+			<tr>
+				<td><p:outputLabel rendered="#{inputRepairRequestBean.currentActionLog.persisted}" value="#{messages.requestNo}"></p:outputLabel></td>
+				<td><p:inputText rendered="#{inputRepairRequestBean.currentActionLog.persisted}" value="#{inputRepairRequestBean.currentActionLog.actionCode}" disabled="true"></p:inputText></td>
+			</tr>
+			<tr>
+				<td><p:outputLabel value="#{messages.type}"></p:outputLabel></td>
+				<td>
+				<h:outputText value="#{messageCodeClientIdMappingManager.put('MRR00016','autoCompleteType',null)}"></h:outputText>
+				<p:autoComplete disabled="#{inputRepairRequestBean.useModeSchedule}" id="autoCompleteType" value="#{inputRepairRequestBean.currentActionLog.actionTypeMaster}"
+						converter="#{converterStorage.actionTypeConverter}" title="#{messages.typeToFindActionType}" var="actionType" itemLabel="#{actionType.label}" forceSelection="true"
+						emptyMessage="#{messages.noActionTypeFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200" itemValue="#{actionType}"
+						completeMethod="#{commonAutoCompleteBean.filterActionType}">
+						<p:column headerText="#{messages.label}">
+							<h:outputText value="#{actionType.label}" />
+						</p:column>
+						<p:ajax event="itemSelect" process="@this" update="@this" />
+					</p:autoComplete></td>
+			</tr>
+			<tr>
+				<td><p:outputLabel value="#{messages.deviceId}"></p:outputLabel></td>
+				<td><p:inputText value="#{inputRepairRequestBean.currentActionLog.device.devCode}" disabled="true"></p:inputText></td>
+			</tr>
+			<tr>
+				<td><p:outputLabel value="#{messages.deviceName}"></p:outputLabel></td>
+				<td><p:inputText value="#{inputRepairRequestBean.currentActionLog.device.MDevice.name}" disabled="true"></p:inputText></td>
+			</tr>
+			<tr>
+				<td><p:outputLabel value="#{messages.modelNo}"></p:outputLabel></td>
+				<td><p:inputText value="#{inputRepairRequestBean.currentActionLog.device.MDevice.modelNo}" disabled="true"></p:inputText></td>
+			</tr>
+			<tr>
+				<td><p:outputLabel value="#{messages.sn}"></p:outputLabel></td>
+				<td><p:inputText value="#{inputRepairRequestBean.currentActionLog.device.serialNo}" disabled="true"></p:inputText></td>
+			</tr>
+			<tr>
+				<td><p:outputLabel value="#{messages.manufacturer}"></p:outputLabel></td>
+				<td><p:inputText value="#{inputRepairRequestBean.currentActionLog.device.MDevice.manufacturerOffice.name}" disabled="true"></p:inputText></td>
+			</tr>
+			<tr>
+				<td><p:outputLabel value="#{messages.supplier}"></p:outputLabel></td>
+				<td><p:inputText value="#{inputRepairRequestBean.currentActionLog.device.supplierOffice.name}" disabled="true"></p:inputText></td>
+			</tr>
+			<tr>
+				<td><p:outputLabel value="#{messages.location}"></p:outputLabel></td>
+				<td><p:inputText value="#{inputRepairRequestBean.currentActionLog.device.location}" disabled="true"></p:inputText></td>
+			</tr>
+			<tr>
+				<td><p:outputLabel value="#{messages.faultFoundBy}"></p:outputLabel></td>
+				<td><h:outputText value="#{messageCodeClientIdMappingManager.put('MRR00019','autoCompleteHospitalContactPerson',null)}"></h:outputText> 
+					<p:autoComplete id="autoCompleteHospitalContactPerson" value="#{inputRepairRequestBean.hospContPerson}" converter="#{converterStorage.humanResourceConverter}"
+						title="#{messages.typeToFindHospitalContactPerson}" var="contactPerson" itemLabel="#{contactPerson.person.name}" forceSelection="true" emptyMessage="#{messages.noHospitalContactPersonFound}"
+						cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200" itemValue="#{contactPerson}" completeMethod="#{inputRepairRequestBean.filterHospDeptContactPerson}">
+						<p:column headerText="#{messages.personCode}">
+							<h:outputText value="#{contactPerson.person.psnCode}" />
+						</p:column>
+						<p:column headerText="#{messages.name}">
+							<h:outputText value="#{contactPerson.person.name}" />
+						</p:column>
+						<p:column headerText="#{messages.hospitalName}">
+							<h:outputText value="#{contactPerson.hospital.name}" />
+						</p:column>
+						<p:column headerText="#{messages.hospitalDepartmentName}">
+							<h:outputText value="#{contactPerson.hospitalDept.name}" />
+						</p:column>
+						<p:ajax event="itemSelect" process="@this" update="@this" />
+					</p:autoComplete></td>
+			</tr>
+			<tr>
+				<td><p:outputLabel value="#{messages.faultByDate}"></p:outputLabel></td>
+				<td><h:outputText value="#{messageCodeClientIdMappingManager.put('MRR00028','faultByDate',null)}"></h:outputText> 
+				<p:calendar id="faultByDate"
+						value="#{inputRepairRequestBean.currentActionLog.occurDate}" binding="#{startDateComponent}" showOn="button" locale="#{localeSelector.locale}" navigator="true" mask="true" pattern="dd/MM/yyyy">
+						<p:ajax event="dateSelect" update="faultByDate" process="@this" />
+					</p:calendar></td>
+			</tr>
+			<tr>
+				<td><p:outputLabel value="#{messages.compliant}"></p:outputLabel></td>
+				<td><p:inputText value="#{inputRepairRequestBean.currentActionLog.complaint}">
+						<p:ajax event="change" process="@this" update="@this"></p:ajax>
+					</p:inputText></td>
+			</tr>
+			<tr>
+				<td><p:outputLabel value="#{messages.callToRepairDate}"></p:outputLabel></td>
+				<td><p:calendar id="callToRepairDate" value="#{inputRepairRequestBean.currentActionLog.contactDate}" showOn="button" locale="#{localeSelector.locale}" navigator="true" mask="true"
+						pattern="dd/MM/yyyy">
+						<f:validator validatorId="dateRangeValidator" />
+						<f:attribute name="startDateComponent" value="#{startDateComponent}" />
+						<p:ajax event="dateSelect" update="callToRepairDate" process="@this" />
+					</p:calendar></td>
+			</tr>
+			<tr>
+				<td><p:outputLabel value="#{messages.contactPerson}"></p:outputLabel></td>
+				<td><p:autoComplete id="autoCompleteContactPerson" value="#{inputRepairRequestBean.currentActionLog.contactPerson}" converter="#{converterStorage.personConverter}"
+						title="#{messages.typeToFindContactPerson}" var="person" itemLabel="#{person.name}" forceSelection="true" emptyMessage="#{messages.noContactPersonFound}" cache="true" cacheTimeout="300"
+						dropdown="true" scrollHeight="200" itemValue="#{person}" completeMethod="#{inputRepairRequestBean.filterContactPerson}">
+						<p:column headerText="#{messages.name}">
+							<h:outputText value="#{person.name}" />
+						</p:column>
+						<p:column headerText="#{messages.officeName}">
+							<h:outputText value="#{person.office.name}" />
+						</p:column>
+						<p:ajax event="itemSelect" process="@this" update="autoCompleteContactPerson" />
+					</p:autoComplete></td>
+			</tr>
+			<tr>
+				<td><p:outputLabel value="#{messages.workStartDate}"></p:outputLabel></td>
+				<td><p:calendar id="workStartDate" value="#{inputRepairRequestBean.currentActionLog.actionDate}" showOn="button" locale="#{localeSelector.locale}" navigator="true" mask="true"
+						pattern="dd/MM/yyyy">
+						<p:ajax event="dateSelect" update="workStartDate" process="@this" />
+					</p:calendar></td>
+			</tr>
+			<tr>
+				<td><p:outputLabel value="#{messages.workEndDate}"></p:outputLabel></td>
+				<td><p:calendar id="workEndDate" value="#{inputRepairRequestBean.currentActionLog.finishDate}" showOn="button" locale="#{localeSelector.locale}" navigator="true" mask="true"
+						pattern="dd/MM/yyyy">
+						<p:ajax event="dateSelect" update="workEndDate" process="@this" />
+					</p:calendar></td>
+			</tr>
+			<tr>
+				<td><p:outputLabel value="#{messages.failure}"></p:outputLabel></td>
+				<td><p:inputText value="#{inputRepairRequestBean.currentFault.description}">
+						<p:ajax event="change" process="@this" update="@this"></p:ajax>
+					</p:inputText></td>
+			</tr>
+			<tr>
+				<td><p:outputLabel value="#{messages.repair}"></p:outputLabel></td>
+				<td><p:inputText value="#{inputRepairRequestBean.currentFault.repair}">
+						<p:ajax event="change" process="@this" update="@this"></p:ajax>
+					</p:inputText></td>
+			</tr>
+			<tr>
+				<td><p:outputLabel value="#{messages.cause}"></p:outputLabel></td>
+				<td><p:inputText value="#{inputRepairRequestBean.currentFault.cause}">
+						<p:ajax event="change" process="@this" update="@this"></p:ajax>
+					</p:inputText></td>
+			</tr>
+			<tr>
+				<td><p:outputLabel value="#{messages.prevention}"></p:outputLabel></td>
+				<td><p:inputText value="#{inputRepairRequestBean.currentFault.prevention}">
+						<p:ajax event="change" process="@this" update="@this"></p:ajax>
+					</p:inputText></td>
+			</tr>
+			<tr>
+				<td><p:outputLabel value="#{messages.signatureImage}"></p:outputLabel></td>
+				<td>
+                    <p:commandButton value="#{messages.signature}" id="opendrawing" action="#{inputRepairRequestBean.showDrawingPane}" immediate="true">
+                        <p:ajax event="dialogReturn" listener="#{inputRepairRequestBean.saveDrawing}" update="@form"/>
+                    </p:commandButton>
+                    <p:outputPanel autoUpdate="true">
+                    <canvas id="signature" class="scribble" style="border: 1px solid black">
+                    
+                    </canvas>
+                    <h:inputHidden value="#{inputRepairRequestBean.getInstallConfirmImgAsJson()}" id="signatureData" />
+                    <script type="text/javascript">
+                        jQuery(document).ready(function(){
+                            var scribble = jQuery("#signature").scribble({defaults: {readMode: true}});
+                            if(!!scribble){
+                                var scribbleFidel = jQuery("#signature").data("scribble");
+                                scribbleFidel.loadDataURL(jQuery("[id*='signatureData']").val());
+                                scribbleFidel.changeReadMode(true);
+                                scribbleFidel.init();
+                            }
+                        });
+                        
+                    </script>
+                    </p:outputPanel>
+                </td>
+			</tr>
+			<tr>
+				<td><p:outputLabel rendered="#{inputRepairRequestBean.image ne null or inputRepairRequestBean.currentActionLog.installConfirmImg ne null}" value="#{messages.signatureInspected}"
+						id="lbAutosign" /></td>
+				<td><h:outputText rendered="#{inputRepairRequestBean.image ne null or inputRepairRequestBean.currentActionLog.installConfirmImg ne null}"
+						value="#{messageCodeClientIdMappingManager.put('MRR00020','autosign',null)}">
+						</h:outputText> <p:autoComplete
+						rendered="#{inputRepairRequestBean.image ne null or inputRepairRequestBean.currentActionLog.installConfirmImg ne null}" id="autosign" value="#{inputRepairRequestBean.checker}"
+						converter="#{converterStorage.userConverter}" title="#{messages.typeToFindHumanChecked}" var="checker" itemLabel="#{checker.name}" forceSelection="true"
+						emptyMessage="#{messages.noHumanCheckedFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200" itemValue="#{checker}"
+						completeMethod="#{inputRepairRequestBean.filterCheckedBy}">
+						<p:column headerText="#{messages.personCode}">
+							<h:outputText value="#{checker.psnCode}" />
+						</p:column>
+						<p:column headerText="#{messages.name}">
+							<h:outputText value="#{checker.name}" />
+						</p:column>
+						<p:ajax event="itemSelect" process="@this" update="@([id$=autosign])" />
+					</p:autoComplete></td>
+			</tr>
+		</table>
+        
+	</h:form>
+</ui:composition>

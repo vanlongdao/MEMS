@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:o="http://omnifaces.org/ui"
+    xmlns:ac="http://arrow-tech.vn/ui"
+    xmlns:ar="http://java.sun.com/jsf/composite/compositeComponent"
+    xmlns:p="http://primefaces.org/ui">
+    
+    <o:importConstants type="arrow.mems.ui.ScreenCodes" />
+    
+    <h:form id="viewDetailQRCode">
+    
+        <table>
+            <tr valign="top">
+                <td class="label"><h:outputLabel value="#{messages['deviceCode']}" /><p:inputText id="deviceCode" value="#{viewDetailQRCodeBean.deviceCode}" label="#{messages['deviceCode']}" styleClass="twenty-char" maxlength="255">
+                    <p:ajax event="change" process="@this" update="@this" />
+                </p:inputText>
+                </td>
+                <td>
+                    <p:commandButton id="btnSearch" value="#{messages['search']}" actionListener="#{viewDetailQRCodeBean.loadData}" update="@form" immediate="true" process="@form"/>
+                </td>
+            </tr>
+        </table>
+      <p:panel id="panelViewDetailQRcode" rendered="#{viewDetailQRCodeBean.display}">  
+        <p:fieldset legend="#{messages['managementDevice']}">
+            <table>
+                    <tr valign="top">
+                        <td class="label"><p:outputLabel value="#{messages['managementCode']} :"/></td>
+                        <td>
+                            <p:outputLabel id="managementCode" value="#{viewDetailQRCodeBean.currentDevice.clientMgmtCode}"/>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td class="label"><p:outputLabel value="#{messages['genName']} :"/></td>
+                        <td>
+                            <p:outputLabel id="genName" value="#{viewDetailQRCodeBean.currentDevice.MDevice.catName}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label"><p:outputLabel value="#{messages['name']} :"/></td>
+                        <td>
+                            <p:outputLabel value="#{viewDetailQRCodeBean.currentDevice.MDevice.name}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label"><p:outputLabel value="#{messages['modelNo']} :"/></td>
+                        <td>
+                            <p:outputLabel value="#{viewDetailQRCodeBean.currentDevice.MDevice.modelNo}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label"><p:outputLabel value="#{messages['softwareRevision']} :"/></td>
+                        <td>
+                            <p:outputLabel value="#{viewDetailQRCodeBean.currentDevice.softwareRev}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label"><p:outputLabel value="#{messages['useFrom']} :"/></td>
+                        <td>
+                            <ac:outputTime value="#{viewDetailQRCodeBean.currentDevice.acceptanceDate}"/>
+                        </td>
+                    </tr>
+             </table>
+            </p:fieldset>
+            <p:fieldset legend="#{messages['supplierOfice']}: #{viewDetailQRCodeBean.currentDevice.supplierOffice.name}" >
+            <table> 
+                  <tr>
+                        <td class="label"><p:outputLabel value="#{messages['address']} :"/></td>
+                        <td>
+                            <p:outputLabel value="#{viewDetailQRCodeBean.currentDevice.supplierOffice.address.address1}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label"><p:outputLabel value="#{messages['tel']} :"/></td>
+                        <td>
+                            <p:outputLabel value="#{viewDetailQRCodeBean.currentDevice.supplierOffice.tel}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label"><p:outputLabel value="#{messages['facsimile']} :"/></td>
+                        <td>
+                            <p:outputLabel value="#{viewDetailQRCodeBean.currentDevice.supplierOffice.fax}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label"><p:outputLabel value="#{messages['contact']} :"/></td>
+                        <td>
+                            <p:outputLabel value="#{viewDetailQRCodeBean.currentDevice.supplierPerson.name}"/>
+                        </td>
+                    </tr>
+              </table>      
+             </p:fieldset>
+              <p:fieldset legend="#{messages['repairedOfice']} : #{viewDetailQRCodeBean.currentDevice.repairedByOffice.name}" >
+              <table>
+                      <tr>
+                            <td class="label"><p:outputLabel value="#{messages['address']}:"/></td>
+                            <td>
+                                <p:outputLabel value="#{viewDetailQRCodeBean.currentDevice.repairedByOffice.address.address1}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label"><p:outputLabel value="#{messages['tel']} :"/></td>
+                            <td>
+                                <p:outputLabel value="#{viewDetailQRCodeBean.currentDevice.repairedByOffice.tel}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label"><p:outputLabel value="#{messages['facsimile']} :"/></td>
+                            <td>
+                                <p:outputLabel value="#{viewDetailQRCodeBean.currentDevice.repairedByOffice.fax}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label"><p:outputLabel value="#{messages['contact']} :"/></td>
+                            <td>
+                                <p:outputLabel value="#{viewDetailQRCodeBean.currentDevice.repairedPerson.name}"/>
+                            </td>
+                        </tr>
+                 </table>   
+             </p:fieldset>
+              <p:fieldset legend="#{messages['lastRepair']} : #{viewDetailQRCodeBean.currentDevice.clientMgmtCode}">
+                <table>
+                      <tr>
+                            <td class="label"><p:outputLabel value="#{messages['occured']} :"/></td>
+                            <td>
+                                <ac:outputTime value="#{viewDetailQRCodeBean.actionLogDto.occurDate}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label"><p:outputLabel value="#{messages['fixed']} :"/></td>
+                            <td>
+                                 <ac:outputTime value="#{viewDetailQRCodeBean.actionLogDto.finishDate}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label" rowspan="${viewDetailQRCodeBean.listReplPart.size()}"><p:outputLabel value="#{messages['howFixed']}"/></td>
+                            <td>
+                            <p:panel styleClass="panelRemovedDeviceCode">
+                                <ac:dataTable id="detailQRCodeTable" value="${viewDetailQRCodeBean.listReplPart}" var="replPart">
+                                    <p:column headerText="#{messages.removedDeviceCode}" filterMatchMode="contains">
+                                       <h:outputText value="#{replPart.removedDevCode}" />
+                                    </p:column>
+                                    <p:column headerText="#{messages.deviceCode}" filterMatchMode="contains">
+                                       <h:outputText value="#{viewDetailQRCodeBean.currentDevice.devCode}" />
+                                    </p:column>
+                                    <p:column headerText="#{messages.mDevice}" filterMatchMode="contains">
+                                       <h:outputText value="#{viewDetailQRCodeBean.currentDevice.MDevice.name}" />
+                                    </p:column>
+                                </ac:dataTable>
+                            </p:panel>    
+                            </td>
+                        </tr>
+                    </table>
+             </p:fieldset>
+                <table>
+                    <tr>
+                        <td align="left">
+                            <p:commandButton id="btnRegisterNewCheckorRepair" value="#{messages['registerNewCheckorRepair']}" action="#{screenMonitor.switchScreen(ScreenCodes.INPUT_REPAIR_REQUEST)}" 
+                            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                            update=":contentPane" icon="ui-icon-disk" process="@this">
+                                <f:setPropertyActionListener value="#{viewDetailQRCodeBean.currentDevice.devCode}" target="#{inputRepairRequestBean.deviceCode}"/>
+                            </p:commandButton>
+                            <p:commandButton id="btnViewHistoryCheckorRepair" value="#{messages['viewHistoryCheckorRepair']}" action="#{screenMonitor.switchScreen(ScreenCodes.REPAIR_HISTORY)}" onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                            update=":contentPane" immediate="true" icon="ui-icon-zoomin" process="@this">
+                                <f:setPropertyActionListener value="#{viewDetailQRCodeBean.currentDevice.devCode}" target="#{repairHistoryBean.deviceCode}"/>
+                            </p:commandButton>
+                        </td>
+                    </tr>
+               </table> 
+         </p:panel>
+         <p:panel rendered="#{viewDetailQRCodeBean.display}">      
+                 <table>    
+                     <tr>
+                        <td class="label"><p:outputLabel value="#{messages['nextCheck']} :"/></td>
+                        <td>
+                            <ac:outputTime value="#{viewDetailQRCodeBean.scheduleItemDto.targetDate}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                             <p:commandButton id="btnRegisterCounterValue" value="#{messages['registerCounterValue']}" action="#{screenMonitor.switchScreen(ScreenCodes.UPDATE_USEAGE_HOUR_COUNT)}" 
+                             onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                             update=":contentPane" icon="ui-icon-disk" process="@this">
+                                <f:setPropertyActionListener value="#{viewDetailQRCodeBean.currentDevice.devCode}" target="#{updateUseageHourCountBean.deviceCode}"/>
+                            </p:commandButton>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p:commandButton id="btnViewDocument" value="#{messages['viewDocument']}" action="#{screenMonitor.switchScreen(ScreenCodes.VIEW_MANUAL_DOCUMENT)}"
+                            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                            update="@all" icon="ui-icon-zoomin" process="@this">
+                                <f:setPropertyActionListener value="#{viewDetailQRCodeBean.currentDevice.devCode}" target="#{viewManualDocumentBean.deviceCode}"/>
+                            </p:commandButton>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p:commandButton id="btnEditDevice" value="#{messages['editDevice']}" action="#{screenMonitor.switchScreen(ScreenCodes.LIST_SEARCH_DEVICE)}" onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                            update=":contentPane" icon="ui-icon-pencil" process="@this">
+                                <f:setPropertyActionListener value="#{viewDetailQRCodeBean.currentDevice.devCode}" target="#{deviceManagementBean.deviceCode}"/>
+                            </p:commandButton>
+                        </td>    
+                    </tr>
+                    <tr>
+                        <td>
+                            <p:commandButton id="btnBackToDashboard" value="#{messages['backToDashboard']}" action="#{screenMonitor.close}" onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                            update="@all" icon="ui-icon-close" process="@form"/>
+                        </td>    
+                    </tr>
+             </table>
+        </p:panel>
+    </h:form>
+</ui:composition>

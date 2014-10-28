@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+    <h:form id="userDashBoard">
+        <p:panel>
+            <p:commandButton value="#{messages.add}" icon="ui-icon-plus" action="#{userManagementBean.clickAddNew}" update=":contentPane" process="@this" />
+            <p:commandButton value="#{messages.edit}" icon="ui-icon-pencil" action="#{userManagementBean.editSelectedUser}" disabled="#{!userManagementBean.enableBtnDelete}"
+                process="@this" update=":contentPane" />
+        </p:panel>
+        <ac:dataTable value="#{userManagementBean.listUsers}" var="user" id="userTable" rowIndexVar="index">
+            <p:column styleClass="display-select">
+                <p:selectBooleanCheckbox value="#{user.selected}">
+                    <p:ajax event="change" update=":contentPane" listener="#{userManagementBean.toggleSelection(user)}" />
+                </p:selectBooleanCheckbox>
+            </p:column>
+            <p:column headerText="#{messages.no}" styleClass="display-index">
+                #{index+1}
+            </p:column>
+            <p:column styleClass="display-code">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.userId}" parentTable="userTable" sorter="#{userManagementBean.listUsers.sort('userId')}">
+                    </ac:columnHeader>
+                </f:facet>
+                <h:outputText value="#{user.userId}" />
+            </p:column>
+            <p:column styleClass="display-text">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.name}" parentTable="userTable" filter="#{userManagementBean.listUsers.filter('name')}" sorter="#{userManagementBean.listUsers.sort('name')}" />
+                </f:facet>
+                <h:outputText value="#{user.name}" />
+            </p:column>
+            <p:column styleClass="display-text">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.loginName}" parentTable="userTable" filter="#{userManagementBean.listUsers.filter('loginName')}"
+                        sorter="#{userManagementBean.listUsers.sort('loginName')}" />
+                </f:facet>
+                <h:outputText value="#{user.loginName}" />
+            </p:column>
+
+            <p:column styleClass="display-text">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.personName}" parentTable="userTable" filter="#{userManagementBean.listUsers.filter('psnName')}"
+                        sorter="#{userManagementBean.listUsers.sort('psnName')}" />
+                </f:facet>
+                <h:outputText value="#{user.person.name}" />
+            </p:column>
+
+            <p:column styleClass="display-text">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.email}" parentTable="userTable" filter="#{userManagementBean.listUsers.filter('email')}" sorter="#{userManagementBean.listUsers.sort('email')}" />
+                </f:facet>
+                <h:outputText value="#{user.email}" />
+            </p:column>
+            <p:column styleClass="display-text">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.office}" parentTable="userTable" filter="#{userManagementBean.listUsers.filter('office')}"
+                        sorter="#{userManagementBean.listUsers.sort('office')}" />
+                </f:facet>
+                <h:outputText value="#{user.office.name}" />
+            </p:column>
+            <p:column styleClass="display-code">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.supervisor}">
+                    </ac:columnHeader>
+                </f:facet>
+                #{user.isSupervisor > 0 ? messages.yes : messages.no}
+            </p:column>
+            <p:column styleClass="display-text">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.createdBy}">
+                    </ac:columnHeader>
+                </f:facet>
+                <h:outputText value="#{user.createdByUser.name}" />
+            </p:column>
+            <p:column styleClass="display-text">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.accountType}">
+                    </ac:columnHeader>
+                </f:facet>
+                <h:outputText value="#{userManagementBean.getAccountTypeName(user.accountType)}" />
+            </p:column>
+        </ac:dataTable>
+    </h:form>
+</ui:composition>

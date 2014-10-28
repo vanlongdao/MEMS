@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ABSTRACT_ENTITY -->
+<table abstract="true">
+	<column name="CREATED_BY" data-type="internal-id" not-null="true" default-value="0"/>
+	<column name="CREATED_AT" data-type="datetime" not-null="false" />
+	<column name="OBJECT_VERSION" data-type="object-version" not-null="true" disable-setter="true" default-value="0"/>
+</table>

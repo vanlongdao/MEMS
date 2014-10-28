@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:o="http://omnifaces.org/ui"
+    xmlns:p="http://primefaces.org/ui">
+    
+    <o:importConstants type="arrow.mems.ui.ScreenCodes" />
+    
+    <h:form>
+        <p:panel>
+            <p:commandButton value="#{messages.add}" process="@this" immediate="true" icon=" ui-icon-plus" action="#{hospitalManagementBean.addNewHospital()}" update=":contentPane"/>
+            <p:commandButton value="#{messages.edit}" process="@this" immediate="true" icon="ui-icon-pencil" action="#{hospitalManagementBean.editHospital()}" update=":contentPane" disabled="#{!hospitalManagementBean.enableEdit}" />
+            <p:commandButton value="#{messages['hospDeptManage']}" action="#{screenMonitor.switchScreen(ScreenCodes.HOSPITAL_DEPT_MANAGEMENT)}" onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                            update=":contentPane" icon="ui-icon-pencil" process="@this" disabled="#{!hospitalManagementBean.enableEdit}" >
+                 <f:setPropertyActionListener value="#{hospitalManagementBean.selectedHospital.hospCode}" target="#{hospitalDeptManagementBean.hospCode}"/>
+            </p:commandButton>
+            <p:commandButton id="btnClose" value="#{messages['close']}" action="#{screenMonitor.close}" onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                            update="@all" icon="ui-icon-close" process="@form"/>
+        </p:panel>
+        <ac:dataTable value="#{hospitalManagementBean.listHospital}" var="hospital" id="hospitalTable"> 
+            <p:column styleClass="display-select">
+                <p:selectBooleanCheckbox value="#{hospital.selected}">
+                    <p:ajax event="change" update=":contentPane" listener="#{hospitalManagementBean.toggleSelection(hospital)}"/>
+                </p:selectBooleanCheckbox>
+            </p:column>
+            <p:column headerText="#{messages.no}" styleClass="display-index">
+                <h:outputText value="#{index+1}"/>
+            </p:column>
+            <p:column styleClass="display-code" >
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.hospCode}"
+                        parentTable="hospitalTable"
+                        sorter="#{hospitalManagementBean.listHospital.sort('hospCode')}"
+                        filter="#{hospitalManagementBean.listHospital.filter('hospCode')}">
+                    </ac:columnHeader> 
+                </f:facet>
+                <h:outputText value="#{hospital.hospCode}"/>  
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.hospName}"
+                        parentTable="hospitalTable"
+                        sorter="#{hospitalManagementBean.listHospital.sort('hospName')}"
+                        filter="#{hospitalManagementBean.listHospital.filter('hospName')}">
+                    </ac:columnHeader> 
+                </f:facet>
+                <h:outputText value="#{hospital.name}" styleClass="display-text" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.corporateName}"
+                    parentTable="hospitalTable"
+                       sorter="#{hospitalManagementBean.listHospital.sort('corporate')}"
+                       filter="#{hospitalManagementBean.listHospital.filter('corporate')}">
+                    </ac:columnHeader> 
+                </f:facet>
+                <h:outputText value="#{hospital.corporate.name}" styleClass="display-text" />
+            </p:column>
+            <p:column styleClass="display-number">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.bedNumber}"
+                        parentTable="hospitalTable">
+                    </ac:columnHeader> 
+                </f:facet>
+                <h:outputText value="#{hospital.numBeds}" styleClass="display-number" converter="#{converterStorage.quatityConverter}"/>
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.createdBy}"
+                        parentTable="hospitalTable">
+                    </ac:columnHeader> 
+                </f:facet>
+                <h:outputText value="#{hospital.createdByUser.name}" styleClass="display-text" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.createdAt}"
+                        parentTable="hospitalTable">
+                    </ac:columnHeader> 
+                </f:facet>
+                <ac:outputTime value="#{hospital.createdAt}" showTime="true"/>
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.checkedBy}"
+                        parentTable="hospitalTable">
+                    </ac:columnHeader> 
+                </f:facet>
+                <h:outputText value="#{hospital.checkedByUser.name}" styleClass="display-text" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.checkedAt}"
+                        parentTable="hospitalTable">
+                    </ac:columnHeader> 
+                </f:facet>
+                <h:outputText value="#{hospital.checkedAt}" styleClass="display-text" />
+            </p:column>
+        </ac:dataTable>
+    </h:form>
+</ui:composition>

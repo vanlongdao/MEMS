@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:of="http://omnifaces.org/functions">
+
+<f:view contentType="text/html">
+	<!-- PrimeFaces require h:head. Plain HTML head tag won't work -->
+	<h:head>
+		<title>#{messages.mems}</title>
+	</h:head>
+    
+    <h:body id="contentPage" lang="#{localeSelector.locale}">
+    	<ui:insert name="errorMessageForUser"> 
+    		<h:outputText value="#{messages.SYS00007}" escape="false" />   		
+    	</ui:insert>
+    	
+    	<h3><a href="#{requestScope['javax.servlet.error.request_uri']}">#{messages.SYS00008}</a></h3>
+    	
+    	<hr/>
+    	<ui:insert name="errorContent">    		
+    		<div style="overflow: auto;  max-height: 500px;">	
+		    	<ul>
+                    <li>Revision: #{commonBean.currentRevision} </li>
+				    <li>Date/time: #{of:formatDate(now, 'yyyy-MM-dd HH:mm:ss')}</li>
+				    <li>User agent: #{header['user-agent']}</li>
+				    <li>User IP: #{empty header['x-forwarded-for'] ? request.remoteAddr : fn:split(header['x-forwarded-for'], ',')[0]}</li>
+				    <li>Request URI: #{requestScope['javax.servlet.error.request_uri']}</li>
+				    <li>Ajax request: #{facesContext.partialViewContext.ajaxRequest ? 'Yes' : 'No'}</li>
+				    <li>Status code: #{requestScope['javax.servlet.error.status_code']}</li>
+				    <li>Exception type: #{requestScope['javax.servlet.error.exception_type']}</li>
+				    <li>Exception message: #{requestScope['javax.servlet.error.message']}</li>
+				    <li>Stack trace:
+				    	<pre><code>#{of:printStackTrace(requestScope['javax.servlet.error.exception'])}</code></pre>
+				    </li>
+				</ul>
+			</div>
+		</ui:insert>
+		<hr/>	
+    </h:body>
+ </f:view>
+</html>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ADDRESS -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="ADDR_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="ADDR_CODE" data-type="code" not-null="false" />
+	<column name="COUNTRY" data-type="integer" not-null="false" />
+	<column name="ZIP_CODE" data-type="code" not-null="false" />
+	<column name="PROVINCE" data-type="name" not-null="false" />
+	<column name="CITY" data-type="name" not-null="false" />
+	<column name="ADDRESS1" data-type="address" not-null="false" />
+	<column name="ADDRESS2" data-type="address" not-null="false" />
+	<column name="CONTACT_METHOD" data-type="freetext" not-null="false" />
+	<foreign-key parent-table="MT_COUNTRY">
+        <column name="COUNTRY" referColumn="COUNTRY_ID"/>
+    </foreign-key>
+</table>

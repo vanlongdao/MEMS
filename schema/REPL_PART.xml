@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- REPL_PART -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="REPL_PART_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="ACTION_CODE" data-type="code" not-null="false" />
+	<column name="DEVICE_CODE" data-type="code" not-null="false" />
+	<column name="REMOVED_DEV_CODE" data-type="code" not-null="false" />
+	<column name="MEMO_REMOVED" data-type="freetext" not-null="false" />
+	<column name="DELIVERY_METHOD" data-type="freetext" not-null="false" />
+	<column name="IMAGE_FILE" data-type="image" not-null="false" />
+</table>

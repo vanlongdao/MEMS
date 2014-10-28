@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+	<h:form>
+		<p:outputPanel>
+			<table>
+				<tr>
+					<td><h:outputLabel value="#{messages.feePart}" /></td>
+					<td><p:inputText value="#{viewRepairRequestBean.currentFee.feeParts}" disabled="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.feeShipping}" /></td>
+					<td><p:inputText value="#{viewRepairRequestBean.currentFee.feeShipping}" disabled="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.feeOther}" /></td>
+					<td><p:inputText value="#{viewRepairRequestBean.currentFee.feeOther}" disabled="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.tax}" /></td>
+					<td><p:inputText value="#{viewRepairRequestBean.currentFee.tax}" disabled="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.totalPay}" /></td>
+					<td><p:inputText value="#{viewRepairRequestBean.currentFee.totalPay}" disabled="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.payDate}" /></td>
+					<td><p:inputText value="#{viewRepairRequestBean.currentFee.payDate}" disabled="true" /></td>
+				</tr>
+			</table>
+		</p:outputPanel>
+	</h:form>
+</ui:composition>

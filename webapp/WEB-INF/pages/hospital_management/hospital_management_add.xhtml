@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://omnifaces.org/ui"
+    xmlns:p="http://primefaces.org/ui">
+    
+    <o:importConstants type="arrow.mems.ui.ScreenCodes" />
+    
+    <h:form id="form">
+        <p:panel>
+            <table>
+                <tr>
+                    <td class="label">#{messages['hospCode']}</td>
+                    <td><p:inputText id="hospitalCode" value="#{hospitalManagementBean.currentHospital.hospCode}"
+                            label="#{messages['hospitalCode']}" disabled="true" /></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['hospName']}" for="hospitalName" /></td>
+                    <td><p:inputText id="hospitalName" value="#{hospitalManagementBean.currentHospital.name}"
+                            label="#{messages['hospitalName']}" styleClass="fifteen-char" maxlength="255"/></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['corporate']}" for="corporateCode" /></td>
+                    <td><p:autoComplete id="corporateCode" value="#{hospitalManagementBean.currentHospital.corporate}"
+                            converter="#{converterStorage.corporateConverter}" title="#{messages.corporate}"
+                            forceSelection="true" emptyMessage="#{messages.noCorporateFound}" cache="true" cacheTimeout="300"
+                            dropdown="true" scrollHeight="200" var="corp" itemLabel="#{corp.name}" itemValue="#{corp}"
+                            completeMethod="#{commonAutoCompleteBean.filterCorporate}">
+                            <p:column headerText="#{messages.code}">
+                                <h:outputText value="#{corp.corpCode}" />
+                            </p:column>
+
+                            <p:column headerText="#{messages.name}">
+                                <h:outputText value="#{corp.name}" />
+                            </p:column>
+                            <p:ajax event="itemSelect" process="@this" update="corporateCode" />
+                        </p:autoComplete></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['office']}" for="officeCode" /></td>
+                    <td><p:autoComplete id="officeCode" value="#{hospitalManagementBean.currentHospital.office}"
+                            converter="#{converterStorage.officeConverter}" title="#{messages.office}" forceSelection="true"
+                            emptyMessage="#{messages.noOfficeFound}" cache="true" cacheTimeout="300" dropdown="true"
+                            scrollHeight="200" var="office" itemLabel="#{office.name}" itemValue="#{office}"
+                            completeMethod="#{commonAutoCompleteBean.filterOffice}">
+                            <p:column headerText="#{messages.code}">
+                                <h:outputText value="#{office.officeCode}" />
+                            </p:column>
+
+                            <p:column headerText="#{messages.name}">
+                                <h:outputText value="#{office.name}" />
+                            </p:column>
+                            <p:ajax event="itemSelect" process="@this" update="officeCode" />
+                        </p:autoComplete></td>
+                </tr>
+                <tr>
+                    <td class="label">#{messages['bedNumber']}</td>
+                    <td><p:inputText id="numbed" value="#{hospitalManagementBean.currentHospital.numBeds}" converter="#{converterStorage.quatityConverter}"
+                            label="#{messages['bedNumber']}" styleClass="ten-char display-number"/></td>
+                </tr>
+                <tr>
+                        <td class="label">#{messages['budget']} </td>
+                        <td><p:commandButton id="btnEdit"
+                                value="#{messages['addEdit']}" action="#{screenMonitor.switchScreen(ScreenCodes.BUDGET_MANAGEMENT)}" update=":contentPane" process="@this"
+                                icon="ui-icon-pencil">
+                                <f:setPropertyActionListener value="#{hospitalManagementBean.currentHospital.hospCode}" target="#{budgetManagementBean.hospCode}" />
+                            </p:commandButton>    
+                         </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="right">
+                        <p:commandButton id="btnInsert" value="#{messages['save']}"
+                            action="#{hospitalManagementBean.saveHospital()}" update=":contentPane" icon="ui-icon-disk" />
+                         <p:commandButton value="#{messages.delete}" icon="ui-icon-trash" action="#{hospitalManagementBean.deleteHospital()}" rendered="#{hospitalManagementBean.currentHospital.persisted}"
+                            update=":contentPane" disabled="#{!hospitalManagementBean.enableDelete}" immediate="true">
+                            <p:confirm header="#{messages.confirmation}" message="#{messages.MMI00003}" icon="ui-icon-alert" />
+                        </p:commandButton> <p:commandButton id="btnCancel" value="#{messages['cancel']}"
+                            action="#{hospitalManagementBean.closeUpdateHospital()}" update=":contentPane" immediate="true"
+                            icon="ui-icon-close" /></td>
+                </tr>
+            </table>
+        </p:panel>
+    </h:form>
+    
+    <h:form>
+        <p:fieldset legend="#{messages.approvingSection}" rendered="#{hospitalManagementBean.currentHospital.persisted}" id="approvalSection">
+            <ac:approval entityId="#{hospitalManagementBean.entityId}" dataType="#{hospitalManagementBean.dataType}" itemLabel="#{hospitalManagementBean.itemLabel}">
+            </ac:approval>
+        </p:fieldset>
+    </h:form>
+</ui:composition>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+	<h:form>
+		<p:outputPanel id="estimateType">
+			<p:selectOneRadio id="typeEstimate" value="#{partsOrderBean.estimateType}" layout="grid" columns="2">
+				<f:selectItems value="#{partEstimationBean.partEstimationTypes}" var="type" />
+				<p:ajax event="change" process="@this" update="@form" />
+			</p:selectOneRadio>
+		</p:outputPanel>
+
+		<p:outputPanel id="selectButton">
+			<p:commandButton rendered="#{partsOrderBean.currentEstimate ne null}" value="#{messages.select}" process="@this" update="@([id$=selectOrderForm])"
+				actionListener="#{partsOrderBean.copyFromEstimate}" />
+		</p:outputPanel>
+
+		<p:outputPanel>
+			<p:fieldset legend="#{messages.partEstimate}" styleClass="fieldset-#{userCredential.preferences.theme}">
+				<ac:dataTable value="#{partsOrderBean.listEstimateShow}" id="selectEstimateTable" var="estimate" rowIndexVar="index">
+
+					<p:column styleClass="display-select">
+						<p:selectBooleanCheckbox value="#{estimate.selected}" styleClass="checkbox">
+							<p:ajax process="@this" update="@([id$=estimateInfo]), @([id$=estimateItem]), @([id$=selectButton])" listener="#{partsOrderBean.toggleSelectionEstimate(estimate)}" />
+						</p:selectBooleanCheckbox>
+					</p:column>
+
+					<p:column headerText="#{messages.no}" styleClass="display-index">
+						#{index+1}
+					</p:column>
+
+					<p:column headerText="#{messages.requestDate}" styleClass="display-text">
+						#{estimate.requestDate}
+					</p:column>
+
+					<p:column headerText="#{messages.totalPrice}" styleClass="display-text">
+						#{estimate.totalPrice}
+					</p:column>
+
+				</ac:dataTable>
+
+
+				<p:outputPanel id="estimateInfo">
+					<p:fieldset legend="#{messages.partEstimateInfo}" rendered="#{partsOrderBean.currentEstimate ne null}" styleClass="fieldset-#{userCredential.preferences.theme}">
+						<table>
+							<tr>
+								<td><p:outputLabel value="#{messages.partDistributor}" /></td>
+								<td><p:inputText disabled="true" value="#{partsOrderBean.currentEstimate.distOffice}" /></td>
+							</tr>
+							<tr>
+								<td><p:outputLabel value="#{messages.requestDate}" /></td>
+								<td><p:inputText disabled="true" value="#{partsOrderBean.currentEstimate.requestDate}" /></td>
+							</tr>
+							<tr>
+								<td><p:outputLabel value="#{messages.expireDate}" /></td>
+								<td><p:inputText disabled="true" value="#{partsOrderBean.currentEstimate.expireDate}" /></td>
+							</tr>
+							<tr>
+								<td><p:outputLabel value="#{messages.codeDistributor}" /></td>
+								<td><p:inputText disabled="true" value="#{partsOrderBean.currentEstimate.distPsn}" /></td>
+							</tr>
+							<tr>
+								<td><p:outputLabel value="#{messages.total}" /></td>
+								<td><p:inputText disabled="true" value="#{partsOrderBean.currentEstimate.totalPrice}" /></td>
+							</tr>
+							<tr>
+								<td><p:outputLabel value="#{messages.tax}" /></td>
+								<td><p:inputText disabled="true" value="#{partsOrderBean.currentEstimate.tax}" /></td>
+							</tr>
+						</table>
+					</p:fieldset>
+				</p:outputPanel>
+
+				<p:outputPanel id="estimateItem">
+					<p:fieldset legend="#{messages.partEstimateItem}" rendered="#{partsOrderBean.currentEstimate ne null}" styleClass="fieldset-#{userCredential.preferences.theme}">
+						<ac:dataTable value="#{partsOrderBean.listEstimateItemShow}" var="item" rowIndexVar="index">
+
+							<p:column styleClass="display-index">
+							#{index+1}
+						</p:column>
+
+							<p:column styleClass="display-code" headerText="#{messages.modelNo}">
+                        	#{item.partModelNo}
+                   		</p:column>
+
+							<p:column styleClass="display-text" headerText="#{messages.partName}">
+                    		#{item.partName}
+                		</p:column>
+
+							<p:column styleClass="display-number" headerText="#{messages.numberItems}">
+							#{item.numItems}
+						</p:column>
+
+							<p:column styleClass="display-number" headerText="#{messages.price}">
+							#{item.itemPrice}
+						</p:column>
+
+							<p:column styleClass="display-number" headerText="#{messages.taxrate}">
+							#{item.itemPrice}
+						</p:column>
+
+							<p:column styleClass="display-number" headerText="#{messages.priceWithTax}">
+							#{item.priceWithTax}
+						</p:column>
+
+						</ac:dataTable>
+					</p:fieldset>
+				</p:outputPanel>
+			</p:fieldset>
+		</p:outputPanel>
+	</h:form>
+</ui:composition>

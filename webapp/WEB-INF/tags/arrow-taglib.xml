@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<facelet-taglib xmlns="http://java.sun.com/xml/ns/javaee"
+	            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	            xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd"
+	            version="2.0">
+	            
+	<namespace>http://arrow-tech.vn/ui</namespace>
+    <!-- composite components -->
+	<composite-library-name>arrowtags</composite-library-name>
+	
+	<!-- custom components -->
+	
+	<tag>
+		<tag-name>dataTable</tag-name>
+		<component>
+			<component-type>arrow.framework.faces.component.ArrowDataTable</component-type>			
+		</component>
+	</tag>
+	
+	
+	<!-- Simple facelet compositions -->
+	<tag>
+		<tag-name>outputTime</tag-name>
+		<source>outputTime.xhtml</source>
+	</tag>
+</facelet-taglib>

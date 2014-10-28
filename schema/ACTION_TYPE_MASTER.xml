@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ACTION_TYPE_MASTER -->
+<table>
+	<primary-key>
+		<column name="ACTION_TYPE_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="ACTION_TYPE_CODE" data-type="code" not-null="false" />
+	<column name="COUNTRY" data-type="integer" not-null="false" />
+	<column name="LABEL" data-type="label" not-null="false" />
+</table>

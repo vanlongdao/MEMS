@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:o="http://omnifaces.org/ui"
+    xmlns:p="http://primefaces.org/ui">
+    <h:form id="form">
+    <p:panel>
+        <table>
+            <tr>
+				<td><p:outputLabel value="#{messages.country}" for="autoCompleteCountry" /></td>
+				<td><p:autoComplete id="autoCompleteCountry" value="#{managePresetPhrasesBean.currentPresetPhrases.mtCountry}" converter="#{converterStorage.countryConverter}" title="#{messages.typeToFindCountry}"
+						var="country" itemLabel="#{country.name}" forceSelection="true" emptyMessage="#{messages.noCountryFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200"
+						itemValue="#{country}" completeMethod="#{countryManagementBean.filterCountry}">
+						<p:column headerText="#{messages.countryId}">
+							<h:outputText value="#{country.countryId}" />
+						</p:column>
+                        <p:column headerText="#{messages.countryName}">
+                            <h:outputText value="#{country.name}" />
+                        </p:column>
+                        <p:ajax event="itemSelect" process="@this" update="autoCompleteCountry" />
+                    </p:autoComplete></td>
+            </tr>
+            <tr>
+                <td class="label"><p:outputLabel value="#{messages['inputString']}" for="inputString" /></td>
+                <td>
+                	<p:inputText id="inputString" value="#{managePresetPhrasesBean.currentPresetPhrases.inputStr}" label="#{messages['presetPhrasesName']}" styleClass="fifteen-char" maxlength="255"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="label"> <p:outputLabel value="#{messages['showString']}" for="showString" /></td>
+                <td>
+                    <p:inputTextarea id="showString" value="#{managePresetPhrasesBean.currentPresetPhrases.showStr}" label="#{messages['showString']}"  styleClass="desc-textarea"/>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td align="left">
+                    <p:commandButton id="btnInsert" value="#{messages['save']}" action="#{managePresetPhrasesBean.savePresetPhrases()}" update=":contentPane" icon="ui-icon-disk" />
+                    <p:commandButton id="btnCancel" value="#{messages['cancel']}" actionListener="#{managePresetPhrasesBean.closeUpdatePresetPhrases}" update=":contentPane" immediate="true" icon="ui-icon-close" process="@this"/>
+                    <p:commandButton value="#{messages.delete}" icon="ui-icon-trash" action="#{managePresetPhrasesBean.deletePresetPhrases()}" update=":contentPane" rendered="#{managePresetPhrasesBean.currentPresetPhrases.persisted}">
+                        <p:confirm header="#{messages.confirmation}" message="#{messages.MMI00003}" icon="ui-icon-alert" />
+                    </p:commandButton>
+                </td>
+            </tr>
+        </table>
+        </p:panel>
+    </h:form>
+    <h:form>
+        <p:fieldset legend="#{messages.approvingSection}" rendered="#{managePresetPhrasesBean.currentPresetPhrases.persisted}" id="approvalSection">
+            <ac:approval entityId="#{managePresetPhrasesBean.entityId}" dataType="#{managePresetPhrasesBean.dataType}" itemLabel="#{managePresetPhrasesBean.itemLabel}">
+            </ac:approval>
+        </p:fieldset>
+    </h:form>
+</ui:composition>

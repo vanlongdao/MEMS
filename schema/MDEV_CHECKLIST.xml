@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MDEV_CHECKLIST -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="CKLIST_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="CKLIST_CODE" data-type="code" not-null="false" />
+	<column name="MDEV_CODE" data-type="code" not-null="false" />
+	<column name="NAME" data-type="name" not-null="false"/>
+    
+     <foreign-key parent-table="M_DEVICE" many-to-one="true">
+        <column name="MDEV_CODE" referColumn="MDEV_CODE"/>
+        <column name="IS_DELETED" referColumn="IS_DELETED"/>
+    </foreign-key>
+</table>

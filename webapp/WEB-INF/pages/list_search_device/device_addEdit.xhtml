@@ -1,0 +1,335 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:o="http://omnifaces.org/ui"
+    xmlns:ac="http://arrow-tech.vn/ui"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pe="http://primefaces.org/ui/extensions">
+    
+    <o:importConstants type="arrow.mems.ui.ScreenCodes" />
+    
+    <h:form id="addDevice" enctype="multipart/form-data">
+    <p:panel>
+        <table>
+            <tr>
+                <td class="label">#{messages['chooseMasterDevice']}</td>
+                <td>
+                	<p:autoComplete id="chooseMasterDevice" value="#{deviceManagementBean.currentDevice.MDevice}" converter="#{converterStorage.MDeviceConverter}" title="#{messages.mDevice}"
+                                forceSelection="true" emptyMessage="#{messages.noMdeviceFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200"
+                                var="mDevice" itemLabel="#{mDevice.name}" itemValue="#{mDevice}" completeMethod="#{commonAutoCompleteBean.filterMDevice}">
+                                <p:column headerText="#{messages.modelNo}">
+                                    <h:outputText value="#{mDevice.modelNo}" />
+                                </p:column>
+                                <p:column headerText="#{messages.catalog}">
+                                    <h:outputText value="#{mDevice.catName}" />
+                                </p:column>
+                                <p:column headerText="#{messages.name}">
+                                    <h:outputText value="#{mDevice.name}" />
+                                </p:column>
+                                <p:column headerText="#{messages.manufacturerName}">
+                                    <h:outputText value="#{mDevice.manufacturerPerson.name}" />
+                                </p:column>
+                                <p:column headerText="#{messages.supplierName}">
+                                    <h:outputText value="#{mDevice.supplierPerson.name}" />
+                                </p:column>
+                    <p:ajax event="itemSelect" process="@this" update="chooseMasterDevice softwareRevision partOf" listener="#{deviceManagementBean.eventChangeMDevice()}"/>            
+                    </p:autoComplete> 
+               </td>
+               <td>
+                    <p:commandButton id="btnRegister" value="#{messages['registerDevice']}" action="#{screenMonitor.openScreen(ScreenCodes.MASTER_DEVICES_MANAGEMENT_LIST_SEARCH, true)}" update=":contentPane" icon="ui-icon-disk" process="@this" styleClass="btnRegisterMdevice">
+                        <p:confirm header="#{messages.confirmationSwitchPage}" message="#{messages.MPM00017}" icon="ui-icon-alert" />
+                    </p:commandButton>
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><p:outputLabel value="#{messages['serialNumber']}" for="serialNumber" /></td>
+                <td>
+                	<p:inputText id="serialNumber" value="#{deviceManagementBean.currentDevice.serialNo}" label="#{messages['serialNumber']}" styleClass="fifteen-char" maxlength="255" disabled="#{deviceManagementBean.haveNoSerial}"/>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><p:outputLabel value="#{messages.checkIfHaveNoSerial}" /></td>
+                <td>
+                    <p:selectBooleanCheckbox value="#{deviceManagementBean.haveNoSerial}" id="haveNoSerial" >
+                        <p:ajax event="change" update="haveNoSerial serialNumber" />
+                    </p:selectBooleanCheckbox>
+                </td>
+                <td></td>
+            </tr>
+             <tr>
+                <td class="label"><p:outputLabel value="#{messages['softwareRevision']}" for="softwareRevision" /></td>
+                <td>
+                    <p:autoComplete id="softwareRevision" value="#{deviceManagementBean.currentDevice.softwareRevison}" converter="#{converterStorage.documentConverter}" title="#{messages.mDevice}"
+                                forceSelection="true" emptyMessage="#{messages.noSoftwareRevisionFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200"
+                                var="mDevice" itemLabel="#{mDevice.softwareRev}" itemValue="#{mDevice}" completeMethod="#{deviceManagementBean.filterDocument}" disabled="#{!deviceManagementBean.enableChooseSofwareRevision}">
+                                <p:column headerText="#{messages.device}">
+                                    <h:outputText value="#{mDevice.MDevice.name}" />
+                                </p:column>
+                                
+                                <p:column headerText="#{messages.softwareRevision}">
+                                    <h:outputText value="#{mDevice.softwareRev}" />
+                                </p:column>
+                    <p:ajax event="itemSelect" process="@this" update="softwareRevision"/>            
+                    </p:autoComplete>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="label"><p:outputLabel value="#{messages['partOf']}" for="partOf" /></td>
+                <td>
+                <p:autoComplete id="partOf" value="#{deviceManagementBean.currentDevice.targetDevice}" converter="#{converterStorage.deviceConverter}" title="#{messages.device}"
+                                forceSelection="true" emptyMessage="#{messages.noDeviceFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200"
+                                var="device" itemLabel="#{device.MDevice.name}" itemValue="#{device}" completeMethod="#{deviceManagementBean.filterDeviceInDevice}" 
+                                disabled="#{deviceManagementBean.currentDevice.MDevice == null or (!deviceManagementBean.currentDevice.MDevice.partType)}">
+                                <p:column headerText="#{messages.modelNo}">
+                                    <h:outputText value="#{device.MDevice.modelNo}" />
+                                </p:column>
+                                <p:column headerText="#{messages.deviceCode}">
+                                    <h:outputText value="#{device.devCode}" />
+                                </p:column>
+                                <p:column headerText="#{messages.deviceName}">
+                                    <h:outputText value="#{device.MDevice.name}" />
+                                </p:column>
+                                <p:column headerText="#{messages.serialNo}">
+                                    <h:outputText value="#{device.serialNo}" />
+                                </p:column>
+                                <p:column headerText="#{messages.manufacturerName}">
+                                    <h:outputText value="#{device.MDevice.manufacturerPerson.name}" />
+                                </p:column>
+                                <p:column headerText="#{messages.supplierName}">
+                                    <h:outputText value="#{device.supplierOffice.name}" />
+                                </p:column>
+                    <p:ajax event="itemSelect" process="@this" update="partOf displaySN"/>            
+                 </p:autoComplete> <h:outputLabel id="displaySN" value="#{messages.serialNo}:#{deviceManagementBean.currentDevice.targetDevice.serialNo}" rendered="#{deviceManagementBean.currentDevice.targetDevice} !=null"/>
+                </td>
+                <td></td>
+            </tr>
+             <tr>
+                <td class="label"><p:outputLabel value="#{messages['expriredDate']}" for="buttonExpriredDate" /></td>
+                <td>
+                    <p:calendar id="buttonExpriredDate" value="#{deviceManagementBean.currentDevice.expireDate}" showOn="button" locale="#{localeSelector.locale}" navigator="true" mask="true" pattern="dd/MM/yyyy">
+                            <p:ajax event="dateSelect" update="buttonExpriredDate"/>
+                     </p:calendar>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="label"><p:outputLabel value="#{messages['deliveredDate']}" for="buttonDeliveredDate" /></td>
+                <td>
+                    <p:calendar id="buttonDeliveredDate" value="#{deviceManagementBean.currentDevice.installDate}" showOn="button" locale="#{localeSelector.locale}" navigator="true" mask="true" pattern="dd/MM/yyyy">
+                            <p:ajax event="dateSelect" update="buttonDeliveredDate"/>
+                     </p:calendar>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="label"><p:outputLabel value="#{messages['acceptedDate']}" for="buttonAcceptedDate" /></td>
+                <td>
+                    <p:calendar id="buttonAcceptedDate" value="#{deviceManagementBean.currentDevice.acceptanceDate}" showOn="button" locale="#{localeSelector.locale}" navigator="true" mask="true" pattern="dd/MM/yyyy">
+                            <p:ajax event="dateSelect" update="buttonAcceptedDate"/>
+                     </p:calendar>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="label"><p:outputLabel value="#{messages['supplier']}" for="supplier" /></td>
+                <td>
+                    <p:autoComplete id="supplier" value="#{deviceManagementBean.currentDevice.supplierOffice}" converter="#{converterStorage.officeConverter}" title="#{messages.office}"
+                                forceSelection="true" emptyMessage="#{messages.noOfficeFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200"
+                                var="office" itemLabel="#{office.fullNameSupplier}" itemValue="#{office}" completeMethod="#{commonAutoCompleteBean.filterOffice}" >
+                                <p:column headerText="#{messages.officeCode}">
+                                    <h:outputText value="#{office.officeCode}" />
+                                </p:column>
+                                <p:column headerText="#{messages.officeName}">
+                                    <h:outputText value="#{office.name}" />
+                                </p:column>
+                        <p:ajax event="itemSelect" process="@this" update="supplier contactToSupplier" listener="#{deviceManagementBean.eventChangeSupplierOffice()}"/>            
+                    </p:autoComplete>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="label"><p:outputLabel value="#{messages['contactToSupplier']}" for="contactToSupplier" /></td>
+                <td>
+                    <p:autoComplete id="contactToSupplier" value="#{deviceManagementBean.currentDevice.supplierPerson}" converter="#{converterStorage.personConverter}" title="#{messages.person}"
+                                forceSelection="true" emptyMessage="#{messages.noPersonFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200"
+                                var="psn" itemLabel="#{psn.fullName}" itemValue="#{psn}" completeMethod="#{deviceManagementBean.filterSupplierPerson}" disabled="#{!deviceManagementBean.enableChooseSupplierContact}">
+                                <p:column headerText="#{messages.code}">
+                                    <h:outputText value="#{psn.psnCode}" />
+                                </p:column>
+                     
+                                <p:column headerText="#{messages.name}">
+                                    <h:outputText value="#{psn.name}" />
+                                </p:column>
+                    <p:ajax event="itemSelect" process="@this" update="contactToSupplier"/>            
+                    </p:autoComplete>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="label"><p:outputLabel value="#{messages['repairedBy']}" for="repairedBy" /></td>
+                <td>
+                    <p:autoComplete id="repairedBy" value="#{deviceManagementBean.currentDevice.repairedByOffice}" converter="#{converterStorage.officeConverter}" title="#{messages.office}"
+                                forceSelection="true" emptyMessage="#{messages.noOfficeFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200"
+                                var="office" itemLabel="#{office.fullNameSupplier}" itemValue="#{office}" completeMethod="#{commonAutoCompleteBean.filterOffice}" >
+                                <p:column headerText="#{messages.officeCode}">
+                                    <h:outputText value="#{office.officeCode}" />
+                                </p:column>
+                                <p:column headerText="#{messages.officeName}">
+                                    <h:outputText value="#{office.name}" />
+                                </p:column>
+                        <p:ajax event="itemSelect" process="@this" update="repairedBy contactToRepair" listener="#{deviceManagementBean.eventChangeRepairOffice()}"/>            
+                    </p:autoComplete>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="label"><p:outputLabel value="#{messages['contactToRepair']}" for="contactToRepair" /></td>
+                <td>
+                    <p:autoComplete id="contactToRepair" value="#{deviceManagementBean.currentDevice.repairedPerson}" converter="#{converterStorage.personConverter}" title="#{messages.person}"
+                                forceSelection="true" emptyMessage="#{messages.noPersonFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200"
+                                var="psn" itemLabel="#{psn.fullName}" itemValue="#{psn}" completeMethod="#{deviceManagementBean.filterRepairedPerson}" disabled="#{!deviceManagementBean.enableChooseRepairedContact}">
+                                <p:column headerText="#{messages.code}">
+                                    <h:outputText value="#{psn.psnCode}" />
+                                </p:column>
+                     
+                                <p:column headerText="#{messages.name}">
+                                    <h:outputText value="#{psn.name}" />
+                                </p:column>
+                    <p:ajax event="itemSelect" process="@this" update="contactToRepair"/>            
+                    </p:autoComplete>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="label"><p:outputLabel value="#{messages['placedHosp']}" for="placedHosp" /></td>
+                <td>
+                    <p:autoComplete id="placedHosp" value="#{deviceManagementBean.currentDevice.hospitalDept}" converter="#{converterStorage.hospitalDepartmentConverter}" title="#{messages.hospital}"
+                                forceSelection="true" emptyMessage="#{messages.noHospitalFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200"
+                                var="hosp" itemLabel="#{hosp.name}" itemValue="#{hosp}" completeMethod="#{commonAutoCompleteBean.filterHospitalDept}">
+                                <p:column headerText="#{messages.code}">
+                                    <h:outputText value="#{hosp.hospCode}" />
+                                </p:column>
+                                <p:column headerText="#{messages.name}">
+                                    <h:outputText value="#{hosp.name}" />
+                                </p:column>
+                        <p:ajax event="itemSelect" process="@this" update="placedHosp"/>            
+                    </p:autoComplete>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="label"><p:outputLabel value="#{messages['locationImage']}"/></td>
+                <td>
+                    <ac:uploadImage listener="#{deviceManagementBean.fileLocationImageUploadListener}" id="locationImage" value="#{deviceManagementBean.locationImage}" 
+                        update="@([id$=locationImagePreview]), @this">
+                    </ac:uploadImage>
+                </td>
+                <td>
+                    <p:lightBox>
+                        <h:outputLink>
+                        <p:graphicImage value="#{imageStreamBean.deviceLocationImageAsStream}" width="50" height="50" id="locationImagePreview" cache="false">
+                            <f:param name="key" value="#{deviceManagementBean.currentDeviceKey}"></f:param>
+                        </p:graphicImage>
+                        </h:outputLink>
+                    </p:lightBox>
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><p:outputLabel value="#{messages['locationDetail']}" for="locationDetail" /></td>
+                <td>
+                    <p:inputText id="locationDetail" value="#{deviceManagementBean.currentDevice.location}" label="#{messages['locationDetail']}" styleClass="fifteen-char" maxlength="255"/>
+                </td>
+                <td>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><p:outputLabel value="#{messages['obtainThis']}" for="obtainThis" /></td>
+                <td>
+                    <p:autoComplete id="obtainThis" value="#{deviceManagementBean.currentDevice.acquiMaster}" converter="#{converterStorage.acquisitionMaster}" title="#{messages.acquisitionMaster}"
+                                forceSelection="true" emptyMessage="#{messages.noAcquisitionMasterFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200"
+                                var="acquiMaster" itemLabel="#{acquiMaster.msgLocal}" itemValue="#{acquiMaster}" completeMethod="#{commonAutoCompleteBean.filterAcquiMaster}">
+                                <p:column headerText="#{messages.acqCode}">
+                                    <h:outputText value="#{acquiMaster.acqCode}" />
+                                </p:column>
+                                <p:column headerText="#{messages.msgLocal}">
+                                    <h:outputText value="#{acquiMaster.msgLocal}" />
+                                </p:column>
+                                <p:column headerText="#{messages.msgPriceEntry}">
+                                    <h:outputText value="#{acquiMaster.msgPriceEntry}" />
+                                </p:column>
+                        <p:ajax event="itemSelect" process="@this" update="obtainThis"/>            
+                    </p:autoComplete>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="label"><p:outputLabel value="#{messages['price']}" for="currency" /></td>
+                <td>
+                    <p:inputText id="price" value="#{deviceManagementBean.currentDevice.price}" label="#{messages['price']}" maxlength="20" styleClass="fifteen-char display-number" converter="#{converterStorage.moneyConverter}">
+                            <p:ajax process="@this" update="@this"/>
+                    </p:inputText>
+                    <pe:keyFilter for="price" mask="num"/> 
+                    <p:autoComplete id="currency" value="#{deviceManagementBean.currency}" converter="#{converterStorage.currency}" title="#{messages.currency}" styleClass="narrowDropDown"
+                                forceSelection="true" emptyMessage="#{messages.noCurrencyFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200"
+                                var="currency" itemLabel="#{currency.ccyName}" itemValue="#{currency}" completeMethod="#{commonAutoCompleteBean.filterMtCurrency}">
+                                <p:column headerText="#{messages.ccyName}">
+                                    <h:outputText value="#{currency.ccyName}" />
+                                </p:column>
+                        <p:ajax event="itemSelect" process="@this" update="currency"/>            
+                    </p:autoComplete>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="label"><p:outputLabel value="#{messages['image']}"/></td>
+                <td>
+                    <ac:uploadImage listener="#{deviceManagementBean.fileImageUploadListener}" id="imageUpload" value="#{deviceManagementBean.image}" update="@([id$=imagePreview]), @this">
+                    </ac:uploadImage>
+                </td>
+                <td>
+                    <p:lightBox>
+                        <h:outputLink>
+                        <p:graphicImage value="#{imageStreamBean.deviceImageAsStream}" width="50" height="50" id="imagePreview" cache="false">
+                            <f:param name="key" value="#{deviceManagementBean.currentDeviceKey}"></f:param>
+                        </p:graphicImage>
+                        </h:outputLink>
+                    </p:lightBox>
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><p:outputLabel value="#{messages['codeByHospital']}" for="codeByHospital" /></td>
+                <td>
+                    <p:inputText id="codeByHospital" value="#{deviceManagementBean.currentDevice.clientMgmtCode}" label="#{messages['codeByHospital']}" styleClass="fifteen-char" maxlength="255"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" align="left">
+                    <p:commandButton id="btnPrintQRCode" value="#{messages['printQRCode']}" action="#{screenMonitor.switchScreen(ScreenCodes.PRINT_QR_CODE)}" update=":contentPane" immediate="true" icon="ui-icon-disk" rendered="#{deviceManagementBean.currentDevice.devCode !=null}">
+                        <f:setPropertyActionListener value="#{deviceManagementBean.currentDevice.devCode}" target="#{printQRCodeBean.deviceCode}"/>        
+                    </p:commandButton>
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    <p:commandButton id="btnInsert" value="#{messages['save']}" action="#{deviceManagementBean.saveDevice}" update="@all" icon="ui-icon-disk" process="@form"/>
+                    <p:commandButton id="btnCancel" value="#{messages['cancel']}" actionListener="#{deviceManagementBean.closeUpdateDevice}" update=":contentPane" immediate="true" icon="ui-icon-close" process="@this"/>
+                    <p:commandButton value="#{messages.delete}" icon="ui-icon-trash" action="#{deviceManagementBean.deleteDevice}" update=":contentPane" rendered="#{deviceManagementBean.currentDevice.persisted}" process="@form" immediate="true">
+                        <p:confirm header="#{messages.confirmation}" message="#{messages.MMI00003}" icon="ui-icon-alert" />
+                    </p:commandButton>
+                </td>
+            </tr>
+        </table>
+        </p:panel>
+    </h:form>
+    <h:form>
+        <p:fieldset legend="#{messages.approvingSection}" rendered="#{deviceManagementBean.currentDevice.persisted}" id="approvalSection">
+            <ac:approval entityId="#{deviceManagementBean.entityId}" dataType="#{deviceManagementBean.dataType}" itemLabel="#{deviceManagementBean.itemLabel}">
+            </ac:approval>
+        </p:fieldset>
+    </h:form>
+</ui:composition>

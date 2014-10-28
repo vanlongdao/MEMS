@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:o="http://omnifaces.org/ui"
+    xmlns:p="http://primefaces.org/ui">
+    <h:form id="form">
+    <p:panel>
+        <table>
+            <tr>
+                <td class="label"><p:outputLabel value="#{messages['hospName']}" for="hospCode" /></td>
+                <td>
+                    <p:autoComplete id="hospCode" value="#{humanResourceManagementBean.currentHumanResource.hospital}" converter="#{converterStorage.hospitalConverter}" title="#{messages.hospital}"
+                                forceSelection="true" emptyMessage="#{messages.noHospitalFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200"
+                                var="hosp" itemLabel="#{hosp.name}" itemValue="#{hosp}" completeMethod="#{commonAutoCompleteBean.filterHospital}">
+                                <p:column headerText="#{messages.code}">
+                                    <h:outputText value="#{hosp.hospCode}" />
+                                </p:column>
+                     
+                                <p:column headerText="#{messages.name}">
+                                    <h:outputText value="#{hosp.name}" />
+                                </p:column>
+                    <p:ajax event="itemSelect" process="@this" update="hospCode hospDeptCode person" listener="#{humanResourceManagementBean.eventChangeHosptial()}"/>            
+                    </p:autoComplete>
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><p:outputLabel value="#{messages['hospDeptName']}" for="hospDeptCode" /></td>
+                <td>
+                    <p:autoComplete id="hospDeptCode" value="#{humanResourceManagementBean.currentHumanResource.hospitalDept}" converter="#{converterStorage.hospitalDepartmentConverter}" title="#{messages.hospitalDept}"
+                                forceSelection="true" emptyMessage="#{messages.noHospitalDeptFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200"
+                                var="hospDept" itemLabel="#{hospDept.name}" itemValue="#{hospDept}" completeMethod="#{humanResourceManagementBean.filterHospitalDeptInHosp}" disabled="#{!humanResourceManagementBean.enableForHospitalDep}">
+                                <p:column headerText="#{messages.code}">
+                                    <h:outputText value="#{hospDept.deptCode}" />
+                                </p:column>
+                     
+                                <p:column headerText="#{messages.name}">
+                                    <h:outputText value="#{hospDept.name}" />
+                                </p:column>
+                    <p:ajax event="itemSelect" process="@this" update="hospDeptCode"/>            
+                    </p:autoComplete>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="label"><p:outputLabel value="#{messages['person']}" for="person" /></td>
+                <td>
+                    <p:autoComplete id="person" value="#{humanResourceManagementBean.currentHumanResource.person}" converter="#{converterStorage.personConverter}" title="#{messages.person}"
+                                forceSelection="true" emptyMessage="#{messages.noPersonFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200"
+                                var="psn" itemLabel="#{psn.name}" itemValue="#{psn}" completeMethod="#{humanResourceManagementBean.filterPersonInHosp}" disabled="#{!humanResourceManagementBean.enableForHospitalDep}">
+                                <p:column headerText="#{messages.code}">
+                                    <h:outputText value="#{psn.psnCode}" />
+                                </p:column>
+                     
+                                <p:column headerText="#{messages.name}">
+                                    <h:outputText value="#{psn.name}" />
+                                </p:column>
+                    <p:ajax event="itemSelect" process="@this" update="person"/>            
+                    </p:autoComplete>
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="label"><p:outputLabel value="#{messages['personTitle']}" for="personTitle" /></td>
+                <td>
+                    <p:autoComplete id="personTitle" value="#{humanResourceManagementBean.currentHumanResource.personClass}" converter="#{converterStorage.personClassConverter}" title="#{messages.personTitle}"
+                                forceSelection="true" emptyMessage="#{messages.noPersonTitleFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200"
+                                var="personClass" itemLabel="#{personClass.personTitle}" itemValue="#{personClass}" completeMethod="#{commonAutoCompleteBean.filterPersonClass}">
+                                <p:column headerText="#{messages.country}">
+                                    <h:outputText value="#{personClass.mtCountry.name}" />
+                                </p:column>
+                                <p:column headerText="#{messages.localPrefixName}">
+                                    <h:outputText value="#{personClass.classLocalPre}" />
+                                </p:column>
+                                <p:column headerText="#{messages.localPostName}">
+                                    <h:outputText value="#{personClass.classLocalPost}" />
+                                </p:column>
+                    <p:ajax event="itemSelect" process="@this" update="personTitle"/>            
+                    </p:autoComplete>
+                </td>
+            </tr>
+            
+            <tr>
+                <td></td>
+                <td align="left">
+                    <p:commandButton id="btnInsert" value="#{messages['save']}" action="#{humanResourceManagementBean.saveHumanResource()}" update="@all" icon="ui-icon-disk" />
+                    <p:commandButton id="btnCancel" value="#{messages['cancel']}" action="#{humanResourceManagementBean.closeUpdateHumanResource()}" update=":contentPane" immediate="true" icon="ui-icon-close"/>
+                    <p:commandButton value="#{messages.delete}" icon="ui-icon-trash" action="#{humanResourceManagementBean.deleteHumanResource()}" update=":contentPane" disabled="#{!humanResourceManagementBean.enableDelete}" rendered="#{humanResourceManagementBean.currentHumanResource.persisted}" process="@this" immediate="true">
+                        <p:confirm header="#{messages.confirmation}" message="#{messages.MMI00003}" icon="ui-icon-alert" />
+                    </p:commandButton>
+                </td>
+            </tr>
+             
+        </table>
+        </p:panel>
+    </h:form>
+    <h:form>
+        <p:fieldset legend="#{messages.approvingSection}" rendered="#{humanResourceManagementBean.currentHumanResource.persisted}" id="approvalSection">
+            <ac:approval entityId="#{humanResourceManagementBean.entityId}" dataType="#{humanResourceManagementBean.dataType}" itemLabel="#{humanResourceManagementBean.itemLabel}">
+            </ac:approval>
+        </p:fieldset>
+    </h:form>
+</ui:composition>

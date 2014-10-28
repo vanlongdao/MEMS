@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://omnifaces.org/ui">
+
+<!-- Have to has this f:view to work on Chrome/Safari -->
+<!-- PrimeFaces require h:head. Plain HTML head tag won't work -->
+<f:view contentType="text/html" encoding="UTF-8">
+    <h:head>
+        <title>#{messages.memsTitle}</title>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <!-- themes for Offline feature -->
+        <h:outputStylesheet name="offline-theme-chrome.css" media="screen" library="css" />
+        <h:outputStylesheet name="scribble.css" media="screen" library="css" />
+
+        <!-- locale for Offline feature -->
+        <h:outputStylesheet name="offline-language-#{localeSelector.locale eq null ? 'en' : localeSelector.locale.language}.css" media="screen" library="css" />
+
+    </h:head>
+    <h:body id="contentPage" onkeypress="if( event.keyCode == 13){event.keyCode=0;}">
+
+        <!-- Offline feature: allow to check network status -->
+        <!--  defer load: this is not required, so should be load later -->
+        <o:deferredScript library="js" name="offline/offline.js" />
+        <o:deferredScript library="js" name="offline/ui.js" />
+        <o:deferredScript library="js" name="offline/reconnect.js" />
+        <o:deferredScript library="js" name="offline/requests.js" />
+
+        <o:deferredScript library="js" name="jquery.jqprint-0.3.js" />
+        <h:outputScript library="js" name="scribble/fidel/fidel.js" />
+        <h:outputScript library="js" name="scribble/scribble.js" />
+
+        <!-- custom libraries -->
+        <o:deferredScript library="js" name="main.js" />
+        <!-- Customize Styles -->
+        <f:facet name="last">
+            <h:outputStylesheet name="main.css" media="screen" library="css" />
+
+            <!-- this file only for override primefaces styles -->
+            <h:outputStylesheet name="customize.css" media="screen" library="css" />
+        </f:facet>
+
+
+        <!-- Global components -->
+        <pe:tooltip global="true" myPosition="left center" atPosition="right center"></pe:tooltip>
+        <p:growl id="growl" widgetVar="growl_js" autoUpdate="true" showDetail="true" escape="false" />
+
+        <!-- common confirmation panel -->
+        <h:form>
+            <p:confirmDialog global="true" styleClass="ui-dialog" closeOnEscape="true">
+                <p:commandButton value="#{messages['yes']}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                <p:commandButton value="#{messages['noNegative']}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+            </p:confirmDialog>
+        </h:form>
+
+        <!-- Block UI -->
+        <pe:blockUI source="@([id$=headerPane])" target="contentPage" event="click, select" autoShow="true" widgetVar="globalBlockUI_js" id="globalBlockUI">
+            <h:panelGrid columns="2">
+                <h:graphicImage library="img" name="loading.gif" style="margin-right: 12px; vertical-align: middle;" />
+                <h:outputText value="#{messages['loading']}..." style="white-space: nowrap;" />
+            </h:panelGrid>
+        </pe:blockUI>
+
+        <!-- Page layout -->
+        <p:layout id="pageLayout" widgetVar="pageLayout_js" fullPage="true">
+            <!--             <p:layoutUnit id="sidebar" position="west" collapsible="true" effect="none"> -->
+            <!--                 <p:outputPanel id="sidebarPane"> -->
+            <!--                     <ui:insert name="sidebar" /> -->
+            <!--                 </p:outputPanel> -->
+            <!--             </p:layoutUnit> -->
+
+            <p:layoutUnit position="north" id="top" size="30" minSize="30" collapsible="true">
+                <p:outputPanel id="headerPane">
+                    <ui:include src="header_pane.xhtml" />
+                </p:outputPanel>
+
+            </p:layoutUnit>
+            <p:layoutUnit id="centerPane" position="center" styleClass="fullHeight">
+                <p:outputPanel id="contentPane" styleClass="fullHeight">
+                    <h:form>
+                        <p:breadCrumb rendered="#{screenMonitor.shouldDisplayBreadcrumb()}" model="#{screenMonitor.breadcrumbModel}" id="test">
+                        </p:breadCrumb>
+                    </h:form>
+                    <ui:insert name="content" />
+                </p:outputPanel>
+            </p:layoutUnit>
+
+            <p:layoutUnit id="southPane" widgetVar="southPane" position="south" collapsible="false" effect="none" maxSize="50">
+                <p:outputPanel>
+                    <ui:include src="footer_pane.xhtml" />
+                </p:outputPanel>
+            </p:layoutUnit>
+        </p:layout>
+
+    </h:body>
+</f:view>
+</html>

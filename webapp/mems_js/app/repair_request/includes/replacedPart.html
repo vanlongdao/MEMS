@@ -1,0 +1,24 @@
+
+<div id="replacedPartsContainer" class="form-group">
+    <div>
+        <paper-input ng-blur="valueBind($event)" id="inputReplacedParts_1" floatingLabel
+                     label="Replaced parts"></paper-input>
+        <core-icon-button id="addReplacedParts" icon="add" ng-click="goToManage($event)"></core-icon-button>
+        <!--<core-icon-button id="addReplacedParts" icon="add" ng-click="addRow($event)"></core-icon-button>-->
+    </div>
+</div>
+
+<div class="ui-accordion  panel-default">
+    <div class="panel-heading"><a href><h3 class="panel-title" onclick="toggleCurrent('#manageReplacedPart');"> Manage
+        Replaced
+        Part</h3></a></div>
+</div>
+<core-collapse id="manageReplacedPart" opened="false">
+    <div class="panel-body" ng-include="'ManageReplaceParts/ManageReplaceParts.html'">
+    </div>
+</core-collapse>
+
+<div>
+    <!--         <paper-button raisedButton label="Cancel" ng-click=""></paper-button> -->
+    <!--         <paper-button raisedButton label="OK" ng-click="submit()"></paper-button> -->
+</div>

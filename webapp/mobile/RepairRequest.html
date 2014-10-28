@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="dependencies/platform/platform.js"></script>
+
+    <link rel="import" href="dependencies/paper-button/paper-button.html">
+    <link rel="import" href="dependencies/core-icon-button/core-icon-button.html">
+    <link rel="import" href="dependencies/paper-input/paper-input.html">
+    <link rel="import" href="dependencies/core-input/core-input.html">
+    <link rel="import" href="dependencies/core-dropdown/core-dropdown.html">
+    <link rel="import" href="dependencies/core-pages/core-pages.html">
+    <link rel="import" href="dependencies/paper-tabs/paper-tabs.html">
+
+    <link rel="stylesheet" href="css/RepairRequestStyle.css">
+</head>
+<body unresolved vertical layout>
+
+<h2>Repair request registration screen</h2>
+<br>
+
+<div ng-app="MyApp" ng-controller="RepairRequestController as ctrl" id="divContainer">
+<paper-tabs selected="0">
+    <paper-tab>Input Repair Infomation</paper-tab>
+    <paper-tab>Manage replace parts</paper-tab>
+    <paper-tab>Manage checklist</paper-tab>
+</paper-tabs>
+
+<core-pages flex>
+<div style="display: block;width: 100%;">
+    <div class="form-group">
+        <!--<label>Request No.</label>-->
+        <paper-input ng-model="requestReg.RequestNo" floatingLabel label="Request No."></paper-input>
+    </div>
+
+    <div class="form-group">
+        <label>Type</label>
+        <core-dropdown ng-model="requestReg.Type">
+            <core-item value="Drill" label="Drill"></core-item>
+            <core-item value="Knife" label="Knife"></core-item>
+            <core-item value="Mask" label="Mask"></core-item>
+            <core-item value="Glove" label="Glove"></core-item>
+            <core-item value="x-ray" label="x-ray"></core-item>
+        </core-dropdown>
+    </div>
+
+    <div class="form-group">
+        <paper-input disabled ng-model="requestReg.DeviceID" floatingLabel label="Device ID"></paper-input>
+    </div>
+    
+    <div class="form-group">
+        <paper-input disabled ng-model="requestReg.DeviceName" floatingLabel label="Device Name"></paper-input>
+    </div>
+
+    <div class="form-group">
+        <paper-input disabled ng-model="requestReg.ModelNo" floatingLabel label="Model No"></paper-input>
+    </div>
+
+
+    <div class="form-group">
+        <paper-input disabled ng-model="requestReg.SN" floatingLabel label="S/N"></paper-input>
+    </div>
+
+    <div class="form-group">
+        <paper-input disabled ng-model="requestReg.Manufacturer" floatingLabel label="Manufacturer"></paper-input>
+    </div>
+
+
+    <div class="form-group">
+        <paper-input disabled ng-model="requestReg.Supplier" floatingLabel label="Supplier"></paper-input>
+    </div>
+
+    <div class="form-group">
+        <paper-input ng-model="requestReg.Location" floatingLabel label="Location"></paper-input>
+    </div>
+
+
+    <div class="form-group">
+        <paper-input ng-model="requestReg.FoundBy" floatingLabel label="Fault found by"></paper-input>
+    </div>
+
+    <div class="form-group">
+        <!--<paper-input ng-model="requestReg.FoundDate" floatingLabel label="Fault found date"></paper-input>-->
+        <label>Fault found date</label>
+        <input type="date" ng-model="requestReg.FoundDate">
+    </div>
+
+    <div class="form-group">
+        <paper-input ng-model="requestReg.Compliant" floatingLabel label="Compliant"></paper-input>
+    </div>
+    <div>
+        <paper-button raisedButton label="Cancel" ng-click=""></paper-button>
+        <paper-button raisedButton label="OK" ng-click="submit()"></paper-button>
+    </div>
+</div>
+<div>
+    <div class="form-group">
+        <!--<paper-input ng-model="requestReg.CallRepairDate" floatingLabel label="Call to repair date"></paper-input>-->
+        <label>Call to repair date</label>
+        <input type="date" ng-model="requestReg.CallRepairDate">
+    </div>
+
+
+    <div class="form-group">
+        <paper-input ng-model="requestReg.Liaison" floatingLabel label="Contact person"></paper-input>
+    </div>
+
+    <div class="form-group">
+        <!--<paper-input ng-model="requestReg.WorkStartDate" floatingLabel label="Work start date"></paper-input>-->
+        <label>Work start date</label>
+        <input type="date" ng-model="requestReg.WorkStartDate">
+    </div>
+
+    <div class="form-group">
+        <!--<paper-input ng-model="requestReg.WorkEndDate" floatingLabel label="Work end date"></paper-input>-->
+        <label>Work end date</label>
+        <input type="date" ng-model="requestReg.WorkEndDate">
+    </div>
+
+    <div class="form-group">
+        <paper-input ng-model="requestReg.Failure" floatingLabel label="Failure"></paper-input>
+    </div>
+
+
+    <div class="form-group">
+        <paper-input ng-model="requestReg.Repair" floatingLabel label="Repair"></paper-input>
+    </div>
+
+    <div id="replacedPartsContainer" class="form-group">
+        <div>
+            <paper-input ng-blur="valueBind($event)" id="inputReplacedParts_1" floatingLabel label="Replaced parts"></paper-input>
+            <core-icon-button id="addReplacedParts" icon="add" ng-click="goToManage($event)"></core-icon-button>
+            <!--<core-icon-button id="addReplacedParts" icon="add" ng-click="addRow($event)"></core-icon-button>-->
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <paper-input ng-model="requestReg.Cause" floatingLabel label="Cause"></paper-input>
+    </div>
+
+    <div class="form-group">
+        <paper-input ng-model="requestReg.Prevention" floatingLabel label="Prevention"></paper-input>
+    </div>
+
+
+    <div class="form-group">
+        <paper-input ng-model="requestReg.Measurement1" floatingLabel label="Measurement1(1)"></paper-input>
+    </div>
+
+    <div class="form-group">
+        <paper-input ng-model="requestReg.Measurement2" floatingLabel label="Measurement2(2)"></paper-input>
+    </div>
+
+
+    <div id="measureResultContainer" class="form-group">
+        <div>
+            <paper-input ng-blur="valueBind($event)" id="inputMeasureResult_1" floatingLabel label="Measure result"></paper-input>
+            <core-icon-button id="addMeasureResult" icon="add" ng-click="goToManage($event)"></core-icon-button>
+            <!--<core-icon-button id="addMeasureResult" icon="add" ng-click="addRow($event)"></core-icon-button>-->
+        </div>
+    </div>
+
+    <div class="form-group">
+        <paper-input ng-model="requestReg.Signature" floatingLabel label="Signature(Inspected)"></paper-input>
+    </div>
+    <div>
+        <paper-button raisedButton label="Cancel" ng-click=""></paper-button>
+        <paper-button raisedButton label="OK" ng-click="submit()"></paper-button>
+    </div>
+</div>
+<div>
+    <div>
+        <fieldset>
+            <legend>Parts estimation</legend>
+            <div class="form-group">
+                <paper-input ng-model="requestReg.EstimateCode" floatingLabel label="Estimation code"></paper-input>
+            </div>
+
+            <div id="estimateResultContainer" class="form-group">
+                <div>
+                    <paper-input ng-blur="valueBind($event)" id="inputEstimateResult_1" floatingLabel label="Parts/Price/Num items/sub total"></paper-input>
+                    <core-icon-button id="addEstimateResult" icon="add" ng-click="goToManage($event)"></core-icon-button>
+                    <!--<core-icon-button id="addEstimateResult" icon="add" ng-click="addRow($event)"></core-icon-button>-->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <paper-input ng-model="requestReg.EstimateTotal" floatingLabel label="Total"></paper-input>
+            </div>
+        </fieldset>
+    </div>
+
+    <div>
+        <fieldset>
+            <legend>Parts order</legend>
+            <div class="form-group">
+                <paper-input ng-model="requestReg.OrderCode" floatingLabel label="Order Code"></paper-input>
+            </div>
+
+            <div id="orderResultContainer" class="form-group">
+                <div>
+                    <paper-input ng-blur="valueBind($event)" id="inputOrderResult_1" floatingLabel label="Parts/Price/Num items/sub total"></paper-input>
+                    <core-icon-button id="addOrderResult" icon="add" ng-click="goToManage($event)"></core-icon-button>
+                    <!--<core-icon-button id="addOrderResult" icon="add" ng-click="addRow($event)"></core-icon-button>-->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <!--<paper-input ng-model="requestReg.OrderETA" floatingLabel label="Delivery date(ETA)"></paper-input>-->
+                <label>Delivery date(ETA)</label>
+                <input type="date" ng-model="requestReg.OrderETA">
+            </div>
+
+            <div class="form-group">
+                <paper-input ng-model="requestReg.OrderTotal" floatingLabel label="Total"></paper-input>
+            </div>
+        </fieldset>
+    </div>
+
+    <div>
+        <fieldset>
+            <legend>Fee</legend>
+            <div class="form-group">
+                <paper-input ng-model="requestReg.FeePart" floatingLabel label="Parts"></paper-input>
+            </div>
+
+            <div class="form-group">
+                <paper-input ng-model="requestReg.Shipping" floatingLabel label="Shipping"></paper-input>
+            </div>
+
+            <div class="form-group">
+                <paper-input ng-model="requestReg.SundryExpenses" floatingLabel label="Sundry expenses"></paper-input>
+            </div>
+
+            <div class="form-group">
+                <paper-input ng-model="requestReg.Tax" floatingLabel label="Tax"></paper-input>
+            </div>
+
+            <div class="form-group">
+                <paper-input ng-model="requestReg.FeeTotal" floatingLabel label="Total"></paper-input>
+            </div>
+        </fieldset>
+    </div>
+    <div>
+        <paper-button raisedButton label="Cancel" ng-click=""></paper-button>
+        <paper-button raisedButton label="OK" ng-click="submit()"></paper-button>
+    </div>
+</div>
+</core-pages>
+
+<script src="dependencies/angular/angular.js"></script>
+<script src="lib/ng-polymer-elements.js"></script>
+<script src="lib/indexeddb.shim.min.js"></script>
+<script src="dependencies/ngStorage-master/ngStorage.js"></script>
+<script src="dependencies/ui-select/select.min.js"></script>
+<script src="dependencies/smart-table.min.js"></script>
+<script src="app.js"></script>
+<script src="controller/RepairRequestController.js"></script>
+
+<script>
+    var pages = document.querySelector('core-pages');
+    var tabs = document.querySelector('paper-tabs');
+    tabs.addEventListener('core-select', function () {
+        pages.selected = tabs.selected;
+    });
+</script>
+</div>
+</body>
+</html>

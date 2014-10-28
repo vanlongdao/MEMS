@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+    <h:panelGrid columns="2" columnClasses="leftContainer, rightContainer">
+        <h:form>
+            <ac:dataTable value="#{approveManagementBean.listApprovalConfigs}" var="approval" id="approveTable" rowIndexVar="index" rowKey="#{approval.dataType}" selectionMode="single"
+                selection="#{approveManagementBean.currentApproval}">
+                <p:ajax event="rowSelect" update=":hiddenPanel" process="@this"></p:ajax>
+                <p:column headerText="#{messages.no}" styleClass="display-index">
+                                    #{index + 1}
+                                </p:column>
+                <p:column styleClass="display-text" headerText="#{messages.dataType}" sortBy="dataTypeName">
+                    #{approval.dataTypeName}
+                </p:column>
+                <p:column styleClass="display-select ten-char">
+                    <f:facet name="header">
+                        <ac:columnHeader value="#{messages.needApproval}" />
+                    </f:facet>
+                    <p:selectBooleanCheckbox value="#{approval.enableApproval}">
+                        <p:ajax process="@this" update=":hiddenPanel" listener="#{approveManagementBean.toggleSelection(approval)}" />
+                    </p:selectBooleanCheckbox>
+                </p:column>
+            </ac:dataTable>
+        </h:form>
+
+        <p:panel id="hiddenPanel"  header="#{messages.approvalLevel}">
+            <h:form rendered="#{approveManagementBean.currentApproval != null}">
+                <p:commandButton value="#{messages.addLevel}" actionListener="#{approveManagementBean.addLevel}" process="@form" update=":contentPane" />
+                <p:dataTable value="#{approveManagementBean.listApprovalLevels}" var="level" id="levelTable" expandedRow="true" rowIndexVar="index">
+                    <p:column styleClass="five-char">
+                        <p:rowToggler />
+                    </p:column>
+                    <p:column styleClass="display-index ten-char" headerText="#{messages.level}">
+                            #{level.levelIndex}
+                        </p:column>
+                    <p:column styleClass="display-code">
+                        <p:commandButton value="#{messages.deleteLevel}" action="#{approveManagementBean.deleteLevel(level)}"
+                            icon="ui-icon-trash" 
+                            rendered="#{index == approveManagementBean.listApprovalLevels.size() -1 }" process="@this" update="@form">
+                            <p:confirm message="#{messages.MAP00003}" header="#{messages.confirmation}" icon="ui-icon-alert"></p:confirm>
+                        </p:commandButton>
+                    </p:column>
+                    <p:column styleClass="display-code">
+                        <p:commandButton value="#{messages.addSupervisor}" action="#{approveManagementBean.addSupervisor(level)}" process="@this" update="@form" />
+                    </p:column>
+                    <p:rowExpansion>
+                        <p:dataTable value="#{approveManagementBean.getListSupervisors(level)}" var="supervisor" id="supervisorTable">
+                            <p:column styleClass="display-code" headerText="#{messages.supervisorCode}">
+                                <p:outputLabel value="#{approveManagementBean.getSupervisor(supervisor).psnCode}" rendered="#{supervisor.persisted}" />
+                            </p:column>
+                            <p:column styleClass="display-text" headerText="#{messages.supervisorName}">
+                                <p:outputLabel value="#{approveManagementBean.getSupervisor(supervisor).name}" rendered="#{supervisor.persisted}" />
+                                <p:autoComplete rendered="#{!supervisor.persisted}" id="autoCompleteSupervisor" value="#{approveManagementBean.selectedSupervisor}"
+                                    converter="#{converterStorage.userConverter}" title="#{messages.typeToFindUser}" var="user" itemLabel="#{user.name}" forceSelection="true"
+                                    emptyMessage="#{messages.noUserFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200" itemValue="#{user}"
+                                    completeMethod="#{commonAutoCompleteBean.filterUser}">
+                                    <p:column headerText="#{messages.userName}">
+                                        <h:outputText value="#{user.loginName}" />
+                                    </p:column>
+                                    <p:column headerText="#{messages.supervisorName}">
+                                        <h:outputText value="#{user.name}" />
+                                    </p:column>
+                                    <p:ajax event="itemSelect" process="@this" listener="#{approveManagementBean.addNewSupervisor(level)}" update="@form" />
+                                </p:autoComplete>
+                            </p:column>
+                            <p:column styleClass="display-select" id="trashButton" width="50">
+                                <p:commandButton icon="ui-icon-trash" rendered="#{supervisor.persisted}" actionListener="#{approveManagementBean.deleteSupervisor(supervisor)}" update="@form">
+                                    <p:confirm header="#{messages.confirmation}" message="#{messages.MAP00002}" icon="ui-icon-alert" />
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                    </p:rowExpansion>
+                </p:dataTable>
+            </h:form>
+        </p:panel>
+    </h:panelGrid>
+</ui:composition>

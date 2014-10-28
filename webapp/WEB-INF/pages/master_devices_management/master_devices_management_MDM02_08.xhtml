@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
+    xmlns:ac="http://arrow-tech.vn/ui" xmlns:ar="http://java.sun.com/jsf/composite/compositeComponent"
+    xmlns:pe="http://primefaces.org/ui/extensions" xmlns:o="http://omnifaces.org/ui">
+    <!-- Area CheckList Devices -->
+        <p:panel id="panelScheduleByCountDevices">
+            <h:form id="scheduleByCountForm">
+                <ac:dataTable rows="15" id="scheduleByCountTable" rowIndexVar="index" value="#{scheduleBean.listMasterScheduleAlert}"
+                    var="schedule">
+                    <p:column style="width:2%;">
+                        <p:selectBooleanCheckbox value="#{schedule.selected}">
+                            <p:ajax event="change" update="@form" listener="#{scheduleBean.toggleSelectScheduleAlert(schedule)}" />
+                        </p:selectBooleanCheckbox>
+                    </p:column>
+                    <p:column headerText="#{messages.scheduleName}">
+                        <h:outputText value="#{schedule.name}" />
+                    </p:column>
+                    <p:column headerText="#{messages.description}">
+                        <h:outputText value="#{schedule.description}"/>
+                    </p:column>
+                    <p:column headerText="#{messages.timeOfUsing}">
+                        <h:outputText value="#{schedule.intervalCount}"/>
+                    </p:column>
+                    <p:column headerText="#{messages.unit}">
+                        <h:outputText value="#{schedule.unit}"/>
+                    </p:column>
+                    <p:column headerText="#{messages.checklist}">
+                        <h:outputText value="#{schedule.mdevChecklist.name}"/>
+                    </p:column>
+                </ac:dataTable>
+                <p:commandButton value="#{messages.addNew}" icon="ui-icon-document" process="@this" action="#{scheduleBean.createNewScheduleAlert}"
+                    update="@([id$=panelScheduleByCountDevices])" />
+
+                <p:commandButton value="#{messages.edit}" icon="ui-icon-pencil" process="@this" disabled="#{scheduleBean.selectedScheduleAlert eq null}"
+                    update="@([id$=panelScheduleByCountDevices])" action="#{scheduleBean.editScheduleAlert}" />
+
+                <p:commandButton value="#{messages.delete}" icon="ui-icon-trash" process="@this" disabled="#{scheduleBean.selectedScheduleAlert eq null}"
+                    update="@([id$=panelScheduleByCountDevices])" action="#{scheduleBean.deleteScheduleAlert}">
+                    <p:confirm message="#{messages.MDM00015}" icon="ui-icon-question"></p:confirm>
+                </p:commandButton>
+               
+                <p:commandButton value="#{messages.discardChange}" actionListener="#{scheduleBean.showConfirmDiscardAlertChange}" update="@form" process="@this">
+                </p:commandButton>
+                
+                <p:dialog visible="true" rendered="#{scheduleBean.renderConfirmAlertDlg}" appendTo=":contentPage" closable="false"
+                    id="dialogAlertConfirm" modal="true" header="#{messages.MDM00021}" widgetVar="confirmation_edit">
+                    <div style="text-align: center;">
+                        <p:commandButton id="btSchnok" value="#{messages.yes}" update="@form" process="@this"
+                            action="#{scheduleBean.discardChangeScheAlert}"
+                            oncomplete="PF('confirmation_edit').hide()" icon="ui-icon-check" />
+                        <p:commandButton id="btnSchcancel" value="#{messages.no}" update="@form" process="@this"
+                            actionListener="#{scheduleBean.closeConfirmAlertDlg}"
+                            oncomplete="PF('confirmation_edit').hide()" icon="ui-icon-close" />
+                    </div>
+                </p:dialog>
+                                
+                                
+                <p:panel id="panelScheduleByCountInput" rendered="#{scheduleBean.currentScheduleAlert ne null}">
+                    <table>
+                        <tr>
+                            <td><p:outputLabel value="#{messages.scheduleName}" for="scheduleByCountName" /></td>
+                            <td><p:inputText id="scheduleByCountName" value="#{scheduleBean.currentScheduleAlert.name}" disabled="#{scheduleBean.currentScheduleAlert eq null}" styleClass="fifteen-char"/></td>
+                        </tr>
+                        <tr>
+                            <td><p:outputLabel value="#{messages.description}" for="scheduleByCountDescription" /></td>
+                            <td><p:inputText id="scheduleByCountDescription" value="#{scheduleBean.currentScheduleAlert.description}"  disabled="#{scheduleBean.currentScheduleAlert eq null}" styleClass="thirty-char" /></td>
+                        </tr>
+                       
+                        <tr>
+                            <td>
+                                <p:outputLabel value="#{messages.timeOfUsing}" for="timeOfUsing" />
+                            </td>
+                            <td>
+                                <p:inputText id="timeOfUsing" value="#{scheduleBean.currentScheduleAlert.intervalCount}" converter="#{converterStorage.quatityConverter}" disabled="#{scheduleBean.currentScheduleAlert eq null}">
+                                </p:inputText>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><p:outputLabel value="#{messages.unit}" for="timeOfUsingUnit" /></td>
+                            <td>
+                                <p:inputText id="timeOfUsingUnit" value="#{scheduleBean.currentScheduleAlert.unit}" disabled="#{scheduleBean.currentScheduleAlert eq null}">
+                                </p:inputText>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><p:outputLabel value="#{messages.checklist}" for="checklistScheduleByCount" /></td>
+                            <td>
+                                <p:selectOneMenu id="checklistScheduleByCount" value="#{scheduleBean.indentifiedChecklistAlert}" disabled="#{scheduleBean.currentScheduleAlert eq null}">
+                                    <f:selectItem />
+                                    <f:selectItems value="#{masterDeviceChecklistManageBean.checklists}" var="checklist" itemValue="#{checklist.cklistId}" itemLabel="#{checklist.name}" />
+                                </p:selectOneMenu>
+                             </td>
+                        </tr>
+                        <tr>
+                            <td><p:commandButton value="#{messages.save}" action="#{scheduleBean.saveScheduleAlert}" process="@form" update="@form" disabled="#{scheduleBean.currentScheduleAlert eq null}"/></td>
+                            <td>
+                            </td>
+                        </tr>
+                    </table>
+                </p:panel>
+            </h:form>
+        </p:panel>
+
+</ui:composition>

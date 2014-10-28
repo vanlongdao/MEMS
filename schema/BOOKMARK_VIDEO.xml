@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- BOOKMARK_VIDEO -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="BOOKMARK_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="OWNER_CORP_CODE" data-type="code" not-null="true" />
+	<column name="DOCUMENT_ID" data-type="ref-id" not-null="true" />
+	<column name="VIDEO_TYPE" data-type="integer" not-null="false" />
+	<column name="START_SEC" data-type="numeric" not-null="false" />
+	<column name="END_SEC" data-type="numeric" not-null="false" />
+	<column name="LABEL" data-type="freetext" not-null="false" />
+	<column name="DESCRIPTION" data-type="freetext" not-null="false" />
+</table>

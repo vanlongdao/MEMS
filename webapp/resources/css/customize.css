@@ -1,0 +1,146 @@
+.arrow-ui-index-column {
+	width: 10px;
+}
+
+.arrow-ui-select-column {
+	width: 10px;
+}
+
+.ui-selectonemenu-label {
+	width: 90% !important;
+}
+
+
+/*
+* Increase width for Menu.
+*/
+.ui-menu-child,.ui-menu {
+	width: 200px !important;
+}
+
+.ui-layout-north>.ui-layout-unit-content {
+	height: 30px !important;
+}
+
+.ui-datalist-data {
+	padding-left: 10px !important;
+}
+
+
+.ui-dialog-buttonpane {
+	text-align: center !important;
+}
+
+/*
+* Common size for all buttons, exclude dropdown button.
+*/
+button.ui-button:not(.ui-autocomplete-dropdown,.icon) {
+	min-width: 80px !important;
+}
+
+.ui-datatable .ui-datatable-data tr {
+	height: 1em;
+}
+
+.button-size{
+    width: 100% !important;
+}
+
+
+
+/*
+* Try to set common width for all drop down list.
+*/
+label.ui-selectonemenu-label {
+	width: 152px !important;
+}
+.ui-selectonemenu{
+	width: 180px !important;
+}
+
+.ui-autocomplete-input {
+	width: 150px !important;
+}
+.ui-autocomplete{
+	width: 180px !important;
+}
+
+.ui-autocomplete-dropdown {
+	width: 24px !important;
+	margin-left: -2px;
+}
+
+
+/* Custom table : author : longdv - 2014/09/25*/
+table.table_center{
+    width:100%; 
+}
+table.table_center > tbody > tr{
+    width: 100%;
+}
+table.table_center > tbody > tr > td:first-child {
+    float: right;
+    width: 50%;
+}
+table.table_center > tbody > tr > td:nth-child(2) {
+    width: 50%;
+}
+
+.srollPanel{
+    height: 300px;
+}
+
+.ui-dialog-content{
+    overflow: auto;
+    
+}
+
+
+.ui-fieldset .ui-fieldset-legend {
+	padding: 0.1em 0.2em;
+	background: none;
+	border: none;
+}
+.fieldset-start .ui-fieldset-legend{
+	color:black;
+}
+
+/* Fix width for Calendar */
+input.hasDatepicker {
+	width: 80px !important;
+}
+
+.ui-overlay-hidden * {
+    visibility: hidden !important;
+    z-index: -1 !important;
+}
+.ui-widget-overlay{
+    visibility: hidden !important;
+    z-index: -1 !important;
+}
+.ui-tabs-left  .ui-tabs-nav{
+    width: 14.5% !important;
+}
+.ui-tabs-left > .ui-tabs-panels{
+    width: 85% !important;
+}
+.ui-tabs .ui-tabs-panel{
+    padding: 0;
+    margin: 0;
+}.small-textarea{
+    height: 20px;
+}
+.big-textarea{
+    height: 50px;
+}
+.comment-textArea{
+    width: 90% !important;
+}
+
+.ui-state-error, .ui-widget-content .ui-state-error, .ui-widget-header .ui-state-error {
+    border: 1px solid #CD0A0A;
+    color: #FFF;
+}
+.ui-tabs-left .ui-tabs-nav{
+    height: 450px !important;
+}

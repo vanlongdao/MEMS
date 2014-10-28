@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+	<p:outputPanel>
+		<p:fieldset styleClass="fieldset-#{userCredential.preferences.theme}">
+			<h:form>
+				<table>
+					<tr>
+						<p:outputPanel>
+							<td><ac:dataTable value="#{replacedPartBean.listReplacedPartShow}" var="replacedPart" rowIndexVar="index">
+									<p:column styleClass="display-select">
+										<p:selectBooleanCheckbox value="#{replacedPart.selected}" styleClass="checkbox">
+											<p:ajax process="@this" update="@form" listener="#{replacedPartBean.toggleSelectionReplacedPart(replacedPart)}" />
+										</p:selectBooleanCheckbox>
+									</p:column>
+									<p:column headerText="#{messages.no}" styleClass="display-index">
+			   				 #{index + 1}
+						</p:column>
+									<p:column headerText="#{messages.model}" styleClass="display-code">
+							#{replacedPart.device != null ? replacedPart.device.MDevice.modelNo : replacedPart.modelNo}
+						</p:column>
+									<p:column headerText="#{messages.serialNo}" styleClass="display-code">
+							#{replacedPart.device.serialNo}
+						</p:column>
+									<p:column headerText="#{messages.oldSerialNo}" styleClass="display-code">
+							#{replacedPart.removeDevice.serialNo}
+						</p:column>
+								</ac:dataTable></td>
+						</p:outputPanel>
+					</tr>
+					<tr>
+						<td><p:commandButton value="#{messages.add}" icon=" ui-icon-plus" process="@this" update="@form" action="#{replacedPartBean.addNewReplacedPart}" /> <p:commandButton
+								disabled="#{!replacedPartBean.enableDelete}" value="#{messages.delete}" update="@form" process="@this" icon="ui-icon-trash" action="#{replacedPartBean.deleteItem()}" immediate="true">
+								<p:confirm header="#{messages.confirmation}" message="#{messages.areYouSureDelete}" icon="ui-icon-alert" />
+							</p:commandButton> <p:commandButton disabled="#{inputRepairRequestBean.currentActionLog.actionCode == null}" value="#{messages.fillFromPartOrderInfo}" process="@this" update="@form"
+								action="#{replacedPartBean.fillPartOrderInfo}" icon="ui-icon-document" /> <p:commandButton value="#{messages.discardChanges}" process="@this" update="@form"
+								action="#{replacedPartBean.discardChanges}" icon="ui-icon-close">
+								<p:confirm header="#{messages.confirmation}" message="#{messages.areYouSureDiscardChanges}" icon="ui-icon-alert" />
+							</p:commandButton></td>
+					</tr>
+				</table>
+				<p:panel header="#{messages.replacedPartInfor}" id="panelAddNew" rendered="#{replacedPartBean.selectedReplacedPart != null}">
+					<p:focus context="panelAddNew" rendered="#{replacedPartBean.selectedReplacedPart != null}"></p:focus>
+					<table>
+						<tr>
+							<td><p:outputLabel value="#{messages.oldPart}" /></td>
+							<td><p:autoComplete value="#{replacedPartBean.selectedReplacedPart.removeDevice}" id="oldPart" converter="#{converterStorage.deviceConverter}" title="#{messages.typeToFindOldPart}"
+									var="oldPart" itemLabel="#{oldPart.MDevice.modelNo}" forceSelection="true" emptyMessage="#{messages.noPartFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200"
+									itemValue="#{oldPart}" completeMethod="#{commonAutoCompleteBean.filterDeviceInInputRepairRequest}">
+									<p:column headerText="#{messages.modelNo}">
+										<h:outputText value="#{oldPart.MDevice.modelNo}" />
+									</p:column>
+									<p:column headerText="#{messages.serialNo}">
+										<h:outputText value="#{oldPart.serialNo}" />
+									</p:column>
+									<p:column headerText="#{messages.deviceCode}">
+										<h:outputText value="#{oldPart.devCode}" />
+									</p:column>
+									<p:ajax event="itemSelect" process="@this" update="oldPart" />
+								</p:autoComplete></td>
+						</tr>
+						<tr>
+							<td><p:outputLabel value="#{messages.newPart}" /></td>
+							<td><h:outputText value="#{messageCodeClientIdMappingManager.put('MRR00001','newPart',null)}"></h:outputText> <p:autoComplete value="#{replacedPartBean.selectedReplacedPart.device}"
+									id="newPart" converter="#{converterStorage.deviceConverter}" title="#{messages.typeToFindNewPart}" var="newPart" itemLabel="#{newPart.MDevice.modelNo}" forceSelection="true"
+									emptyMessage="#{messages.noPartFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200" itemValue="#{newPart}" completeMethod="#{replacedPartBean.filterNewPart}">
+									<p:column headerText="#{messages.modelNo}">
+										<h:outputText value="#{newPart.MDevice.modelNo}" />
+									</p:column>
+									<p:column headerText="#{messages.serialNo}">
+										<h:outputText value="#{newPart.serialNo}" />
+									</p:column>
+									<p:column headerText="#{messages.deviceCode}">
+										<h:outputText value="#{newPart.devCode}" />
+									</p:column>
+									<p:ajax event="itemSelect" process="@this" update="newPart" />
+								</p:autoComplete></td>
+						</tr>
+						<tr>
+							<td><p:outputLabel value="#{messages.description}" /></td>
+							<td><p:inputTextarea value="#{replacedPartBean.selectedReplacedPart.memoRemoved}" id="description">
+									<p:ajax event="change" process="@this" update="@this" />
+								</p:inputTextarea></td>
+						</tr>
+						<tr>
+							<td class="label"><p:outputLabel value="#{messages.image}" /></td>
+							<td><p:graphicImage value="#{imageStreamBean.replacePartImageAsStream}" width="100" height="100" id="imagePreview" cache="false">
+									<f:param name="key" value="#{replacedPartBean.currentKey}"></f:param>
+								</p:graphicImage> <ac:upload listener="#{replacedPartBean.fileImageUploadListener}" id="imageUpload" value="#{replacedPartBean.image}" allowTypes="#{appConfig.imageFileTypesAllowed}"
+									sizeLimit="#{appConfig.imageFileSizeLimit}" update="@([id$=imagePreview])">
+								</ac:upload></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><p:commandButton value="#{messages.save}" icon="ui-icon-disk" process="@form" update="@form" actionListener="#{replacedPartBean.applyThisReplacedPart}" /></td>
+						</tr>
+					</table>
+				</p:panel>
+			</h:form>
+		</p:fieldset>
+	</p:outputPanel>
+</ui:composition>

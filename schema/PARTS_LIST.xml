@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- PARTS_LIST -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="PARTS_LIST_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="MDEV_CODE" data-type="code" not-null="false" />
+	<column name="PART_CODE" data-type="code" not-null="false" />
+</table>

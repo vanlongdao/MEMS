@@ -1,0 +1,10 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Sun Jul 27 10:41:17 ICT 2014
+https\://repository.jboss.org/nexus/content/groups/public-jboss/.error=Could not transfer artifact pl.itcrowd.mock-contexts-extension\:mock-contexts-extension-impl\:pom\:1.0.1 from/to jboss (https\://repository.jboss.org/nexus/content/groups/public-jboss)\: repository.jboss.org
+http\://artifactory.itcrowd.pl/libs-release/.error=Could not transfer artifact pl.itcrowd.mock-contexts-extension\:mock-contexts-extension-impl\:pom\:1.0.1 from/to central (http\://artifactory.itcrowd.pl/libs-release)\: artifactory.itcrowd.pl
+http\://repository.primefaces.org/.error=Could not transfer artifact pl.itcrowd.mock-contexts-extension\:mock-contexts-extension-impl\:pom\:1.0.1 from/to prime-repo (http\://repository.primefaces.org)\: repository.primefaces.org
+@default-https\://repository.jboss.org/nexus/content/groups/public-jboss/.lastUpdated=1406432477705
+@default-http\://artifactory.itcrowd.pl/libs-release/.lastUpdated=1406432477700
+@default-http\://artifactory.itcrowd.pl/libs-snapshot/.lastUpdated=1406432477701
+http\://artifactory.itcrowd.pl/libs-snapshot/.error=Could not transfer artifact pl.itcrowd.mock-contexts-extension\:mock-contexts-extension-impl\:pom\:1.0.1 from/to snapshots (http\://artifactory.itcrowd.pl/libs-snapshot)\: artifactory.itcrowd.pl
+@default-http\://repository.primefaces.org/.lastUpdated=1406432477703

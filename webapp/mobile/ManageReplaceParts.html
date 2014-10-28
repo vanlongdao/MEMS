@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="dependencies/platform/platform.js"></script>
+    
+<!--   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-sanitize.js"></script> -->
+<!--   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css"> -->
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
+    
+	<link rel="stylesheet" href="dependencies/ui-select/select.min.css">
+	
+	<link rel="import" href="dependencies/paper-input/paper-input.html">
+	<link rel="import" href="dependencies/core-selector/core-selector.html">
+	<link rel="import" href="dependencies/paper-checkbox/paper-checkbox.html">
+	<link rel="stylesheet" href="css/ReplacePartStyle.css">
+	
+	<style>
+    body {
+      padding: 15px;
+    }
+
+    .select2 > .select2-choice.ui-select-match {
+      /* Because of the inclusion of Bootstrap */
+      height: 29px;
+    }
+
+    .selectize-control > .selectize-dropdown {
+      top: 36px;
+    }
+    
+    paper-checkbox::shadow #ink
+    {
+    	width: 18px;
+    	height: 18px;
+    }
+  </style>
+</head>
+<body unresolved vertical layout>
+<div ng-app="MyApp" ng-controller="ReplacePartController">
+
+<div>
+<div class="rowheader">
+			<div class="cellOption"></div>
+			<div class="cellitem">Model No</div>
+			<div class="cellitem">Serial No</div>
+			<div class="cellitem">Old Serial No</div>
+		</div>
+	<core-selector class="list">	
+		<div class="rowitem" ng-repeat="item in replacePartList" ng-click="getReplacePartInfo(item)">
+			<paper-checkbox class="cellOption"></paper-checkbox>
+			<div class="cellitem">{{item.modelNo}}</div>
+			<div class="cellitem">{{item.serialNo}}</div>
+			<div class="cellitem">{{item.old_serialNo}}</div>
+		</div>
+	</core-selector>
+	
+	<div>
+		<input type="button" value="Add" ng-click="addNewPart()">
+		<input type="button" id="btnDelete" value="Delete" ng-click="dellAPart($event)" disabled="disabled">
+		<input type="button" value="Fill from part order" ng-click="fillFromOrder()">
+	</div>
+	
+	<div>
+		<input type="button" value="Apply and back" ng-click="applyAndReturn()">
+		<input type="button" value="Discard and back" ng-click="discardAndReturn()">
+	</div>
+</div>
+
+<fieldset id = "partInfo" hidden="hidden">
+	<legend>Replace part info</legend>
+	
+	<table>
+		<tr>
+			<td><label>Old part:</label></td>
+			<td>				
+				<ui-select id="txtOldParts" ng-model="oldPartSelected.selected" theme="select2" ng-disabled="disabled" style="width: 200px;">
+				    <ui-select-match placeholder="Select a old part">Device Code:</p3>{{$select.selected.devCode}}</ui-select-match>
+		            <ui-select-choices group-by="'group'" repeat="item in oldParts | filter: $select.search">
+		              <p3>Device Code:</p3><span ng-bind-html="trustAsHtml((item.devCode | highlight: $select.search))"></span><br/>
+		              <p3>SerialNo:</p3><span ng-bind-html="trustAsHtml((item.serialNo | highlight: $select.search))"></span>
+		              <p3>ModelNo:</p3><span ng-bind-html="trustAsHtml((item.modelNo | highlight: $select.search))"></span>
+		            </ui-select-choices>
+				  </ui-select>
+			</td>
+		</tr>
+		
+		<tr>
+			<td><label>New part:</label></td>
+			<td>
+				<ui-select id="txtNewParts" ng-model="newPartSelected.selected" theme="select2" ng-disabled="disabled" style="width: 200px;">
+				    <ui-select-match placeholder="Select a new part"><p3>Device Code:</p3>{{$select.selected.devCode}}</ui-select-match>
+		            <ui-select-choices group-by="'group'" repeat="item in newParts | filter: $select.search">
+		              <p3>Device Code:</p3><span ng-bind-html="trustAsHtml((item.devCode | highlight: $select.search))"></span><br/>
+		              <p3>SerialNo:</p3><span ng-bind-html="trustAsHtml((item.serialNo | highlight: $select.search))"></span>
+		              <p3>ModelNo:</p3><span ng-bind-html="trustAsHtml((item.modelNo | highlight: $select.search))"></span>
+		            </ui-select-choices>
+				 </ui-select>
+			</td>
+		</tr>
+		
+		<tr>
+			<td><label>Discription:</label></td>
+			<td><input type="text" ng-bind="discription"></td>
+		</tr>
+		
+		<tr>
+			<td><label>Image</label></td>
+			<td><img alt="" src="">
+			<input type="button" value="Upload" ng-click=""></td>
+		</tr>
+		
+		<tr>
+			<td colspan="2">
+				<input type="button" value="Apply this replaced part" ng-click="applyReplacePart()">
+				<input type="button" value="Discard changes" ng-click="discardChange()">
+			</td>
+		</tr>
+	</table>
+</fieldset>
+<script src="dependencies/jquery-2.1.1.min.js"></script>
+<script src="dependencies/angular/angular.js"></script>
+<script src="lib/ng-polymer-elements.js"></script>
+<script src="lib/indexeddb.shim.min.js"></script>
+<script src="dependencies/ngStorage-master/ngStorage.js"></script>
+<script src="dependencies/ui-select/select.min.js"></script>
+<script src="dependencies/smart-table.min.js"></script>
+<script src="app.js"></script>
+
+<script src="controller/ReplacePartController.js"></script>
+
+</div>
+</body>
+</html>

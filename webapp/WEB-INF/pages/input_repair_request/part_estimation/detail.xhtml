@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:ac="http://arrow-tech.vn/ui" xmlns:ar="http://java.sun.com/jsf/composite/compositeComponent" xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:o="http://omnifaces.org/ui">
+	<h:form>
+		<ac:dataTable value="#{partEstimationBean.listEstimateItemShow}" var="item" id="partEstimationItemTable">
+			<p:column styleClass="display-select">
+				<p:selectBooleanCheckbox value="#{item.selected}" styleClass="checkbox">
+					<p:ajax process="@this" listener="#{partEstimationBean.toggleSelectionItem(item)}" update="@([id$=itemDetail]), @([id$=itemButtonsForm]), @(.checkbox)" />
+				</p:selectBooleanCheckbox>
+			</p:column>
+
+			<p:column styleClass="display-code" headerText="#{messages.modelNo}">
+                #{item.partModelNo}
+            </p:column>
+
+			<p:column styleClass="display-text" headerText="#{messages.partName}">
+                #{item.partName}
+            </p:column>
+
+			<p:column styleClass="display-number" headerText="#{messages.price}">
+				<h:outputLabel value="#{item.itemPrice}" converter="#{converterStorage.moneyConverter}" />
+			</p:column>
+
+			<p:column styleClass="display-number" headerText="#{messages.numberItems}">
+				<h:outputLabel value="#{item.numItems}" converter="#{converterStorage.quatityConverter}" />
+			</p:column>
+
+			<p:column styleClass="display-number" headerText="#{messages.taxrate}">
+				<h:outputLabel value="#{item.taxRate}" converter="#{converterStorage.percentConverter}" />
+			</p:column>
+
+			<p:column styleClass="display-number" headerText="#{messages.priceWithTax}">
+				<h:outputLabel value="#{item.priceWithTax}" converter="#{converterStorage.moneyConverter}" />
+			</p:column>
+
+		</ac:dataTable>
+	</h:form>
+	<h:form id="itemButtonsForm">
+		<p:commandButton value="#{messages.addNewItem}" action="#{partEstimationBean.addNewEstimateItem()}" update="@([id$=itemDetail])"></p:commandButton>
+		<p:commandButton disabled="#{empty partEstimationBean.listEstimateItemShow or partEstimationBean.selectedEstimateItem eq null}" value="#{messages.deleteItem}"
+			action="#{partEstimationBean.deleteEstimateItem()}" update="@([id$=itemDetail]), @([id$=partEstimationItemTable])">
+			<p:confirm message="#{messages.MRR00006}"></p:confirm>
+		</p:commandButton>
+	</h:form>
+
+	<p:outputPanel id="itemDetail">
+		<p:fieldset legend="#{messages.partEstimationItemDetail}" rendered="#{partEstimationBean.selectedEstimateItem ne null}">
+			<h:form>
+				<table>
+					<tr>
+						<td class="label"><p:outputLabel value="#{messages.selectParts}" for="selectPartInEstimate" /></td>
+						<td>
+						<h:outputText value="#{messageCodeClientIdMappingManager.put('MRR00014','selectPartInEstimate',null)}"></h:outputText>
+						<p:autoComplete id="selectPartInEstimate" value="#{partEstimationBean.selectedEstimateItem.MDevice}" converter="#{converterStorage.mdeviceConverter}"
+								specialItem="#{commonAutoCompleteBean.otherPartItem}" completeMethod="#{commonAutoCompleteBean.filterPart}" forceSelection="true" cache="true" cacheTimeout="300" dropdown="true"
+								scrollHeight="200" var="part" itemLabel="#{part.name}" itemValue="#{part}" title="#{messages.typeToFindPart}" emptyMessage="#{messages.noPartFound}">
+								<p:column headerText="#{messages.name}">
+                                	#{part.name}
+                                </p:column>
+								<p:ajax event="itemSelect" process="@this" update="@form" listener="#{partEstimationBean.fillValueToFields()}" />
+							</p:autoComplete></td>
+					</tr>
+					<tr>
+						<td class="label"><p:outputLabel value="#{messages.partName}" for="otherPartName" /></td>
+						<td><p:inputText id="otherPartName" value="#{partEstimationBean.selectedEstimateItem.partName}"
+								disabled="#{partEstimationBean.selectedEstimateItem.MDevice.persisted or (partEstimationBean.selectedEstimateItem.MDevice eq null and partEstimationBean.selectedEstimateItem.partName eq null)}">
+								<p:ajax event="change" update="@this" process="@this" />
+							</p:inputText></td>
+					</tr>
+
+					<tr>
+						<td class="label"><p:outputLabel value="#{messages.unitPrice}" for="unitprice" /></td>
+						<td><p:inputText id="unitprice" value="#{partEstimationBean.selectedEstimateItem.itemPrice}" converter="#{converterStorage.moneyConverter}" styleClass="display-number fifteen-char"
+								maxlength="12">
+								<p:ajax process="@this" update="@this, subtotal, subtotalWithTax" />
+							</p:inputText></td>
+					</tr>
+
+					<tr>
+						<td class="label"><p:outputLabel value="#{messages.numberItems}" for="numberItems"></p:outputLabel></td>
+						<td><p:inputText id="numberItems" value="#{partEstimationBean.selectedEstimateItem.numItems}" converter="#{converterStorage.quatityConverter}" styleClass="display-number fifteen-char"
+								maxlength="4">
+								<p:ajax process="@this" update="@this, subtotal, subtotalWithTax" />
+							</p:inputText></td>
+					</tr>
+
+					<tr>
+						<td class="label"><p:outputLabel value="#{messages.subtotal}" for="subtotal"></p:outputLabel></td>
+						<td><h:inputText readonly="true" id="subtotal" value="#{partEstimationBean.selectedEstimateItem.totPrice}" converter="#{converterStorage.moneyConverter}"
+								styleClass="display-number fifteen-char" /></td>
+					</tr>
+
+					<tr>
+						<td class="label"><p:outputLabel value="#{messages.taxrate}(%)" for="taxrate"></p:outputLabel></td>
+						<td><p:inputText id="taxrate" value="#{partEstimationBean.selectedEstimateItem.taxRate}" converter="#{converterStorage.percentConverter}" styleClass="display-number fifteen-char">
+								<p:ajax update="@this, subtotalWithTax" process="@this" />
+							</p:inputText></td>
+					</tr>
+
+					<tr>
+						<td class="label"><p:outputLabel value="#{messages.subtotalWithTax}" for="subtotalWithTax"></p:outputLabel></td>
+						<td><h:inputText readonly="true" id="subtotalWithTax" value="#{partEstimationBean.selectedEstimateItem.priceWithTax}" converter="#{converterStorage.moneyConverter}"
+								styleClass="display-number fifteen-char" /></td>
+					</tr>
+				</table>
+			</h:form>
+			<h:form>
+				<p:commandButton value="#{messages.saveItem}" action="#{partEstimationBean.saveThisEstimateItem()}" process="@form" update="@([id$=itemDetail]), @([id$=partEstimationItemTable])"></p:commandButton>
+			</h:form>
+		</p:fieldset>
+	</p:outputPanel>
+</ui:composition>

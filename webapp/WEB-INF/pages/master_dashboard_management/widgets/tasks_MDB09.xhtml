@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:o="http://omnifaces.org/ui">
+
+    <p:panel>
+        <table class="table_style">
+            <p:outputPanel rendered="#{isTabModel}">
+                <tr>
+                    <td><p:outputLabel value="#{messages.select}" /></td>
+                    <td><p:selectOneMenu value="#{manufacturerManagerDashboardBean.modelNo}">
+                            <f:selectItem />
+                            <f:selectItems value="#{manufacturerManagerDashboardBean.listMdevicesForModelNo}" var="mdevice"
+                                itemLabel="#{mdevice.modelNo}" itemValue="#{mdevice.modelNo}" />
+                            <p:ajax onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"
+                                update="@([id$=model-totalRepairOfCurrentMonth]), @([id$=model-totalRepairCostOfCurrentMonthDepartment]), @([id$=model-totalRepairCostItemOfYear])
+                                          ,@([id$=model-totalRepairOfYearDepartment]), @([id$=model-listActionlogTable])" />
+                        </p:selectOneMenu></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </p:outputPanel>
+            <p:outputPanel rendered="#{!isTabModel}">
+                <tr>
+                    <td><p:outputLabel value="#{messages.select}" /></td>
+                    <td><p:selectOneMenu value="#{manufacturerManagerDashboardBean.hospitalCode}">
+                            <f:selectItem />
+                            <f:selectItems value="#{manufacturerManagerDashboardBean.listHospital}" var="hospital"
+                                itemLabel="#{hospital.name}" itemValue="#{hospital.hospCode}" />
+                            <p:ajax onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"
+                                update="@([id$=supplier-totalRepairOfCurrentMonth]), @([id$=supplier-totalRepairCostOfCurrentMonthDepartment]), @([id$=supplier-totalRepairCostItemOfYear])
+                                           ,@([id$=supplier-totalRepairOfYearDepartment]), @([id$=supplier-listActionlogTable])" />
+                        </p:selectOneMenu></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </p:outputPanel>
+            <tr>
+                <td><p:outputLabel value="#{messages.totalRepairOfCurrentMonth}" /></td>
+                <td><p:inputText disabled="true" styleClass="display-number"
+                        value="#{manufacturerManagerDashboardBean.totalRepairOfCurrentMonth(isTabModel, commonConstants.dashboardManufacturerEngineer)}"
+                        id="#{isTabModel ? 'model' : 'supplier'}-totalRepairOfCurrentMonth" /></td>
+                        <td><p:outputLabel value="#{messages.totalRepairItemOfYear}" /></td>
+                <td><p:inputText disabled="true" styleClass="display-number"
+                        value="#{manufacturerManagerDashboardBean.totalRepairItemOfYear(isTabModel, commonConstants.dashboardManufacturerEngineer)}"
+                        id="#{isTabModel ? 'model' : 'supplier'}-totalRepairOfYearDepartment" /></td>
+            </tr>
+            <tr>
+                <td><p:outputLabel value="#{messages.totalRepairCostOfCurrentMonth}" /></td>
+                <td><p:inputText disabled="true" styleClass="display-number"
+                        value="#{manufacturerManagerDashboardBean.totalRepairCostOfCurrentMonth(isTabModel, commonConstants.dashboardManufacturerEngineer)}"
+                        id="#{isTabModel ? 'model' : 'supplier'}-totalRepairCostOfCurrentMonthDepartment" /></td>
+                <td><p:outputLabel value="#{messages.totalRepairCostItemOfYear}" /></td>
+                <td><p:inputText disabled="true" styleClass="display-number"
+                        value="#{manufacturerManagerDashboardBean.totalRepairCostItemOfYear(isTabModel, commonConstants.dashboardManufacturerEngineer)}"
+                        id="#{isTabModel ? 'model' : 'supplier'}-totalRepairCostItemOfYear" /></td>
+            </tr>
+        </table>
+    </p:panel>
+    <ac:dataTable id="#{isTabModel ? 'model' : 'supplier'}-listActionlogTable"
+         value="#{manufacturerManagerDashboardBean.listActionLog(isTabModel, commonConstants.dashboardManufacturerEngineer)}" var="contact">
+        <p:column headerText="#{messages.occured}">
+            <ac:outputTime value="#{contact.occurDate}" />
+        </p:column>
+        <p:column headerText="#{messages.modelNo}">
+            <p:outputLabel value="#{contact.device.MDevice.modelNo}" />
+        </p:column>
+        <p:column headerText="#{messages.sn}">
+            <p:outputLabel value="#{contact.device.serialNo}" />
+        </p:column>
+        <p:column headerText="#{messages.hospital}">
+            <p:outputLabel value="#{contact.hospital.name}" />
+        </p:column>
+        <p:column headerText="#{messages.compliant}">
+            <p:outputLabel value="#{contact.complaint}" />
+        </p:column>
+        <p:column headerText="#{messages.hospitalContact}">
+            <p:outputLabel value="#{contact.hospitalContactPsn.name}" />
+        </p:column>
+        <p:column headerText="#{messages.supplierContact}">
+            <p:outputLabel value="#{contact.person.name}" />
+        </p:column>
+    </ac:dataTable>
+    <p:fieldset legend="#{messages.chart}">
+        <p:graphicImage library="img" name="chart_demo.jpg" width="300px" height="200px"></p:graphicImage>
+    </p:fieldset>
+</ui:composition>

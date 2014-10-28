@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CURRENCY -->
+<table>
+	<primary-key>
+		<column name="CCY_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="CCY_NAME" data-type="short-name" not-null="false" />
+	<column name="CCY_LOCAL_PRE" data-type="name" not-null="false" />
+	<column name="CCY_LOCAL_POST" data-type="name" not-null="false" />
+</table>

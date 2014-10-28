@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+	<h:form>
+		<p:panel>
+			<table>
+				<tr>
+					<td><h:outputLabel value="#{messages.parts}" for="feePart" /></td>
+					<td><p:inputText id="feePart" value="#{feeBean.currentActionBill.feeParts}" converter="#{converterStorage.moneyConverter}" styleClass="display-number fifteen-char" maxlength="15">
+							<p:ajax process="@this" event="change" update="@this" />
+						</p:inputText></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.shipping}" for="feeShipping" /></td>
+					<td><p:inputText id="feeShipping" value="#{feeBean.currentActionBill.feeShipping}" converter="#{converterStorage.moneyConverter}" styleClass="display-number fifteen-char" maxlength="15">
+							<p:ajax process="@this" event="change" update="@this" />
+						</p:inputText></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.sundryExpenses}" for="feeOther" /></td>
+					<td><p:inputText id="feeOther" value="#{feeBean.currentActionBill.feeOther}" converter="#{converterStorage.moneyConverter}" styleClass="display-number fifteen-char" maxlength="15">
+							<p:ajax process="@this" event="change" update="@this" />
+						</p:inputText></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.tax}" for="tax" /></td>
+					<td><p:inputText id="tax" value="#{feeBean.currentActionBill.tax}" converter="#{converterStorage.moneyConverter}" styleClass="display-number fifteen-char" maxlength="15">
+							<p:ajax process="@this" event="change" update="@this" />
+						</p:inputText></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.totalPay}" for="totalPay" /></td>
+					<td><p:inputText id="totalPay" value="#{feeBean.currentActionBill.totalPay}" converter="#{converterStorage.moneyConverter}" styleClass="display-number fifteen-char" maxlength="15">
+							<p:ajax process="@this" event="change" update="@this" />
+						</p:inputText></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.date}" for="payDate" /></td>
+					<td><ac:calendar id="payDate" value="#{feeBean.currentActionBill.payDate}" /></td>
+				</tr>
+			</table>
+		</p:panel>
+	</h:form>
+</ui:composition>

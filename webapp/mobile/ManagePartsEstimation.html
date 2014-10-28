@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="dependencies/platform/platform.js"></script>
+
+  	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
+  	<link rel="stylesheet" href="dependencies/bootstrap/dist/css/bootstrap.min.css">
+    
+	<link rel="stylesheet" href="dependencies/ui-select/select.min.css">
+	
+	<link rel="import" href="dependencies/paper-input/paper-input.html">
+	<link rel="import" href="dependencies/core-selector/core-selector.html">
+	<link rel="import" href="dependencies/paper-checkbox/paper-checkbox.html">
+	<link  rel="import" href="dependencies/paper-dialog/paper-dialog.html">
+	
+	<style>
+    body {
+      padding: 15px;
+    }
+
+    .select2 > .select2-choice.ui-select-match {
+      /* Because of the inclusion of Bootstrap */
+      height: 29px;
+    }
+
+    .selectize-control > .selectize-dropdown {
+      top: 36px;
+    }
+    
+    paper-dialog::shadow  #main
+    {
+    	height: 250px !important;
+    }
+    
+    #popupMDevChecklist
+    {
+    	width: 100%;
+    }
+    
+    paper-checkbox::shadow #ink
+    {
+    	width: 18px;
+    	height: 18px;
+    }
+  </style>
+</head>
+<body unresolved vertical layout>
+<div ng-app="MyApp" ng-controller="PartsEstimateController">
+
+<table>
+	<tr>
+		<td>Select Estimation:</td>
+		<td>
+			<ui-select id="txtEstimationList" ng-model="estimationSelected.selected" theme="select2" style="width: 300px;">
+				<ui-select-match placeholder="Select a Estimation">Estimation:  </p3>{{$select.selected.checklistName}}</ui-select-match>
+	            <ui-select-choices group-by="'group'" repeat="item in estimationList | filter: $select.search">
+	              <p3>Pe type:  </p3><span ng-bind-html="trustAsHtml((item.peType | highlight: $select.search))"></span><br/>
+	              <p3>Check date:  </p3><span ng-if="item.requestDate != null || item.requestDate != undefined" ng-bind-html="trustAsHtml((item.requestDate.monthValue + '/' + item.requestDate.dayOfMonth + '/' + item.requestDate.year | highlight: $select.search))"></span>
+	              <p3>Total price:  </p3><span ng-bind-html="trustAsHtml((item.totalPrice | highlight: $select.search))"></span><br/>
+	            </ui-select-choices>
+			</ui-select>
+		</td>
+	</tr>
+	
+	<tr>
+		<td colspan="2">
+			<input type="button" value="Add new" ng-click="">
+			<input type="button" value="Delete" ng-click="">
+		</td>
+	</tr>
+</table>
+
+<fieldset>
+	<legend>Estimate</legend>
+	<table>
+		<tr>
+			<td colspan="2">
+				<paper-input ng-model="estimation.repairCode" floatingLabel label="Repair code" disabled></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input ng-model="estimation.partsDistributor" floatingLabel label="Parts distributor"></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input ng-model="estimation.personOfPartsDist" floatingLabel label="Person of parts dist"></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input ng-model="estimation.client" floatingLabel label="Client"></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input ng-model="estimation.personOfClientHosp" floatingLabel label="Person of client hosp"></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input ng-model="estimation.repairBy" floatingLabel label="Repair by"></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input ng-model="estimation.personOfRepairService" floatingLabel label="Person of repair service"></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td>Estimation status</td>
+			<td>
+				<select>
+					<option value="1">
+					<option value="2">
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input ng-model="estimation.requestDate" floatingLabel label="Request date"></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input ng-model="estimation.printDate" floatingLabel label="Print date"></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input ng-model="estimation.deceiveDate" floatingLabel label="Receive date"></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input ng-model="estimation.expirationDate" floatingLabel label="Expiration date" ></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input ng-model="estimation.deliverTo" floatingLabel label="Deliver to" ></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input ng-model="estimation.deliverDate" floatingLabel label="Deliver date" ></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input ng-model="estimation.codeDistributor" floatingLabel label="Code distributor" ></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input ng-model="estimation.totalWithTax" floatingLabel label="Total with tax" ></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input ng-model="estimation.tax" floatingLabel label="Tax" ></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input ng-model="estimation.image" floatingLabel label="PDF/Image" ></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<ui-select id="partEstimateItem" ng-model="partEstimateItemSelected.selected" theme="select2" style="width: 300px;">
+					<ui-select-match placeholder="Select a part estimate">Checklist:  </p3>{{$select.selected.partName}}</ui-select-match>
+				    <ui-select-choices group-by="'group'" repeat="item in partEstimateItemList | filter: $select.search">
+				    	<p3>Name:  </p3><span ng-bind-html="trustAsHtml((item.partName | highlight: $select.search))"></span><br/>
+					    <p3>Model:  </p3><span ng-bind-html="trustAsHtml((item.modelNo | highlight: $select.search))"></span><br/>
+					    <p3>Number items:  </p3><span ng-bind-html="trustAsHtml((item.numsItem | highlight: $select.search))"></span><br/>
+					    <p3>Price:  </p3><span ng-bind-html="trustAsHtml((item.price | highlight: $select.search))"></span><br/>
+					    <p3>Taxrate:  </p3><span ng-bind-html="trustAsHtml((item.taxrate | highlight: $select.search))"></span><br/>
+					    <p3>Price with tax:  </p3><span ng-bind-html="trustAsHtml((item.priceWithTax | highlight: $select.search))"></span>
+					</ui-select-choices>
+				</ui-select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="button" value="Add new item">
+				<input type="button" value="Delete item">
+			</td>
+		</tr>
+		<tr>
+			<td>Select parts</td>
+			<td>
+				<ui-select id="selectParts" ng-model="partSelected.selected" theme="select2">
+				
+				</ui-select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input ng-model="part.unitPrice" floatingLabel label="Unit price" ></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input ng-model="part.numberItem" floatingLabel label="Number of items" ></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input ng-model="part.subtotal" floatingLabel label="Subtotal" ></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input ng-model="part.taxrate" floatingLabel label="Tax rates(%)" ></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input ng-model="part.tax" floatingLabel label="Tax" ></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<paper-input ng-model="part.subtotal" floatingLabel label="Subtotal w/Tax" ></paper-input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="button" value="Apply this to items">
+				<input type="button" value="Clear this item">
+			</td>
+		</tr>
+	</table>				
+</fieldset>
+
+<script src="dependencies/jquery-2.1.1.min.js"></script>
+<script src="dependencies/angular/angular.js"></script>
+<script src="dependencies/angular-bootstrap/ui-bootstrap.min.js"></script>
+<script src="lib/ng-polymer-elements.js"></script>
+<script src="dependencies/ngStorage-master/ngStorage.js"></script>
+<script src="dependencies/ui-select/select.min.js"></script>
+<script src="dependencies/smart-table.debug.js"></script>
+<script src="app.js"></script>
+
+<script src="controller/PartsEstimateController.js"></script>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:o="http://omnifaces.org/ui"
+    xmlns:p="http://primefaces.org/ui">
+    <h:form>
+        <p:panel>
+            <p:commandButton value="#{messages.add}" process="@this" immediate="true" icon=" ui-icon-plus" action="#{humanResourceManagementBean.addNewHumanResource()}" update=":contentPane"/>
+            <p:commandButton value="#{messages.edit}" process="@this" immediate="true" icon="ui-icon-pencil" action="#{humanResourceManagementBean.editHumanResource()}" update=":contentPane" disabled="#{!humanResourceManagementBean.enableEdit}" />
+        </p:panel>
+        
+        <ac:dataTable value="#{humanResourceManagementBean.listHumanResource}" var="humanResource" id="humanResourceTable"> 
+            <p:column styleClass="display-select">
+                <p:selectBooleanCheckbox value="#{humanResource.selected}">
+                    <p:ajax event="change" update=":contentPane" listener="#{humanResourceManagementBean.toggleSelection(humanResource)}"/>
+                </p:selectBooleanCheckbox>
+            </p:column>
+            <p:column headerText="#{messages.no}" styleClass="display-index">
+                #{index+1}
+            </p:column>
+            <p:column styleClass="display-code">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.hospCode}"
+                        parentTable="humanResourceTable"
+                        sorter="#{humanResourceManagementBean.listHumanResource.sort('hospCode')}"
+                        filter="#{humanResourceManagementBean.listHumanResource.filter('hospCode')}">
+                    </ac:columnHeader> 
+                </f:facet>
+                #{humanResource.hospital.hospCode}
+            </p:column>
+            <p:column styleClass="display-text">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.hospName}"
+                        parentTable="humanResourceTable"
+                        sorter="#{humanResourceManagementBean.listHumanResource.sort('hospName')}"
+                        filter="#{humanResourceManagementBean.listHumanResource.filter('hospName')}">
+                    </ac:columnHeader> 
+                </f:facet>
+                #{humanResource.hospital.name}
+            </p:column>
+             <p:column styleClass="display-code">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.hospDeptCode}"
+                    parentTable="humanResourceTable"
+                       sorter="#{humanResourceManagementBean.listHumanResource.sort('hospDeptCode')}"
+                       filter="#{humanResourceManagementBean.listHumanResource.filter('hospDeptCode')}">
+                    </ac:columnHeader> 
+                </f:facet>
+                #{humanResource.hospitalDept.deptCode}
+            </p:column>
+            <p:column styleClass="display-text">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.hospDeptName}"
+                        parentTable="humanResourceTable"
+                       sorter="#{humanResourceManagementBean.listHumanResource.sort('hospDeptName')}"
+                        filter="#{humanResourceManagementBean.listHumanResource.filter('hospDeptName')}">
+                    </ac:columnHeader> 
+                </f:facet>
+                #{humanResource.hospitalDept.name}
+            </p:column>
+             <p:column styleClass="display-code">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.personCode}"
+                        parentTable="humanResourceTable"
+                        sorter="#{humanResourceManagementBean.listHumanResource.sort('personCode')}"
+                        filter="#{humanResourceManagementBean.listHumanResource.filter('personCode')}">
+                    </ac:columnHeader> 
+                </f:facet>
+                #{humanResource.person.psnCode}
+            </p:column>
+             <p:column styleClass="display-text">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.personName}"
+                        parentTable="humanResourceTable"
+                        sorter="#{humanResourceManagementBean.listHumanResource.sort('personName')}"
+                        filter="#{humanResourceManagementBean.listHumanResource.filter('personName')}">
+                    </ac:columnHeader> 
+                </f:facet>
+                #{humanResource.fullName}
+            </p:column>
+        </ac:dataTable>
+    </h:form>
+</ui:composition>

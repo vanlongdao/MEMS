@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+    <o:importConstants type="arrow.mems.config.AppConfig"></o:importConstants>
+    <h:form>
+        <ac:dataTable value="#{managementDocumentOfMasterDeviceBean.listDocument}" var="document" id="documentTable">
+            <p:column styleClass="display-select">
+                <p:selectBooleanCheckbox value="#{document.selected}">
+                    <p:ajax event="change" update="@([id$=newDocumentSet]), @([id$=buttonForm])" listener="#{managementDocumentOfMasterDeviceBean.toggleSelection(document)}" />
+                </p:selectBooleanCheckbox>
+            </p:column>
+            <p:column headerText="#{messages.no}" styleClass="display-index">
+                <h:outputText value="#{index+1}" />
+            </p:column>
+            <p:column styleClass="display-text">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.softwareRevision}" parentTable="documentTable">
+                    </ac:columnHeader>
+                </f:facet>
+                <h:outputText value="#{document.softwareRev}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.createdBy}" parentTable="documentTable">
+                    </ac:columnHeader>
+                </f:facet>
+                <h:outputText value="#{document.createdByUser.name}" styleClass="display-text" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.createdAt}" parentTable="documentTable">
+                    </ac:columnHeader>
+                </f:facet>
+                <ac:outputTime value="#{document.createdAt}" styleClass="display-date" showTime="true" />
+            </p:column>
+        </ac:dataTable>
+    </h:form>
+    <h:form id="buttonForm">
+        <p:commandButton value="#{messages.createDocumentSet}" icon="ui-icon-document" 
+            actionListener="#{managementDocumentOfMasterDeviceBean.addNewDocument}" update="@([id$=newDocumentSet]), @([id$=documentTable])" process="@this" />
+        <p:commandButton value="#{messages.delete}" icon="ui-icon-trash" action="#{managementDocumentOfMasterDeviceBean.deleteDocument()}" 
+            update="@([id$=newDocumentSet]), @([id$=documentTable]), @this" process="@this"
+            disabled="#{!managementDocumentOfMasterDeviceBean.enableDelete}" immediate="true">
+            <p:confirm header="#{messages.confirmation}" message="#{messages.MMI00003}" icon="ui-icon-alert" />
+        </p:commandButton>
+        <p:commandButton value="#{messages.discard}" icon="ui-icon-pencil" actionListener="#{managementDocumentOfMasterDeviceBean.discardChange}" 
+            update="@([id$=newDocumentSet]), @([id$=documentTable]), buttonForm" process="@this" immediate="true">
+            <p:confirm header="#{messages.confirmation}" message="#{messages.MFM00019}" icon="ui-icon-alert" />
+        </p:commandButton>
+    </h:form>
+    <p:outputPanel id="newDocumentSet">
+        <p:fieldset legend="#{messages.documentSet}" rendered="#{managementDocumentOfMasterDeviceBean.currentDocument ne null}">
+            <h:form>
+                <table>
+                    <tr>
+                        <td class="label" align="left" colspan="1"><p:outputLabel value="#{messages['softwareRevision']}" for="softwareRevision" /></td>
+                        <td colspan="2">
+                            <p:inputText id="softwareRevision" value="#{managementDocumentOfMasterDeviceBean.currentDocument.softwareRev}" label="#{messages['softwareRevision']}"
+                                styleClass="thirty-char">
+                                <p:ajax process="@this" update="@this"/>
+                            </p:inputText>         
+                       </td>
+                    </tr>
+                </table>
+                <p:tabView>
+                    <p:tab title="#{messages['documentSet']}">
+                        <table>
+                            <tr>
+                                <td class="label">
+                                    <p:outputLabel value="#{messages.userManual}" for="userManual" />
+                                </td>
+                                <td>
+                                    <p:inputText id="userManual" value="#{managementDocumentOfMasterDeviceBean.currentDocument.inst01}" disabled="true" />
+                                </td>
+                                   
+                                <td>
+                                    <ac:uploadDocument listener="#{managementDocumentOfMasterDeviceBean.fileUserManualUploadListener}" id="userManual_fileupload"
+                                        value="#{managementDocumentOfMasterDeviceBean.fileUserManual}"  process="@this" update="@this, @([id$=userManual])">
+                                    </ac:uploadDocument>
+                               </td>
+<!--                                <td> -->
+<!--                                     <p:commandButton value="#{messages.viewDocument}" update="@([id$=viewPdf])" oncomplete="PF('dialogViewPDf').show();"  -->
+<!--                                     actionListener="#{managementDocumentOfMasterDeviceBean.goToViewDocument(managementDocumentOfMasterDeviceBean.currentDocument.docId, managementDocumentOfMasterDeviceBean.currentDocument.inst01)}"> -->
+<!--                                     </p:commandButton> -->
+                                    
+<!--                                </td> -->
+                            </tr>
+                            <tr>
+                                <td class="label">
+                                    <p:outputLabel value="#{messages.serviceManual}" for="serviceManual" />
+                                </td>
+                                <td>
+                                    <p:inputText id="serviceManual" value="#{managementDocumentOfMasterDeviceBean.currentDocument.service01}" disabled="true" />
+                                </td>
+                                   
+                                <td>
+                                    <ac:uploadDocument listener="#{managementDocumentOfMasterDeviceBean.fileServiceManualUploadListener}" id="serviceManual_fileupload"
+                                        value="#{managementDocumentOfMasterDeviceBean.fileServiceManual}"  process="@this" update="@this, @([id$=serviceManual])">
+                                    </ac:uploadDocument>
+                               </td>
+                               <td>
+                                   
+                               </td>
+                            </tr>
+                            <tr>
+                                <td class="label">
+                                    <p:outputLabel value="#{messages.serviceGuide}" for="serviceGuide" />
+                                </td>
+                                <td>
+                                    <p:inputText id="serviceGuide" value="#{managementDocumentOfMasterDeviceBean.currentDocument.service02}" disabled="true" />
+                                </td>
+                                   
+                                <td>
+                                    <ac:uploadDocument listener="#{managementDocumentOfMasterDeviceBean.fileServiceGuideUploadListener}" id="serviceGuide_fileupload"
+                                        value="#{managementDocumentOfMasterDeviceBean.fileServiceGuide}"  process="@this" update="@this, @([id$=serviceGuide])">
+                                    </ac:uploadDocument>
+                               </td>
+                            </tr>
+                            <tr>
+                                <td class="label">
+                                    <p:outputLabel value="#{messages.safetyTest}" for="safetyTest" />
+                                </td>
+                                <td>
+                                    <p:inputText id="safetyTest" value="#{managementDocumentOfMasterDeviceBean.currentDocument.safety01}" disabled="true" />
+                                </td>
+                                   
+                                <td>
+                                    <ac:uploadDocument listener="#{managementDocumentOfMasterDeviceBean.fileSafetyTestUploadListener}" id="safetyTest_fileupload"
+                                        value="#{managementDocumentOfMasterDeviceBean.fileSafetyTest}"  process="@this" update="@this, @([id$=safetyTest])">
+                                    </ac:uploadDocument>
+                               </td>
+                            </tr>
+                            <tr>
+                                <ui:include src="fragments/uploadDocument.xhtml">
+                                    <ui:param name="label" value="#{messages.performanceTest}" />
+                                    <ui:param name="id" value="performanceTest" />
+                                    <ui:param name="value" value="#{managementDocumentOfMasterDeviceBean.currentDocument.performance01}" />
+                                    <o:methodParam name="listener" value="#{managementDocumentOfMasterDeviceBean.filePerformanceTestUploadListener}" />
+                                    <ui:param name="fileValue" value="#{managementDocumentOfMasterDeviceBean.currentDocument.performance01}" />
+                                </ui:include>
+                            </tr>
+                        </table>
+
+                    </p:tab>
+                    <p:tab title="#{messages['video']}">
+                        <table>
+                            <tr>
+                                <ui:include src="fragments/uploadVideo.xhtml">
+                                    <ui:param name="label" value="#{messages.userManualVideo}" />
+                                    <ui:param name="id" value="userManualVideo" />
+                                    <ui:param name="value" value="#{managementDocumentOfMasterDeviceBean.currentDocument.instV}" />
+                                    <o:methodParam name="listener" value="#{managementDocumentOfMasterDeviceBean.fileManualVideoUploadListener}" />
+                                    <ui:param name="fileValue" value="#{managementDocumentOfMasterDeviceBean.fileUserManualVideo}" />
+                                </ui:include>
+                            </tr>
+                            <tr>
+                                <ui:include src="fragments/uploadVideo.xhtml">
+                                    <ui:param name="label" value="#{messages.serviceManualVideo}" />
+                                    <ui:param name="id" value="serviceManualVideo" />
+                                    <ui:param name="value" value="#{managementDocumentOfMasterDeviceBean.currentDocument.replacePartV}" />
+                                    <o:methodParam name="listener" value="#{managementDocumentOfMasterDeviceBean.fileServiceManualVideoUploadListener}" />
+                                    <ui:param name="fileValue" value="#{managementDocumentOfMasterDeviceBean.fileServiceManualVideo}" />
+                                </ui:include>
+                            </tr>
+                            <tr>
+                                <ui:include src="fragments/uploadVideo.xhtml">
+                                    <ui:param name="label" value="#{messages.safetyTestVideo}" />
+                                    <ui:param name="id" value="safetyTestVideo" />
+                                    <ui:param name="value" value="#{managementDocumentOfMasterDeviceBean.currentDocument.safetyV}" />
+                                    <o:methodParam name="listener" value="#{managementDocumentOfMasterDeviceBean.fileSafetyTestVideoUploadListener}" />
+                                    <ui:param name="fileValue" value="#{managementDocumentOfMasterDeviceBean.fileSafetyTestVideo}" />
+                                </ui:include>
+                            </tr>
+                            <tr>
+                                <ui:include src="fragments/uploadVideo.xhtml">
+                                    <ui:param name="label" value="#{messages.performanceTestVideo}" />
+                                    <ui:param name="id" value="performanceTestVideo" />
+                                    <ui:param name="value" value="#{managementDocumentOfMasterDeviceBean.currentDocument.performanceV}" />
+                                    <o:methodParam name="listener" value="#{managementDocumentOfMasterDeviceBean.filePerformanceTestVideoUploadListener}" />
+                                    <ui:param name="fileValue" value="#{managementDocumentOfMasterDeviceBean.filePerformanceTestVideo}" />
+                                </ui:include>
+                            </tr>
+                        </table>
+                    </p:tab>
+                </p:tabView>
+                <table>
+                    <tr>
+                        <td colspan="3">
+                            <p:commandButton value="#{messages.saveDocumentSet}" icon="ui-icon-disk" update="@([id$=newDocumentSet]),@([id$=documentTable])"
+                                action="#{managementDocumentOfMasterDeviceBean.saveDocumentTemporary}" process="@form">
+                            </p:commandButton></td>
+                    </tr>
+                </table>
+            </h:form>
+            
+        </p:fieldset>
+    </p:outputPanel>
+            <p:dialog header="Modal Dialog" widgetVar="dialogViewPDf" modal="true" height="450px" styleClass="dialogView" style="z-index:-1;" id="viewPdf">
+                <p:media value="#{managementDocumentOfMasterDeviceBean.linkToDocument}" width="100%" height="450px" player="pdf">
+                </p:media>
+            </p:dialog>   
+</ui:composition>

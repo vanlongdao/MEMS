@@ -1,0 +1,13 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://omnifaces.org/ui"
+	xmlns:p="http://primefaces.org/ui">
+	<h:form>
+		<p:growl id="growl_dashboard" widgetVar="growl_dashboard_js" autoUpdate="false" showDetail="true" escape="false" />
+		<p:dashboard id="daskboard" model="#{daskboardBean.model}">
+			<p:panel id="notification" header="#{messages.notification}">
+				<ui:include src="/WEB-INF/pages/notification/notification_051.xhtml" />
+			</p:panel>
+		</p:dashboard>
+	</h:form>
+</ui:composition>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CORPORATE -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="CORP_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="CORP_CODE" data-type="code" not-null="false" />
+	<column name="NAME" data-type="name" not-null="false" />
+	<column name="COUNTRY" data-type="integer" not-null="true" />
+	<foreign-key parent-table="MT_COUNTRY">
+		<column name="COUNTRY" referColumn="COUNTRY_ID" />
+	</foreign-key>
+</table>

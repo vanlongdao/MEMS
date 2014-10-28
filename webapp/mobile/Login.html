@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div>
+		<label>Medical Device Service Platform</label>
+		<br>
+		<div ng-app="MyApp" ng-controller="LoginController">
+			<form ng-submit="submit()">
+				<table>
+				<tr>
+					<td>
+						<label>Username: </label>
+					</td>
+					<td>
+						<input type="text" id="txtUsername" ng-model="login.username">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>Password: </label>
+					</td>
+					<td>
+						<input type="password" id="txtPassword" ng-model="login.password">
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<a href="#">Forgot password?</a>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="submit" value="Login">
+					</td>
+				</tr>
+			</table>
+			</form>	
+		</div>
+	</div>
+	
+	<script src="dependencies/angular/angular.js"></script>
+	<script src="lib/ng-polymer-elements.js"></script>
+	<script src="dependencies/ngStorage-master/ngStorage.js"></script>
+	<script src="dependencies/ui-select/select.min.js"></script>
+	<script src="dependencies/smart-table.min.js"></script>
+	<script src="app.js"></script>
+	<script src="controller/LoginController.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MDEV_OPERATOR -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="MDEV_SERVICE_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="MDEV_CODE" data-type="code" not-null="false" />
+	<column name="ROLE_CODE" data-type="code" not-null="false" />
+	<column name="SERVICE_OFFICE" data-type="code" not-null="false" />
+	<column name="SERVICE_PSN" data-type="code" not-null="false" />
+</table>

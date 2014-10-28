@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+    xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+    <composite:attribute name="value" />
+    <composite:editableValueHolder name="value" targets="text" />
+    <composite:attribute name="converter" />
+    <composite:attribute name="validator" method-signature="void Action(javax.faces.context.FacesContext, javax.faces.component.UIComponent,Object)" />
+    <composite:attribute name="readonly" />
+    <composite:attribute name="label" />
+    <composite:attribute name="autocomplete" />
+    <composite:attribute name="styleClass" default="value" />
+</composite:interface>
+
+<composite:implementation>
+    <p:inputText id="text" label="#{cc.attrs.label}" value="#{cc.attrs.value}" readonly="#{cc.attrs.readonly}" converter="#{cc.attrs.converter}" autocomplete="#{cc.attrs.autocomplete}"
+        styleClass="#{cc.attrs.styleClass}">
+    </p:inputText>
+    <p:message for="#{cc.id}:text" display="tooltip" id="tooltip" />
+</composite:implementation>
+
+</html>

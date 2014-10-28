@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- OPERATION_LOG -->
+<table>
+	<primary-key>
+		<column name="OP_ID" data-type="bigserial" not-null="true"/>
+	</primary-key>
+	<column name="OPERATED_AT" data-type="datetime" not-null="false" />
+	<column name="OPERATED_BY" data-type="internal-id" not-null="true" />
+	<column name="APPROVED_BY" data-type="internal-id" not-null="true" />
+	<column name="DESCRIPTION" data-type="freetext" not-null="false" />
+	<column name="TARGET_TABLE" data-type="name" not-null="false" />
+	<column name="OLD_ID" data-type="internal-id" not-null="false" />
+	<column name="NEW_ID" data-type="internal-id" not-null="false" />
+</table>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+
+	<o:importConstants type="arrow.mems.constant.CommonConstants" />
+
+	<ui:fragment rendered="#{inputRepairRequestBean.currentActionLog eq null}">
+		<h:form>
+			<ac:dataTable value="#{inputRepairRequestBean.listActionLogs}" var="actionLog" selectionMode="single" rowKey="#{actionLog.actionId}">
+				<p:ajax event="rowSelect" listener="#{inputRepairRequestBean.selectActionLog}"></p:ajax>
+				<p:column>
+                #{actionLog.actionCode}
+            </p:column>
+
+			</ac:dataTable>
+			<p:autoComplete value="#{inputRepairRequestBean.selectedDevice}" id="selectedDevice" converter="#{converterStorage.deviceConverter}" title="#{messages.typeToFindOldPart}" var="oldPart"
+				itemLabel="#{oldPart.MDevice.modelNo}" forceSelection="true" emptyMessage="#{messages.noPartFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200" itemValue="#{oldPart}"
+				completeMethod="#{commonAutoCompleteBean.filterActiveDevice}">
+				<p:column headerText="#{messages.modelNo}">
+					<h:outputText value="#{oldPart.MDevice.modelNo}" />
+				</p:column>
+				<p:column headerText="#{messages.serialNo}">
+					<h:outputText value="#{oldPart.serialNo}" />
+				</p:column>
+				<p:column headerText="#{messages.deviceCode}">
+					<h:outputText value="#{oldPart.devCode}" />
+				</p:column>
+				<p:ajax event="itemSelect" process="@this" update="selectedDevice" />
+			</p:autoComplete>
+
+			<table>
+				<tr>
+					<td><p:selectBooleanCheckbox value="#{inputRepairRequestBean.useModeSchedule}">
+							<p:ajax event="change" process="@this" update="@form"></p:ajax>
+						</p:selectBooleanCheckbox></td>
+				</tr>
+				<tr>
+					<td><p:inputText rendered="#{inputRepairRequestBean.useModeSchedule}" value="#{inputRepairRequestBean.scheduleCode}">
+							<p:ajax event="change" process="@this" update="@this"></p:ajax>
+						</p:inputText></td>
+				</tr>
+				<tr>
+					<td><p:selectOneRadio id="schedule" rendered="#{inputRepairRequestBean.repairMode eq CommonConstants.REPAIR_MODE_USE_SCHEDULE}" value="#{inputRepairRequestBean.scheduleType}">
+							<f:selectItem itemLabel="Count Schedule" itemValue="#{CommonConstants.USE_COUNT_SCHEDULE}" />
+							<f:selectItem itemLabel="Schedule Item" itemValue="#{CommonConstants.USE_SCHEDULE_ITEM}" />
+							<p:ajax process="@this" update="@this"></p:ajax>
+						</p:selectOneRadio></td>
+				</tr>
+			</table>
+
+			<p:commandButton value="Edit" action="#{inputRepairRequestBean.editActionLog()}" update=":contentPane" process="@form" />
+			<p:commandButton value="New" action="#{inputRepairRequestBean.addNewActionLog()}" update=":contentPane" process="@form" />
+		</h:form>
+	</ui:fragment>
+	<ui:fragment rendered="#{inputRepairRequestBean.currentActionLog ne null}">
+		<h:form>
+			<p:commandButton value="#{messages.save}" icon="ui-icon-disk" process="@this" update=":contentPane" action="#{inputRepairRequestBean.saveRepairRequest}" onstart="PF('globalBlockUI_js').block()"
+				oncomplete="PF('globalBlockUI_js').unblock()" />
+			<p:commandButton value="#{messages.cancel}" icon="ui-icon-close" process="@this" action="#{screenMonitor.close()}" update=":contentPane" onstart="PF('globalBlockUI_js').block()"
+				oncomplete="PF('globalBlockUI_js').unblock()" />
+		</h:form>
+		<p:tabView id="tabView">
+			<p:tab title="#{messages.inputRepairRequest}">
+				<ui:include src="/WEB-INF/pages/input_repair_request/tab_summary.xhtml" />
+			</p:tab>
+			<p:tab title="#{messages.managePartEstimation}">
+				<ui:include src="/WEB-INF/pages/input_repair_request/tab_manage_parts_estimation.xhtml" />
+			</p:tab>
+			<p:tab title="#{messages.managePartsOrder}">
+				<ui:include src="/WEB-INF/pages/input_repair_request/tab_manage_parts_order.xhtml" />
+			</p:tab>
+			<p:tab title="#{messages.fee}">
+				<ui:include src="/WEB-INF/pages/input_repair_request/tab_fee.xhtml" />
+			</p:tab>
+			<p:tab title="#{messages.manageChecklistResults}">
+				<ui:include src="/WEB-INF/pages/input_repair_request/tab_manage_checklist_results.xhtml" />
+			</p:tab>
+			<p:tab title="#{messages.manageReplaceParts}">
+				<ui:include src="/WEB-INF/pages/input_repair_request/tab_manage_replaced_parts.xhtml" />
+			</p:tab>
+		</p:tabView>
+	</ui:fragment>
+</ui:composition>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ACTION_LOG -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="ACTION_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="ACTION_CODE" data-type="code" not-null="false" />
+	<column name="ACTION_TYPE" data-type="code" not-null="false" />
+	<column name="HOSP_CODE" data-type="code" not-null="false" />
+	<column name="HOSP_DEPT_CODE" data-type="code" not-null="false" />
+	<column name="CONTACT_PSN" data-type="code" not-null="false" />
+	<column name="DEV_CODE" data-type="code" not-null="false" />
+	<column name="HOSP_CONTACT_PSN" data-type="code" not-null="false" />
+	<column name="COMPLAINT" data-type="freetext" not-null="false" />
+	<column name="OCCUR_DATE" data-type="date" not-null="false" />
+	<column name="CONTACT_DATE" data-type="date" not-null="false" />
+	<column name="ACTION_DATE" data-type="date" not-null="false" />
+	<column name="FINISH_DATE" data-type="date" not-null="false" />
+	<column name="DELIVERY_METHOD" data-type="freetext" not-null="false" />
+	<column name="CHECK_START_CONFIRM_IMG" data-type="image" not-null="false" />
+	<column name="ACTION_START_CONFIRM_IMG" data-type="image" not-null="false" />
+	<column name="INSTALL_CONFIRM_IMG" data-type="image" not-null="false" />
+	<column name="CLIENT_SIDE_MGMT_CODE" data-type="freetext" not-null="false" />
+    
+    <foreign-key parent-table="HOSPITAL">
+        <column name="HOSP_CODE" referColumn="HOSP_CODE"/>
+        <column name="IS_DELETED" referColumn="IS_DELETED"/>
+    </foreign-key>
+    
+    <foreign-key parent-table="HOSPITAL_DEPT">
+        <column name="HOSP_DEPT_CODE" referColumn="DEPT_CODE"/>
+        <column name="IS_DELETED" referColumn="IS_DELETED"/>
+    </foreign-key>
+    
+    <foreign-key parent-table="PERSON">
+        <column name="HOSP_CONTACT_PSN" referColumn="PSN_CODE"/>
+        <column name="IS_DELETED" referColumn="IS_DELETED"/>
+    </foreign-key>
+    
+    <foreign-key parent-table="PERSON">
+        <column name="CONTACT_PSN" referColumn="PSN_CODE"/>
+        <column name="IS_DELETED" referColumn="IS_DELETED"/>
+    </foreign-key>
+    
+</table>

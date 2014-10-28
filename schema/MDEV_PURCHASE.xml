@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MDEV_PURCHASE -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="MDEV_PURCHASE_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="MDEV_CODE" data-type="code" not-null="false" />
+	<column name="ROLE_CODE" data-type="code" not-null="false" />
+	<column name="DIST_OFFICE" data-type="code" not-null="false" />
+	<column name="DIST_PSN" data-type="code" not-null="false" />
+	<column name="P_CCY" data-type="integer" not-null="false" />
+	<column name="PRICE" data-type="cost" not-null="false" />
+	<column name="WHOLESALE_PRICE" data-type="cost" not-null="false" />
+	<column name="PRICE_DATE" data-type="date" not-null="false" />
+	<column name="PRICE_EVIDENCE_FILE" data-type="image" not-null="false" />
+	<column name="PAY_COND" data-type="freetext" not-null="false" />
+	<column name="LEAD_TIME" data-type="freetext" not-null="false" />
+	<column name="NOTICE" data-type="freetext" not-null="false" />
+</table>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- FAULT -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="FAULT_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="ACTION_CODE" data-type="code" not-null="false" />
+	<column name="DESCRIPTION" data-type="freetext" not-null="false" />
+	<column name="REPAIR" data-type="freetext" not-null="false" />
+	<column name="CAUSE" data-type="freetext" not-null="false" />
+	<column name="PREVENTION" data-type="freetext" not-null="false" />
+	<column name="IMAGE_FILE" data-type="image" not-null="false" />
+</table>

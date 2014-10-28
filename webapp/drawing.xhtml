@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://omnifaces.org/ui">
+
+<!-- Have to has this f:view to work on Chrome/Safari -->
+<!-- PrimeFaces require h:head. Plain HTML head tag won't work -->
+<f:view contentType="text/html" encoding="UTF-8">
+    <h:head>
+        <title>#{messages.memsTitle}</title>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <!-- themes for Offline feature -->
+        <h:outputStylesheet name="offline-theme-chrome.css" media="screen" library="css" />
+        <h:outputStylesheet name="scribble.css" media="screen" library="css" />
+        <h:outputStylesheet name="main.css" media="screen" library="css" />
+        <!-- locale for Offline feature -->
+        <h:outputStylesheet name="offline-language-#{localeSelector.locale eq null ? 'en' : localeSelector.locale.language}.css" media="screen" library="css" />
+
+    </h:head>
+    <h:body id="contentPage" onkeypress="if( event.keyCode == 13){event.keyCode=0;}">
+
+        <!-- Offline feature: allow to check network status -->
+        <!--  defer load: this is not required, so should be load later -->
+        <o:deferredScript library="js" name="offline/offline.js" />
+        <o:deferredScript library="js" name="offline/ui.js" />
+        <o:deferredScript library="js" name="offline/reconnect.js" />
+        <o:deferredScript library="js" name="offline/requests.js" />
+
+        <o:deferredScript library="js" name="jquery.jqprint-0.3.js" />
+        <h:outputScript library="js" name="scribble/fidel/fidel.js" />
+        <h:outputScript library="js" name="scribble/scribble.js" />
+        <o:deferredScript library="js" name="main.js" />
+        
+    <h:form >
+        <pe:remoteCommand id="applyDataCommand" name="saveImage" process="@this" actionListener="#{commonBean.saveDrawingJson}">  
+            <pe:methodSignature parameters="java.lang.String" />  
+            <pe:methodParam name="json"/>  
+        </pe:remoteCommand> 
+         <canvas id="myDrawing" class="scribble" style="border: 1px solid black">
+         </canvas>
+        <p:commandButton value="#{messages.save}" onclick="var drawingData = jQuery('#myDrawing').data('scribble').toDataURL(); saveImage(drawingData)" > </p:commandButton>
+        <p:commandButton value="#{messages.cancel}" action="#{commonBean.closeDrawing}" />
+    </h:form>
+</h:body>
+</f:view>
+</html>

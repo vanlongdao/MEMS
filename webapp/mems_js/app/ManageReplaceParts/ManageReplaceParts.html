@@ -1,0 +1,89 @@
+
+
+<div ng-controller="mems.controller.replacedparts">
+
+<div id="ReplacedParts">
+    <table st-table="replacePartList" >
+        <thead>
+            <tr>
+                <td></td>
+                <td>Model No</td>
+                <td>Serial No</td>
+                <td>Old Serial No</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in replacePartList" ng-click="getReplacePartInfo(item)">
+                <td><paper-checkbox class="cellOption"></paper-checkbox></td>
+                <td>{{item.modelNo}}</td>
+                <td>{{item.device.serialNo}}</td>
+                <td>{{item.removeDevice.serialNo}}</td>
+            </tr>
+        </tbody>
+    </table>
+	
+	<div>
+		<input type="button" value="Add" ng-click="addNewPart()">
+		<input type="button" id="btnDelete" value="Delete" ng-click="dellAPart($event)" disabled="disabled">
+		<input type="button" value="Fill from part order" ng-click="fillFromOrder()">
+	</div>
+	
+	<div>
+		<input type="button" value="Apply" ng-click="applyAndReturn()">
+		<!--<input type="button" value="Discard and back" ng-click="discardAndReturn()">-->
+	</div>
+</div>
+
+<fieldset id = "partInfo" hidden="hidden">
+	<legend>Replace part info</legend>
+	
+	<table>
+		<tr>
+			<td><label>Old part:</label></td>
+			<td>				
+				<ui-select id="txtOldParts" ng-model="oldPartSelected.selected" theme="select2" ng-disabled="disabled" style="width: 200px;">
+				    <ui-select-match placeholder="Select a old part">Device Code:</p3>{{$select.selected.devCode}}</ui-select-match>
+		            <ui-select-choices group-by="'group'" repeat="item in oldParts | filter: $select.search">
+		              <p3>Device Code:</p3><span ng-bind-html="trustAsHtml((item.devCode | highlight: $select.search))"></span><br/>
+		              <p3>SerialNo:</p3><span ng-bind-html="trustAsHtml((item.serialNo | highlight: $select.search))"></span>
+		              <p3>ModelNo:</p3><span ng-bind-html="trustAsHtml((item.mdevice.modelNo | highlight: $select.search))"></span>
+		            </ui-select-choices>
+				  </ui-select>
+			</td>
+		</tr>
+		
+		<tr>
+			<td><label>New part:</label></td>
+			<td>
+				<ui-select id="txtNewParts" ng-model="newPartSelected.selected" theme="select2" ng-disabled="disabled" style="width: 200px;">
+				    <ui-select-match placeholder="Select a new part"><p3>Device Code:</p3>{{$select.selected.devCode}}</ui-select-match>
+		            <ui-select-choices group-by="'group'" repeat="item in newParts | filter: $select.search">
+		              <p3>Device Code:</p3><span ng-bind-html="trustAsHtml((item.devCode | highlight: $select.search))"></span><br/>
+		              <p3>SerialNo:</p3><span ng-bind-html="trustAsHtml((item.serialNo | highlight: $select.search))"></span>
+		              <p3>ModelNo:</p3><span ng-bind-html="trustAsHtml((item.mdevice.modelNo | highlight: $select.search))"></span>
+		            </ui-select-choices>
+				 </ui-select>
+			</td>
+		</tr>
+		
+		<tr>
+			<td><label>Discription:</label></td>
+			<td><input type="text" ng-bind="discription"></td>
+		</tr>
+		
+		<tr>
+			<td><label>Image</label></td>
+			<td><img alt="" src="">
+			<input type="button" value="Upload" ng-click=""></td>
+		</tr>
+		
+		<tr>
+			<td colspan="2">
+				<input type="button" value="Apply this replaced part" ng-click="applyReplacePart()">
+				<input type="button" value="Discard changes" ng-click="discardChange()">
+			</td>
+		</tr>
+	</table>
+</fieldset>
+
+</div>

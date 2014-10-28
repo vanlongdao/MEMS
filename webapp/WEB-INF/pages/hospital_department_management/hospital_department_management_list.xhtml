@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+    <h:form>
+        <p:panel>
+            <p:commandButton value="#{messages.add}" process="@this" immediate="true" icon=" ui-icon-plus" action="#{hospitalDeptManagementBean.addNewHospitalDept()}" update=":contentPane" />
+            <p:commandButton value="#{messages.edit}" process="@this" immediate="true" icon="ui-icon-pencil" action="#{hospitalDeptManagementBean.editHospitalDept()}" update=":contentPane"
+                disabled="#{!hospitalDeptManagementBean.enableEdit}" />
+            <p:commandButton id="btnClose" value="#{messages['close']}" action="#{screenMonitor.close}" onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                            update="@all" icon="ui-icon-close" process="@form"/>    
+        </p:panel>
+        <ac:dataTable value="#{hospitalDeptManagementBean.listHospitalDept}" var="hospitalDept" id="hospitalDeptTable">
+            <p:column styleClass="display-select">
+                <p:selectBooleanCheckbox value="#{hospitalDept.selected}">
+                    <p:ajax event="change" update=":contentPane" listener="#{hospitalDeptManagementBean.toggleSelection(hospitalDept)}" />
+                </p:selectBooleanCheckbox>
+            </p:column>
+            <p:column headerText="#{messages.no}" styleClass="display-index">
+                <h:outputText value="#{index+1}" styleClass="indexColumn" />
+            </p:column>
+            <p:column styleClass="display-code">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.hospDeptCode}" parentTable="hospitalDeptTable" sorter="#{hospitalDeptManagementBean.listHospitalDept.sort('hospDeptCode')}"
+                        filter="#{hospitalDeptManagementBean.listHospitalDept.filter('hospDeptCode')}">
+                    </ac:columnHeader>
+                </f:facet>
+                <h:outputText value="#{hospitalDept.deptCode}" />
+            </p:column>
+            <p:column styleClass="display-text">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.hospDeptName}" parentTable="hospitalDeptTable" sorter="#{hospitalDeptManagementBean.listHospitalDept.sort('hospDeptName')}"
+                        filter="#{hospitalDeptManagementBean.listHospitalDept.filter('hospDeptName')}">
+                    </ac:columnHeader>
+                </f:facet>
+                <h:outputText value="#{hospitalDept.name}" styleClass="display-text" />
+            </p:column>
+            <p:column styleClass="display-text">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.hospName}" parentTable="hospitalDeptTable" sorter="#{hospitalDeptManagementBean.listHospitalDept.sort('hospName')}"
+                        filter="#{hospitalDeptManagementBean.listHospitalDept.filter('hospName')}">
+                    </ac:columnHeader>
+                </f:facet>
+                <h:outputText value="#{hospitalDept.hospital.name}" styleClass="display-text" />
+            </p:column>
+
+            <p:column styleClass="display-number">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.bedNumber}" parentTable="hospitalDeptTable">
+                    </ac:columnHeader>
+                </f:facet>
+                <h:outputText value="#{hospitalDept.numBeds}" styleClass="display-number ten-char" converter="#{converterStorage.quatityConverter}"/>
+            </p:column>
+            
+            <p:column styleClass="display-number">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.pickupDay}" parentTable="hospitalDeptTable">
+                    </ac:columnHeader>
+                </f:facet>
+                <h:outputText value="#{hospitalDept.pickupDays}" styleClass="display-number ten-char" converter="#{converterStorage.quatityConverter}"/>
+            </p:column>
+            <p:column styleClass="display-number">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.noticeDay}" parentTable="hospitalDeptTable">
+                    </ac:columnHeader>
+                </f:facet>
+                <h:outputText value="#{hospitalDept.noticeDaysBefore}" styleClass="display-number ten-char" converter="#{converterStorage.quatityConverter}"/>
+            </p:column>
+            <p:column styleClass="display-number">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.checkedDayMargin}" parentTable="hospitalDeptTable">
+                    </ac:columnHeader>
+                </f:facet>
+                <h:outputText value="#{hospitalDept.checkDaysMargin}" styleClass="display-number ten-char" converter="#{converterStorage.quatityConverter}"/>
+            </p:column>
+            <p:column styleClass="display-text">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.createdBy}" parentTable="hospitalDeptTable">
+                    </ac:columnHeader>
+                </f:facet>
+                <h:outputText value="#{hospitalDept.createdByUser.name}" styleClass="display-text" />
+            </p:column>
+            <p:column styleClass="display-date">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.createdAt}" parentTable="hospitalDeptTable">
+                    </ac:columnHeader>
+                </f:facet>
+                <ac:outputTime value="#{hospitalDept.createdAt}" styleClass="display-date" showTime="true" />
+            </p:column>
+            <p:column styleClass="display-text">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.checkedBy}" parentTable="hospitalDeptTable">
+                    </ac:columnHeader>
+                </f:facet>
+                <h:outputText value="#{hospitalDept.checkedByUser.name}" styleClass="display-text" />
+            </p:column>
+            <p:column styleClass="display-date">
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.checkedAt}" parentTable="hospitalDeptTable">
+                    </ac:columnHeader>
+                </f:facet>
+                <ac:outputTime value="#{hospitalDept.checkedAt}" styleClass="display-date" showTime="true"/>
+            </p:column>
+        </ac:dataTable>
+    </h:form>
+</ui:composition>

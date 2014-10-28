@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- BUDGET -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="BUDGET_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="ORGANIZATION_CODE" data-type="code" not-null="false" />
+	<column name="BUDGET" data-type="numeric" not-null="false" />
+	<column name="START_DATE" data-type="date" not-null="false" />
+	<column name="END_DATE" data-type="date" not-null="false" />
+    
+    <foreign-key parent-table="HOSPITAL_DEPT">
+        <column name="ORGANIZATION_CODE" referColumn="DEPT_CODE"/>
+        <column name="IS_DELETED" referColumn="IS_DELETED"/>
+    </foreign-key>
+    
+    <foreign-key parent-table="HOSPITAL">
+        <column name="ORGANIZATION_CODE" referColumn="HOSP_CODE"/>
+        <column name="IS_DELETED" referColumn="IS_DELETED"/>
+    </foreign-key>
+    
+</table>

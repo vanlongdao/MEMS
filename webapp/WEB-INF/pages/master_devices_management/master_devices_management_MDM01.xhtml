@@ -1,0 +1,11 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
+    xmlns:pe="http://primefaces.org/ui/extensions" xmlns:o="http://omnifaces.org/ui">
+    <ui:fragment rendered="#{devicesManagementBean.currentDevice eq null}">
+        <ui:include src="master_device_summary.xhtml" />
+    </ui:fragment>
+    <ui:fragment rendered="#{devicesManagementBean.currentDevice ne null}">
+        <ui:include src="master_devices_management_MDM02.xhtml" />
+    </ui:fragment>
+</ui:composition>

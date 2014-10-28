@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- M_DEVICE -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="MDEV_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="MDEV_CODE" data-type="code" not-null="false" />
+	<column name="MODEL_NO" data-type="name" not-null="false" />
+	<column name="OWNER_CORP_CODE" data-type="code" not-null="false" />
+	<column name="MDEV_TYPE" data-type="integer" not-null="false" />
+	<column name="CAT_NAME" data-type="name" not-null="false" />
+	<column name="NAME" data-type="name" not-null="false" />
+	<column name="MANUFACTURER_CODE" data-type="code" not-null="false" />
+	<column name="MANUFACTURER_PSN" data-type="code" not-null="false" />
+	<column name="SUPPLIER_CODE" data-type="code" not-null="false"/>
+	<column name="SUPPLIER_PSN" data-type="code" not-null="false"/>
+	<column name="COUNTRY" data-type="integer" not-null="false" />
+	<column name="CATALOG" data-type="freetext" not-null="false" />
+	<column name="PICTURE" data-type="image" not-null="false" />
+	<column name="SPECIFICATION" data-type="freetext" not-null="false" />
+	<column name="NOTICE" data-type="freetext" not-null="false" />
+    <column name="MDEV_TYPE" data-type="integer" not-null="false" />
+    
+    <foreign-key parent-table="MT_COUNTRY">
+        <column name="COUNTRY" referColumn="COUNTRY_ID"/>
+    </foreign-key>
+</table>

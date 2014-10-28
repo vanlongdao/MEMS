@@ -1,0 +1,495 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui" xmlns:ac="http://arrow-tech.vn/ui"
+    xmlns:pe="http://primefaces.org/ui/extensions" xmlns:o="http://omnifaces.org/ui" template="/WEB-INF/template/web.xhtml">
+    <ui:define name="content">
+        <!-- To access constants -->
+        <o:importConstants type="arrow.mems.ui.ScreenCodes" />
+        <h:outputLabel value="#{devicesManagementBean.addNewDeviceAction()}" />
+        <h:form style="width: 100%;">
+            <table style="width: 100%;">
+                <tr>
+                    <td><p:commandButton value="#{messages.save}" process="@form" ajax="false" actionListener="#{devicesManagementBean.saveInfoDevice}"
+                            action="#{screenMonitor.close}" update=":contentPane">
+                            <!-- <f:ajax execute="@this"> </f:ajax> -->
+                        </p:commandButton> <p:commandButton value="#{messages.requestApprove}" /> <p:commandButton value="#{messages.clearAndMarkNew}" action="#{devicesManagementBean.clearAndMarkNew}" process="@this"
+                            update="@form" /> <p:commandButton value="#{messages.back}" action="#{screenMonitor.close}" process="@this" update=":contentPane" /> <p:commandButton
+                            value="#{messages.delete}" ajax="false" action="#{screenMonitor.close}" actionListener="#{devicesManagementBean.deleteMasterDevice}" update=":contentPane" /></td>
+                </tr>
+            </table>
+        </h:form>
+        <p:tabView>
+            <p:tab title="General Information">
+                <h:form>
+                    <table>
+                        <tr>
+                            <td><p:outputLabel value="#{messages.deviceMasterCode}" /></td>
+                            <td colspan="2"><p:outputLabel value="#{devicesManagementBean.currentDevice.mdevCode}" /></td>
+                        </tr>
+                        <tr>
+                            <td><p:outputLabel value="#{messages.country}" /></td>
+                            <td colspan="2"><p:autoComplete id="autoCompleteCountry" value="#{devicesManagementBean.currentDevice.mtCountry}" converter="#{converterStorage.countryConverter}"
+                                    title="#{messages.typeToFindCountry}" var="country" itemLabel="#{country.name}" forceSelection="true" emptyMessage="#{messages.noCountryFound}" cache="true"
+                                    cacheTimeout="300" dropdown="true" scrollHeight="200" itemValue="#{country}" completeMethod="#{devicesManagementBean.filterCountry}">
+                                    <p:column headerText="#{messages.countryId}">
+                                        <h:outputText value="#{country.countryId}" />
+                                    </p:column>
+                                    <p:column headerText="#{messages.countryName}">
+                                        <h:outputText value="#{country.name}" />
+                                    </p:column>
+                                </p:autoComplete></td>
+                        </tr>
+                        <tr>
+                            <td><p:outputLabel value="#{messages.modelNo}" /></td>
+                            <td colspan="2"><p:inputText value="#{devicesManagementBean.currentDevice.modelNo}" /></td>
+                        </tr>
+                        <tr>
+                            <td><p:outputLabel value="#{messages.deviceName}" /></td>
+                            <td colspan="2"><p:inputText value="#{devicesManagementBean.currentDevice.name}" /></td>
+                        </tr>
+                        <tr>
+                            <td><p:outputLabel value="#{messages.manufacturerName}" /></td>
+                            <td><p:autoComplete id="listManufacturerName" value="#{devicesManagementBean.selectedManufacturer}" converter="#{converterStorage.officeConverter}"
+                                    title="#{messages.typeToFindName}" forceSelection="true" emptyMessage="#{messages.noResults}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200"
+                                    var="office" itemLabel="#{office.name}" itemValue="#{office}" completeMethod="#{devicesManagementBean.filterSupplierAndManufacturer}">
+                                    <p:column headerText="#{messages.officeCode}">
+                                        <h:outputText value="#{office.officeCode}" />
+                                    </p:column>
+
+                                    <p:column headerText="#{messages.officeName}">
+                                        <h:outputText value="#{office.name}" />
+                                    </p:column>
+                                </p:autoComplete></td>
+                            <td style="padding-left: 30px;"><p:commandButton value="#{messages.edit}" action="#{screenMonitor.switchScreen(ScreenCodes.MASTER_DEVICES_MANAGEMENT_MANUFACTURER)}"
+                                    actionListener="#{manufacturerDeviceMasterBean.manufacturerEditBtnAction}" process="@this" update=":contentPane" /></td>
+                        </tr>
+
+                        <tr>
+                            <td><p:outputLabel value="#{messages.manufacturerContact}" /></td>
+                            <td colspan="2"><p:autoComplete id="listManufacturerContact" value="#{devicesManagementBean.selectedManufacturerContact}"
+                                    converter="#{converterStorage.personConverter}" title="#{messages.typeToFindName}" forceSelection="true" emptyMessage="#{messages.noResults}" cache="true"
+                                    cacheTimeout="300" dropdown="true" scrollHeight="200" var="person" itemLabel="#{person.address.address1}" itemValue="#{person}"
+                                    completeMethod="#{devicesManagementBean.filterSupplierAndManufacturerContact}">
+                                    <p:column headerText="#{messages.psnCode}">
+                                        <h:outputText value="#{person.psnCode}" />
+                                    </p:column>
+                                    <p:column headerText="#{messages.contact}">
+                                        <h:outputText value="#{person.address.address1}" />
+                                    </p:column>
+                                </p:autoComplete></td>
+                        </tr>
+                        <tr>
+                            <td><p:outputLabel value="#{messages.soleSupplier}" /></td>
+                            <td><p:autoComplete id="listSoleSupplier" value="#{devicesManagementBean.selectedSoldSupplier}" converter="#{converterStorage.officeConverter}"
+                                    title="#{messages.typeToFindName}" forceSelection="true" emptyMessage="#{messages.noResults}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200"
+                                    var="office" itemLabel="#{office.name}" itemValue="#{office}" completeMethod="#{devicesManagementBean.filterSupplierAndManufacturer}">
+                                    <p:column headerText="#{messages.officeCode}">
+                                        <h:outputText value="#{office.officeCode}" />
+                                    </p:column>
+
+                                    <p:column headerText="#{messages.officeName}">
+                                        <h:outputText value="#{office.name}" />
+                                    </p:column>
+                                </p:autoComplete></td>
+                            <td style="padding-left: 30px;"><p:commandButton value="#{messages.edit}" action="#{screenMonitor.switchScreen(ScreenCodes.MASTER_DEVICES_MANAGEMENT_SUPPLIER)}"
+                                    process="@this" update=":contentPane" /></td>
+                        </tr>
+                        <tr>
+                            <td><p:outputLabel value="#{messages.soleSupplierContact}" /></td>
+                            <td colspan="2"><p:autoComplete id="listSoleSupplierContact" value="#{devicesManagementBean.selectedSoldSupplierContact}"
+                                    converter="#{converterStorage.personConverter}" title="#{messages.typeToFindName}" forceSelection="true" emptyMessage="#{messages.noResults}" cache="true"
+                                    cacheTimeout="300" dropdown="true" scrollHeight="200" var="person" itemLabel="#{person.address.address1}" itemValue="#{person}"
+                                    completeMethod="#{devicesManagementBean.filterSupplierAndManufacturerContact}">
+                                    <p:column headerText="#{messages.psnCode}">
+                                        <h:outputText value="#{person.psnCode}" />
+                                    </p:column>
+                                    <p:column headerText="#{messages.contact}">
+                                        <h:outputText value="#{person.address.address1}" />
+                                    </p:column>
+                                </p:autoComplete></td>
+                        </tr>
+                    </table>
+                </h:form>
+            </p:tab>
+            <p:tab title="Description">
+                <p:panel>
+                    <h:form enctype="multipart/form-data">
+                        <table>
+                            <tr>
+                                <td><p:outputLabel value="#{messages.picture}" /></td>
+                                <td><p:panel id="imageUploadPanel">
+                                        <!-- <p:outputLabel value="#{devicesManagementBean.currentDevice.picture}"/> -->
+                                        <p:graphicImage cache="false" value="#{imageStreamBean.image}" width="50" height="50" binding="#{image}">
+                                            <f:param name="mdeviceCode" value="#{devicesManagementBean.currentDevice.mdevCode}" />
+                                        </p:graphicImage>
+                                    </p:panel></td>
+                                <td><p:fileUpload mode="advanced" value="#{devicesManagementBean.file}" binding="#{upload}" update="imageUploadPanel" immediate="true"
+                                        fileUploadListener="#{devicesManagementBean.handFileUpload}" allowTypes="/(\.|\/)(jpe?g|png)$/">
+                                    </p:fileUpload></td>
+                            </tr>
+                            <tr>
+                                <td><p:outputLabel value="#{messages.catalog}" /></td>
+                                <td colspan="2"><p:inputTextarea value="#{devicesManagementBean.currentDevice.catalog}" /></td>
+                            </tr>
+                            <tr>
+                                <td><p:outputLabel value="#{messages.specification}" /></td>
+                                <td colspan="2"><p:inputTextarea value="#{devicesManagementBean.currentDevice.specification}" /></td>
+                            </tr>
+                            <tr>
+                                <td><p:outputLabel value="#{messages.notice}" /></td>
+                                <td colspan="2"><p:inputTextarea value="#{devicesManagementBean.currentDevice.notice}" /></td>
+                            </tr>
+                        </table>
+                    </h:form>
+                </p:panel>
+            </p:tab>
+
+            <p:tab title="Part List">
+               <o:importConstants type="arrow.mems.ui.ScreenCodes" />
+    <h:form id="formGeneralInfoDevices">
+
+        <!-- Area CheckList Devices -->
+        <div id="partlistDevicesDiv">
+            <p:panel id="panelCheckListDevices">
+                <p:dataTable rows="15" id="partlistDevices" rowIndexVar="index" paginator="true" paginatorPosition="bottom"
+                    value="#{partListDeviceMasterBean.listInfoPartlistTemp}" var="partslist"
+                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+                    <p:column style="width:2%;">
+                        <p:selectBooleanCheckbox value="#{partslist.selected}">
+                            <p:ajax event="change" update="partlistDevices" process="@this"
+                                listener="#{partListDeviceMasterBean.toggleSelectionPartslist(partslist)}" />
+                        </p:selectBooleanCheckbox>
+                    </p:column>
+                    <p:column headerText="#{messages.no}" width="10">
+                        #{index+1}
+                    </p:column>
+                    <p:column headerText="#{messages.modelNo}">
+                        <p:outputLabel value="#{partslist.modelNo}" />
+                    </p:column>
+                    <p:column headerText="#{messages.catName}">
+                        <p:outputLabel value="#{partslist.catName}" />
+                    </p:column>
+                    <p:column headerText="#{messages.partName}">
+                        <p:outputLabel value="#{partslist.name}" />
+                    </p:column>
+                    <p:column headerText="#{messages.createdBy}">
+                        <p:outputLabel value="#{partListDeviceMasterBean.getCreatedByNameOfMDevice(partslist)}" />
+                    </p:column>
+                    <p:column headerText="#{messages.createdAt}">
+                        <ac:outputTime value="#{partslist.createdAt}" />
+                    </p:column>
+                </p:dataTable>
+                <p:commandButton value="#{messages.deleteItem}" process="@this"
+                    action="#{partListDeviceMasterBean.removePartsFromDevice}" update="panelCheckListDevices" />
+            </p:panel>
+        </div>
+
+        <!-- Area FORM  General Informations Devices -->
+        <div id="inputFormPartlistDiv">
+            <p:panel id="panelInputFormPartlist">
+                <table>
+                    <tr>
+                        <td><p:outputLabel value="#{messages.keyword}" /></td>
+                        <td style="width: 20%;"><p:inputText style="width:90%;" value="#{partListDeviceMasterBean.keyword}" /></td>
+                        <td><p:commandButton value="#{messages.search}" process="@form"
+                                action="#{partListDeviceMasterBean.searchAvailableParts}" update="panelInputFormPartlist" /></td>
+                    </tr>
+                    <tr>
+                        <td><p:outputLabel value="#{messages.result}" /></td>
+                        <td colspan="2"><p:dataTable rows="15" id="resultPartlistDevices" rowIndexVar="index"
+                                value="#{partListDeviceMasterBean.listSearchInfoPartlist}" var="partslist" paginator="true"
+                                paginatorPosition="bottom">
+                                <p:column style="width:2%;">
+                                    <p:selectBooleanCheckbox value="#{partslist.selected}">
+                                        <p:ajax event="change" update="resultPartlistDevices" process="@this"
+                                            listener="#{partListDeviceMasterBean.toggleSelectionInfoPartlistSearch(partslist)}" />
+                                    </p:selectBooleanCheckbox>
+                                </p:column>
+
+                                <p:column headerText="#{messages.modelNo}">
+                                    <p:outputLabel value="#{partslist.modelNo}" />
+                                </p:column>
+                                <p:column headerText="#{messages.catName}">
+                                    <p:outputLabel value="#{partslist.catName}" />
+                                </p:column>
+                                <p:column headerText="#{messages.partName}">
+                                    <p:outputLabel value="#{partslist.name}" />
+                                </p:column>
+                                <p:column headerText="#{messages.createdBy}">
+                                    <p:outputLabel value="#{partListDeviceMasterBean.getCreatedByNameOfMDevice(partslist)}" />
+                                </p:column>
+                                <p:column headerText="#{messages.createdAt}">
+                                    <ac:outputTime value="#{partslist.createdAt}" />
+                                </p:column>
+                            </p:dataTable></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td style="float: right;">
+                                <p:commandButton value="#{messages.addThis}" process="@this" 
+                                action="#{partListDeviceMasterBean.addSelectedPartsToDevice}" update=":contentPane" />
+                                </td>
+                        <td><p:commandButton value="#{messages.registerPartlist}" process="@this" update=":contentPane" action="#{screenMonitor.close}" actionListener="#{partListDeviceMasterBean.registerNewPartlist}"/></td>
+                    </tr>
+                </table>
+            </p:panel>
+            <p:panel>
+                <table style="width: 100%;">
+                    <tr style="width: 100%;">
+                        <td style="float: right;"><p:commandButton value="#{messages.apply}" actionListener="#{partListDeviceMasterBean.apply}" process="@this" update=":contentPane" action="#{screenMonitor.close}"/></td>
+                        <td><p:commandButton value="#{messages.discardChange}" update=":contentPane" process="@this" action="#{screenMonitor.close}" actionListener="#{partListDeviceMasterBean.resetAll}"/></td>
+                    </tr>
+                </table>
+            </p:panel>
+        </div>
+    </h:form>
+            </p:tab>
+            <p:tab title="Document">
+                <h:form id="formManageDocumentOfDevice" enctype="multipart/form-data">
+        <ac:dataTable value="#{managementDocumentOfMasterDeviceBean.listDocument}" var="document" id="documentTable"> 
+            <p:column styleClass="display-select">
+                <p:selectBooleanCheckbox value="#{document.selected}">
+                    <p:ajax event="change" update=":contentPane" listener="#{managementDocumentOfMasterDeviceBean.toggleSelection(document)}"/>
+                </p:selectBooleanCheckbox>
+            </p:column>
+            <p:column headerText="#{messages.no}" styleClass="display-index">
+                <h:outputText value="#{index+1}"/>
+            </p:column>
+            <p:column styleClass="display-text" >
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.softwareRevision}"
+                        parentTable="documentTable">
+                    </ac:columnHeader> 
+                </f:facet>
+                <h:outputText value="#{document.softwareRev}"/>  
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.createdBy}"
+                        parentTable="documentTable">
+                    </ac:columnHeader> 
+                </f:facet>
+                <h:outputText value="#{document.createdByUser.name}" styleClass="display-text" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <ac:columnHeader value="#{messages.createdAt}"
+                        parentTable="documentTable">
+                    </ac:columnHeader> 
+                </f:facet>
+                <h:outputText value="#{document.createdAt}" styleClass="display-text" />
+            </p:column>
+        </ac:dataTable>
+        <p:panel>
+            <p:commandButton value="#{messages.createDocumentSet}" icon=" ui-icon-plus" action="#{managementDocumentOfMasterDeviceBean.addNewDocument()}" update="@form" process="@this"/>
+            <p:commandButton value="#{messages.edit}" icon="ui-icon-pencil" action="#{managementDocumentOfMasterDeviceBean.editDocument()}" update="@form" process="@this" disabled="#{!managementDocumentOfMasterDeviceBean.enableEdit}" />
+            <p:commandButton value="#{messages.delete}" icon="ui-icon-trash" action="#{managementDocumentOfMasterDeviceBean.deleteDocument()}" update="@form" process="@this" disabled="#{!managementDocumentOfMasterDeviceBean.enableDelete}" immediate="true">
+                <p:confirm header="#{messages.confirmation}" message="#{messages.MMI00003}" icon="ui-icon-alert" />
+            </p:commandButton>  
+        
+            <table>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['softwareRevision']}" for="softwareRevision" /></td>
+                    <td colspan="3" >
+                        <p:inputText id="softwareRevision" value="#{managementDocumentOfMasterDeviceBean.currentDocument.softwareRev}" label="#{messages['softwareRevision']}" styleClass="thirty-char"/>
+                    </td>
+                </tr>
+<!--for document  -->
+                <tr>
+                    <td class="label" colspan="3"><p:outputLabel value="#{messages['documentSet']}"/></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['userManual']}" for="userManual" /></td>
+                    <td colspan="2" ><p:inputText id="userManual"
+                            value="#{managementDocumentOfMasterDeviceBean.currentDocument.inst01}" label="#{messages['userManual']}" disabled="true"/></td>
+                    <td><p:fileUpload mode="simple" value="#{managementDocumentOfMasterDeviceBean.fileUserManual}" sizeLimit="30720000"  
+                                  allowTypes="/(\.|\/)(gif|jpe?g|png|doc|txt|pdf|html)$/">
+                        </p:fileUpload></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['serviceManual']}" for="serviceManual" /></td>
+                    <td colspan="2" ><p:inputText id="serviceManual"
+                            value="#{managementDocumentOfMasterDeviceBean.currentDocument.service01}" label="#{messages['serviceManual']}" disabled="true"/></td>
+                    <td><p:fileUpload mode="simple" value="#{managementDocumentOfMasterDeviceBean.fileServiceManual}" sizeLimit="30720000"  
+                                  allowTypes="/(\.|\/)(gif|jpe?g|png|doc|txt|pdf|html)$/">
+                        </p:fileUpload></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['serviceGuide']}" for="serviceGuide" /></td>
+                    <td colspan="2" ><p:inputText id="serviceGuide"
+                            value="#{managementDocumentOfMasterDeviceBean.currentDocument.service02}" label="#{messages['serviceGuide']}" disabled="true"/></td>
+                    <td><p:fileUpload mode="simple" value="#{managementDocumentOfMasterDeviceBean.fileServiceGuide}" sizeLimit="30720000"  
+                                  allowTypes="/(\.|\/)(gif|jpe?g|png|doc|txt|pdf|html)$/">
+                        </p:fileUpload></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['safetyTest']}" for="safetyTest" /></td>
+                    <td colspan="2" ><p:inputText id="safetyTest"
+                            value="#{managementDocumentOfMasterDeviceBean.currentDocument.safety01}" label="#{messages['safetyTest']}" disabled="true"/></td>
+                    <td><p:fileUpload mode="simple" value="#{managementDocumentOfMasterDeviceBean.fileSafetyTest}" sizeLimit="30720000"  
+                                  allowTypes="/(\.|\/)(gif|jpe?g|png|doc|txt|pdf|html)$/">
+                        </p:fileUpload></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['performanceTest']}" for="performanceTest" /></td>
+                    <td colspan="2" ><p:inputText id="performanceTest"
+                            value="#{managementDocumentOfMasterDeviceBean.currentDocument.performance01}" label="#{messages['performanceTest']}" disabled="true"/></td>
+                    <td><p:fileUpload mode="simple" value="#{managementDocumentOfMasterDeviceBean.filePerformanceTest}" sizeLimit="30720000"  
+                                  allowTypes="/(\.|\/)(gif|jpe?g|png|doc|txt|pdf|html)$/">
+                        </p:fileUpload></td>
+                </tr>
+<!-- for video -->
+                <tr>
+                    <td class="label" colspan="3"><p:outputLabel value="#{messages['video']}"/></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['userManualVideo']}" for="userManualVideo" /></td>
+                    <td colspan="2" ><p:inputText id="userManualVideo"
+                            value="#{managementDocumentOfMasterDeviceBean.currentDocument.instV}" label="#{messages['userManualVideo']}" disabled="true"/></td>
+                    <td><p:fileUpload mode="simple" value="#{managementDocumentOfMasterDeviceBean.fileUserManualVideo}">
+                        </p:fileUpload></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['serviceManualVideo']}" for="serviceManualVideo" /></td>
+                    <td colspan="2" ><p:inputText id="serviceManualVideo"
+                            value="#{managementDocumentOfMasterDeviceBean.currentDocument.service02}" label="#{messages['serviceManualVideo']}" disabled="true"/></td>
+                    <td><p:fileUpload mode="simple" value="#{managementDocumentOfMasterDeviceBean.fileServiceManualVideo}">
+                        </p:fileUpload></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['safetyTestVideo']}" for="safetyTestVideo" /></td>
+                    <td colspan="2" ><p:inputText id="safetyTestVideo"
+                            value="#{managementDocumentOfMasterDeviceBean.currentDocument.safetyV}" label="#{messages['safetyTestVideo']}" disabled="true"/></td>
+                    <td><p:fileUpload mode="simple" value="#{managementDocumentOfMasterDeviceBean.fileSafetyTestVideo}">
+                        </p:fileUpload></td>
+                </tr>
+                <tr>
+                    <td class="label"><p:outputLabel value="#{messages['performanceTestVideo']}" for="performanceTestVideo" /></td>
+                    <td colspan="2" ><p:inputText id="performanceTestVideo"
+                            value="#{managementDocumentOfMasterDeviceBean.currentDocument.performanceV}" label="#{messages['performanceTestVideo']}" disabled="true"/></td>
+                    <td><p:fileUpload mode="simple" value="#{managementDocumentOfMasterDeviceBean.filePerformanceTestVideo}" >
+                        </p:fileUpload></td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <p:commandButton value="#{messages.saveDocumentSet}" icon="ui-icon-plus" action="#{managementDocumentOfMasterDeviceBean.saveDocumentTemporary()}" update="@all" process="@form" ajax="false"/>
+                        <p:commandButton value="#{messages.discard}" icon="ui-icon-pencil" action="#{managementDocumentOfMasterDeviceBean.discardChange()}" update=":contentPane" process="@this"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p:commandButton value="#{messages.finishEditAndBack}" icon="ui-icon-pencil" action="#{screenMonitor.close()}" update=":contentPane" process="@this"/>
+                    </td>
+                </tr>
+             </table>
+        </p:panel>
+    </h:form>
+            </p:tab>
+
+            <p:tab title="Checklist">
+                <p:panel id="panelCheckListDevices">
+        <h:form id="checklistForm">
+            <ac:dataTable rows="15" id="checkListDevices" rowIndexVar="index" var="checklist" value="#{masterDeviceChecklistManageBean.checklists}">
+                <p:column style="width:2%;">
+                    <p:selectBooleanCheckbox value="#{checklist.selected}">
+                        <p:ajax event="change" update="@form" listener="#{masterDeviceChecklistManageBean.toggleSelectChecklist(checklist)}" />
+                    </p:selectBooleanCheckbox>
+                    </p:column>
+                <p:column headerText="#{messages.no}" width="10">
+                        #{index+1}
+                    </p:column>
+                <p:column headerText="#{messages.checklistCode}" filterMatchMode="contains" rendered="#{masterDeviceChecklistManageBean.currentDevice.persisted}">
+                    <h:outputText value="#{checklist.cklistCode}" />
+                </p:column>
+                <p:column headerText="#{messages.name}" filterMatchMode="contains">
+                    <h:outputText value="#{checklist.name}" />
+                </p:column>
+                <p:column headerText="#{messages.createdBy}" filterMatchMode="contains">
+                    <h:outputText value="#{checklist.createdByUser.name}" />
+                </p:column>
+                <p:column headerText="#{messages.createdAt}" filterMatchMode="contains">
+                    <ac:outputTime value="#{checklist.createdAt}" />
+                </p:column>
+            </ac:dataTable>
+            <p:commandButton value="#{messages.createNewCheckList}" process="@this" update="@all" action="#{masterDeviceChecklistManageBean.clickCreateNewChecklist}" />
+
+            <p:commandButton value="#{messages.edit}" process="@this" action="#{masterDeviceChecklistManageBean.editSelectedChecklist}" update="@all"
+                disabled="#{masterDeviceChecklistManageBean.selectedChecklist eq null}" />
+
+            <p:commandButton value="#{messages.delete}" process="@this" actionListener="#{masterDeviceChecklistManageBean.deleteSelectedChecklist}" update="@form"
+                disabled="#{masterDeviceChecklistManageBean.selectedChecklist eq null}">
+                <p:confirm message="#{messages.MDM00004}" icon="ui-icon-question"></p:confirm>
+            </p:commandButton>
+        </h:form>
+    </p:panel>
+
+    <!-- Area FORM  General Informations Devices -->
+    <p:panel id="panelInputFormCheckList">
+        <h:form>
+            <ui:param name="currentChecklist" value="#{masterDeviceChecklistManageBean.currentChecklist}" />
+            <table>
+                <tr>
+                    <td><p:outputLabel value="#{messages.checkListName}" for="checklistName" /></td>
+                    <td><p:inputText value="#{currentChecklist.name}" disabled="#{currentChecklist eq null}" id="checklistName" required="true">
+                            <p:ajax process="@this" update="@form"></p:ajax>
+                        </p:inputText></td>
+                </tr>
+                <tr>
+                    <td><p:outputLabel value="#{messages.checkItems}" /></td>
+                    <td><p:dataList value="#{masterDeviceChecklistManageBean.checklistItems}" var="item" type="unordered" itemType="none">
+                            <f:facet name="header">
+                                #{messages.checklistItems}
+                            </f:facet>
+                            <div class="cell-box">
+                                <div class="cell-left">
+                                    <p:commandLink value="#{messages.select}" styleClass="ui-icon ui-icon-pencil" process="@this" update="@form"
+                                        action="#{masterDeviceChecklistManageBean.editChecklistItem(item)}">
+                                        <h:outputText value="#{item.description}" />
+                                    </p:commandLink>
+                                </div>
+                                <div class="cell-left">
+                                    <h:outputText value="#{item.description}" />
+                                </div>
+                            </div>
+                        </p:dataList></td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td><p:commandButton disabled="#{masterDeviceChecklistManageBean.currentChecklist eq null || masterDeviceChecklistManageBean.currentChecklistItem ne null}"
+                            value="#{messages.addItem}" process="@this" update="itemDescription, saveChecklistItem, @this" action="#{masterDeviceChecklistManageBean.addNewChecklistItem}" /> 
+                        <p:commandButton value="#{messages.saveItem}" id="saveChecklistItem"
+                            disabled="#{masterDeviceChecklistManageBean.currentChecklistItem eq null}" process="@this" update="@form" action="#{masterDeviceChecklistManageBean.saveChecklistItem}" />    
+                        <p:commandButton
+                            disabled="#{masterDeviceChecklistManageBean.currentChecklistItem eq null}" value="#{messages.deleteItem}" process="@this" update=":contentPane"
+                            action="#{masterDeviceChecklistManageBean.deleteChecklistItem}" >
+                            <p:confirm message="#{messages.MDM00006}" />
+                        </p:commandButton>
+                    </td>
+                </tr>
+                <tr>
+                    <td><p:outputLabel value="#{messages.itemDescription}" for="itemDescription" /></td>
+                    <td><p:inputTextarea value="#{masterDeviceChecklistManageBean.currentChecklistItem.description}" styleClass="textarea" id="itemDescription"
+                            disabled="#{masterDeviceChecklistManageBean.currentChecklistItem eq null}">
+                            <p:ajax process="@this" />
+                        </p:inputTextarea></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <p:commandButton value="#{messages.apply}" process="@this" update=":contentPane" action="#{screenMonitor.close}"
+                            actionListener="#{masterDeviceChecklistManageBean.apply}"  /> 
+                            <p:commandButton value="#{messages.discardChange}" process="@this" update=":contentPane" action="#{screenMonitor.close}" actionListener="#{masterDeviceChecklistManageBean.discardChangeChecklist}"/>
+                            <!-- action="#{masterDeviceChecklistManageBean.discardChanges}" actionListener="#{devicesManagementBean.discardChangeChecklist}" />  -->
+                            
+                       <p:commandButton
+                            value="#{messages.save}" disabled="#{currentChecklist eq null}" process="@form" update=":contentPane" action="#{masterDeviceChecklistManageBean.saveChecklist}" /></td>
+                </tr>
+            </table>
+        </h:form>
+    </p:panel>
+
+            </p:tab>
+        </p:tabView>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,15 @@
+#mContentPage {
+}
+
+.ui-page {
+}
+
+.ui-calendar-popup {
+	width:90%;
+}
+#searchPanel .ui-panel-m .ui-panel-m-titlebar {
+	display: none;
+}
+.ui-controlgroup-controls .ui-autocomplete-item .ui-grib-b .ui-block-a, .ui-block-b, .ui-block-c {
+	text-align: left;
+}

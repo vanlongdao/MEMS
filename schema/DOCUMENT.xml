@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DOCUMENT -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="DOC_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="MDEV_CODE" data-type="code" not-null="false" />
+	<column name="SOFTWARE_REV" data-type="code" not-null="false" />
+	<column name="COUNTRY" data-type="integer" not-null="false" />
+	<column name="INST01" data-type="freetext" not-null="false" />
+	<column name="INST_V" data-type="freetext" not-null="false" />
+	<column name="SERVICE01" data-type="freetext" not-null="false" />
+	<column name="SERVICE02" data-type="freetext" not-null="false" />
+	<column name="REPLACE_PART_V" data-type="freetext" not-null="false" />
+	<column name="SAFETY01" data-type="freetext" not-null="false" />
+	<column name="SAFETY_V" data-type="freetext" not-null="false" />
+	<column name="PERFORMANCE01" data-type="freetext" not-null="false" />
+	<column name="PERFORMANCE_V" data-type="freetext" not-null="false" />
+    
+    <foreign-key parent-table="M_DEVICE">
+        <column name="MDEV_CODE" referColumn="MDEV_CODE"/>
+        <column name="IS_DELETED" referColumn="IS_DELETED"/>
+    </foreign-key>
+</table>

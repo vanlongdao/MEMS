@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+	<h:form>
+		<p:outputPanel>
+			<ac:dataTable value="#{viewRepairRequestBean.listChecklist}" var="checklist" rowIndexVar="index" rowKey="#{checklist.cklistLogCode}" selectionMode="single"
+				selection="#{viewRepairRequestBean.selectedChecklist}">
+				<p:column styleClass="display-index">
+				#{index+1}
+			</p:column>
+				<p:column styleClass="display-text" headerText="#{messages.measurement1}">
+				#{checklist.measurement1.MDevice.name}
+			</p:column>
+				<p:column styleClass="display-text" headerText="#{messages.measurement2}">
+				#{checklist.measurement2.MDevice.name}
+			</p:column>
+				<p:ajax event="rowSelect" process="@this" update="@form" onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"/>
+			</ac:dataTable>
+		</p:outputPanel>
+		<p:outputPanel id="checklistItemInfo">
+			<p:fieldset legend="#{messages.checklistItemInfo}" rendered="#{viewRepairRequestBean.selectedChecklist ne null}" styleClass="fieldset-#{userCredential.preferences.theme}">
+				<ac:dataTable value="#{viewRepairRequestBean.listChecklistItem}" var="item" rowIndexVar="index">
+					<p:column styleClass="display-index">
+						#{index+1}
+					</p:column>
+					<p:column headerText="#{messages.description}" styleClass="display-text">
+						#{item.mdevChecklistItem.description}
+					</p:column>
+					<p:column headerText="#{messages.resultValue}" styleClass="display-text">
+						#{item.resultValue}
+					</p:column>
+					<p:column headerText="#{messages.resultStatus}" styleClass="display-text">
+						#{item.isOk eq 1 ? messages.passed : (item.isOk eq 0 ? messages.ng : "")}
+					</p:column>
+				</ac:dataTable>
+			</p:fieldset>
+		</p:outputPanel>
+	</h:form>
+</ui:composition>

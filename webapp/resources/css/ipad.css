@@ -1,0 +1,106 @@
+#mContentPage {
+	
+}
+
+.ui-page {
+	
+}
+
+.ui-calendar-popup {
+	width: 90%;
+}
+
+#searchPanel .ui-panel-m .ui-panel-m-titlebar {
+	display: none;
+}
+
+#editDailyReport .ui-content .ui-panel-m .ui-panel-m-titlebar {
+	display: none;
+}
+
+.ui-controlgroup-controls .ui-autocomplete-item .ui-grib-b .ui-block-a,.ui-block-b,.ui-block-c
+	{
+	text-align: left;
+}
+
+.ui-field-contain .ui-input-search {
+	margin-left: 22%;
+}
+
+#searchPanel .ui-panel-m-content .ui-field-contain .ui-controlgroup-controls
+	{
+	margin-left: 22%;
+}
+
+#searchPanel .ui-panel-m {
+	margin-left: -1em;
+	margin-right: -1em;
+	border: none;
+}
+
+#searchPanel .ui-panel-m-content {
+	border-style: none;
+}
+
+.ui-grid-b>.ui-block-a {
+	width: 20%;
+}
+
+.ui-grid-b>.ui-block-b {
+	width: 60%;
+}
+
+.ui-grid-b>.ui-block-c {
+	width: 20%;
+}
+
+#editDailyReport .ui-content,#newCompany .ui-content {
+	margin: -1em -1em;
+	margin-left: -1em;
+}
+
+#searchPanel .ui-controlgroup-controls {
+	margin-left: 22%;
+}
+
+.ui-btn-left .ui-btn-inline {
+	top: 0.10px;
+}
+
+.ui-messages-info,.ui-message-info {
+	color: #3a87ad;
+	background-color: #d9edf7;
+	border-color: #bce8f1;
+}
+
+.ui-messages-info ul,.ui-message-info ul {
+	list-style: none;
+}
+
+.ui-controlgroup-horizontal .ui-controlgroup-controls button.ui-btn,.ui-controlgroup-controls .ui-btn-icon-notext
+	{
+	width: 70px;
+}
+
+#newCompany .ui-content form {
+	margin-left: 1.2%;
+	margin-right: 1.2%;
+}
+
+#newCompany .ui-content form .ui-toolbar {
+	margin-left: -1em;
+	margin-right: -1em;
+}
+
+#newCompany .ui-content .ui-toolbar .ui-btn-left .ui-controlgroup-controls .ui-btn-left
+	{
+	margin-left: -0.3em;
+}
+
+table tr td {
+	width: 100px;
+}
+
+#editDailyReport\\:form_edit_daily_report\\:startTimeHours-button {
+	width: 200px;
+}

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+    xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+    <composite:attribute name="entityId" />
+    <composite:attribute name="dataType" type="java.lang.String" />
+    <composite:attribute name="itemLabel" type="java.lang.String" />
+</composite:interface>
+
+<composite:implementation>
+    <f:event listener="#{approvalUtilsBean.setEntityId(cc.attrs.entityId)}" type="preRenderComponent" />
+    <f:event listener="#{approvalUtilsBean.setDataType(cc.attrs.dataType)}" type="preRenderComponent" />
+    <f:event listener="#{approvalUtilsBean.setItemLabel(cc.attrs.itemLabel)}" type="preRenderComponent" />
+    
+    <p:panel rendered="#{approvalUtilsBean.pending and approvalUtilsBean.allowProcess}">
+        <table>
+            <tr>
+                <td><p:outputLabel value="#{messages.comment}" for="approvalComment" /></td>
+                <td><p:inputTextarea value="#{approvalUtilsBean.approvalComment}" styleClass="desc-textarea" id="approvalComment">
+                    </p:inputTextarea></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><p:commandButton value="#{messages.approve}" action="#{approvalUtilsBean.approve(userCredential.userId)}" process="@form" id="approveButton" update=":contentPane"
+                    onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" /> 
+                    <p:commandButton value="#{messages.revise}" action="#{approvalUtilsBean.revise(userCredential.userId)}" process="@form" id="reviseButton" update=":contentPane" 
+                        onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"/> 
+                    <p:commandButton value="#{messages.reject}" onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"
+                        action="#{approvalUtilsBean.reject(userCredential.userId)}" process="@form" id="rejectButton" update=":contentPane" />
+                </td>
+            </tr>
+        </table>
+    </p:panel>
+    
+    <p:panel rendered="#{!approvalUtilsBean.pending}">
+    	<p:commandButton update="@([id$=approvalSection])"
+                        value="#{messages.requestApprove}" icon="ui-icon-mail-closed" action="#{approvalUtilsBean.requestApprove()}" 
+                        onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" />
+    </p:panel>
+</composite:implementation>
+
+</html>

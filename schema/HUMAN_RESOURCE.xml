@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- HUMAN_RESOURCE -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="HR_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="HOSP_CODE" data-type="code" not-null="false" />
+	<column name="HOSP_DEPT_CODE" data-type="code" not-null="false" />
+	<column name="PSN_CODE" data-type="code" not-null="false" />
+	<column name="CLASS_CODE" data-type="code" not-null="false" />
+    
+    <foreign-key parent-table="PERSON">
+        <column name="PSN_CODE" referColumn="PSN_CODE"/>
+        <column name="IS_DELETED" referColumn="IS_DELETED"/>
+    </foreign-key>
+    <foreign-key parent-table="HOSPITAL">
+        <column name="HOSP_CODE" referColumn="HOSP_CODE"/>
+        <column name="IS_DELETED" referColumn="IS_DELETED"/>
+    </foreign-key>
+    <foreign-key parent-table="HOSPITAL_DEPT">
+        <column name="HOSP_DEPT_CODE" referColumn="DEPT_CODE"/>
+        <column name="IS_DELETED" referColumn="IS_DELETED"/>
+    </foreign-key>
+    <foreign-key parent-table="PERSON_CLASS">
+        <column name="CLASS_CODE" referColumn="CLASS_CODE"/>
+    </foreign-key>
+</table>

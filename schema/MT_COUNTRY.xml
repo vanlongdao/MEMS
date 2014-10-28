@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- COUNTRY -->
+<table>
+	<primary-key>
+		<column name="COUNTRY_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="NAME" data-type="name" not-null="false" />
+	<column name="NAME_EN" data-type="name" not-null="false" />
+</table>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>pl.itcrowd.mock-contexts-extension</groupId>
+        <artifactId>mock-contexts-extension</artifactId>
+        <version>1.0.1</version>
+    </parent>
+
+    <artifactId>mock-contexts-extension-impl</artifactId>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.jboss.arquillian.core</groupId>
+            <artifactId>arquillian-core-spi</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.arquillian.container</groupId>
+            <artifactId>arquillian-container-test-spi</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.arquillian.test</groupId>
+            <artifactId>arquillian-test-spi</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>pl.itcrowd.mock-contexts-extension</groupId>
+            <artifactId>mock-contexts-extension-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <version>1.2</version>
+            <scope>provided</scope>
+        </dependency>
+
+       <dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<scope>provided</scope>
+			<version>2.2.5</version>
+		</dependency>
+
+    </dependencies>
+
+</project>

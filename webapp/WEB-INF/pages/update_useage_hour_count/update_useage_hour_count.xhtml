@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+
+	<h:form>
+		<table>
+            <tr>
+                <td><p:outputLabel value="#{messages.deviceName}" for="deviceName" /></td>
+                <td><p:inputText id="deviceName" value="#{updateUseageHourCountBean.deviceCode}" label="#{messages.deviceName}" styleClass="twenty-char" maxlength="255" readonly="true" disabled="true">
+                    </p:inputText></td>
+            </tr>
+            <tr>
+                <td><p:outputLabel value="#{messages.serialNo}" for="serialNo" /></td>
+                <td><p:inputText id="serialNo" value="#{updateUseageHourCountBean.serialNo}" label="#{messages.serialNo}" styleClass="twenty-char" maxlength="255" readonly="true" disabled="true">
+                </p:inputText></td>
+            </tr>
+
+            <tr>
+                <td><p:outputLabel value="#{messages.ckList}" for="checkList" /></td>
+                <td>
+                   <p:autoComplete id="checkList" value="#{updateUseageHourCountBean.mdevChecklist}" converter="#{converterStorage.mdevChecklistConverter}" title="#{messages.mDevice}"
+                                forceSelection="true" emptyMessage="#{messages.noChecklistFound}" cache="true" cacheTimeout="300" dropdown="true" scrollHeight="200"
+                                var="mdevChecklist" itemLabel="#{mdevChecklist.name}" itemValue="#{mdevChecklist}" completeMethod="#{updateUseageHourCountBean.filterMdevChecklist}">
+                                <p:column headerText="#{messages.code}">
+                                    <h:outputText value="#{mdevChecklist.cklistCode}" />
+                                </p:column>
+                                <p:column headerText="#{messages.name}">
+                                    <h:outputText value="#{mdevChecklist.name}" />
+                                </p:column>
+                        <p:ajax event="itemSelect" process="@this" update="checkList"/>            
+                    </p:autoComplete> 
+                </td>
+            </tr>
+            
+             <tr>
+                <td><p:outputLabel value="#{messages.recordAt}" for="recordAt" /></td>
+                <td>
+                    <p:calendar id="recordAt" value="#{updateUseageHourCountBean.currentCountRecord.recordAt}" locale="#{localeSelector.locale}" navigator="true" mask="true" pattern="dd/MM/yyyy" readonly="true" showOn="button"/>
+                </td>
+            </tr>
+            <tr>
+                <td><p:outputLabel value="#{messages.countValue}" for="countValue" /></td>
+                <td><p:inputText id="countValue" value="#{updateUseageHourCountBean.currentCountRecord.rawValue}" label="#{messages.countValue}" styleClass="ten-char display-number" converter="#{converterStorage.quatityConverter}" maxlength="255">
+                        <p:ajax event="change" process="@this" update="@this" />
+                </p:inputText></td>
+            </tr>
+            <tr>
+                <td><p:outputLabel value="#{messages.unit}" for="unit" /></td>
+                <td><p:inputText id="unit" value="#{updateUseageHourCountBean.currentCountRecord.unit}" label="#{messages.unit}" styleClass="ten-char" maxlength="255">
+                        <p:ajax event="change" process="@this" update="@this" />
+                </p:inputText></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td align="left"><p:commandButton value="#{messages.save}" process="@form" update=":contentPane" action="#{updateUseageHourCountBean.saveCountRecord()}" icon="ui-icon-disk" /> 
+                        <p:commandButton rendered="#{updateUseageHourCountBean.currentCountRecord.persisted}" value="#{messages.requestApprove}" icon="ui-icon-mail-closed" action="#{updateUseageHourCountBean.requestApprove()}" />
+                        <p:commandButton value="#{messages.cancel}" actionListener="#{screenMonitor.close}" process="@this" update=":contentPane" icon="ui-icon-close" immediate="true" />
+                </td>
+            </tr>
+        </table>
+    </h:form>
+    <h:form rendered="#{updateUseageHourCountBean.isAllowProcess(updateUseageHourCountBean.currentCountRecord)}">
+        <ac:approval entityId="#{updateUseageHourCountBean.entityId}" dataType="#{countRecordManagement.dataType}">
+        </ac:approval>
+    </h:form>
+</ui:composition>

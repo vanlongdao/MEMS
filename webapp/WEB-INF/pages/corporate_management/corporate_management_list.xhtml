@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+	
+	<h:form id="list_corporates">
+		<p:panel>
+			<p:commandButton value="#{messages.add}" icon=" ui-icon-plus" action="#{corporateManagementBean.addCorporate()}" update=":contentPane" process="@this" immediate="true" />
+			<p:commandButton value="#{messages.edit}" icon="ui-icon-pencil" action="#{corporateManagementBean.editCorporate()}" update=":contentPane" disabled="#{!corporateManagementBean.enableEdit}"
+				process="@this" immediate="true" />
+			<p:commandButton value="#{messages.close}" icon="ui-icon-close" process="@this" action="#{screenMonitor.close()}" update=":contentPane"
+				onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" />
+		</p:panel>
+		<ac:dataTable value="#{corporateManagementBean.listCorporates}" var="corporate" row="20" id="corporateTable" rowIndexVar="index" paginator="true" paginatorPosition="bottom"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+			<p:column styleClass="display-select">
+				<p:selectBooleanCheckbox value="#{corporate.selected}">
+					<p:ajax process="@this" update="@form" listener="#{corporateManagementBean.toggleSelection(corporate)}" />
+				</p:selectBooleanCheckbox>
+			</p:column>
+			<p:column headerText="#{messages.no}" styleClass="display-index">
+			    #{index + 1}
+			</p:column>
+			<p:column styleClass="display-code">
+				<f:facet name="header">
+					<ac:columnHeader value="#{messages.corporateCode}" parentTable="corporateTable" sorter="#{corporateManagementBean.listCorporates.sort('corporateCode')}"
+						filter="#{corporateManagementBean.listCorporates.filter('corporateCode')}"></ac:columnHeader>
+				</f:facet>
+			    #{corporate.corpCode}
+			</p:column>
+			<p:column styleClass="display-text">
+				<f:facet name="header">
+					<ac:columnHeader value="#{messages.corporateName}" parentTable="corporateTable" sorter="#{corporateManagementBean.listCorporates.sort('corporateName')}"
+						filter="#{corporateManagementBean.listCorporates.filter('corporateName')}"></ac:columnHeader>
+				</f:facet>
+				#{corporate.name}
+			</p:column>
+			<p:column styleClass="display-text">
+				<f:facet name="header">
+					<ac:columnHeader value="#{messages.country}" parentTable="corporateTable" sorter="#{corporateManagementBean.listCorporates.sort('country')}"
+						filter="#{corporateManagementBean.listCorporates.filter('country')}"></ac:columnHeader>
+				</f:facet>
+				#{corporate.mtCountry.name}
+			</p:column>
+		</ac:dataTable>
+	</h:form>
+</ui:composition>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SCHEDULE -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="SCHED_BASE_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="SCHED_BASE_CODE" data-type="code" not-null="false" />
+	<column name="NAME" data-type="name" not-null="false" />
+	<column name="MDEV_CODE" data-type="code" not-null="false" />
+	<column name="INTERVAL_MONTH" data-type="integer" not-null="false" />
+	<column name="DESCRIPTION" data-type="freetext" not-null="false" />
+	<column name="CKLIST_CODE" data-type="code" not-null="false" />
+    
+    <foreign-key parent-table="MDEV_CHECKLIST" one-to-one="true">
+        <column name="CKLIST_CODE" referColumn="CKLIST_CODE"/>
+        <column name="IS_DELETED" referColumn="IS_DELETED"/>
+    </foreign-key>
+</table>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+    
+    <h:form id="printRepairRequestForm">
+        <table>
+            <tr>
+                <td><p:commandButton value="#{messages.printPreview}"  /></td>
+                <td><p:commandButton value="#{messages.print}" icon="ui-icon-print" /></td>
+                <td>
+                <p:commandButton icon="ui-icon-arrowthickstop-1-s" value="#{messages.exportToExcel}" ajax="false" actionListener="#{printRepairBean.exportToExcel}" onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"  >
+                </p:commandButton>
+                </td>
+                <td><p:commandButton value="#{messages.cancel}" onclick="PF('wg_printRequestDlg').close()" update="@this" icon="ui-icon-close" /></td>
+            </tr>
+        </table>
+        <p:fieldset legend="#{messages.previewRepairRequest}">
+        </p:fieldset>
+    </h:form>
+</ui:composition>

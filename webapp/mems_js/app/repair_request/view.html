@@ -1,0 +1,32 @@
+<div class="panel panel-default" ng-controller="mems.controller.repairrequest">
+
+
+<paper-tabs selected="0">
+    <paper-tab>Input Repair Infomation</paper-tab>
+    <paper-tab>Manage replace parts</paper-tab>
+    <paper-tab>Manage checklist</paper-tab>
+</paper-tabs>
+
+<core-pages flex>
+
+<div class="panel panel-default" ng-include="'incluces/generalInfo.html'" >
+</div>
+
+
+<div class="panel panel-default" ng-include="'incluces/replacedPart.html'" >
+</div>
+
+<div class="panel panel-default" ng-include="'incluces/checklist.html'" >
+</div>
+
+</core-pages>
+
+<script>
+    var pages = document.querySelector('core-pages');
+    var tabs = document.querySelector('paper-tabs');
+    tabs.addEventListener('core-select', function () {
+        pages.selected = tabs.selected;
+    });
+</script>
+
+</div>

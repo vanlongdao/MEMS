@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:o="http://omnifaces.org/ui">
+    <h:form id="formAddedParts">
+
+        <!-- Area CheckList Devices -->
+        <p:panel id="panelCheckListDevices">
+            <ac:dataTable id="partlistDevices" rowIndexVar="index" value="#{partListDeviceMasterBean.listInfoPartlistTemp}"
+                var="partslist">
+                <p:column styleClass="display-select">
+                    <p:selectBooleanCheckbox value="#{partslist.selected}">
+                        <p:ajax update="@([id$=deleteAddedPartBtn])" process="@this"
+                            listener="#{partListDeviceMasterBean.toggleSelectionPartslist(partslist)}" />
+                    </p:selectBooleanCheckbox>
+                    </p:column>
+                <p:column headerText="#{messages.no}" styleClass="display-index">
+                        #{index+1}
+                    </p:column>
+                <p:column headerText="#{messages.modelNo}">
+                    <p:outputLabel value="#{partslist.modelNo}" />
+                </p:column>
+                <p:column headerText="#{messages.catName}">
+                    <p:outputLabel value="#{partslist.catName}" />
+                </p:column>
+                <p:column headerText="#{messages.partName}">
+                    <p:outputLabel value="#{partslist.name}" />
+                </p:column>
+
+                <p:column headerText="#{messages.createdBy}">
+                    <p:outputLabel value="#{partslist.createdByUser.name}" />
+                </p:column>
+                <p:column headerText="#{messages.createdAt}">
+                    <ac:outputTime value="#{partslist.createdAt}" showTime="true" />
+                </p:column>
+            </ac:dataTable>
+            <p:commandButton value="#{messages.deleteItem}" process="@this" id="deleteAddedPartBtn"
+                disabled="#{partListDeviceMasterBean.selectedAddedParts.isEmpty()}" icon="ui-icon-trash"
+                action="#{partListDeviceMasterBean.removePartsFromDevice}" update="panelCheckListDevices" />
+        </p:panel>
+    </h:form>
+    <!-- Area FORM  General Informations Devices -->
+    <p:panel id="panelInputFormPartlist">
+        <h:form id="searchBox">
+            <table width="100%">
+                <tr>
+                    <td style="width: 5%;"><p:outputLabel value="#{messages.keyword}" /></td>
+                    <td style="width: 20%;"><p:inputText style="width:90%;" value="#{partListDeviceMasterBean.keyword}" /></td>
+                    <td><p:commandButton value="#{messages.search}" process="@form" icon="ui-icon-search"
+                            action="#{partListDeviceMasterBean.searchAvailableParts}" update="@([id$=availablePartsForm])" /></td>
+                </tr>
+            </table>
+        </h:form>
+        <h:form id="availablePartsForm">
+            <table>
+                <tr>
+                    <!-- <td><p:outputLabel value="#{messages.result}" /></td> -->
+                    <td colspan="3"><ac:dataTable id="resultPartlistDevices" rowIndexVar="index"
+                            value="#{partListDeviceMasterBean.listSearchInfoPartlist}" var="partslist">
+                            <p:column style="width:2%;">
+                                <p:selectBooleanCheckbox value="#{partslist.selected}" styleClass="checkbox">
+                                    <p:ajax update="@([id$=addPartToDevice])" process="@this"
+                                        listener="#{partListDeviceMasterBean.toggleSelectionInfoPartlistSearch(partslist)}" />
+                                </p:selectBooleanCheckbox>
+                                </p:column>
+
+                            <p:column headerText="#{messages.modelNo}">
+                                <p:outputLabel value="#{partslist.modelNo}" />
+                            </p:column>
+                            <p:column headerText="#{messages.catName}">
+                                <p:outputLabel value="#{partslist.catName}" />
+                            </p:column>
+                            <p:column headerText="#{messages.partName}">
+                                <p:outputLabel value="#{partslist.name}" />
+                            </p:column>
+                            <p:column headerText="#{messages.manufacturerName}">
+                                <p:outputLabel value="#{partslist.manufacturerOffice.name}" />
+                            </p:column>
+                            <p:column headerText="#{messages.supplierName}">
+                                <p:outputLabel value="#{partslist.supplierOffice.name}" />
+                            </p:column>
+                            <p:column headerText="#{messages.createdBy}">
+                                <p:outputLabel value="#{partslist.createdByUser.name}" />
+                            </p:column>
+                            <p:column headerText="#{messages.createdAt}">
+                                <ac:outputTime value="#{partslist.createdAt}" showTime="true" />
+                            </p:column>
+                        </ac:dataTable></td>
+                </tr>
+            </table>
+            <p:panel id="addPartButtonPanel">
+                <p:commandButton value="#{messages.addItem}" process="@this" icon="ui-icon-plus"
+                    action="#{partListDeviceMasterBean.addSelectedPartsToDevice}" update="@([id$=panelCheckListDevices])"
+                    id="addPartToDevice" disabled="#{partListDeviceMasterBean.selectedParts.isEmpty()}" />
+                <p:commandButton icon="ui-icon-plus" value="#{messages.registerPartlist}" process="@this" type="button"  onclick="PF('wg_registerPartlist').show();">
+                </p:commandButton>
+            </p:panel>
+            <p:dialog appendTo="@(body)" dynamic="true"
+                closable="false" id="dialogScheConfirm" modal="true" header="#{messages.MDM00019}"
+                widgetVar="wg_registerPartlist">
+                <p:panel>
+                    <p:outputLabel value="#{messages.MDM00024}" />
+                </p:panel>
+                <div style="text-align: center;">
+                    <p:commandButton id="btPartnok" value="#{messages.yes}" update=":contentPane" process="@form"
+                        actionListener="#{partListDeviceMasterBean.registerNewPartlist}"
+                        oncomplete="PF('wg_registerPartlist').hide()" icon="ui-icon-check" />
+                    <p:commandButton id="btnPartcancel" value="#{messages.no}" update=":contentPane" process="@this"
+                        actionListener="#{partListDeviceMasterBean.cancelConfirmRegisterNewPartlist}"
+                        oncomplete="PF('wg_registerPartlist').hide()" icon="ui-icon-close" />
+                </div>
+            </p:dialog>
+        </h:form>
+    </p:panel>
+</ui:composition>

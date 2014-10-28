@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:ac="http://arrow-tech.vn/ui" xmlns:ar="http://java.sun.com/jsf/composite/compositeComponent" xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:o="http://omnifaces.org/ui">
+	<p:outputPanel id="estimationDetail">
+		<h:form>
+			<table>
+				<tr>
+					<td class="label"><p:outputLabel value="#{messages.estimationStatus}" for="estimationStatus" /></td>
+					<td>
+					<h:outputText value="#{messageCodeClientIdMappingManager.put('MRR00035','estimationStatus',null)}"></h:outputText>
+					<p:selectOneMenu id="estimationStatus" value="#{partEstimationBean.selectedEstimate.peType}">
+							<f:selectItem itemLabel="----" itemValue="#{null}" noSelectionOption="true" />
+							<f:selectItems value="#{partEstimationBean.partEstimationTypes}" var="type" />
+							<p:ajax event="change" process="@this" update="@this" resetValues="true" />
+						</p:selectOneMenu></td>
+				</tr>
+
+				<tr>
+					<td class="label"><p:outputLabel value="#{messages.requestDate}" for="requestDate"></p:outputLabel></td>
+					<td><ac:calendar id="requestDate" value="#{partEstimationBean.selectedEstimate.requestDate}" /></td>
+				</tr>
+
+				<tr>
+					<td class="label"><p:outputLabel value="#{messages.issueDate}" for="printDate" /></td>
+					<td><ac:calendar id="printDate" value="#{partEstimationBean.selectedEstimate.printDate}"></ac:calendar></td>
+				</tr>
+
+				<tr>
+					<td class="label"><p:outputLabel value="#{messages.receivedDate}" for="receiveDate"></p:outputLabel></td>
+					<td><ac:calendar id="receiveDate" value="#{partEstimationBean.selectedEstimate.receiveDate}"></ac:calendar></td>
+				</tr>
+
+				<tr>
+					<td class="label"><p:outputLabel value="#{messages.expirationDate}" for="expirationDate" /></td>
+					<td><ac:calendar id="expirationDate" value="#{partEstimationBean.selectedEstimate.expireDate}" /></td>
+				</tr>
+
+				<tr>
+					<td class="label"><p:outputLabel value="#{messages.deliveryTo}" for="deliveryTo" /></td>
+					<td><ac:officeSelector id="deliveryTo" value="#{partEstimationBean.selectedEstimate.deliveryToOffice}" /></td>
+				</tr>
+
+				<tr>
+					<td class="label"><p:outputLabel value="#{messages.deliveryDate}" for="deliveryDate" /></td>
+
+					<td><ac:calendar id="deliveryDate" value="#{partEstimationBean.selectedEstimate.reqDeliveryDate}" /></td>
+				</tr>
+
+				<tr>
+					<td class="label"><p:outputLabel value="#{messages.codeDistributor}" for="codeDistributor" /></td>
+					<td><p:inputText value="#{partEstimationBean.selectedEstimate.clientSideMgmtCode}" id="codeDistributor" styleClass="fifteen-char"></p:inputText></td>
+				</tr>
+
+				<tr>
+					<td class="label"><p:outputLabel value="#{messages.totalWithTax}" for="totalWithTax" /></td>
+					<td><p:inputText id="totalWithTax" value="#{partEstimationBean.selectedEstimate.totalPrice}" styleClass="display-number fifteen-char" converter="#{converterStorage.moneyConverter}">
+							<p:ajax process="@this" update="@this" />
+						</p:inputText></td>
+				</tr>
+
+				<tr>
+					<td class="label"><p:outputLabel value="#{messages.tax}" for="tax" /></td>
+					<td><p:inputText id="tax" value="#{partEstimationBean.selectedEstimate.tax}" styleClass="display-number fifteen-char" converter="#{converterStorage.moneyConverter}">
+							<p:ajax process="@this" update="@this" />
+						</p:inputText></td>
+				</tr>
+
+				<tr>
+					<td class="label"><p:outputLabel value="#{messages.image}" /></td>
+					<td><p:graphicImage value="#{imageStreamBean.estimateImageAsStream}" width="50" height="50" id="imagePreview" cache="false">
+							<f:param name="peCode" value="#{partEstimationBean.currentEstimateKey}"></f:param>
+						</p:graphicImage> <ac:upload listener="#{partEstimationBean.fileImageUploadListener}" id="imageUpload" value="#{partEstimationBean.image}" allowTypes="#{appConfig.imageFileTypesAllowed}"
+							sizeLimit="#{appConfig.imageFileSizeLimit}" update="@([id$=imagePreview])">
+						</ac:upload></td>
+				</tr>
+			</table>
+		</h:form>
+	</p:outputPanel>
+</ui:composition>

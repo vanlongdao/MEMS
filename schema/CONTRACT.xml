@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONTRACT -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="CONTRACT_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="CONTRACT_CODE" data-type="code" not-null="false" />
+	<column name="CONTRACT_DATE" data-type="date" not-null="false" />
+	<column name="HOSP_CODE" data-type="code" not-null="false" />
+	<column name="NAME" data-type="name" not-null="false" />
+	<column name="DESCRIPTION" data-type="freetext" not-null="false" />
+	<column name="START_DATE" data-type="date" not-null="false" />
+	<column name="END_DATE" data-type="date" not-null="false" />
+	<column name="PRICE" data-type="cost" not-null="false" />
+	<column name="TAX" data-type="cost" not-null="false" />
+	<column name="SERVICE_OFFICE" data-type="code" not-null="false" />
+	<column name="SERVICE_PSN" data-type="code" not-null="false" />
+	<column name="CONTRACT_TYPE" data-type="type-code" not-null="false" />
+	<column name="TOT_DISCOUNT_RATE" data-type="cost" not-null="false" />
+	<column name="TOT_DISCOUNT_PRICE" data-type="cost" not-null="false" />
+	<column name="PART_DISCOUNT_RATE" data-type="cost" not-null="false" />
+	<column name="PART_DISCOUNT_PRICE" data-type="cost" not-null="false" />
+	<column name="FEE_DISCOUNT_RATE" data-type="cost" not-null="false" />
+	<column name="FEE_DISCOUNT_PRICE" data-type="cost" not-null="false" />
+</table>

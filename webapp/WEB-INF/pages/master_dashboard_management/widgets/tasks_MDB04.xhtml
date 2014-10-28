@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:o="http://omnifaces.org/ui">
+
+    <p:panel>
+        <table class="table_style">
+            <p:outputPanel rendered="#{isTabClient}">
+                <tr>
+                    <td><p:outputLabel value="#{messages.select}" /></td>
+                    <td><p:selectOneMenu value="#{supplierManagerDashboardBean.hospitalCode}">
+                            <f:selectItem />
+                            <f:selectItems value="#{supplierManagerDashboardBean.listHumanResource}" var="hospital"
+                                itemLabel="#{hospital.hospital.name}" itemValue="#{hospital.hospCode}" />
+                            <p:ajax onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"
+                                update="@([id$=client-totalRepairOfCurrentMonth]), @([id$=client-totalRepairCostOfCurrentMonthDepartment]), @([id$=client-totalRepairCostItemOfYear])
+                                            @([id$=client-totalRepairDoing]), @([id$=client-totalRepairNotStart]), @([id$=client-totalRepairOfYearDepartment]), @([id$=client-listActionlogTable])" />
+                        </p:selectOneMenu></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </p:outputPanel>
+            <p:outputPanel rendered="#{!isTabClient}">
+                <tr>
+                    <td><p:outputLabel value="#{messages.select}" /></td>
+                    <td><p:selectOneMenu value="#{supplierManagerDashboardBean.contactPerson}">
+                            <f:selectItem />
+                            <f:selectItems value="#{supplierManagerDashboardBean.listHumanResource}" var="person"
+                                itemLabel="#{person.person.name}" itemValue="#{person.psnCode}" />
+                            <p:ajax onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"
+                                update="@([id$=engineer-totalRepairOfCurrentMonth]), @([id$=engineer-totalRepairCostOfCurrentMonthDepartment]), @([id$=engineer-totalRepairCostItemOfYear])
+                                            @([id$=engineer-totalRepairDoing]), @([id$=engineer-totalRepairNotStart]), @([id$=engineer-totalRepairOfYearDepartment]), @([id$=engineer-listActionlogTable])" />
+                        </p:selectOneMenu></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </p:outputPanel>
+            <tr>
+                <td><p:outputLabel value="#{messages.totalRepairOfCurrentMonth}" /></td>
+                <td><p:inputText disabled="true" styleClass="display-number"
+                        value="#{supplierManagerDashboardBean.totalRepairOfCurrentMonth(isTabClient)}"
+                        id="#{isTabClient ? 'client' : 'engineer'}-totalRepairOfCurrentMonth" /></td>
+                        <td><p:outputLabel value="#{messages.totalRepairItemOfYear}" /></td>
+                <td><p:inputText disabled="true" styleClass="display-number"
+                        value="#{supplierManagerDashboardBean.totalRepairItemOfYear(isTabClient)}"
+                        id="#{isTabClient ? 'client' : 'engineer'}-totalRepairOfYearDepartment" /></td>
+            </tr>
+            <tr>
+                <td><p:outputLabel value="#{messages.totalRepairCostOfCurrentMonth}" /></td>
+                <td><p:inputText disabled="true" styleClass="display-number"
+                        value="#{supplierManagerDashboardBean.totalRepairCostOfCurrentMonth(isTabClient)}"
+                        id="#{isTabClient ? 'client' : 'engineer'}-totalRepairCostOfCurrentMonthDepartment" /></td>
+                <td><p:outputLabel value="#{messages.totalRepairCostItemOfYear}" /></td>
+                <td><p:inputText disabled="true" styleClass="display-number"
+                        value="#{supplierManagerDashboardBean.totalRepairCostItemOfYear(isTabClient)}"
+                        id="#{isTabClient ? 'client' : 'engineer'}-totalRepairCostItemOfYear" /></td>
+            </tr>
+            <tr>
+                <td><p:outputLabel value="#{messages.totalRepairDoing}" /></td>
+                <td><p:inputText disabled="true" value="#{supplierManagerDashboardBean.totalRepairDoing(isTabClient)}"
+                        styleClass="display-number" id="#{isTabClient ? 'client' : 'engineer'}-totalRepairDoing" /></td>
+                <td><p:outputLabel value="#{messages.totalRepairNotStart}" /></td>
+                <td><p:inputText disabled="true" styleClass="display-number"
+                        value="#{supplierManagerDashboardBean.totalRepairNotStart(isTabClient)}"
+                        id="#{isTabClient ? 'client' : 'engineer'}-totalRepairNotStart" /></td>
+            </tr>
+        </table>
+    </p:panel>
+    <ac:dataTable id="#{isTabClient ? 'client' : 'engineer'}-listActionlogTable"
+        value="#{supplierManagerDashboardBean.listActionLogInHospitalManager(isTabClient)}" var="contact">
+        <p:column headerText="#{messages.hospitalContact}">
+            <p:outputLabel value="#{contact.hospitalContactPsn.name}" />
+        </p:column>
+        <p:column headerText="#{messages.supplierContact}">
+            <p:outputLabel value="#{contact.person.name}" />
+        </p:column>
+        <p:column headerText="#{messages.status}"  filterMatchMode="contains" filterBy="#{masterDashboardBean.getStatusName(contact)}">
+            <p:outputLabel value="#{masterDashboardBean.getStatusName(contact)}" />
+        </p:column>
+    </ac:dataTable>
+    <p:fieldset legend="#{messages.chart}">
+        <p:graphicImage library="img" name="chart_demo.jpg" width="300px" height="200px"></p:graphicImage>
+    </p:fieldset>
+</ui:composition>

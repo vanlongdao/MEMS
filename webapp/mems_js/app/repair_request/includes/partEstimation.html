@@ -1,0 +1,25 @@
+<div>
+        <div class="form-group">
+            <paper-input ng-model="requestReg.EstimateCode" floatingLabel label="Estimation code"></paper-input>
+        </div>
+
+        <div id="estimateResultContainer" class="form-group">
+            <div>
+                <paper-input ng-blur="valueBind($event)" id="inputEstimateResult_1" floatingLabel label="Parts/Price/Num items/sub total"></paper-input>
+                <core-icon-button id="addEstimateResult" icon="add" ng-click="goToManage($event)"></core-icon-button>
+                <!--<core-icon-button id="addEstimateResult" icon="add" ng-click="addRow($event)"></core-icon-button>-->
+            </div>
+        </div>
+
+        <div class="form-group">
+            <paper-input ng-model="requestReg.EstimateTotal" floatingLabel label="Total"></paper-input>
+        </div>
+
+    <div class="ui-accordion  panel-default">
+        <div class="panel-heading"><a href><h3 class="panel-title" onclick="toggleCurrent('#managePartsEstimate');"> Manage Parts Estimation</h3></a></div>
+    </div>
+    <core-collapse id="managePartsEstimate" opened="false">
+        <div class="panel-body" ng-include="'ManagePartsEstimation/ManagePartsEstimation.html'">
+        </div>
+    </core-collapse>
+</div>

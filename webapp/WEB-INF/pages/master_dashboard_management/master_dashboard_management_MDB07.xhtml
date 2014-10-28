@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:o="http://omnifaces.org/ui">
+    <o:importConstants type="arrow.mems.ui.ScreenCodes" />
+    <h:form id="taskForm">
+        <div id="container_engineer_supplier">
+            <div id="left_engineer_supplier">
+                <p:tabView dynamic="true">
+                    <p:tab title="#{messages.allTask}">
+                        <ui:include src="/WEB-INF/pages/master_dashboard_management/widgets/tasksAll_MDB07.xhtml">
+                            <ui:param name="isTabAllTask" value="true" />
+                        </ui:include>
+                    </p:tab>
+                    <p:tab title="#{messages.model}">
+                        <ui:include src="/WEB-INF/pages/master_dashboard_management/widgets/tasks_MDB07.xhtml">
+                            <ui:param name="isTabModel" value="true" />
+                        </ui:include>
+                    </p:tab>
+                    <p:tab title="#{messages.supplier}">
+                        <ui:include src="/WEB-INF/pages/master_dashboard_management/widgets/tasks_MDB07.xhtml">
+                            <ui:param name="isTabModel" value="false" />
+                        </ui:include>
+                    </p:tab>
+                </p:tabView>
+            </div>
+
+            <div id="right_engineer_supplier">
+                <p:fieldset id="panelRightHospital" style="height:auto;">
+                    <ui:include src="widgets/button.xhtml" />
+
+                    <ui:include src="/WEB-INF/pages/master_dashboard_management/widgets/notification_widget.xhtml">
+                    </ui:include>
+                </p:fieldset>
+            </div>
+        </div>
+    </h:form>
+</ui:composition>

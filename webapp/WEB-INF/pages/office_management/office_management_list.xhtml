@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+
+	<h:form>
+		<p:panel>
+			<p:commandButton value="#{messages.add}" icon=" ui-icon-plus" action="#{officeManagementBean.addOffice()}" update=":contentPane" process="@this" immediate="true" />
+			<p:commandButton value="#{messages.edit}" icon="ui-icon-pencil" action="#{officeManagementBean.editOffice()}" update=":contentPane" disabled="#{!officeManagementBean.enableEdit}" process="@this"
+				immediate="true" />
+			<p:commandButton value="#{messages.close}" icon="ui-icon-close" process="@this" action="#{screenMonitor.close()}" update=":contentPane"
+				onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" />
+		</p:panel>
+		<ac:dataTable value="#{officeManagementBean.listOffices}" var="office" row="20" id="officeTable" rowIndexVar="index">
+			<p:column styleClass="arrow-ui-select-column">
+				<p:selectBooleanCheckbox value="#{office.selected}">
+					<p:ajax process="@this" update="@form" listener="#{officeManagementBean.toggleSelection(office)}" />
+				</p:selectBooleanCheckbox>
+			</p:column>
+			<p:column headerText="#{messages.no}" styleClass="arrow-ui-index-column">
+			    #{index + 1}
+			</p:column>
+			<p:column styleClass="arrow-ui-code-column">
+				<f:facet name="header">
+					<ac:columnHeader value="#{messages.officeCode}" parentTable="officeTable" sorter="#{officeManagementBean.listOffices.sort('officeCode')}"
+						filter="#{officeManagementBean.listOffices.filter('officeCode')}"></ac:columnHeader>
+				</f:facet>
+			    #{office.officeCode}
+			</p:column>
+			<p:column styleClass="arrow-ui-text-column">
+				<f:facet name="header">
+					<ac:columnHeader value="#{messages.officeName}" parentTable="officeTable" sorter="#{officeManagementBean.listOffices.sort('officeName')}"
+						filter="#{officeManagementBean.listOffices.filter('officeName')}"></ac:columnHeader>
+				</f:facet>
+			    #{office.name}
+			</p:column>
+			<p:column styleClass="arrow-ui-text-column">
+				<f:facet name="header">
+					<ac:columnHeader value="#{messages.corporate}" parentTable="officeTable" sorter="#{officeManagementBean.listOffices.sort('corporate')}"
+						filter="#{officeManagementBean.listOffices.filter('corporate')}"></ac:columnHeader>
+				</f:facet>
+			    #{office.corporate.name}
+			</p:column>
+			<p:column styleClass="arrow-ui-text-column">
+				<f:facet name="header">
+					<ac:columnHeader value="#{messages.address}" parentTable="officeTable" sorter="#{officeManagementBean.listOffices.sort('address')}" filter="#{officeManagementBean.listOffices.filter('address')}"></ac:columnHeader>
+				</f:facet>
+			    #{office.address.address1}
+			</p:column>
+			<p:column styleClass="arrow-ui-text-column">
+				<f:facet name="header">
+					<ac:columnHeader value="#{messages.tel}" parentTable="officeTable" sorter="#{officeManagementBean.listOffices.sort('tel')}" filter="#{officeManagementBean.listOffices.filter('tel')}"></ac:columnHeader>
+				</f:facet>
+			    #{office.tel}
+			</p:column>
+			<p:column styleClass="arrow-ui-text-column">
+				<f:facet name="header">
+					<ac:columnHeader value="#{messages.fax}" parentTable="officeTable" sorter="#{officeManagementBean.listOffices.sort('fax')}" filter="#{officeManagementBean.listOffices.filter('fax')}"></ac:columnHeader>
+				</f:facet>
+			    #{office.fax}
+			</p:column>
+			<p:column styleClass="arrow-ui-text-column">
+				<f:facet name="header">
+					<ac:columnHeader value="#{messages.manager}" process="@this" parentTable="officeTable" sorter="#{officeManagementBean.listOffices.sort('manager')}"
+						filter="#{officeManagementBean.listOffices.filter('manager')}"></ac:columnHeader>
+				</f:facet>
+			    #{office.managerPerson.name}
+			</p:column>
+			<p:column styleClass="arrow-ui-text-column">
+				<f:facet name="header">
+					<ac:columnHeader value="#{messages.accountant}" parentTable="officeTable" sorter="#{officeManagementBean.listOffices.sort('accountant')}"
+						filter="#{officeManagementBean.listOffices.filter('accountant')}"></ac:columnHeader>
+				</f:facet>
+			    #{office.accountantPerson.name}
+			</p:column>
+			<p:column styleClass="arrow-ui-text-column">
+				<f:facet name="header">
+					<ac:columnHeader value="#{messages.technician}" parentTable="officeTable" sorter="#{officeManagementBean.listOffices.sort('technician')}"
+						filter="#{officeManagementBean.listOffices.filter('technician')}"></ac:columnHeader>
+				</f:facet>
+			    #{office.technicianPerson.name}
+			</p:column>
+			<p:column styleClass="arrow-ui-text-column">
+				<f:facet name="header">
+					<ac:columnHeader value="#{messages.equipmentManager}" parentTable="officeTable" sorter="#{officeManagementBean.listOffices.sort('equipmentManager')}"
+						filter="#{officeManagementBean.listOffices.filter('equipmentManager')}"></ac:columnHeader>
+				</f:facet>
+			    #{office.equipmentPerson.name}
+			</p:column>
+			<p:column styleClass="arrow-ui-text-column">
+				<f:facet name="header">
+					<ac:columnHeader value="#{messages.taxCode}" parentTable="officeTable" sorter="#{officeManagementBean.listOffices.sort('taxCode')}" filter="#{officeManagementBean.listOffices.filter('taxCode')}"></ac:columnHeader>
+				</f:facet>
+			    #{office.taxCode}
+			</p:column>
+		</ac:dataTable>
+	</h:form>
+</ui:composition>

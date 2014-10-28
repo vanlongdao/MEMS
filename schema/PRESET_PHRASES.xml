@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- PRESET_PHRASES -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="MEANING_CODE" data-type="code" not-null="false" />
+	<column name="COUNTRY" data-type="integer" not-null="false" />
+	<column name="CATEGORY_CODE" data-type="code" not-null="false" />
+	<column name="SHOW_STR" data-type="name" not-null="false" />
+	<column name="INPUT_STR" data-type="name" not-null="false" />
+</table>

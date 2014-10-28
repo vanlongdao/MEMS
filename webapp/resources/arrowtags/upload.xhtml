@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+    xmlns:composite="http://java.sun.com/jsf/composite">
+<composite:interface>
+    <composite:attribute name="id" type="java.lang.String"/>
+    <composite:attribute name="process" default="@this"/>
+    <composite:attribute name="update" default="@this"/>
+    <composite:attribute name="fileValue"></composite:attribute>
+    <composite:attribute name="allowTypes" default="#{appConfig.documentFileTypesAllowed}"/>
+    <!--10MB -->
+    <composite:attribute name="sizeLimit" default="#{appConfig.docFileSizeLimit}"/>
+    <composite:attribute name="fileLimit" default="1"/>
+    <composite:attribute name="listener" method-signature="void listener(org.primefaces.event.FileUploadEvent)"/>
+    
+</composite:interface>
+
+<composite:implementation>
+        <p:fileUpload fileUploadListener="#{cc.attrs.listener}" mode="advanced" fileLimit="#{cc.attrs.fileLimit}" id="#{cc.attrs.id}" widgetVar="wg_#{cc.attrs.id}" auto="true" immediate="true"
+            value="#{cc.attrs.fileValue}" sizeLimit="#{cc.attrs.sizeLimit}" allowTypes="#{cc.attrs.allowTypes}" process="#{cc.attrs.process}" update="#{cc.attrs.update}">
+        </p:fileUpload>
+</composite:implementation>
+
+</html>

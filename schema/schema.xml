@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema dbname="system" category="mdms" package="entity" timestamp="2012-12-12 12:12:12">
+	<!-- 
+	This schema.xml file is just the placeholder as the root of the full schema,
+	which would be constructed by combining all the files in all the sub folder of the current folder.
+	
+	The last modified timestamp of this file would have effect on generation of entity files.
+	The attribute timestamp above is only for TH5 SuperModel conversion compatibility. It will not be used.
+	
+	Generally, updating this file would cause all entity files to be regenerated
+	-->
+</schema>

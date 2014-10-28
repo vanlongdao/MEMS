@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- PERSON -->
+<table  parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="PSN_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="PSN_CODE" data-type="code" not-null="false" />
+	<column name="NAME" data-type="name" not-null="false" />
+	<column name="TEL" data-type="name" not-null="false" />
+	<column name="FAX" data-type="name" not-null="false" />
+	<column name="EMAIL" data-type="email" not-null="false" />
+	<column name="ADDR_CODE" data-type="code" not-null="false" />
+    <column name="OFFICE_CODE" data-type="code" not-null="false" />
+	<column name="CONTACT_METHOD" data-type="freetext" not-null="false" />
+    
+    <foreign-key parent-table="ADDRESS">
+        <column name="ADDR_CODE" referColumn="ADDR_CODE"/>
+        <column name="IS_DELETED" referColumn="IS_DELETED"/>
+    </foreign-key>
+    
+    <foreign-key parent-table="OFFICE">
+        <column name="OFFICE_CODE" referColumn="OFFICE_CODE"/>
+        <column name="IS_DELETED" referColumn="IS_DELETED"/>
+    </foreign-key>
+</table>

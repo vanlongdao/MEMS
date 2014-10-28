@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Type name: get from TYPE_NAME -->
+<!-- jdbcType: target SQL data type -->
+<!-- columnSize: size of column. 0 if don't need to specific -->
+<data-types>
+	<type name="code" jdbcType="VARCHAR" columnSize="32" />
+    <type name="long-code" jdbcType="VARCHAR" columnSize="255" />
+	<type name="type-code" jdbcType="VARCHAR" columnSize="32" />
+	<type name="label" jdbcType="VARCHAR" columnSize="255" />
+	<type name="internal-id" jdbcType="INTEGER" columnSize="0"/>
+	<type name="serial" jdbcType="INTEGER" columnSize="0"/>
+	<type name="bigserial" jdbcType="BIGINT" columnSize="0"/>
+	<type name="ref-id" jdbcType="INTEGER" columnSize="0"/>
+    <type name="big-int-id" jdbcType="BIGINT" columnSize="0"/>
+	<type name="object-version" jdbcType="INTEGER" columnSize="0" />
+	<type name="cost" jdbcType="DOUBLE" columnSize="0"/>
+	<type name="numeric" jdbcType="DOUBLE" columnSize="0"/>
+	<type name="date" jdbcType="DATE" columnSize="0" />
+	<type name="time" jdbcType="TIME" columnSize="0" />
+	<type name="datetime" jdbcType="TIMESTAMP" columnSize="0" />
+	<type name="integer" jdbcType="INTEGER" columnSize="0" />
+	<type name="flag" jdbcType="INTEGER" columnSize="0" />
+	<type name="freetext" jdbcType="TEXT" columnSize="10485760" />
+	<type name="email" jdbcType="VARCHAR" columnSize="255" />
+	<type name="phone" jdbcType="VARCHAR" columnSize="255" />
+	<type name="address" jdbcType="VARCHAR" columnSize="255" />
+	<type name="name" jdbcType="VARCHAR" columnSize="255" />
+	<type name="short-name" jdbcType="VARCHAR" columnSize="3" />
+	<type name="password" jdbcType="VARCHAR" columnSize="255" />
+	<type name="description" jdbcType="VARCHAR" columnSize="128" />
+	<type name="image" jdbcType="BYTEA" columnSize="0"/>
+</data-types>

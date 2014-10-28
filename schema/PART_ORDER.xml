@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- PART_ORDER -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="PO_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="PO_CODE" data-type="code" not-null="false" />
+	<column name="ACTION_CODE" data-type="code" not-null="false" />
+	<column name="DIST_MGMT_CODE" data-type="code" not-null="false" />
+	<column name="ESTIMATE_CODE" data-type="code" not-null="false" />
+	<column name="DIST_OFFICE" data-type="code" not-null="false" />
+	<column name="DIST_PSN" data-type="code" not-null="false" />
+	<column name="SERVICE_OFFICE" data-type="code" not-null="false"/>
+	<column name="SERVICE_PSN" data-type="code" not-null="false" />
+	<column name="REQUESTER_OFFICE" data-type="code" not-null="false" />
+	<column name="REQUESTER_PSN" data-type="code" not-null="false" />
+	<column name="ORDER_DATE" data-type="date" not-null="false" />
+	<column name="ETA_DATE" data-type="date" not-null="false" />
+	<column name="PAY_DATE" data-type="date" not-null="false" />
+	<column name="DEST_OFFICE" data-type="code" not-null="false" />
+	<column name="PAYMENT_TERMS" data-type="freetext" not-null="false" />
+    <column name="STATUS" data-type="ref-id" not-null="false" />
+    <column name="P_CCY" data-type="ref-id" not-null="false" />
+    <column name="TOTAL_PRICE" data-type="cost" not-null="false" />
+    <column name="TAX" data-type="numeric" not-null="false" />
+    <column name="IMAGE_FILE" data-type="image" not-null="false" />
+    
+    <foreign-key parent-table="ACTION_LOG">
+        <column name="ACTION_CODE" referColumn="ACTION_CODE"/>
+        <column name="IS_DELETED" referColumn="IS_DELETED"/>
+    </foreign-key>
+</table>

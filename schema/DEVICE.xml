@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DEVICE -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="DEV_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="DEV_CODE" data-type="code" not-null="true"/>
+	<column name="MDEV_CODE" data-type="code" not-null="false" />
+	<column name="SERIAL_NO" data-type="name" not-null="false" />
+	<column name="NO_SERIAL_CONFIRM" data-type="integer" not-null="false" />
+	<column name="SOFTWARE_REV" data-type="name" not-null="false" />
+	<column name="TARGET_DEV_CODE" data-type="code" not-null="false" />
+	<column name="EXPIRE_DATE" data-type="date" not-null="false" />
+	<column name="INSTALL_DATE" data-type="date" not-null="false" />
+	<column name="ACCEPTANCE_DATE" data-type="date" not-null="false" />
+	<column name="SUPLLIER_OFFICE" data-type="code" not-null="false" />
+	<column name="SUPPLIER_PSN" data-type="code" not-null="false" />
+	<column name="LAST_SERVICE_OFFICE" data-type="code" not-null="false" /> 
+	<column name="LAST_SERVICE_PSN" data-type="code" not-null="false" />
+	<column name="HOSP_DEPT_CODE" data-type="code" not-null="false" />
+	<column name="LOCATION" data-type="freetext" not-null="false" />
+    <column name="LOCATION_IMAGE" data-type="image" not-null="false" />
+	<column name="ACQ_CODE" data-type="code" not-null="false" />
+	<column name="PRICE" data-type="cost" not-null="false" />
+	<column name="P_CCY" data-type="integer" not-null="false" />
+	<column name="IMAGE_FILE" data-type="image" not-null="false" />
+	<column name="CLIENT_MGMT_CODE" data-type="freetext" not-null="false" />
+    
+    
+     <foreign-key parent-table="M_DEVICE">
+        <column name="MDEV_CODE" referColumn="MDEV_CODE"/>
+        <column name="IS_DELETED" referColumn="IS_DELETED"/>
+    </foreign-key>
+</table>

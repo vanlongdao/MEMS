@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+	<h:form>
+		<p:outputPanel>
+			<table>
+				<tr>
+					<td><h:outputLabel value="#{messages.no}" /></td>
+					<td><p:inputText value="#{viewRepairRequestBean.selectedRepairRequest.clientSideMgmtCode}" disabled="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.type}" /></td>
+					<td><p:inputText value="#{viewRepairRequestBean.selectedRepairRequest.actionTypeMaster.label}" disabled="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.deviceNo}" /></td>
+					<td><p:inputText value="#{viewRepairRequestBean.selectedRepairRequest.device.clientMgmtCode}" disabled="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.deviceName}" /></td>
+					<td><p:inputText value="#{viewRepairRequestBean.selectedRepairRequest.device.MDevice.name}" disabled="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.modelNo}" /></td>
+					<td><p:inputText value="#{viewRepairRequestBean.selectedRepairRequest.device.MDevice.modelNo}" disabled="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.sn}" /></td>
+					<td><p:inputText value="#{viewRepairRequestBean.selectedRepairRequest.device.serialNo}" disabled="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.supplier}" /></td>
+					<td><p:inputText value="#{viewRepairRequestBean.selectedRepairRequest.device.supplierOffice.name}" disabled="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.contact}" /></td>
+					<td><p:inputText value="#{viewRepairRequestBean.selectedRepairRequest.device.supplierPerson.name}" disabled="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.repairer}" /></td>
+					<td><p:inputText value="#{viewRepairRequestBean.selectedRepairRequest.device.repairedByOffice.name}" disabled="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.contact}" /></td>
+					<td><p:inputText value="#{viewRepairRequestBean.selectedRepairRequest.device.repairedPerson.name}" disabled="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.location}" /></td>
+					<td><p:inputText value="#{viewRepairRequestBean.selectedRepairRequest.device.location}" disabled="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.hospitalContact}" /></td>
+					<td><p:inputText value="#{viewRepairRequestBean.selectedRepairRequest.hospitalContactPerson.name}" disabled="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.faultFoundDate}" /></td>
+					<td><p:inputText value="#{viewRepairRequestBean.selectedRepairRequest.occurDate}" disabled="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.compliant}" /></td>
+					<td><p:inputText value="#{viewRepairRequestBean.selectedRepairRequest.complaint}" disabled="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.callToRepairDate}" /></td>
+					<td><p:inputText value="#{viewRepairRequestBean.selectedRepairRequest.contactDate}" disabled="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.workStartDate}" /></td>
+					<td><p:inputText value="#{viewRepairRequestBean.selectedRepairRequest.actionDate}" disabled="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.workEndDate}" /></td>
+					<td><p:inputText value="#{viewRepairRequestBean.selectedRepairRequest.finishDate}" disabled="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.failure}" /></td>
+					<td><p:inputText value="#{viewRepairRequestBean.currentFault.description}" disabled="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.repair}" /></td>
+					<td><p:inputText value="#{viewRepairRequestBean.currentFault.repair}" disabled="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.cause}" /></td>
+					<td><p:inputText value="#{viewRepairRequestBean.currentFault.cause}" disabled="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel value="#{messages.prevention}" /></td>
+					<td><p:inputText value="#{viewRepairRequestBean.currentFault.prevention}" disabled="true" /></td>
+				</tr>
+			</table>
+		</p:outputPanel>
+	</h:form>
+</ui:composition>

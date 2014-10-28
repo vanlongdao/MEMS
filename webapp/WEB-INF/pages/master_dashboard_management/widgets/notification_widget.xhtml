@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:o="http://omnifaces.org/ui">
+
+    <p:outputPanel id="panelDecription">
+        <p:fieldset id="panelChecklist" legend="#{messages.scheduleItemList}">
+            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                <p:selectOneRadio id="checkTypes" layout="grid" columns="2" value="#{masterDashboardBean.valueRadioBtn}">
+                    <f:selectItem itemValue="1" itemLabel="#{messages.comingCheck}" />
+                    <f:selectItem itemValue="2" itemLabel="#{messages.checksThisMonth}" />
+                    <f:selectItem itemValue="3" itemLabel="#{messages.nextCheck}" />
+                    <f:selectItem itemValue="4" itemLabel="#{messages.allCases}" />
+                    <p:ajax update="@([id$=panelChecklist])" event="valueChange"
+                        listener="#{masterDashboardBean.filtercheduleItem}" />
+                </p:selectOneRadio>
+            </h:panelGrid>
+            <ac:dataTable rowIndexVar="index" styleClass="datalist_style" itemStyleClass="datalist_ordered"
+                value="#{masterDashboardBean.generalListOfScheduleItem}" var="scheduleItem" emptyMessage="#{messages.noResult}">
+                <f:facet name="header">
+                    #{messages.scheduleItemList}
+                </f:facet>
+                <p:column width="10">
+                    #{index+1}
+                </p:column>
+                <p:column>
+                    #{scheduleItem.description}
+                </p:column>
+                <p:column width="40%" rendered="#{!userCredential.supervisor}">
+                <p:commandButton value="#{messages.registerCheckAndRepair}" actionListener="#{screenMonitor.openScreen(ScreenCodes.INPUT_REPAIR_REQUEST)}"
+                        action="#{masterDashboardBean.setInputRepairRequestVar(scheduleItem)}" update=":contentPane" 
+                        onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"/>
+                   <p:commandButton value="#{messages.dismiss}" update="@form"
+                        actionListener="#{masterDashboardBean.showDialogConfirmLogin(scheduleItem, null)}">
+                        <p:ajax event="dialogReturn" listener="#{masterDashboardBean.showDialogConfirmDismiss}" update="@form"/>
+                    </p:commandButton>
+                </p:column>
+                <p:column width="35%" rendered="#{userCredential.supervisor}">
+                <p:commandButton value="#{messages.registerCheckAndRepair}" actionListener="#{screenMonitor.openScreen(ScreenCodes.INPUT_REPAIR_REQUEST)}"
+                        action="#{masterDashboardBean.setInputRepairRequestVar(scheduleItem)}" update=":contentPane" 
+                        onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"/>
+                   <p:commandButton value="#{messages.dismiss}" update="@form"
+                        actionListener="#{masterDashboardBean.dismissOk(scheduleItem)}">
+                        <p:confirm header="#{messages.MDM00027}" message="#{messages.MDM00027}"/>
+                    </p:commandButton>
+                </p:column>
+            </ac:dataTable>
+             
+        </p:fieldset>
+        <p:fieldset id="panelNotification" legend="#{messages.notification}">
+            <ac:dataTable value="#{masterDashboardBean.listNoticeLog}" var="noticeLog">
+                <p:column headerText="#{messages.title}">
+                    <p:outputLabel value="#{noticeLog.title}" />
+                </p:column>
+                <p:column headerText="#{messages.description}">
+                    <p:outputLabel value="#{noticeLog.description}" />
+                </p:column>
+                <p:column width="70" rendered="#{!userCredential.supervisor}">
+                    <p:commandButton value="#{messages.dismiss}" update="@form" 
+                        actionListener="#{masterDashboardBean.showDialogConfirmLogin(null, noticeLog)}">
+                        <p:ajax event="dialogReturn" listener="#{masterDashboardBean.showDialogConfirmNotificationDismiss}" update="@form"/>
+                    </p:commandButton>
+                </p:column>
+                <p:column width="70" rendered="#{userCredential.supervisor}">
+                    <p:commandButton value="#{messages.dismiss}" update="@form" 
+                        actionListener="#{masterDashboardBean.dismissNotificationOk(noticeLog)}">
+                        <p:confirm header="#{messages.MDM00027}"  message="#{messages.MDM00027}"/>
+                    </p:commandButton>
+                </p:column>
+            </ac:dataTable>
+        </p:fieldset>
+        <p:fieldset id="panelDeliverySchedule" legend="#{messages.deliverySchedule}">
+            <ac:dataTable id="deliveryScheduleTable" value="#{masterDashboardBean.listDeliverySchedule}" var="deliverySchedule">
+                <p:column headerText="#{messages.deliveryDate}">
+                    <ac:outputTime value="#{deliverySchedule.partOrder.etaDate}" />
+                </p:column>
+                <p:column headerText="#{messages.modelNo}">
+                    <p:outputLabel value="#{deliverySchedule.MDevice.modelNo}" />
+                </p:column>
+                <p:column headerText="#{messages.partModelNo}" >
+                    <p:outputLabel value="#{deliverySchedule.partModelNo}" />
+                </p:column>
+            </ac:dataTable>
+        </p:fieldset>
+        <p:dialog id="confirmDismissDlg" modal="true" appendTo=":contentPage" resizable="false" closable="false"
+            header="#{messages.MDM00027}" widgetVar="wg_confirmDismissDlg" visible="true"
+            rendered="#{masterDashboardBean.renderDismissDialog}">
+            <div style="text-align: center;">
+                    <p:commandButton value="#{messages.ok}" action="#{masterDashboardBean.dismissOk(null)}" process="@form" update=":contentPane" 
+                        oncomplete="PF('wg_confirmDismissDlg').hide()" icon="ui-icon-check" >
+                    </p:commandButton>
+                    <p:commandButton value="#{messages.cancel}" action="#{masterDashboardBean.dismissCancel}" process="@form" update=":contentPane" 
+                        oncomplete="PF('wg_confirmDismissDlg').hide()" icon="ui-icon-close">
+                        </p:commandButton>
+            </div>
+        </p:dialog>
+        <p:dialog id="confirmDismissNotificationDlg" modal="true" appendTo=":contentPage" resizable="false" closable="false"
+            header="#{messages.MDM00027}" widgetVar="wg_confirmDismissNotificationDlg" visible="true"
+            rendered="#{masterDashboardBean.renderDismissNotificationDialog}">
+            <div style="text-align: center;">
+                    <p:commandButton value="#{messages.ok}" action="#{masterDashboardBean.dismissNotificationOk(null)}" process="@form" update=":contentPane" 
+                        oncomplete="PF('wg_confirmDismissNotificationDlg').hide()" icon="ui-icon-check" >
+                    </p:commandButton>
+                    <p:commandButton value="#{messages.cancel}" action="#{masterDashboardBean.dismissCancel}" process="@form" update=":contentPane" 
+                        oncomplete="PF('wg_confirmDismissNotificationDlg').hide()" icon="ui-icon-close">
+                        </p:commandButton>
+            </div>
+        </p:dialog>
+    </p:outputPanel>
+</ui:composition>

@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+    <!-- To access constants -->
+    <o:importConstants type="arrow.mems.ui.ScreenCodes" />
+
+    <!-- Show Menu bar -->
+    <div id="topBar cell-box">
+        <div id="menuBar">
+            <h:form rendered="#{userCredential.loggedIn}">
+                <p:commandButton id="dynaButton" value="#{messages.menu}" type="button" icon="ui-icon-extlink" my="contentPane" />
+                <p:tieredMenu overlay="true" trigger="dynaButton" my="left top" at="left bottom">
+                    <p:submenu label="#{messages.systemManagement}" id="menuBar">
+                        <p:menuitem value="#{messages.addressManagement}"
+                            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                            action="#{screenMonitor.openMenu(ScreenCodes.ADDRESS_MANAGEMENT)}" update=":contentPane" id="menuitem-#{ScreenCodes.ADDRESS_MANAGEMENT}"/>
+                        <p:menuitem value="#{messages.userManagement}" 
+                            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"
+                            action="#{screenMonitor.openMenu(ScreenCodes.USER_MANAGEMENT)}" update=":contentPane" id="menuitem-#{ScreenCodes.USER_MANAGEMENT}"/>
+                        <p:menuitem value="#{messages.hospitalManagement}"
+                            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                            action="#{screenMonitor.openMenu(ScreenCodes.HOSPITAL_MANAGEMENT)}" update=":contentPane" id="menuitem-#{ScreenCodes.HOSPITAL_MANAGEMENT}"/>
+                        <p:menuitem value="#{messages.hospitalDeptManagement}" 
+                            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"
+                            action="#{screenMonitor.openMenu(ScreenCodes.HOSPITAL_DEPT_MANAGEMENT)}" update=":contentPane" id="menuitem-#{ScreenCodes.HOSPITAL_DEPT_MANAGEMENT}"/>
+                        
+                        <p:menuitem value="#{messages.humanResourceManagement}"
+                            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                            action="#{screenMonitor.openMenu(ScreenCodes.HUMAN_RESOURCE_MANAGEMENT)}" update=":contentPane"  id="menuitem-#{ScreenCodes.HUMAN_RESOURCE_MANAGEMENT}" >
+                        </p:menuitem>
+                        <p:menuitem value="#{messages.devicesManagement}"
+                            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                            action="#{screenMonitor.openMenu(ScreenCodes.MASTER_DEVICES_MANAGEMENT_LIST_SEARCH)}" update=":contentPane"  id="menuitem-#{ScreenCodes.MASTER_DEVICES_MANAGEMENT_LIST_SEARCH}"/>
+						<p:menuitem value="#{messages.personManagement}" 
+                            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"
+                            action="#{screenMonitor.openMenu(ScreenCodes.PERSON_MANAGEMENT)}" update=":contentPane"  id="menuitem-#{ScreenCodes.PERSON_MANAGEMENT}"/>
+						<p:menuitem value="#{messages.corporateManagement}"
+                            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                            action="#{screenMonitor.openMenu(ScreenCodes.CORPORATE_MANAGEMENT)}" update=":contentPane" id="menuitem-#{ScreenCodes.CORPORATE_MANAGEMENT}"/>
+                        <p:submenu label="#{messages.masterDashboardManagement}" >
+                            <p:menuitem  value="#{messages.managerSystemDashboard}" action="#{screenMonitor.openMenu(ScreenCodes.MASTER_DASHBOARD_MANAGEMENT_MANAGER_SYSTEM)}" update=":contentPane"  id="menuitem-#{ScreenCodes.MASTER_DASHBOARD_MANAGEMENT_MANAGER_SYSTEM}" 
+                            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"  />
+                            <p:menuitem  value="#{messages.engineerSupplierManagement}" action="#{screenMonitor.openMenu(ScreenCodes.MASTER_DASHBOARD_MANAGEMENT_ENGINEER_SUPPLIER)}" update=":contentPane"  id="menuitem-#{ScreenCodes.MASTER_DASHBOARD_MANAGEMENT_ENGINEER_SUPPLIER}" 
+                            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"  />
+                            <p:menuitem  value="#{messages.hospitalManagerDashboard}" action="#{screenMonitor.openMenu(ScreenCodes.MASTER_DASHBOARD_MANAGEMENT_HOSPITAL_MANAGER)}" update=":contentPane"  id="menuitem-#{ScreenCodes.MASTER_DASHBOARD_MANAGEMENT_HOSPITAL_MANAGER}" 
+                            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"  />
+                            <p:menuitem  value="#{messages.hospitalEngineerDashboard}" action="#{screenMonitor.openMenu(ScreenCodes.MASTER_DASHBOARD_MANAGEMENT_HOSPITAL_ENGINEER)}" update=":contentPane"  id="menuitem-#{ScreenCodes.MASTER_DASHBOARD_MANAGEMENT_HOSPITAL_ENGINEER}" 
+                            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"  />
+                            <p:menuitem  value="#{messages.hospitalAccountantDashboard}" action="#{screenMonitor.openMenu(ScreenCodes.MASTER_DASHBOARD_MANAGEMENT_HOSPITAL_ACCOUNTANT)}" update=":contentPane"  id="menuitem-#{ScreenCodes.MASTER_DASHBOARD_MANAGEMENT_HOSPITAL_ACCOUNTANT}" 
+                            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"  />
+                            <p:menuitem  value="#{messages.supplierManagerDashboard}" action="#{screenMonitor.openMenu(ScreenCodes.MASTER_DASHBOARD_MANAGEMENT_SUPPLIER_MANAGER)}" update=":contentPane"  id="menuitem-#{ScreenCodes.MASTER_DASHBOARD_MANAGEMENT_SUPPLIER_MANAGER}" 
+                            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"  />
+                            <p:menuitem  value="#{messages.manufacturerManagerDashboard}" action="#{screenMonitor.openScreen(ScreenCodes.MASTER_DASHBOARD_MANAGEMENT_MANUFACTURER_MANAGER)}" update=":contentPane"  id="menuitem-#{ScreenCodes.MASTER_DASHBOARD_MANAGEMENT_MANUFACTURER_MANAGER}" 
+                            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"  />
+                            <p:menuitem  value="#{messages.manufacturerEngineerDashboard}" action="#{screenMonitor.openScreen(ScreenCodes.MASTER_DASHBOARD_MANAGEMENT_MANUFACTURER_ENGINEER)}" update=":contentPane"  id="menuitem-#{ScreenCodes.MASTER_DASHBOARD_MANAGEMENT_MANUFACTURER_ENGINEER}" 
+                            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"  />
+                            <p:menuitem  value="#{messages.supplierAccountantDashboard}" action="#{screenMonitor.openScreen(ScreenCodes.MASTER_DASHBOARD_MANAGEMENT_SUPPLIER_ACCOUNTANT)}" update=":contentPane"  id="menuitem-#{ScreenCodes.MASTER_DASHBOARD_MANAGEMENT_SUPPLIER_ACCOUNTANT}" 
+                            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"  />
+                            <p:menuitem  value="#{messages.manufacturerAccountantDashboard}" action="#{screenMonitor.openScreen(ScreenCodes.MASTER_DASHBOARD_MANAGEMENT_MANUFACTURER_ACCOUNTANT)}" update=":contentPane"  id="menuitem-#{ScreenCodes.MASTER_DASHBOARD_MANAGEMENT_MANUFACTURER_ACCOUNTANT}" 
+                            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"  />
+                        </p:submenu>
+						<p:menuitem value="#{messages.officeManagement}"
+                            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                            action="#{screenMonitor.openMenu(ScreenCodes.OFFICE_MANAGEMENT)}" update=":contentPane" id="menuitem-#{ScreenCodes.OFFICE_MANAGEMENT}"/>
+						<p:menuitem value="#{messages.approveConfiguration}"
+                            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                            action="#{screenMonitor.openMenu(ScreenCodes.APPROVE_FEATURE)}" update=":contentPane" id="menuitem-#{ScreenCodes.APPROVE_FEATURE}"/>
+                        <p:menuitem value="#{messages.approveSummary}"
+                            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                            action="#{screenMonitor.openMenu(ScreenCodes.APPROVE_SUMMARY)}" update=":contentPane" id="menuitem-#{ScreenCodes.APPROVE_SUMMARY}"/>
+                            
+						<p:menuitem value="#{messages.inputRepairRequest}"
+                            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                            action="#{screenMonitor.openMenu(ScreenCodes.INPUT_REPAIR_REQUEST)}" update=":contentPane" id="menuitem-#{ScreenCodes.INPUT_REPAIR_REQUEST}"/>
+                         <p:menuitem value="#{messages.listSearchDevice}"
+                            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                            action="#{screenMonitor.openMenu(ScreenCodes.LIST_SEARCH_DEVICE)}" update=":contentPane" id="menuitem-#{ScreenCodes.LIST_SEARCH_DEVICE}"/>   
+                         <p:menuitem value="#{messages.viewDetailFromQRCode}"
+                            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                            action="#{screenMonitor.openMenu(ScreenCodes.VIEW_DETAIL_FROM_QRCODE)}" update=":contentPane" id="menuitem-#{ScreenCodes.VIEW_DETAIL_FROM_QRCODE}"/>
+                         <p:menuitem value="#{messages.managePresetPhrases}"
+                            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                            action="#{screenMonitor.openMenu(ScreenCodes.MANAGE_PRESET_PHRASES)}" update=":contentPane" id="menuitem-#{ScreenCodes.MANAGE_PRESET_PHRASES}"/>        
+                        <p:menuitem value="#{messages.repairHistory}"
+                            onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()" 
+                            action="#{screenMonitor.openMenu(ScreenCodes.REPAIR_HISTORY)}" update=":contentPane" id="menuitem-#{ScreenCodes.REPAIR_HISTORY}"/>
+						<p:menuitem value="#{messages.viewRepairRequest}" onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"
+							action="#{screenMonitor.openMenu(ScreenCodes.VIEW_REPAIR_REQUEST)}" update=":contentPane" id="menuitem-#{ScreenCodes.VIEW_REPAIR_REQUEST}" />
+					</p:submenu>
+					<p:submenu label="#{userCredential.userInfo.name}">
+                        <p:submenu label="#{messages.displayLanguage}">
+                            <p:menuitem value="#{messages.vietnamese}" action="#{localeSelector.setLocale('vi')}" update="@all"
+                                onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"  />
+                            <p:menuitem value="#{messages.japanese}" action="#{localeSelector.setLocale('ja')}" update="@all"
+                                onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"  />
+                            <p:menuitem value="#{messages.english}" action="#{localeSelector.setLocale('en')}" update="@all"
+                                onstart="PF('globalBlockUI_js').block()" oncomplete="PF('globalBlockUI_js').unblock()"  />
+                        </p:submenu>
+                    </p:submenu>
+                    <p:menuitem value="#{messages.logout}" action="#{authenticationBean.logout}" update="@all" />
+
+                </p:tieredMenu>
+            </h:form>
+        </div>
+        <div id="themeSwitcher">
+            <h:form>
+                <div class="localeSwitcher">
+                <p:commandButton value="#{messages.vietnamese}" action="#{localeSelector.setLocale('vi')}" update="@all"
+                        onstart="PF('globalBlockUI_js').block()" oncomplete="if(PF('globalBlockUI_js')) {PF('globalBlockUI_js').unblock()}"  />
+                    <p:commandButton value="#{messages.japanese}" action="#{localeSelector.setLocale('ja')}" update="@all"
+                        onstart="PF('globalBlockUI_js').block()" oncomplete="if(PF('globalBlockUI_js')) {PF('globalBlockUI_js').unblock()}"  />
+                    <p:commandButton value="#{messages.english}" action="#{localeSelector.setLocale('en')}" update="@all"
+                        onstart="PF('globalBlockUI_js').block()" oncomplete="if(PF('globalBlockUI_js')) {PF('globalBlockUI_js').unblock()}"  />
+                </div>          
+                <p:themeSwitcher id="themeSwitcher" style="text-align: left;" value="#{userCredential.preferences.theme}" onchange="this.form.submit()">
+                    <f:selectItem itemLabel="#{messages['default']}" itemValue="start" />
+                    <f:selectItems value="#{themeBean.themes}" />
+                    <p:ajax listener="#{userCredential.changeTheme}"/>
+                </p:themeSwitcher>
+            </h:form>
+        </div>
+    </div>
+</ui:composition>

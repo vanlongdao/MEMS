@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+    <!-- To access constants -->
+    <o:importConstants type="arrow.mems.ui.ScreenCodes" />
+    <h:form id="form">
+        <table>
+            <tr>
+                <td class="label">#{messages['loginName']}</td>
+                <td><p:inputText id="loginName" value="#{editCurrentUserBean.currentUser.loginName}" label="#{messages['loginName']}" /></td>
+            </tr>
+
+            <tr>
+                <td class="label">#{messages['accountType']}</td>
+                <td><p:selectOneMenu id="account_type" value="#{editCurrentUserBean.currentUser.accountType}" label="#{messages.accountType}" required="true"
+                        requiredMessage="#{messages.please_select_company}">
+                        <f:selectItems value="#{userManagementBean.accountTypes}" />
+                    </p:selectOneMenu></td>
+            </tr>
+
+            <tr>
+                <td class="label">#{messages['password']}</td>
+                <td><p:password id="password" value="#{editCurrentUserBean.password}" label="#{messages['password']}" /></td>
+            </tr>
+            <tr>
+                <td class="label">#{messages['suppervisor']}</td>
+                <td><p:selectBooleanCheckbox value="#{editCurrentUserBean.supervisor}">
+                    </p:selectBooleanCheckbox></td>
+            </tr>
+
+            <tr>
+                <td class="label"><p:outputLabel value="#{messages.email}" for="email" /></td>
+                <td><p:inputText id="email" value="#{editCurrentUserBean.currentUser.email}" /></td>
+            </tr>
+            <tr>
+                <td class="label"><p:outputLabel value="#{messages.name}" for="name" /></td>
+                <td><p:inputText id="name" value="#{editCurrentUserBean.currentUser.name}" /></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="left"><p:commandButton id="btnAddNewUser" value="#{messages['save']}" action="#{editCurrentUserBean.updateProfile}" update=":contentPane"
+                        icon="ui-icon-disk" /> <p:commandButton id="btnclose" value="#{messages['cancel']}" action="#{screenMonitor.goHome()}" update=":contentPane" immediate="true"
+                        icon="ui-icon-close" process="@this" /></td>
+            </tr>
+        </table>
+    </h:form>
+</ui:composition>

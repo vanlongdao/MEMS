@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- PART_ORDER_ITEM -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="POI_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="PO_CODE" data-type="code" not-null="false" />
+	<column name="PART_CODE" data-type="code" not-null="false" />
+	<column name="PART_MODEL_NO" data-type="name" not-null="false" />
+	<column name="PART_NAME" data-type="name" not-null="false" />
+	<column name="ITEM_PRICE" data-type="cost" not-null="false" />
+	<column name="NUM_ITEMS" data-type="integer" not-null="false" />
+	<column name="TOT_PRICE" data-type="cost" not-null="false" />
+	<column name="TAX_RATE" data-type="cost" not-null="false" />
+	<column name="TAX" data-type="cost" not-null="false" />
+	<column name="PRICE_WITH_TAX" data-type="cost" not-null="false" />
+    
+    <foreign-key parent-table="M_DEVICE">
+        <column name="PART_CODE" referColumn="MDEV_CODE"/>
+        <column name="IS_DELETED" referColumn="IS_DELETED"/>
+    </foreign-key>
+    
+   <foreign-key parent-table="PART_ORDER">
+        <column name="PO_CODE" referColumn="PO_CODE"/>
+        <column name="IS_DELETED" referColumn="IS_DELETED"/>
+    </foreign-key>
+</table>

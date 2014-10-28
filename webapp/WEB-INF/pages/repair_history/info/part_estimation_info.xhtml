@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<ui:composition xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+	<h:form>
+		<p:outputPanel>
+			<ac:dataTable value="#{repairHistoryBean.listPartEstimate}" var="estimate" rowIndexVar="index" rowKey="#{estimate.peCode}" selectionMode="single"
+				selection="#{repairHistoryBean.selectedEstimate}">
+				<p:column styleClass="display-index">
+				#{index+1}
+			</p:column>
+				<p:column headerText="#{messages.code}" styleClass="display-text">
+				#{estimate.peCode}
+			</p:column>
+				<p:column headerText="#{messages.totalPrice}" styleClass="display-number">
+				#{estimate.totalPrice}
+			</p:column>
+				<p:ajax event="rowSelect" process="@this" update="@form"></p:ajax>
+			</ac:dataTable>
+		</p:outputPanel>
+		<p:fieldset rendered="#{repairHistoryBean.selectedEstimate ne null}" legend="#{messages.partEstimationInfo}">
+			<ac:dataTable value="#{repairHistoryBean.listPartEstimateItem}" var="item" rowIndexVar="index">
+				<p:column styleClass="display-index">
+					#{index+1}
+				</p:column>
+				<p:column styleClass="display-text" headerText="#{messages.parts}">
+					#{item.MDevice.name}
+				</p:column>
+				<p:column styleClass="display-number" headerText="#{messages.price}">
+					#{item.itemPrice}
+				</p:column>
+				<p:column styleClass="display-number" headerText="#{messages.numItems}">
+					#{item.numItems}
+				</p:column>
+				<p:column styleClass="display-number" headerText="#{messages.subTotal}">
+					#{item.totPrice}
+				</p:column>
+			</ac:dataTable>
+		</p:fieldset>
+	</h:form>
+</ui:composition>

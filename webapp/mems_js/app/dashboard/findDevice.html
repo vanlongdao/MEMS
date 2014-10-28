@@ -1,0 +1,83 @@
+<div class="control-group">
+    <label>Hospital Department</label>
+    <p>Selected: {{selectedDepartment.selected.name}} </p>
+    <ui-select ng-model="selectedDepartment.selected"
+               theme="select2"
+               ng-disabled="disabled"
+               reset-search-input="false"
+               style="width: 300px;">
+        <ui-select-match placeholder="Type to search department">{{$select.selected.name}}</ui-select-match>
+        <ui-select-choices repeat="department in allDepartments track by $index"
+                           refresh="refreshDepartments($select.search)"
+                           refresh-delay="0">
+            <small>
+                <table class="nestedTable">
+                    <thead>
+                    <tr>
+                        <th>Department Code</td>
+                        <th>Department Name</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><span ng-bind-html="trustAsHtml((department.deptCode | highlight: $select.search))"/></td>
+                        <td><span ng-bind-html="trustAsHtml((department.name | highlight: $select.search))"/></td>
+                    </tr>
+                    </tbody>
+
+                </table>
+            </small>
+        </ui-select-choices>
+    </ui-select>
+</div>
+
+
+<div class="control-group">
+    <label>{{messages.deviceCode}}</label>
+    <p>Selected: {{selectedDevice.selected.devCode}} </p>
+    <ui-select ng-model="selectedDevice.selected"
+               theme="select2"
+               ng-disabled="disabled"
+               reset-search-input="false"
+               style="width: 300px;">
+        <ui-select-match placeholder="Type to search device">{{$select.selected.devCode}}</ui-select-match>
+        <ui-select-choices repeat="device in allDevices track by $index"
+                           refresh="refreshDevices($select.search)"
+                           refresh-delay="0">
+
+            <small>
+                <table>
+                    <tr>
+                        <td>Device Code:</td>
+                        <td><span ng-bind-html="trustAsHtml((device.devCode | highlight: $select.search))"/></td>
+                    </tr>
+                    <tr>
+                        <td>Serial No:</td>
+                        <td><span ng-bind-html="trustAsHtml((device.serialNo | highlight: $select.search))"/></td>
+                    </tr>
+                    <tr>
+                        <td>Software Rev:</td>
+                        <td><span ng-bind-html="trustAsHtml((device.softwareRev | highlight: $select.search))"/></td>
+                    </tr>
+
+                    <tr>
+                        <td>Model No:</td>
+                        <td><span ng-bind-html="trustAsHtml((device.mdevModelNo | highlight: $select.search))"/></td>
+                    </tr>
+
+                    <tr>
+                        <td>Name:</td>
+                        <td><span ng-bind-html="trustAsHtml((device.mdevName | highlight: $select.search))"/></td>
+                    </tr>
+
+                    <tr>
+                        <td>General Name:</td>
+                        <td><span ng-bind-html="trustAsHtml((device.mdevCatName | highlight: $select.search))"/></td>
+                    </tr>
+                </table>
+            </small>
+        </ui-select-choices>
+    </ui-select>
+</div>
+
+</div>

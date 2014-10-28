@@ -1,0 +1,63 @@
+body {
+    margin: 0 auto;
+    text-align: center;
+}
+
+div .container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+div .form-group {
+    min-width: 250px;
+    /*width: 100%;*/
+    display: block;
+    text-align: left;
+    margin-left: 30%;
+}
+
+div .addInput
+{
+    display: table-caption;
+}
+
+label {
+    padding-top: 25px;
+    font-weight: bold;
+    width: 25%;
+    padding-left: 10px;
+}
+
+legend
+{
+    text-align: left;
+}
+
+paper-tabs {
+    background-color: #00bcd4;
+    color: #fff;
+    box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
+}
+
+core-icon-button {
+    vertical-align: middle;
+    /*height: 38px;*/
+}
+
+paper-input {
+    padding-left: 10px;
+    /*width: 200px !important;*/
+    text-align: left;
+}
+
+paper-button
+{
+    width: 100px;
+    margin: 10px;
+}
+
+core-pages
+{
+    width: 100% !important;
+    display: block;
+}

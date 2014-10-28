@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CHECKLIST_ITEM -->
+<table parent-table="ABSTRACT_APPROVAL_ENTITY">
+	<primary-key>
+		<column name="CKI_LOG_ID" data-type="serial" not-null="true"/>
+	</primary-key>
+	<column name="CKLIST_LOG_CODE" data-type="code" not-null="true"/>
+	<column name="REFER_CKI_CODE" data-type="code" not-null="true"/>
+	<column name="CKI_LOG_CODE" data-type="code" not-null="false" />
+	<column name="RESULT_DESCRIPTION" data-type="freetext" not-null="false" />
+	<column name="RESULT_VALUE" data-type="freetext" not-null="false" />
+	<column name="IS_OK" data-type="integer" not-null="false" />
+	<column name="SERV_PSN" data-type="code" not-null="false" />
+</table>

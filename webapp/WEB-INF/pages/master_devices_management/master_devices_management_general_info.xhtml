@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns:ac="http://arrow-tech.vn/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
+    xmlns:pe="http://primefaces.org/ui/extensions" xmlns:o="http://omnifaces.org/ui">
+   <!-- To access constants -->
+   <!--  <o:importConstants type="arrow.mems.ui.ScreenCodes" /> -->
+    <h:form enctype="multipart/form-data">
+        <!-- Area FORM  General Informations Devices -->
+                <table>
+                    <tr>
+                        <td><p:outputLabel value="#{messages.country}" /></td>
+                        <td colspan="2"><p:autoComplete id="autoCompleteCountry"
+                                value="#{devicesManagementBean.currentDevice.mtCountry}"
+                                converter="#{converterStorage.countryConverter}" title="#{messages.typeToFindCountry}"
+                                var="country" itemLabel="#{country.name}" forceSelection="true"
+                                cache="true" cacheTimeout="300" dropdown="true"
+                                scrollHeight="200" itemValue="#{country}"
+                                completeMethod="#{devicesManagementBean.filterCountry}">
+                                <p:ajax event="itemSelect" update="autoCompleteCountry" process="@this"/>
+                                <p:column headerText="#{messages.countryId}">
+                                    <h:outputText value="#{country.countryId}" />
+                                </p:column>
+                                <p:column headerText="#{messages.countryName}">
+                                    <h:outputText value="#{country.name}" />
+                                </p:column>
+                            </p:autoComplete></td>
+                    </tr>
+                    
+                    <tr>
+                        <td><p:outputLabel value="#{messages.manufacturerName}" /></td>
+                        <td><p:autoComplete id="listManufacturerName" value="#{devicesManagementBean.currentDevice.manufacturerOffice}"
+                                converter="#{converterStorage.officeConverter}" title="#{messages.typeToFindName}"
+                                forceSelection="true" cache="true" cacheTimeout="300"
+                                dropdown="true" scrollHeight="200" var="office" itemLabel="#{office.name}" itemValue="#{office}"
+                                completeMethod="#{devicesManagementBean.filterSupplierAndManufacturer}">
+                                <p:ajax event="itemSelect" update="listManufacturerName, listManufacturerContact" process="@this"/>
+                                <p:column headerText="#{messages.officeCode}">
+                                    <h:outputText value="#{office.officeCode}" />
+                                </p:column>
+
+                                <p:column headerText="#{messages.officeName}">
+                                    <h:outputText value="#{office.name}" />
+                                </p:column>
+                            </p:autoComplete></td>
+                        <td style="padding-left: 30px;">
+                                 <p:commandButton type="button" value="#{messages.edit}" icon="ui-icon-pencil" process="@this" onclick="PF('wg_manufacturerDlg').show(); return true;" >
+                                    <f:setPropertyActionListener value="true" target="#{manufacturerDeviceMasterBean.editManufacture}" />
+                                </p:commandButton>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><p:outputLabel value="#{messages.manufacturerContact}" /></td>
+                        <td colspan="2"><p:autoComplete id="listManufacturerContact" disabled="#{devicesManagementBean.currentDevice.manufacturerOffice eq null}"
+                                value="#{devicesManagementBean.currentDevice.manufacturerPerson}"
+                                converter="#{converterStorage.personConverter}" title="#{messages.typeToFindName}"
+                                forceSelection="true" cache="true" cacheTimeout="300"
+                                dropdown="true" scrollHeight="200" var="person" itemLabel="#{person.name}"
+                                itemValue="#{person}"
+                                completeMethod="#{devicesManagementBean.filterManufacturerContact}">
+                                <p:ajax event="itemSelect" update="listManufacturerContact" process="@this"/>
+                                <p:column headerText="#{messages.psnCode}">
+                                    <h:outputText value="#{person.psnCode}" />
+                                </p:column>
+                                <p:column headerText="#{messages.psnName}">
+                                    <h:outputText value="#{person.name}" />
+                                </p:column>
+                            </p:autoComplete></td>
+                    </tr>
+                    <tr>
+                        <td><p:outputLabel value="#{messages.soleSupplier}" /></td>
+                        <td><p:autoComplete id="listSoleSupplier" value="#{devicesManagementBean.currentDevice.supplierOffice}"
+                                converter="#{converterStorage.officeConverter}" title="#{messages.typeToFindName}"
+                                forceSelection="true" cache="true" cacheTimeout="300"
+                                dropdown="true" scrollHeight="200" var="office" itemLabel="#{office.name}" itemValue="#{office}"
+                                completeMethod="#{devicesManagementBean.filterSupplierAndManufacturer}">
+                                <p:ajax event="itemSelect" update="listSoleSupplier, listSoleSupplierContact" process="@this"/>
+                                <p:column headerText="#{messages.officeCode}">
+                                    <h:outputText value="#{office.officeCode}" />
+                                </p:column>
+
+                                <p:column headerText="#{messages.officeName}">
+                                    <h:outputText value="#{office.name}" />
+                                </p:column>
+                            </p:autoComplete></td>
+                        <td style="padding-left: 30px;">
+                                 <p:commandButton type="button" value="#{messages.edit}" icon="ui-icon-pencil" process="@this" onclick="PF('wg_supplierDlg').show();" >
+                                    <f:setPropertyActionListener value="false" target="#{manufacturerDeviceMasterBean.editManufacture}" />
+                                </p:commandButton>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><p:outputLabel value="#{messages.soleSupplierContact}" /></td>
+                        <td colspan="2"><p:autoComplete id="listSoleSupplierContact"
+                                value="#{devicesManagementBean.currentDevice.supplierPerson}" disabled="#{devicesManagementBean.currentDevice.supplierOffice eq null}"
+                                converter="#{converterStorage.personConverter}" title="#{messages.typeToFindName}"
+                                forceSelection="true" cache="true" cacheTimeout="300"
+                                dropdown="true" scrollHeight="200" var="person" itemLabel="#{person.name}"
+                                itemValue="#{person}"
+                                completeMethod="#{devicesManagementBean.filterSupplierContact}">
+                                <p:ajax event="itemSelect" update="listSoleSupplierContact" process="@this"/>
+                                <p:column headerText="#{messages.psnCode}">
+                                    <h:outputText value="#{person.psnCode}" />
+                                </p:column>
+                                <p:column headerText="#{messages.psnName}">
+                                    <h:outputText value="#{person.name}" />
+                                </p:column>
+                            </p:autoComplete></td>
+                    </tr>
+                </table>
+    </h:form>
+     <p:dialog id="manufacturerDlg" dynamic="true" modal="true" appendTo="@(body)" resizable="false" header="#{messages.manufaturerInfo}"
+        widgetVar="wg_manufacturerDlg">
+        <p:ajax event="close" update="manufacturerDlg"></p:ajax>
+        <p:scrollPanel style="height: 600px;" mode="native">
+        <ui:include src="/WEB-INF/pages/master_devices_management/master_devices_management_MDM02_05.xhtml">
+            <ui:param name="forSupplier" value="false"/>
+        </ui:include>
+        </p:scrollPanel>
+    </p:dialog>
+    
+    <p:dialog id="supplierDlg" dynamic="true" modal="true" appendTo="@(body)" resizable="false" header="#{messages.supplierInfo}"
+        widgetVar="wg_supplierDlg">
+        <p:ajax event="close" update="supplierDlg"/>
+        <p:scrollPanel style="height: 600px;" mode="native">
+        <ui:include src="/WEB-INF/pages/master_devices_management/master_devices_management_MDM02_05.xhtml">
+            <ui:param name="forSupplier" value="true"/>
+        </ui:include>
+        </p:scrollPanel>
+    </p:dialog>
+    <!-- <p:dialog id="supplierDialog" dynamic="true" modal="true" appendTo="@(body)" resizable="false" header="#{messages.supplierInfo}"
+        widgetVar="supplierDlg">
+        <p:scrollPanel style="height: 600px;" mode="native">
+        <ui:include src="/WEB-INF/pages/master_devices_management/master_devices_management_MDM02_05.xhtml" />
+        </p:scrollPanel>
+    </p:dialog> -->
+</ui:composition>
