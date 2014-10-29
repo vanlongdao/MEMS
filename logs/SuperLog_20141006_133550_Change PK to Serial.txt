@@ -1,0 +1,816 @@
+Mon Oct 06 13:35:50 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:50 ICT 2014: username:postgres
+Mon Oct 06 13:35:50 ICT 2014: password:x
+Mon Oct 06 13:35:50 ICT 2014: Executing: 
+CREATE SEQUENCE acquisition_master_acq_id_seq;
+
+Mon Oct 06 13:35:50 ICT 2014: ERROR: relation "acquisition_master_acq_id_seq" already exists
+Mon Oct 06 13:35:50 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:50 ICT 2014: Executing: 
+ALTER TABLE ACQUISITION_MASTER ALTER COLUMN ACQ_ID SET DEFAULT nextval('acquisition_master_acq_id_seq');
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER SEQUENCE acquisition_master_acq_id_seq OWNED BY ACQUISITION_MASTER.ACQ_ID;
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+WITH mx as (SELECT max(ACQ_ID) AS mx FROM ACQUISITION_MASTER) SELECT setval('acquisition_master_acq_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:51 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:51 ICT 2014: username:postgres
+Mon Oct 06 13:35:51 ICT 2014: password:x
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+CREATE SEQUENCE action_bill_action_bill_id_seq;
+
+Mon Oct 06 13:35:51 ICT 2014: ERROR: relation "action_bill_action_bill_id_seq" already exists
+Mon Oct 06 13:35:51 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER TABLE ACTION_BILL ALTER COLUMN ACTION_BILL_ID SET DEFAULT nextval('action_bill_action_bill_id_seq');
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER SEQUENCE action_bill_action_bill_id_seq OWNED BY ACTION_BILL.ACTION_BILL_ID;
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+WITH mx as (SELECT max(ACTION_BILL_ID) AS mx FROM ACTION_BILL) SELECT setval('action_bill_action_bill_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:51 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:51 ICT 2014: username:postgres
+Mon Oct 06 13:35:51 ICT 2014: password:x
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+CREATE SEQUENCE action_log_action_id_seq;
+
+Mon Oct 06 13:35:51 ICT 2014: ERROR: relation "action_log_action_id_seq" already exists
+Mon Oct 06 13:35:51 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER TABLE ACTION_LOG ALTER COLUMN ACTION_ID SET DEFAULT nextval('action_log_action_id_seq');
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER SEQUENCE action_log_action_id_seq OWNED BY ACTION_LOG.ACTION_ID;
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+WITH mx as (SELECT max(ACTION_ID) AS mx FROM ACTION_LOG) SELECT setval('action_log_action_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:51 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:51 ICT 2014: username:postgres
+Mon Oct 06 13:35:51 ICT 2014: password:x
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+CREATE SEQUENCE action_type_master_action_type_id_seq;
+
+Mon Oct 06 13:35:51 ICT 2014: ERROR: relation "action_type_master_action_type_id_seq" already exists
+Mon Oct 06 13:35:51 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER TABLE ACTION_TYPE_MASTER ALTER COLUMN ACTION_TYPE_ID SET DEFAULT nextval('action_type_master_action_type_id_seq');
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER SEQUENCE action_type_master_action_type_id_seq OWNED BY ACTION_TYPE_MASTER.ACTION_TYPE_ID;
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+WITH mx as (SELECT max(ACTION_TYPE_ID) AS mx FROM ACTION_TYPE_MASTER) SELECT setval('action_type_master_action_type_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:51 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:51 ICT 2014: username:postgres
+Mon Oct 06 13:35:51 ICT 2014: password:x
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+CREATE SEQUENCE address_addr_id_seq;
+
+Mon Oct 06 13:35:51 ICT 2014: ERROR: relation "address_addr_id_seq" already exists
+Mon Oct 06 13:35:51 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER TABLE ADDRESS ALTER COLUMN ADDR_ID SET DEFAULT nextval('address_addr_id_seq');
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER SEQUENCE address_addr_id_seq OWNED BY ADDRESS.ADDR_ID;
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+WITH mx as (SELECT max(ADDR_ID) AS mx FROM ADDRESS) SELECT setval('address_addr_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:51 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:51 ICT 2014: username:postgres
+Mon Oct 06 13:35:51 ICT 2014: password:x
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+CREATE SEQUENCE alert_by_count_counter_base_id_seq;
+
+Mon Oct 06 13:35:51 ICT 2014: ERROR: relation "alert_by_count_counter_base_id_seq" already exists
+Mon Oct 06 13:35:51 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER TABLE ALERT_BY_COUNT ALTER COLUMN COUNTER_BASE_ID SET DEFAULT nextval('alert_by_count_counter_base_id_seq');
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER SEQUENCE alert_by_count_counter_base_id_seq OWNED BY ALERT_BY_COUNT.COUNTER_BASE_ID;
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+WITH mx as (SELECT max(COUNTER_BASE_ID) AS mx FROM ALERT_BY_COUNT) SELECT setval('alert_by_count_counter_base_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:51 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:51 ICT 2014: username:postgres
+Mon Oct 06 13:35:51 ICT 2014: password:x
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+CREATE SEQUENCE approval_config_config_id_seq;
+
+Mon Oct 06 13:35:51 ICT 2014: ERROR: relation "approval_config_config_id_seq" already exists
+Mon Oct 06 13:35:51 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER TABLE APPROVAL_CONFIG ALTER COLUMN CONFIG_ID SET DEFAULT nextval('approval_config_config_id_seq');
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER SEQUENCE approval_config_config_id_seq OWNED BY APPROVAL_CONFIG.CONFIG_ID;
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+WITH mx as (SELECT max(CONFIG_ID) AS mx FROM APPROVAL_CONFIG) SELECT setval('approval_config_config_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:51 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:51 ICT 2014: username:postgres
+Mon Oct 06 13:35:51 ICT 2014: password:x
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+CREATE SEQUENCE approval_level_level_id_seq;
+
+Mon Oct 06 13:35:51 ICT 2014: ERROR: relation "approval_level_level_id_seq" already exists
+Mon Oct 06 13:35:51 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER TABLE APPROVAL_LEVEL ALTER COLUMN LEVEL_ID SET DEFAULT nextval('approval_level_level_id_seq');
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER SEQUENCE approval_level_level_id_seq OWNED BY APPROVAL_LEVEL.LEVEL_ID;
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+WITH mx as (SELECT max(LEVEL_ID) AS mx FROM APPROVAL_LEVEL) SELECT setval('approval_level_level_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:51 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:51 ICT 2014: username:postgres
+Mon Oct 06 13:35:51 ICT 2014: password:x
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+CREATE SEQUENCE approval_level_supervisor_level_supervisor_id_seq;
+
+Mon Oct 06 13:35:51 ICT 2014: ERROR: relation "approval_level_supervisor_level_supervisor_id_seq" already exists
+Mon Oct 06 13:35:51 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER TABLE APPROVAL_LEVEL_SUPERVISOR ALTER COLUMN LEVEL_SUPERVISOR_ID SET DEFAULT nextval('approval_level_supervisor_level_supervisor_id_seq');
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER SEQUENCE approval_level_supervisor_level_supervisor_id_seq OWNED BY APPROVAL_LEVEL_SUPERVISOR.LEVEL_SUPERVISOR_ID;
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+WITH mx as (SELECT max(LEVEL_SUPERVISOR_ID) AS mx FROM APPROVAL_LEVEL_SUPERVISOR) SELECT setval('approval_level_supervisor_level_supervisor_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:51 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:51 ICT 2014: username:postgres
+Mon Oct 06 13:35:51 ICT 2014: password:x
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+CREATE SEQUENCE approval_summary_approval_id_seq;
+
+Mon Oct 06 13:35:51 ICT 2014: ERROR: relation "approval_summary_approval_id_seq" already exists
+Mon Oct 06 13:35:51 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER TABLE APPROVAL_SUMMARY ALTER COLUMN APPROVAL_ID SET DEFAULT nextval('approval_summary_approval_id_seq');
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER SEQUENCE approval_summary_approval_id_seq OWNED BY APPROVAL_SUMMARY.APPROVAL_ID;
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+WITH mx as (SELECT max(APPROVAL_ID) AS mx FROM APPROVAL_SUMMARY) SELECT setval('approval_summary_approval_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:51 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:51 ICT 2014: username:postgres
+Mon Oct 06 13:35:51 ICT 2014: password:x
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+CREATE SEQUENCE approval_summary_history_history_id_seq;
+
+Mon Oct 06 13:35:51 ICT 2014: ERROR: relation "approval_summary_history_history_id_seq" already exists
+Mon Oct 06 13:35:51 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER TABLE APPROVAL_SUMMARY_HISTORY ALTER COLUMN HISTORY_ID SET DEFAULT nextval('approval_summary_history_history_id_seq');
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER SEQUENCE approval_summary_history_history_id_seq OWNED BY APPROVAL_SUMMARY_HISTORY.HISTORY_ID;
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+WITH mx as (SELECT max(HISTORY_ID) AS mx FROM APPROVAL_SUMMARY_HISTORY) SELECT setval('approval_summary_history_history_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:51 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:51 ICT 2014: username:postgres
+Mon Oct 06 13:35:51 ICT 2014: password:x
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+CREATE SEQUENCE bookmark_doc_bookmark_id_seq;
+
+Mon Oct 06 13:35:51 ICT 2014: ERROR: relation "bookmark_doc_bookmark_id_seq" already exists
+Mon Oct 06 13:35:51 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER TABLE BOOKMARK_DOC ALTER COLUMN BOOKMARK_ID SET DEFAULT nextval('bookmark_doc_bookmark_id_seq');
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER SEQUENCE bookmark_doc_bookmark_id_seq OWNED BY BOOKMARK_DOC.BOOKMARK_ID;
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+WITH mx as (SELECT max(BOOKMARK_ID) AS mx FROM BOOKMARK_DOC) SELECT setval('bookmark_doc_bookmark_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:51 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:51 ICT 2014: username:postgres
+Mon Oct 06 13:35:51 ICT 2014: password:x
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+CREATE SEQUENCE bookmark_video_bookmark_id_seq;
+
+Mon Oct 06 13:35:51 ICT 2014: ERROR: relation "bookmark_video_bookmark_id_seq" already exists
+Mon Oct 06 13:35:51 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER TABLE BOOKMARK_VIDEO ALTER COLUMN BOOKMARK_ID SET DEFAULT nextval('bookmark_video_bookmark_id_seq');
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER SEQUENCE bookmark_video_bookmark_id_seq OWNED BY BOOKMARK_VIDEO.BOOKMARK_ID;
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+WITH mx as (SELECT max(BOOKMARK_ID) AS mx FROM BOOKMARK_VIDEO) SELECT setval('bookmark_video_bookmark_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:51 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:51 ICT 2014: username:postgres
+Mon Oct 06 13:35:51 ICT 2014: password:x
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+CREATE SEQUENCE budget_budget_id_seq;
+
+Mon Oct 06 13:35:51 ICT 2014: ERROR: relation "budget_budget_id_seq" already exists
+Mon Oct 06 13:35:51 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER TABLE BUDGET ALTER COLUMN BUDGET_ID SET DEFAULT nextval('budget_budget_id_seq');
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER SEQUENCE budget_budget_id_seq OWNED BY BUDGET.BUDGET_ID;
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+WITH mx as (SELECT max(BUDGET_ID) AS mx FROM BUDGET) SELECT setval('budget_budget_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:51 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:51 ICT 2014: username:postgres
+Mon Oct 06 13:35:51 ICT 2014: password:x
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+CREATE SEQUENCE checklist_cklist_log_id_seq;
+
+Mon Oct 06 13:35:51 ICT 2014: ERROR: relation "checklist_cklist_log_id_seq" already exists
+Mon Oct 06 13:35:51 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER TABLE CHECKLIST ALTER COLUMN CKLIST_LOG_ID SET DEFAULT nextval('checklist_cklist_log_id_seq');
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER SEQUENCE checklist_cklist_log_id_seq OWNED BY CHECKLIST.CKLIST_LOG_ID;
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+WITH mx as (SELECT max(CKLIST_LOG_ID) AS mx FROM CHECKLIST) SELECT setval('checklist_cklist_log_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:51 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:51 ICT 2014: username:postgres
+Mon Oct 06 13:35:51 ICT 2014: password:x
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+CREATE SEQUENCE checklist_item_cki_log_id_seq;
+
+Mon Oct 06 13:35:51 ICT 2014: ERROR: relation "checklist_item_cki_log_id_seq" already exists
+Mon Oct 06 13:35:51 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER TABLE CHECKLIST_ITEM ALTER COLUMN CKI_LOG_ID SET DEFAULT nextval('checklist_item_cki_log_id_seq');
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER SEQUENCE checklist_item_cki_log_id_seq OWNED BY CHECKLIST_ITEM.CKI_LOG_ID;
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+WITH mx as (SELECT max(CKI_LOG_ID) AS mx FROM CHECKLIST_ITEM) SELECT setval('checklist_item_cki_log_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:51 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:51 ICT 2014: username:postgres
+Mon Oct 06 13:35:51 ICT 2014: password:x
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+CREATE SEQUENCE contract_contract_id_seq;
+
+Mon Oct 06 13:35:51 ICT 2014: ERROR: relation "contract_contract_id_seq" already exists
+Mon Oct 06 13:35:51 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER TABLE CONTRACT ALTER COLUMN CONTRACT_ID SET DEFAULT nextval('contract_contract_id_seq');
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER SEQUENCE contract_contract_id_seq OWNED BY CONTRACT.CONTRACT_ID;
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+WITH mx as (SELECT max(CONTRACT_ID) AS mx FROM CONTRACT) SELECT setval('contract_contract_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:51 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:51 ICT 2014: username:postgres
+Mon Oct 06 13:35:51 ICT 2014: password:x
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+CREATE SEQUENCE corporate_corp_id_seq;
+
+Mon Oct 06 13:35:51 ICT 2014: ERROR: relation "corporate_corp_id_seq" already exists
+Mon Oct 06 13:35:51 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER TABLE CORPORATE ALTER COLUMN CORP_ID SET DEFAULT nextval('corporate_corp_id_seq');
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER SEQUENCE corporate_corp_id_seq OWNED BY CORPORATE.CORP_ID;
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+WITH mx as (SELECT max(CORP_ID) AS mx FROM CORPORATE) SELECT setval('corporate_corp_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:51 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:51 ICT 2014: username:postgres
+Mon Oct 06 13:35:51 ICT 2014: password:x
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+CREATE SEQUENCE count_record_count_record_id_seq;
+
+Mon Oct 06 13:35:51 ICT 2014: ERROR: relation "count_record_count_record_id_seq" already exists
+Mon Oct 06 13:35:51 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER TABLE COUNT_RECORD ALTER COLUMN COUNT_RECORD_ID SET DEFAULT nextval('count_record_count_record_id_seq');
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER SEQUENCE count_record_count_record_id_seq OWNED BY COUNT_RECORD.COUNT_RECORD_ID;
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+WITH mx as (SELECT max(COUNT_RECORD_ID) AS mx FROM COUNT_RECORD) SELECT setval('count_record_count_record_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:51 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:51 ICT 2014: username:postgres
+Mon Oct 06 13:35:51 ICT 2014: password:x
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+CREATE SEQUENCE count_schedule_item_count_sched_item_id_seq;
+
+Mon Oct 06 13:35:51 ICT 2014: ERROR: relation "count_schedule_item_count_sched_item_id_seq" already exists
+Mon Oct 06 13:35:51 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER TABLE COUNT_SCHEDULE_ITEM ALTER COLUMN COUNT_SCHED_ITEM_ID SET DEFAULT nextval('count_schedule_item_count_sched_item_id_seq');
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER SEQUENCE count_schedule_item_count_sched_item_id_seq OWNED BY COUNT_SCHEDULE_ITEM.COUNT_SCHED_ITEM_ID;
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+WITH mx as (SELECT max(COUNT_SCHED_ITEM_ID) AS mx FROM COUNT_SCHEDULE_ITEM) SELECT setval('count_schedule_item_count_sched_item_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:51 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:51 ICT 2014: username:postgres
+Mon Oct 06 13:35:51 ICT 2014: password:x
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+CREATE SEQUENCE device_dev_id_seq;
+
+Mon Oct 06 13:35:51 ICT 2014: ERROR: relation "device_dev_id_seq" already exists
+Mon Oct 06 13:35:51 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER TABLE DEVICE ALTER COLUMN DEV_ID SET DEFAULT nextval('device_dev_id_seq');
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER SEQUENCE device_dev_id_seq OWNED BY DEVICE.DEV_ID;
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+WITH mx as (SELECT max(DEV_ID) AS mx FROM DEVICE) SELECT setval('device_dev_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:51 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:51 ICT 2014: username:postgres
+Mon Oct 06 13:35:51 ICT 2014: password:x
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+CREATE SEQUENCE document_doc_id_seq;
+
+Mon Oct 06 13:35:51 ICT 2014: ERROR: relation "document_doc_id_seq" already exists
+Mon Oct 06 13:35:51 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER TABLE DOCUMENT ALTER COLUMN DOC_ID SET DEFAULT nextval('document_doc_id_seq');
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER SEQUENCE document_doc_id_seq OWNED BY DOCUMENT.DOC_ID;
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+WITH mx as (SELECT max(DOC_ID) AS mx FROM DOCUMENT) SELECT setval('document_doc_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:51 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:51 ICT 2014: username:postgres
+Mon Oct 06 13:35:51 ICT 2014: password:x
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+CREATE SEQUENCE fault_fault_id_seq;
+
+Mon Oct 06 13:35:51 ICT 2014: ERROR: relation "fault_fault_id_seq" already exists
+Mon Oct 06 13:35:51 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER TABLE FAULT ALTER COLUMN FAULT_ID SET DEFAULT nextval('fault_fault_id_seq');
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER SEQUENCE fault_fault_id_seq OWNED BY FAULT.FAULT_ID;
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+WITH mx as (SELECT max(FAULT_ID) AS mx FROM FAULT) SELECT setval('fault_fault_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:51 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:51 ICT 2014: username:postgres
+Mon Oct 06 13:35:51 ICT 2014: password:x
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+CREATE SEQUENCE hospital_hosp_id_seq;
+
+Mon Oct 06 13:35:51 ICT 2014: ERROR: relation "hospital_hosp_id_seq" already exists
+Mon Oct 06 13:35:51 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER TABLE HOSPITAL ALTER COLUMN HOSP_ID SET DEFAULT nextval('hospital_hosp_id_seq');
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER SEQUENCE hospital_hosp_id_seq OWNED BY HOSPITAL.HOSP_ID;
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+WITH mx as (SELECT max(HOSP_ID) AS mx FROM HOSPITAL) SELECT setval('hospital_hosp_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:51 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:51 ICT 2014: username:postgres
+Mon Oct 06 13:35:51 ICT 2014: password:x
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+CREATE SEQUENCE hospital_dept_dept_id_seq;
+
+Mon Oct 06 13:35:51 ICT 2014: ERROR: relation "hospital_dept_dept_id_seq" already exists
+Mon Oct 06 13:35:51 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER TABLE HOSPITAL_DEPT ALTER COLUMN DEPT_ID SET DEFAULT nextval('hospital_dept_dept_id_seq');
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER SEQUENCE hospital_dept_dept_id_seq OWNED BY HOSPITAL_DEPT.DEPT_ID;
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+WITH mx as (SELECT max(DEPT_ID) AS mx FROM HOSPITAL_DEPT) SELECT setval('hospital_dept_dept_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:51 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:51 ICT 2014: username:postgres
+Mon Oct 06 13:35:51 ICT 2014: password:x
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+CREATE SEQUENCE human_resource_hr_id_seq;
+
+Mon Oct 06 13:35:51 ICT 2014: ERROR: relation "human_resource_hr_id_seq" already exists
+Mon Oct 06 13:35:51 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER TABLE HUMAN_RESOURCE ALTER COLUMN HR_ID SET DEFAULT nextval('human_resource_hr_id_seq');
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER SEQUENCE human_resource_hr_id_seq OWNED BY HUMAN_RESOURCE.HR_ID;
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+WITH mx as (SELECT max(HR_ID) AS mx FROM HUMAN_RESOURCE) SELECT setval('human_resource_hr_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:51 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:51 ICT 2014: username:postgres
+Mon Oct 06 13:35:51 ICT 2014: password:x
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+CREATE SEQUENCE mdev_checklist_cklist_id_seq;
+
+Mon Oct 06 13:35:51 ICT 2014: ERROR: relation "mdev_checklist_cklist_id_seq" already exists
+Mon Oct 06 13:35:51 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER TABLE MDEV_CHECKLIST ALTER COLUMN CKLIST_ID SET DEFAULT nextval('mdev_checklist_cklist_id_seq');
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER SEQUENCE mdev_checklist_cklist_id_seq OWNED BY MDEV_CHECKLIST.CKLIST_ID;
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+WITH mx as (SELECT max(CKLIST_ID) AS mx FROM MDEV_CHECKLIST) SELECT setval('mdev_checklist_cklist_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:51 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:51 ICT 2014: username:postgres
+Mon Oct 06 13:35:51 ICT 2014: password:x
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+CREATE SEQUENCE mdev_checklist_item_cki_id_seq;
+
+Mon Oct 06 13:35:51 ICT 2014: ERROR: relation "mdev_checklist_item_cki_id_seq" already exists
+Mon Oct 06 13:35:51 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER TABLE MDEV_CHECKLIST_ITEM ALTER COLUMN CKI_ID SET DEFAULT nextval('mdev_checklist_item_cki_id_seq');
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+ALTER SEQUENCE mdev_checklist_item_cki_id_seq OWNED BY MDEV_CHECKLIST_ITEM.CKI_ID;
+Mon Oct 06 13:35:51 ICT 2014: Executing: 
+WITH mx as (SELECT max(CKI_ID) AS mx FROM MDEV_CHECKLIST_ITEM) SELECT setval('mdev_checklist_item_cki_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:52 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:52 ICT 2014: username:postgres
+Mon Oct 06 13:35:52 ICT 2014: password:x
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+CREATE SEQUENCE mdev_operator_mdev_service_id_seq;
+
+Mon Oct 06 13:35:52 ICT 2014: ERROR: relation "mdev_operator_mdev_service_id_seq" already exists
+Mon Oct 06 13:35:52 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER TABLE MDEV_OPERATOR ALTER COLUMN MDEV_SERVICE_ID SET DEFAULT nextval('mdev_operator_mdev_service_id_seq');
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER SEQUENCE mdev_operator_mdev_service_id_seq OWNED BY MDEV_OPERATOR.MDEV_SERVICE_ID;
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+WITH mx as (SELECT max(MDEV_SERVICE_ID) AS mx FROM MDEV_OPERATOR) SELECT setval('mdev_operator_mdev_service_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:52 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:52 ICT 2014: username:postgres
+Mon Oct 06 13:35:52 ICT 2014: password:x
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+CREATE SEQUENCE mdev_purchase_mdev_purchase_id_seq;
+
+Mon Oct 06 13:35:52 ICT 2014: ERROR: relation "mdev_purchase_mdev_purchase_id_seq" already exists
+Mon Oct 06 13:35:52 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER TABLE MDEV_PURCHASE ALTER COLUMN MDEV_PURCHASE_ID SET DEFAULT nextval('mdev_purchase_mdev_purchase_id_seq');
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER SEQUENCE mdev_purchase_mdev_purchase_id_seq OWNED BY MDEV_PURCHASE.MDEV_PURCHASE_ID;
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+WITH mx as (SELECT max(MDEV_PURCHASE_ID) AS mx FROM MDEV_PURCHASE) SELECT setval('mdev_purchase_mdev_purchase_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:52 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:52 ICT 2014: username:postgres
+Mon Oct 06 13:35:52 ICT 2014: password:x
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+CREATE SEQUENCE mt_country_country_id_seq;
+
+Mon Oct 06 13:35:52 ICT 2014: ERROR: relation "mt_country_country_id_seq" already exists
+Mon Oct 06 13:35:52 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER TABLE MT_COUNTRY ALTER COLUMN COUNTRY_ID SET DEFAULT nextval('mt_country_country_id_seq');
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER SEQUENCE mt_country_country_id_seq OWNED BY MT_COUNTRY.COUNTRY_ID;
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+WITH mx as (SELECT max(COUNTRY_ID) AS mx FROM MT_COUNTRY) SELECT setval('mt_country_country_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:52 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:52 ICT 2014: username:postgres
+Mon Oct 06 13:35:52 ICT 2014: password:x
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+CREATE SEQUENCE mt_currency_ccy_id_seq;
+
+Mon Oct 06 13:35:52 ICT 2014: ERROR: relation "mt_currency_ccy_id_seq" already exists
+Mon Oct 06 13:35:52 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER TABLE MT_CURRENCY ALTER COLUMN CCY_ID SET DEFAULT nextval('mt_currency_ccy_id_seq');
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER SEQUENCE mt_currency_ccy_id_seq OWNED BY MT_CURRENCY.CCY_ID;
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+WITH mx as (SELECT max(CCY_ID) AS mx FROM MT_CURRENCY) SELECT setval('mt_currency_ccy_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:52 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:52 ICT 2014: username:postgres
+Mon Oct 06 13:35:52 ICT 2014: password:x
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+CREATE SEQUENCE m_device_mdev_id_seq;
+
+Mon Oct 06 13:35:52 ICT 2014: ERROR: relation "m_device_mdev_id_seq" already exists
+Mon Oct 06 13:35:52 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER TABLE M_DEVICE ALTER COLUMN MDEV_ID SET DEFAULT nextval('m_device_mdev_id_seq');
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER SEQUENCE m_device_mdev_id_seq OWNED BY M_DEVICE.MDEV_ID;
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+WITH mx as (SELECT max(MDEV_ID) AS mx FROM M_DEVICE) SELECT setval('m_device_mdev_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:52 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:52 ICT 2014: username:postgres
+Mon Oct 06 13:35:52 ICT 2014: password:x
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+CREATE SEQUENCE notice_log_notice_id_seq;
+
+Mon Oct 06 13:35:52 ICT 2014: ERROR: relation "notice_log_notice_id_seq" already exists
+Mon Oct 06 13:35:52 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER TABLE NOTICE_LOG ALTER COLUMN NOTICE_ID SET DEFAULT nextval('notice_log_notice_id_seq');
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER SEQUENCE notice_log_notice_id_seq OWNED BY NOTICE_LOG.NOTICE_ID;
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+WITH mx as (SELECT max(NOTICE_ID) AS mx FROM NOTICE_LOG) SELECT setval('notice_log_notice_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:52 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:52 ICT 2014: username:postgres
+Mon Oct 06 13:35:52 ICT 2014: password:x
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+CREATE SEQUENCE office_office_id_seq;
+
+Mon Oct 06 13:35:52 ICT 2014: ERROR: relation "office_office_id_seq" already exists
+Mon Oct 06 13:35:52 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER TABLE OFFICE ALTER COLUMN OFFICE_ID SET DEFAULT nextval('office_office_id_seq');
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER SEQUENCE office_office_id_seq OWNED BY OFFICE.OFFICE_ID;
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+WITH mx as (SELECT max(OFFICE_ID) AS mx FROM OFFICE) SELECT setval('office_office_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:52 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:52 ICT 2014: username:postgres
+Mon Oct 06 13:35:52 ICT 2014: password:x
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+CREATE SEQUENCE operation_log_op_id_seq;
+
+Mon Oct 06 13:35:52 ICT 2014: ERROR: relation "operation_log_op_id_seq" already exists
+Mon Oct 06 13:35:52 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER TABLE OPERATION_LOG ALTER COLUMN OP_ID SET DEFAULT nextval('operation_log_op_id_seq');
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER SEQUENCE operation_log_op_id_seq OWNED BY OPERATION_LOG.OP_ID;
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+WITH mx as (SELECT max(OP_ID) AS mx FROM OPERATION_LOG) SELECT setval('operation_log_op_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:52 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:52 ICT 2014: username:postgres
+Mon Oct 06 13:35:52 ICT 2014: password:x
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+CREATE SEQUENCE parts_list_parts_list_id_seq;
+
+Mon Oct 06 13:35:52 ICT 2014: ERROR: relation "parts_list_parts_list_id_seq" already exists
+Mon Oct 06 13:35:52 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER TABLE PARTS_LIST ALTER COLUMN PARTS_LIST_ID SET DEFAULT nextval('parts_list_parts_list_id_seq');
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER SEQUENCE parts_list_parts_list_id_seq OWNED BY PARTS_LIST.PARTS_LIST_ID;
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+WITH mx as (SELECT max(PARTS_LIST_ID) AS mx FROM PARTS_LIST) SELECT setval('parts_list_parts_list_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:52 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:52 ICT 2014: username:postgres
+Mon Oct 06 13:35:52 ICT 2014: password:x
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+CREATE SEQUENCE part_estimate_pe_id_seq;
+
+Mon Oct 06 13:35:52 ICT 2014: ERROR: relation "part_estimate_pe_id_seq" already exists
+Mon Oct 06 13:35:52 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER TABLE PART_ESTIMATE ALTER COLUMN PE_ID SET DEFAULT nextval('part_estimate_pe_id_seq');
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER SEQUENCE part_estimate_pe_id_seq OWNED BY PART_ESTIMATE.PE_ID;
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+WITH mx as (SELECT max(PE_ID) AS mx FROM PART_ESTIMATE) SELECT setval('part_estimate_pe_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:52 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:52 ICT 2014: username:postgres
+Mon Oct 06 13:35:52 ICT 2014: password:x
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+CREATE SEQUENCE part_estimate_item_pei_id_seq;
+
+Mon Oct 06 13:35:52 ICT 2014: ERROR: relation "part_estimate_item_pei_id_seq" already exists
+Mon Oct 06 13:35:52 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER TABLE PART_ESTIMATE_ITEM ALTER COLUMN PEI_ID SET DEFAULT nextval('part_estimate_item_pei_id_seq');
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER SEQUENCE part_estimate_item_pei_id_seq OWNED BY PART_ESTIMATE_ITEM.PEI_ID;
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+WITH mx as (SELECT max(PEI_ID) AS mx FROM PART_ESTIMATE_ITEM) SELECT setval('part_estimate_item_pei_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:52 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:52 ICT 2014: username:postgres
+Mon Oct 06 13:35:52 ICT 2014: password:x
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+CREATE SEQUENCE part_order_po_id_seq;
+
+Mon Oct 06 13:35:52 ICT 2014: ERROR: relation "part_order_po_id_seq" already exists
+Mon Oct 06 13:35:52 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER TABLE PART_ORDER ALTER COLUMN PO_ID SET DEFAULT nextval('part_order_po_id_seq');
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER SEQUENCE part_order_po_id_seq OWNED BY PART_ORDER.PO_ID;
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+WITH mx as (SELECT max(PO_ID) AS mx FROM PART_ORDER) SELECT setval('part_order_po_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:52 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:52 ICT 2014: username:postgres
+Mon Oct 06 13:35:52 ICT 2014: password:x
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+CREATE SEQUENCE part_order_item_poi_id_seq;
+
+Mon Oct 06 13:35:52 ICT 2014: ERROR: relation "part_order_item_poi_id_seq" already exists
+Mon Oct 06 13:35:52 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER TABLE PART_ORDER_ITEM ALTER COLUMN POI_ID SET DEFAULT nextval('part_order_item_poi_id_seq');
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER SEQUENCE part_order_item_poi_id_seq OWNED BY PART_ORDER_ITEM.POI_ID;
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+WITH mx as (SELECT max(POI_ID) AS mx FROM PART_ORDER_ITEM) SELECT setval('part_order_item_poi_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:52 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:52 ICT 2014: username:postgres
+Mon Oct 06 13:35:52 ICT 2014: password:x
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+CREATE SEQUENCE person_psn_id_seq;
+
+Mon Oct 06 13:35:52 ICT 2014: ERROR: relation "person_psn_id_seq" already exists
+Mon Oct 06 13:35:52 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER TABLE PERSON ALTER COLUMN PSN_ID SET DEFAULT nextval('person_psn_id_seq');
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER SEQUENCE person_psn_id_seq OWNED BY PERSON.PSN_ID;
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+WITH mx as (SELECT max(PSN_ID) AS mx FROM PERSON) SELECT setval('person_psn_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:52 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:52 ICT 2014: username:postgres
+Mon Oct 06 13:35:52 ICT 2014: password:x
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+CREATE SEQUENCE person_class_class_id_seq;
+
+Mon Oct 06 13:35:52 ICT 2014: ERROR: relation "person_class_class_id_seq" already exists
+Mon Oct 06 13:35:52 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER TABLE PERSON_CLASS ALTER COLUMN CLASS_ID SET DEFAULT nextval('person_class_class_id_seq');
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER SEQUENCE person_class_class_id_seq OWNED BY PERSON_CLASS.CLASS_ID;
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+WITH mx as (SELECT max(CLASS_ID) AS mx FROM PERSON_CLASS) SELECT setval('person_class_class_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:52 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:52 ICT 2014: username:postgres
+Mon Oct 06 13:35:52 ICT 2014: password:x
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+CREATE SEQUENCE preset_phrases_id_seq;
+
+Mon Oct 06 13:35:52 ICT 2014: ERROR: relation "preset_phrases_id_seq" already exists
+Mon Oct 06 13:35:52 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER TABLE PRESET_PHRASES ALTER COLUMN ID SET DEFAULT nextval('preset_phrases_id_seq');
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER SEQUENCE preset_phrases_id_seq OWNED BY PRESET_PHRASES.ID;
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+WITH mx as (SELECT max(ID) AS mx FROM PRESET_PHRASES) SELECT setval('preset_phrases_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:52 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:52 ICT 2014: username:postgres
+Mon Oct 06 13:35:52 ICT 2014: password:x
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+CREATE SEQUENCE repairman_id_seq;
+
+Mon Oct 06 13:35:52 ICT 2014: ERROR: relation "repairman_id_seq" already exists
+Mon Oct 06 13:35:52 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER TABLE REPAIRMAN ALTER COLUMN ID SET DEFAULT nextval('repairman_id_seq');
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER SEQUENCE repairman_id_seq OWNED BY REPAIRMAN.ID;
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+WITH mx as (SELECT max(ID) AS mx FROM REPAIRMAN) SELECT setval('repairman_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:52 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:52 ICT 2014: username:postgres
+Mon Oct 06 13:35:52 ICT 2014: password:x
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+CREATE SEQUENCE repl_part_repl_part_id_seq;
+
+Mon Oct 06 13:35:52 ICT 2014: ERROR: relation "repl_part_repl_part_id_seq" already exists
+Mon Oct 06 13:35:52 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER TABLE REPL_PART ALTER COLUMN REPL_PART_ID SET DEFAULT nextval('repl_part_repl_part_id_seq');
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER SEQUENCE repl_part_repl_part_id_seq OWNED BY REPL_PART.REPL_PART_ID;
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+WITH mx as (SELECT max(REPL_PART_ID) AS mx FROM REPL_PART) SELECT setval('repl_part_repl_part_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:52 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:52 ICT 2014: username:postgres
+Mon Oct 06 13:35:52 ICT 2014: password:x
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+CREATE SEQUENCE role_master_role_id_seq;
+
+Mon Oct 06 13:35:52 ICT 2014: ERROR: relation "role_master_role_id_seq" already exists
+Mon Oct 06 13:35:52 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER TABLE ROLE_MASTER ALTER COLUMN ROLE_ID SET DEFAULT nextval('role_master_role_id_seq');
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER SEQUENCE role_master_role_id_seq OWNED BY ROLE_MASTER.ROLE_ID;
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+WITH mx as (SELECT max(ROLE_ID) AS mx FROM ROLE_MASTER) SELECT setval('role_master_role_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:52 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:52 ICT 2014: username:postgres
+Mon Oct 06 13:35:52 ICT 2014: password:x
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+CREATE SEQUENCE schedule_sched_base_id_seq;
+
+Mon Oct 06 13:35:52 ICT 2014: ERROR: relation "schedule_sched_base_id_seq" already exists
+Mon Oct 06 13:35:52 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER TABLE SCHEDULE ALTER COLUMN SCHED_BASE_ID SET DEFAULT nextval('schedule_sched_base_id_seq');
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER SEQUENCE schedule_sched_base_id_seq OWNED BY SCHEDULE.SCHED_BASE_ID;
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+WITH mx as (SELECT max(SCHED_BASE_ID) AS mx FROM SCHEDULE) SELECT setval('schedule_sched_base_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:52 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:52 ICT 2014: username:postgres
+Mon Oct 06 13:35:52 ICT 2014: password:x
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+CREATE SEQUENCE schedule_item_sched_item_id_seq;
+
+Mon Oct 06 13:35:52 ICT 2014: ERROR: relation "schedule_item_sched_item_id_seq" already exists
+Mon Oct 06 13:35:52 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER TABLE SCHEDULE_ITEM ALTER COLUMN SCHED_ITEM_ID SET DEFAULT nextval('schedule_item_sched_item_id_seq');
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER SEQUENCE schedule_item_sched_item_id_seq OWNED BY SCHEDULE_ITEM.SCHED_ITEM_ID;
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+WITH mx as (SELECT max(SCHED_ITEM_ID) AS mx FROM SCHEDULE_ITEM) SELECT setval('schedule_item_sched_item_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:52 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:52 ICT 2014: username:postgres
+Mon Oct 06 13:35:52 ICT 2014: password:x
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+CREATE SEQUENCE search_condition_search_cond_id_seq;
+
+Mon Oct 06 13:35:52 ICT 2014: ERROR: relation "search_condition_search_cond_id_seq" already exists
+Mon Oct 06 13:35:52 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER TABLE SEARCH_CONDITION ALTER COLUMN SEARCH_COND_ID SET DEFAULT nextval('search_condition_search_cond_id_seq');
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER SEQUENCE search_condition_search_cond_id_seq OWNED BY SEARCH_CONDITION.SEARCH_COND_ID;
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+WITH mx as (SELECT max(SEARCH_COND_ID) AS mx FROM SEARCH_CONDITION) SELECT setval('search_condition_search_cond_id_seq', mx.mx) FROM mx;
+Mon Oct 06 13:35:52 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 13:35:52 ICT 2014: username:postgres
+Mon Oct 06 13:35:52 ICT 2014: password:x
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+CREATE SEQUENCE users_user_id_seq;
+
+Mon Oct 06 13:35:52 ICT 2014: ERROR: relation "users_user_id_seq" already exists
+Mon Oct 06 13:35:52 ICT 2014: Continuing...
+
+
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER TABLE USERS ALTER COLUMN USER_ID SET DEFAULT nextval('users_user_id_seq');
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+ALTER SEQUENCE users_user_id_seq OWNED BY USERS.USER_ID;
+Mon Oct 06 13:35:52 ICT 2014: Executing: 
+WITH mx as (SELECT max(USER_ID) AS mx FROM USERS) SELECT setval('users_user_id_seq', mx.mx) FROM mx;

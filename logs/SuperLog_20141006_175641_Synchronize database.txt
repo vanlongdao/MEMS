@@ -1,0 +1,1290 @@
+Mon Oct 06 17:56:42 ICT 2014: connection-url:jdbc:postgresql://localhost:5432/mems_stagging
+Mon Oct 06 17:56:42 ICT 2014: username:postgres
+Mon Oct 06 17:56:42 ICT 2014: password:x
+Mon Oct 06 17:56:42 ICT 2014: Extracting schema from Database db
+Mon Oct 06 17:56:43 ICT 2014: Completed extracting schema from Database db
+Mon Oct 06 17:56:43 ICT 2014: Schema Differences: 
+
+
+------------------------
+Modified Tables:
+------------------------
+
+
+Table: ACQUISITION_MASTER
+
+------------------------
+Modified Columns:
+------------------------
+
+ACQ_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('acquisition_master_acq_id_seq'::regclass)
+
+Table: ACTION_BILL
+
+------------------------
+New Columns:
+------------------------
+PAY_DATE
+
+
+------------------------
+Modified Columns:
+------------------------
+
+ACTION_BILL_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('action_bill_action_bill_id_seq'::regclass)
+
+Table: ACTION_LOG
+
+------------------------
+Modified Columns:
+------------------------
+
+ACTION_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('action_log_action_id_seq'::regclass)
+
+Table: ACTION_TYPE_MASTER
+
+------------------------
+Modified Columns:
+------------------------
+
+ACTION_TYPE_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('action_type_master_action_type_id_seq'::regclass)
+
+Table: ADDRESS
+
+------------------------
+Modified Columns:
+------------------------
+
+ADDR_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('address_addr_id_seq'::regclass)
+
+Table: ALERT_BY_COUNT
+
+------------------------
+Modified Columns:
+------------------------
+
+COUNTER_BASE_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('alert_by_count_counter_base_id_seq'::regclass)
+
+Table: APPROVAL_CONFIG
+
+------------------------
+Modified Columns:
+------------------------
+
+CONFIG_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('approval_config_config_id_seq'::regclass)
+
+Table: APPROVAL_LEVEL
+
+------------------------
+Modified Columns:
+------------------------
+
+LEVEL_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('approval_level_level_id_seq'::regclass)
+
+Table: APPROVAL_LEVEL_SUPERVISOR
+
+------------------------
+Modified Columns:
+------------------------
+
+LEVEL_SUPERVISOR_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('approval_level_supervisor_level_supervisor_id_seq'::regclass)
+
+Table: APPROVAL_SUMMARY
+
+------------------------
+Modified Columns:
+------------------------
+
+APPROVAL_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('approval_summary_approval_id_seq'::regclass)
+
+Table: APPROVAL_SUMMARY_HISTORY
+
+------------------------
+Modified Columns:
+------------------------
+
+HISTORY_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('approval_summary_history_history_id_seq'::regclass)
+
+Table: BOOKMARK_DOC
+
+------------------------
+Modified Columns:
+------------------------
+
+BOOKMARK_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('bookmark_doc_bookmark_id_seq'::regclass)
+
+Table: BOOKMARK_VIDEO
+
+------------------------
+Modified Columns:
+------------------------
+
+BOOKMARK_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('bookmark_video_bookmark_id_seq'::regclass)
+
+Table: BUDGET
+
+------------------------
+Modified Columns:
+------------------------
+
+BUDGET_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('budget_budget_id_seq'::regclass)
+
+Table: CHECKLIST
+
+------------------------
+Modified Columns:
+------------------------
+
+CKLIST_LOG_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('checklist_cklist_log_id_seq'::regclass)
+
+Table: CHECKLIST_ITEM
+
+------------------------
+Modified Columns:
+------------------------
+
+CKI_LOG_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('checklist_item_cki_log_id_seq'::regclass)
+
+Table: CONTRACT
+
+------------------------
+Modified Columns:
+------------------------
+
+CONTRACT_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('contract_contract_id_seq'::regclass)
+
+Table: CORPORATE
+
+------------------------
+Modified Columns:
+------------------------
+
+CORP_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('corporate_corp_id_seq'::regclass)
+
+Table: COUNT_RECORD
+
+------------------------
+Modified Columns:
+------------------------
+
+COUNT_RECORD_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('count_record_count_record_id_seq'::regclass)
+
+Table: COUNT_SCHEDULE_ITEM
+
+------------------------
+Modified Columns:
+------------------------
+
+COUNT_SCHED_ITEM_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('count_schedule_item_count_sched_item_id_seq'::regclass)
+
+Table: DEVICE
+
+------------------------
+Modified Columns:
+------------------------
+
+DEV_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('device_dev_id_seq'::regclass)
+
+Table: DOCUMENT
+
+------------------------
+Modified Columns:
+------------------------
+
+DOC_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('document_doc_id_seq'::regclass)
+
+Table: FAULT
+
+------------------------
+Modified Columns:
+------------------------
+
+FAULT_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('fault_fault_id_seq'::regclass)
+
+Table: HOSPITAL
+
+------------------------
+Modified Columns:
+------------------------
+
+HOSP_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('hospital_hosp_id_seq'::regclass)
+
+Table: HOSPITAL_DEPT
+
+------------------------
+Modified Columns:
+------------------------
+
+DEPT_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('hospital_dept_dept_id_seq'::regclass)
+
+Table: HUMAN_RESOURCE
+
+------------------------
+Modified Columns:
+------------------------
+
+HR_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('human_resource_hr_id_seq'::regclass)
+
+Table: MDEV_CHECKLIST
+
+------------------------
+Modified Columns:
+------------------------
+
+CKLIST_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('mdev_checklist_cklist_id_seq'::regclass)
+
+Table: MDEV_CHECKLIST_ITEM
+
+------------------------
+Modified Columns:
+------------------------
+
+CKI_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('mdev_checklist_item_cki_id_seq'::regclass)
+
+Table: MDEV_OPERATOR
+
+------------------------
+Modified Columns:
+------------------------
+
+MDEV_SERVICE_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('mdev_operator_mdev_service_id_seq'::regclass)
+
+Table: MDEV_PURCHASE
+
+------------------------
+Modified Columns:
+------------------------
+
+MDEV_PURCHASE_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('mdev_purchase_mdev_purchase_id_seq'::regclass)
+
+Table: MT_COUNTRY
+
+------------------------
+Modified Columns:
+------------------------
+
+COUNTRY_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('mt_country_country_id_seq'::regclass)
+
+Table: MT_CURRENCY
+
+------------------------
+Modified Columns:
+------------------------
+
+CCY_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('mt_currency_ccy_id_seq'::regclass)
+
+Table: M_DEVICE
+
+------------------------
+Modified Columns:
+------------------------
+
+MDEV_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('m_device_mdev_id_seq'::regclass)
+
+Table: NOTICE_LOG
+
+------------------------
+Modified Columns:
+------------------------
+
+NOTICE_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('notice_log_notice_id_seq'::regclass)
+
+Table: OFFICE
+
+------------------------
+Modified Columns:
+------------------------
+
+OFFICE_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('office_office_id_seq'::regclass)
+
+Table: OPERATION_LOG
+
+------------------------
+Modified Columns:
+------------------------
+
+OP_ID
+Data Type: BIGSERIAL <---------------> BIGINT
+Default: null <---------------> nextval('operation_log_op_id_seq'::regclass)
+
+Table: PARTS_LIST
+
+------------------------
+Modified Columns:
+------------------------
+
+PARTS_LIST_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('parts_list_parts_list_id_seq'::regclass)
+
+Table: PART_ESTIMATE
+
+------------------------
+Modified Columns:
+------------------------
+
+PE_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('part_estimate_pe_id_seq'::regclass)
+
+Table: PART_ESTIMATE_ITEM
+
+------------------------
+Modified Columns:
+------------------------
+
+PEI_ID
+Default: null <---------------> nextval('part_estimate_item_pei_id_seq'::regclass)
+
+Table: PART_ORDER
+
+------------------------
+Modified Columns:
+------------------------
+
+PO_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('part_order_po_id_seq'::regclass)
+
+Table: PART_ORDER_ITEM
+
+------------------------
+Modified Columns:
+------------------------
+
+POI_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('part_order_item_poi_id_seq'::regclass)
+
+Table: PERSON
+
+------------------------
+Modified Columns:
+------------------------
+
+PSN_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('person_psn_id_seq'::regclass)
+
+Table: PERSON_CLASS
+
+------------------------
+Modified Columns:
+------------------------
+
+CLASS_ID
+Data Type: SERIAL <---------------> INTEGER
+Nullability: NULLABLE <---------------> NONNULL
+Default: null <---------------> nextval('person_class_class_id_seq'::regclass)
+
+Table: PRESET_PHRASES
+
+------------------------
+Modified Columns:
+------------------------
+
+ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('preset_phrases_id_seq'::regclass)
+
+Table: REPAIRMAN
+
+------------------------
+Modified Columns:
+------------------------
+
+ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('repairman_id_seq'::regclass)
+
+Table: REPL_PART
+
+------------------------
+Modified Columns:
+------------------------
+
+REPL_PART_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('repl_part_repl_part_id_seq'::regclass)
+
+Table: ROLE_MASTER
+
+------------------------
+Modified Columns:
+------------------------
+
+ROLE_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('role_master_role_id_seq'::regclass)
+
+Table: SCHEDULE
+
+------------------------
+Modified Columns:
+------------------------
+
+SCHED_BASE_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('schedule_sched_base_id_seq'::regclass)
+
+Table: SCHEDULE_ITEM
+
+------------------------
+Modified Columns:
+------------------------
+
+SCHED_ITEM_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('schedule_item_sched_item_id_seq'::regclass)
+
+Table: SEARCH_CONDITION
+
+------------------------
+Modified Columns:
+------------------------
+
+SEARCH_COND_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('search_condition_search_cond_id_seq'::regclass)
+
+Table: USERS
+
+------------------------
+Modified Columns:
+------------------------
+
+USER_ID
+Data Type: SERIAL <---------------> INTEGER
+Default: null <---------------> nextval('users_user_id_seq'::regclass)
+
+------------------------
+New ForeignKeys:
+------------------------
+[Name: ACTION_BILL_FK_ACTION_LOG, Reference: ACTION_BILL(ACTION_CODE, IS_DELETED) --> ACTION_LOG(ACTION_CODE, IS_DELETED)]
+[Name: ACTION_LOG_FK_HOSPITAL, Reference: ACTION_LOG(HOSP_CODE, IS_DELETED) --> HOSPITAL(HOSP_CODE, IS_DELETED)]
+[Name: ACTION_LOG_FK_PERSON, Reference: ACTION_LOG(CONTACT_PSN, IS_DELETED) --> PERSON(PSN_CODE, IS_DELETED)]
+[Name: ADDRESS_FK_MT_COUNTRY, Reference: ADDRESS(COUNTRY) --> MT_COUNTRY(COUNTRY_ID)]
+[Name: ALERT_BY_COUNT_FK_MDEV_CHECKLIST, Reference: ALERT_BY_COUNT(CKLIST_CODE, IS_DELETED) --> MDEV_CHECKLIST(CKLIST_CODE, IS_DELETED)]
+[Name: APPROVAL_LEVEL_SUPERVISOR_FK_APPROVAL_LEVEL, Reference: APPROVAL_LEVEL_SUPERVISOR(LEVEL_ID) --> APPROVAL_LEVEL(LEVEL_ID)]
+[Name: APPROVAL_LEVEL_FK_APPROVAL_CONFIG, Reference: APPROVAL_LEVEL(CONFIG_ID) --> APPROVAL_CONFIG(CONFIG_ID)]
+[Name: APPROVAL_SUMMARY_HISTORY_FK_APPROVAL_LEVEL, Reference: APPROVAL_SUMMARY_HISTORY(LEVEL_ID) --> APPROVAL_LEVEL(LEVEL_ID)]
+[Name: APPROVAL_SUMMARY_FK_APPROVAL_LEVEL, Reference: APPROVAL_SUMMARY(LEVEL_ID) --> APPROVAL_LEVEL(LEVEL_ID)]
+[Name: CORPORATE_FK_MT_COUNTRY, Reference: CORPORATE(COUNTRY) --> MT_COUNTRY(COUNTRY_ID)]
+[Name: DEVICE_FK_M_DEVICE, Reference: DEVICE(MDEV_CODE, IS_DELETED) --> M_DEVICE(MDEV_CODE, IS_DELETED)]
+[Name: DOCUMENT_FK_M_DEVICE, Reference: DOCUMENT(MDEV_CODE, IS_DELETED) --> M_DEVICE(MDEV_CODE, IS_DELETED)]
+[Name: HOSPITAL_DEPT_FK_HOSPITAL, Reference: HOSPITAL_DEPT(HOSP_CODE, IS_DELETED) --> HOSPITAL(HOSP_CODE, IS_DELETED)]
+[Name: HOSPITAL_FK_CORPORATE, Reference: HOSPITAL(CORP_CODE, IS_DELETED) --> CORPORATE(CORP_CODE, IS_DELETED)]
+[Name: HOSPITAL_FK_OFFICE, Reference: HOSPITAL(OFFICE_CODE, IS_DELETED) --> OFFICE(OFFICE_CODE, IS_DELETED)]
+[Name: HUMAN_RESOURCE_FK_HOSPITAL_DEPT, Reference: HUMAN_RESOURCE(HOSP_DEPT_CODE, IS_DELETED) --> HOSPITAL_DEPT(DEPT_CODE, IS_DELETED)]
+[Name: HUMAN_RESOURCE_FK_HOSPITAL, Reference: HUMAN_RESOURCE(HOSP_CODE, IS_DELETED) --> HOSPITAL(HOSP_CODE, IS_DELETED)]
+[Name: HUMAN_RESOURCE_FK_PERSON_CLASS, Reference: HUMAN_RESOURCE(CLASS_CODE) --> PERSON_CLASS(CLASS_CODE)]
+[Name: HUMAN_RESOURCE_FK_PERSON, Reference: HUMAN_RESOURCE(PSN_CODE, IS_DELETED) --> PERSON(PSN_CODE, IS_DELETED)]
+[Name: MDEV_CHECKLIST_FK_M_DEVICE, Reference: MDEV_CHECKLIST(MDEV_CODE, IS_DELETED) --> M_DEVICE(MDEV_CODE, IS_DELETED)]
+[Name: M_DEVICE_FK_MT_COUNTRY, Reference: M_DEVICE(COUNTRY) --> MT_COUNTRY(COUNTRY_ID)]
+[Name: NOTICE_LOG_FK_COUNT_SCHEDULE_ITEM, Reference: NOTICE_LOG(TARGET_SCHED_ITEM, IS_DELETED) --> COUNT_SCHEDULE_ITEM(COUNT_SCHED_CODE, IS_DELETED)]
+[Name: NOTICE_LOG_FK_DEVICE, Reference: NOTICE_LOG(TARGET_DEVICE, IS_DELETED) --> DEVICE(DEV_CODE, IS_DELETED)]
+[Name: NOTICE_LOG_FK_OFFICE, Reference: NOTICE_LOG(TARGET_OFFICE, IS_DELETED) --> OFFICE(OFFICE_CODE, IS_DELETED)]
+[Name: NOTICE_LOG_FK_SCHEDULE_ITEM, Reference: NOTICE_LOG(TARGET_SCHED_ITEM, IS_DELETED) --> SCHEDULE_ITEM(SCHED_CODE, IS_DELETED)]
+[Name: OFFICE_FK_ADDRESS, Reference: OFFICE(ADDR_CODE, IS_DELETED) --> ADDRESS(ADDR_CODE, IS_DELETED)]
+[Name: OFFICE_FK_CORPORATE, Reference: OFFICE(CORP_CODE, IS_DELETED) --> CORPORATE(CORP_CODE, IS_DELETED)]
+[Name: PART_ORDER_ITEM_FK_M_DEVICE, Reference: PART_ORDER_ITEM(PART_CODE, IS_DELETED) --> M_DEVICE(MDEV_CODE, IS_DELETED)]
+[Name: PART_ORDER_ITEM_FK_PART_ORDER, Reference: PART_ORDER_ITEM(PO_CODE, IS_DELETED) --> PART_ORDER(PO_CODE, IS_DELETED)]
+[Name: PART_ORDER_FK_ACTION_LOG, Reference: PART_ORDER(ACTION_CODE, IS_DELETED) --> ACTION_LOG(ACTION_CODE, IS_DELETED)]
+[Name: PERSON_CLASS_FK_MT_COUNTRY, Reference: PERSON_CLASS(COUNTRY_ID) --> MT_COUNTRY(COUNTRY_ID)]
+[Name: PERSON_FK_ADDRESS, Reference: PERSON(ADDR_CODE, IS_DELETED) --> ADDRESS(ADDR_CODE, IS_DELETED)]
+[Name: PERSON_FK_OFFICE, Reference: PERSON(OFFICE_CODE, IS_DELETED) --> OFFICE(OFFICE_CODE, IS_DELETED)]
+[Name: SCHEDULE_FK_MDEV_CHECKLIST, Reference: SCHEDULE(CKLIST_CODE, IS_DELETED) --> MDEV_CHECKLIST(CKLIST_CODE, IS_DELETED)]
+
+Mon Oct 06 17:56:43 ICT 2014: Start executing statements
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE ACQUISITION_MASTER
+ALTER COLUMN ACQ_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE ACQUISITION_MASTER
+ALTER COLUMN ACQ_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE ACTION_BILL
+ADD COLUMN PAY_DATE DATE NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE ACTION_BILL
+ALTER COLUMN ACTION_BILL_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE ACTION_BILL
+ALTER COLUMN ACTION_BILL_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE ACTION_LOG
+ALTER COLUMN ACTION_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE ACTION_LOG
+ALTER COLUMN ACTION_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE ACTION_TYPE_MASTER
+ALTER COLUMN ACTION_TYPE_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE ACTION_TYPE_MASTER
+ALTER COLUMN ACTION_TYPE_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE ADDRESS
+ALTER COLUMN ADDR_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE ADDRESS
+ALTER COLUMN ADDR_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE ALERT_BY_COUNT
+ALTER COLUMN COUNTER_BASE_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE ALERT_BY_COUNT
+ALTER COLUMN COUNTER_BASE_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE APPROVAL_CONFIG
+ALTER COLUMN CONFIG_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE APPROVAL_CONFIG
+ALTER COLUMN CONFIG_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE APPROVAL_LEVEL
+ALTER COLUMN LEVEL_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE APPROVAL_LEVEL
+ALTER COLUMN LEVEL_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE APPROVAL_LEVEL_SUPERVISOR
+ALTER COLUMN LEVEL_SUPERVISOR_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE APPROVAL_LEVEL_SUPERVISOR
+ALTER COLUMN LEVEL_SUPERVISOR_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE APPROVAL_SUMMARY
+ALTER COLUMN APPROVAL_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE APPROVAL_SUMMARY
+ALTER COLUMN APPROVAL_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE APPROVAL_SUMMARY_HISTORY
+ALTER COLUMN HISTORY_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE APPROVAL_SUMMARY_HISTORY
+ALTER COLUMN HISTORY_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE BOOKMARK_DOC
+ALTER COLUMN BOOKMARK_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE BOOKMARK_DOC
+ALTER COLUMN BOOKMARK_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE BOOKMARK_VIDEO
+ALTER COLUMN BOOKMARK_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE BOOKMARK_VIDEO
+ALTER COLUMN BOOKMARK_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE BUDGET
+ALTER COLUMN BUDGET_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE BUDGET
+ALTER COLUMN BUDGET_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE CHECKLIST
+ALTER COLUMN CKLIST_LOG_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE CHECKLIST
+ALTER COLUMN CKLIST_LOG_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE CHECKLIST_ITEM
+ALTER COLUMN CKI_LOG_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE CHECKLIST_ITEM
+ALTER COLUMN CKI_LOG_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE CONTRACT
+ALTER COLUMN CONTRACT_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE CONTRACT
+ALTER COLUMN CONTRACT_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE CORPORATE
+ALTER COLUMN CORP_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE CORPORATE
+ALTER COLUMN CORP_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE COUNT_RECORD
+ALTER COLUMN COUNT_RECORD_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE COUNT_RECORD
+ALTER COLUMN COUNT_RECORD_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE COUNT_SCHEDULE_ITEM
+ALTER COLUMN COUNT_SCHED_ITEM_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE COUNT_SCHEDULE_ITEM
+ALTER COLUMN COUNT_SCHED_ITEM_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE DEVICE
+ALTER COLUMN DEV_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE DEVICE
+ALTER COLUMN DEV_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE DOCUMENT
+ALTER COLUMN DOC_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE DOCUMENT
+ALTER COLUMN DOC_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE FAULT
+ALTER COLUMN FAULT_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE FAULT
+ALTER COLUMN FAULT_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE HOSPITAL
+ALTER COLUMN HOSP_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE HOSPITAL
+ALTER COLUMN HOSP_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE HOSPITAL_DEPT
+ALTER COLUMN DEPT_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE HOSPITAL_DEPT
+ALTER COLUMN DEPT_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE HUMAN_RESOURCE
+ALTER COLUMN HR_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE HUMAN_RESOURCE
+ALTER COLUMN HR_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE MDEV_CHECKLIST
+ALTER COLUMN CKLIST_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE MDEV_CHECKLIST
+ALTER COLUMN CKLIST_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE MDEV_CHECKLIST_ITEM
+ALTER COLUMN CKI_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE MDEV_CHECKLIST_ITEM
+ALTER COLUMN CKI_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE MDEV_OPERATOR
+ALTER COLUMN MDEV_SERVICE_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE MDEV_OPERATOR
+ALTER COLUMN MDEV_SERVICE_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE MDEV_PURCHASE
+ALTER COLUMN MDEV_PURCHASE_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE MDEV_PURCHASE
+ALTER COLUMN MDEV_PURCHASE_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE MT_COUNTRY
+ALTER COLUMN COUNTRY_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE MT_COUNTRY
+ALTER COLUMN COUNTRY_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE MT_CURRENCY
+ALTER COLUMN CCY_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE MT_CURRENCY
+ALTER COLUMN CCY_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE M_DEVICE
+ALTER COLUMN MDEV_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE M_DEVICE
+ALTER COLUMN MDEV_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE NOTICE_LOG
+ALTER COLUMN NOTICE_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE NOTICE_LOG
+ALTER COLUMN NOTICE_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE OFFICE
+ALTER COLUMN OFFICE_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE OFFICE
+ALTER COLUMN OFFICE_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE OPERATION_LOG
+ALTER COLUMN OP_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE OPERATION_LOG
+ALTER COLUMN OP_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE PARTS_LIST
+ALTER COLUMN PARTS_LIST_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE PARTS_LIST
+ALTER COLUMN PARTS_LIST_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE PART_ESTIMATE
+ALTER COLUMN PE_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE PART_ESTIMATE
+ALTER COLUMN PE_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE PART_ESTIMATE_ITEM
+ALTER COLUMN PEI_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE PART_ESTIMATE_ITEM
+ALTER COLUMN PEI_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE PART_ORDER
+ALTER COLUMN PO_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE PART_ORDER
+ALTER COLUMN PO_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE PART_ORDER_ITEM
+ALTER COLUMN POI_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE PART_ORDER_ITEM
+ALTER COLUMN POI_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE PERSON
+ALTER COLUMN PSN_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE PERSON
+ALTER COLUMN PSN_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE PERSON_CLASS
+ALTER COLUMN CLASS_ID DROP NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: ERROR: column "class_id" is in a primary key
+Mon Oct 06 17:56:43 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE PERSON_CLASS
+ALTER COLUMN CLASS_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE PRESET_PHRASES
+ALTER COLUMN ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE PRESET_PHRASES
+ALTER COLUMN ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE REPAIRMAN
+ALTER COLUMN ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE REPAIRMAN
+ALTER COLUMN ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE REPL_PART
+ALTER COLUMN REPL_PART_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE REPL_PART
+ALTER COLUMN REPL_PART_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE ROLE_MASTER
+ALTER COLUMN ROLE_ID SET NOT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE ROLE_MASTER
+ALTER COLUMN ROLE_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:43 ICT 2014: Executing: 
+ALTER TABLE SCHEDULE
+ALTER COLUMN SCHED_BASE_ID SET NOT NULL;
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE SCHEDULE
+ALTER COLUMN SCHED_BASE_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE SCHEDULE_ITEM
+ALTER COLUMN SCHED_ITEM_ID SET NOT NULL;
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE SCHEDULE_ITEM
+ALTER COLUMN SCHED_ITEM_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE SEARCH_CONDITION
+ALTER COLUMN SEARCH_COND_ID SET NOT NULL;
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE SEARCH_CONDITION
+ALTER COLUMN SEARCH_COND_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE USERS
+ALTER COLUMN USER_ID SET NOT NULL;
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE USERS
+ALTER COLUMN USER_ID SET DEFAULT NULL;
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE ACTION_BILL 
+ADD CONSTRAINT ACTION_BILL_FK_ACTION_LOG 
+FOREIGN KEY (ACTION_CODE, IS_DELETED) 
+REFERENCES ACTION_LOG(ACTION_CODE, IS_DELETED)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: there is no unique constraint matching given keys for referenced table "action_log"
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE ACTION_LOG 
+ADD CONSTRAINT ACTION_LOG_FK_HOSPITAL 
+FOREIGN KEY (HOSP_CODE, IS_DELETED) 
+REFERENCES HOSPITAL(HOSP_CODE, IS_DELETED)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: there is no unique constraint matching given keys for referenced table "hospital"
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE ACTION_LOG 
+ADD CONSTRAINT ACTION_LOG_FK_PERSON 
+FOREIGN KEY (CONTACT_PSN, IS_DELETED) 
+REFERENCES PERSON(PSN_CODE, IS_DELETED)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: there is no unique constraint matching given keys for referenced table "person"
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE ADDRESS 
+ADD CONSTRAINT ADDRESS_FK_MT_COUNTRY 
+FOREIGN KEY (COUNTRY) 
+REFERENCES MT_COUNTRY(COUNTRY_ID)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: constraint "address_fk_mt_country" for relation "address" already exists
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE ALERT_BY_COUNT 
+ADD CONSTRAINT ALERT_BY_COUNT_FK_MDEV_CHECKLIST 
+FOREIGN KEY (CKLIST_CODE, IS_DELETED) 
+REFERENCES MDEV_CHECKLIST(CKLIST_CODE, IS_DELETED)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: there is no unique constraint matching given keys for referenced table "mdev_checklist"
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE APPROVAL_LEVEL_SUPERVISOR 
+ADD CONSTRAINT APPROVAL_LEVEL_SUPERVISOR_FK_APPROVAL_LEVEL 
+FOREIGN KEY (LEVEL_ID) 
+REFERENCES APPROVAL_LEVEL(LEVEL_ID)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: constraint "approval_level_supervisor_fk_approval_level" for relation "approval_level_supervisor" already exists
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE APPROVAL_LEVEL 
+ADD CONSTRAINT APPROVAL_LEVEL_FK_APPROVAL_CONFIG 
+FOREIGN KEY (CONFIG_ID) 
+REFERENCES APPROVAL_CONFIG(CONFIG_ID)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: constraint "approval_level_fk_approval_config" for relation "approval_level" already exists
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE APPROVAL_SUMMARY_HISTORY 
+ADD CONSTRAINT APPROVAL_SUMMARY_HISTORY_FK_APPROVAL_LEVEL 
+FOREIGN KEY (LEVEL_ID) 
+REFERENCES APPROVAL_LEVEL(LEVEL_ID)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: constraint "approval_summary_history_fk_approval_level" for relation "approval_summary_history" already exists
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE APPROVAL_SUMMARY 
+ADD CONSTRAINT APPROVAL_SUMMARY_FK_APPROVAL_LEVEL 
+FOREIGN KEY (LEVEL_ID) 
+REFERENCES APPROVAL_LEVEL(LEVEL_ID)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: constraint "approval_summary_fk_approval_level" for relation "approval_summary" already exists
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE CORPORATE 
+ADD CONSTRAINT CORPORATE_FK_MT_COUNTRY 
+FOREIGN KEY (COUNTRY) 
+REFERENCES MT_COUNTRY(COUNTRY_ID)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: constraint "corporate_fk_mt_country" for relation "corporate" already exists
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE DEVICE 
+ADD CONSTRAINT DEVICE_FK_M_DEVICE 
+FOREIGN KEY (MDEV_CODE, IS_DELETED) 
+REFERENCES M_DEVICE(MDEV_CODE, IS_DELETED)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: there is no unique constraint matching given keys for referenced table "m_device"
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE DOCUMENT 
+ADD CONSTRAINT DOCUMENT_FK_M_DEVICE 
+FOREIGN KEY (MDEV_CODE, IS_DELETED) 
+REFERENCES M_DEVICE(MDEV_CODE, IS_DELETED)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: there is no unique constraint matching given keys for referenced table "m_device"
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE HOSPITAL_DEPT 
+ADD CONSTRAINT HOSPITAL_DEPT_FK_HOSPITAL 
+FOREIGN KEY (HOSP_CODE, IS_DELETED) 
+REFERENCES HOSPITAL(HOSP_CODE, IS_DELETED)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: there is no unique constraint matching given keys for referenced table "hospital"
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE HOSPITAL 
+ADD CONSTRAINT HOSPITAL_FK_CORPORATE 
+FOREIGN KEY (CORP_CODE, IS_DELETED) 
+REFERENCES CORPORATE(CORP_CODE, IS_DELETED)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: there is no unique constraint matching given keys for referenced table "corporate"
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE HOSPITAL 
+ADD CONSTRAINT HOSPITAL_FK_OFFICE 
+FOREIGN KEY (OFFICE_CODE, IS_DELETED) 
+REFERENCES OFFICE(OFFICE_CODE, IS_DELETED)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: there is no unique constraint matching given keys for referenced table "office"
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE HUMAN_RESOURCE 
+ADD CONSTRAINT HUMAN_RESOURCE_FK_HOSPITAL_DEPT 
+FOREIGN KEY (HOSP_DEPT_CODE, IS_DELETED) 
+REFERENCES HOSPITAL_DEPT(DEPT_CODE, IS_DELETED)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: there is no unique constraint matching given keys for referenced table "hospital_dept"
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE HUMAN_RESOURCE 
+ADD CONSTRAINT HUMAN_RESOURCE_FK_HOSPITAL 
+FOREIGN KEY (HOSP_CODE, IS_DELETED) 
+REFERENCES HOSPITAL(HOSP_CODE, IS_DELETED)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: there is no unique constraint matching given keys for referenced table "hospital"
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE HUMAN_RESOURCE 
+ADD CONSTRAINT HUMAN_RESOURCE_FK_PERSON_CLASS 
+FOREIGN KEY (CLASS_CODE) 
+REFERENCES PERSON_CLASS(CLASS_CODE)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: there is no unique constraint matching given keys for referenced table "person_class"
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE HUMAN_RESOURCE 
+ADD CONSTRAINT HUMAN_RESOURCE_FK_PERSON 
+FOREIGN KEY (PSN_CODE, IS_DELETED) 
+REFERENCES PERSON(PSN_CODE, IS_DELETED)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: there is no unique constraint matching given keys for referenced table "person"
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE MDEV_CHECKLIST 
+ADD CONSTRAINT MDEV_CHECKLIST_FK_M_DEVICE 
+FOREIGN KEY (MDEV_CODE, IS_DELETED) 
+REFERENCES M_DEVICE(MDEV_CODE, IS_DELETED)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: there is no unique constraint matching given keys for referenced table "m_device"
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE M_DEVICE 
+ADD CONSTRAINT M_DEVICE_FK_MT_COUNTRY 
+FOREIGN KEY (COUNTRY) 
+REFERENCES MT_COUNTRY(COUNTRY_ID)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: constraint "m_device_fk_mt_country" for relation "m_device" already exists
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE NOTICE_LOG 
+ADD CONSTRAINT NOTICE_LOG_FK_COUNT_SCHEDULE_ITEM 
+FOREIGN KEY (TARGET_SCHED_ITEM, IS_DELETED) 
+REFERENCES COUNT_SCHEDULE_ITEM(COUNT_SCHED_CODE, IS_DELETED)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: there is no unique constraint matching given keys for referenced table "count_schedule_item"
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE NOTICE_LOG 
+ADD CONSTRAINT NOTICE_LOG_FK_DEVICE 
+FOREIGN KEY (TARGET_DEVICE, IS_DELETED) 
+REFERENCES DEVICE(DEV_CODE, IS_DELETED)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: there is no unique constraint matching given keys for referenced table "device"
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE NOTICE_LOG 
+ADD CONSTRAINT NOTICE_LOG_FK_OFFICE 
+FOREIGN KEY (TARGET_OFFICE, IS_DELETED) 
+REFERENCES OFFICE(OFFICE_CODE, IS_DELETED)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: there is no unique constraint matching given keys for referenced table "office"
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE NOTICE_LOG 
+ADD CONSTRAINT NOTICE_LOG_FK_SCHEDULE_ITEM 
+FOREIGN KEY (TARGET_SCHED_ITEM, IS_DELETED) 
+REFERENCES SCHEDULE_ITEM(SCHED_CODE, IS_DELETED)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: there is no unique constraint matching given keys for referenced table "schedule_item"
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE OFFICE 
+ADD CONSTRAINT OFFICE_FK_ADDRESS 
+FOREIGN KEY (ADDR_CODE, IS_DELETED) 
+REFERENCES ADDRESS(ADDR_CODE, IS_DELETED)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: there is no unique constraint matching given keys for referenced table "address"
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE OFFICE 
+ADD CONSTRAINT OFFICE_FK_CORPORATE 
+FOREIGN KEY (CORP_CODE, IS_DELETED) 
+REFERENCES CORPORATE(CORP_CODE, IS_DELETED)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: there is no unique constraint matching given keys for referenced table "corporate"
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE PART_ORDER_ITEM 
+ADD CONSTRAINT PART_ORDER_ITEM_FK_M_DEVICE 
+FOREIGN KEY (PART_CODE, IS_DELETED) 
+REFERENCES M_DEVICE(MDEV_CODE, IS_DELETED)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: there is no unique constraint matching given keys for referenced table "m_device"
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE PART_ORDER_ITEM 
+ADD CONSTRAINT PART_ORDER_ITEM_FK_PART_ORDER 
+FOREIGN KEY (PO_CODE, IS_DELETED) 
+REFERENCES PART_ORDER(PO_CODE, IS_DELETED)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: there is no unique constraint matching given keys for referenced table "part_order"
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE PART_ORDER 
+ADD CONSTRAINT PART_ORDER_FK_ACTION_LOG 
+FOREIGN KEY (ACTION_CODE, IS_DELETED) 
+REFERENCES ACTION_LOG(ACTION_CODE, IS_DELETED)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: there is no unique constraint matching given keys for referenced table "action_log"
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE PERSON_CLASS 
+ADD CONSTRAINT PERSON_CLASS_FK_MT_COUNTRY 
+FOREIGN KEY (COUNTRY_ID) 
+REFERENCES MT_COUNTRY(COUNTRY_ID)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: constraint "person_class_fk_mt_country" for relation "person_class" already exists
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE PERSON 
+ADD CONSTRAINT PERSON_FK_ADDRESS 
+FOREIGN KEY (ADDR_CODE, IS_DELETED) 
+REFERENCES ADDRESS(ADDR_CODE, IS_DELETED)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: there is no unique constraint matching given keys for referenced table "address"
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE PERSON 
+ADD CONSTRAINT PERSON_FK_OFFICE 
+FOREIGN KEY (OFFICE_CODE, IS_DELETED) 
+REFERENCES OFFICE(OFFICE_CODE, IS_DELETED)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: there is no unique constraint matching given keys for referenced table "office"
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+
+Mon Oct 06 17:56:44 ICT 2014: Executing: 
+ALTER TABLE SCHEDULE 
+ADD CONSTRAINT SCHEDULE_FK_MDEV_CHECKLIST 
+FOREIGN KEY (CKLIST_CODE, IS_DELETED) 
+REFERENCES MDEV_CHECKLIST(CKLIST_CODE, IS_DELETED)
+Mon Oct 06 17:56:44 ICT 2014: ERROR: there is no unique constraint matching given keys for referenced table "mdev_checklist"
+Mon Oct 06 17:56:44 ICT 2014: Continuing...
+
+

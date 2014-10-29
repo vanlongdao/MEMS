@@ -1,0 +1,3 @@
+Fri Sep 26 15:03:07 ICT 2014: Read properties from excel file
+Fri Sep 26 15:03:08 ICT 2014: Generate Labels
+Fri Sep 26 15:03:08 ICT 2014: Generate Messages

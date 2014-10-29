@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <title>TestNG reports</title>
+
+    <link type="text/css" href="testng-reports.css" rel="stylesheet" />  
+    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="testng-reports.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      var suiteTableInitFunctions = new Array();
+      var suiteTableData = new Array();
+    </script>
+    <!--
+      <script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
+     -->
+  </head>
+
+  <body>
+    <div class="top-banner-root">
+      <span class="top-banner-title-font">Test results</span>
+      <br/>
+      <span class="top-banner-font-1">1 suite</span>
+    </div> <!-- top-banner-root -->
+    <div class="navigator-root">
+      <div class="navigator-suite-header">
+        <span>All suites</span>
+        <a href="#" class="collapse-all-link" title="Collapse/expand all the suites">
+          <img class="collapse-all-icon" src="collapseall.gif">
+          </img> <!-- collapse-all-icon -->
+        </a> <!-- collapse-all-link -->
+      </div> <!-- navigator-suite-header -->
+      <div class="suite">
+        <div class="rounded-window">
+          <div class="suite-header light-rounded-window-top">
+            <a href="#" class="navigator-link" panel-name="suite-Default_suite">
+              <span class="suite-name border-passed">Default suite</span>
+            </a> <!-- navigator-link -->
+          </div> <!-- suite-header light-rounded-window-top -->
+          <div class="navigator-suite-content">
+            <div class="suite-section-title">
+              <span>Info</span>
+            </div> <!-- suite-section-title -->
+            <div class="suite-section-content">
+              <ul>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="test-xml-Default_suite">
+                    <span>testng-customsuite.xml</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="testlist-Default_suite">
+                    <span class="test-stats">1 test</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="group-Default_suite">
+                    <span>0 groups</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="times-Default_suite">
+                    <span>Times</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="reporter-Default_suite">
+                    <span>Reporter output</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="ignored-methods-Default_suite">
+                    <span>Ignored methods</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="chronological-Default_suite">
+                    <span>Chronological view</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+              </ul>
+            </div> <!-- suite-section-content -->
+            <div class="result-section">
+              <div class="suite-section-title">
+                <span>Results</span>
+              </div> <!-- suite-section-title -->
+              <div class="suite-section-content">
+                <ul>
+                  <li>
+                    <span class="method-stats">33 methods,   33 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-Default_suite" class="hide-methods passed suite-Default_suite"> (hide)</a> <!-- hide-methods passed suite-Default_suite -->
+                      <a href="#" panel-name="suite-Default_suite" class="show-methods passed suite-Default_suite"> (show)</a> <!-- show-methods passed suite-Default_suite -->
+                    </span>
+                    <div class="method-list-content passed suite-Default_suite">
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetActionLogByTotalPayAndPayDate">testGetActionLogByTotalPayAndPayDate</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetActionLogForPaidList">testGetActionLogForPaidList</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetBudgetForBudgetStatus">testGetBudgetForBudgetStatus</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetCountScheItemFilterByStartToEndDate">testGetCountScheItemFilterByStartToEndDate</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetDeliverySchedule">testGetDeliverySchedule</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetHospitalDeptByOfficeCode">testGetHospitalDeptByOfficeCode</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetListContactDepartment">testGetListContactDepartment</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetListContactOfAllTask">testGetListContactOfAllTask</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetListContactOfMyTask">testGetListContactOfMyTask</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetListContactOfMyTaskByHospPnsCode">testGetListContactOfMyTaskByHospPnsCode</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetNoticeLogByOfficeCode">testGetNoticeLogByOfficeCode</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetScheItemFilterByStartToEndDate">testGetScheItemFilterByStartToEndDate</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetSumTotalPayByHospDeptCode">testGetSumTotalPayByHospDeptCode</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetTotalRepairCostCurrentMonthDepartment">testGetTotalRepairCostCurrentMonthDepartment</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetTotalRepairCostCurrentMonthOfAllTask">testGetTotalRepairCostCurrentMonthOfAllTask</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetTotalRepairCostCurrentMonthOfMyTask">testGetTotalRepairCostCurrentMonthOfMyTask</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetTotalRepairCostCurrentMonthOfMyTaskByHospPnsCode">testGetTotalRepairCostCurrentMonthOfMyTaskByHospPnsCode</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetTotalRepairCurrentMonthOfAllTask">testGetTotalRepairCurrentMonthOfAllTask</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetTotalRepairCurrentMonthOfMyTask">testGetTotalRepairCurrentMonthOfMyTask</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetTotalRepairCurrentMonthOfMyTaskByHospPsnCode">testGetTotalRepairCurrentMonthOfMyTaskByHospPsnCode</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetTotalRepairDoingAllTask">testGetTotalRepairDoingAllTask</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetTotalRepairDoingDepartment">testGetTotalRepairDoingDepartment</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetTotalRepairDoingMyTask">testGetTotalRepairDoingMyTask</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetTotalRepairDoingMyTaskByHospPnsCode">testGetTotalRepairDoingMyTaskByHospPnsCode</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetTotalRepairItemCostAllTasks">testGetTotalRepairItemCostAllTasks</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetTotalRepairItemCostDepartment">testGetTotalRepairItemCostDepartment</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetTotalRepairItemOfYearAllTasks">testGetTotalRepairItemOfYearAllTasks</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetTotalRepairItemOfYearDepartment">testGetTotalRepairItemOfYearDepartment</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetTotalRepairNotStartAllTask">testGetTotalRepairNotStartAllTask</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetTotalRepairNotStartDepartment">testGetTotalRepairNotStartDepartment</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetTotalRepairNotStartMyTask">testGetTotalRepairNotStartMyTask</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetTotalRepairNotStartMyTaskByHospPnsCode">testGetTotalRepairNotStartMyTaskByHospPnsCode</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="arrow.mems.service.MasterDashboardServiceTest" hash-for-method="testGetTotalRepairOfCurrentMonthDepartment">testGetTotalRepairOfCurrentMonthDepartment</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-Default_suite -->
+                  </li>
+                </ul>
+              </div> <!-- suite-section-content -->
+            </div> <!-- result-section -->
+          </div> <!-- navigator-suite-content -->
+        </div> <!-- rounded-window -->
+      </div> <!-- suite -->
+    </div> <!-- navigator-root -->
+    <div class="wrapper">
+      <div class="main-panel-root">
+        <div panel-name="suite-Default_suite" class="panel Default_suite">
+          <div class="suite-Default_suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">arrow.mems.service.MasterDashboardServiceTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetActionLogByTotalPayAndPayDate">
+                  </a> <!-- testGetActionLogByTotalPayAndPayDate -->
+                  <span class="method-name">testGetActionLogByTotalPayAndPayDate</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetActionLogForPaidList">
+                  </a> <!-- testGetActionLogForPaidList -->
+                  <span class="method-name">testGetActionLogForPaidList</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetBudgetForBudgetStatus">
+                  </a> <!-- testGetBudgetForBudgetStatus -->
+                  <span class="method-name">testGetBudgetForBudgetStatus</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetCountScheItemFilterByStartToEndDate">
+                  </a> <!-- testGetCountScheItemFilterByStartToEndDate -->
+                  <span class="method-name">testGetCountScheItemFilterByStartToEndDate</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetDeliverySchedule">
+                  </a> <!-- testGetDeliverySchedule -->
+                  <span class="method-name">testGetDeliverySchedule</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetHospitalDeptByOfficeCode">
+                  </a> <!-- testGetHospitalDeptByOfficeCode -->
+                  <span class="method-name">testGetHospitalDeptByOfficeCode</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetListContactDepartment">
+                  </a> <!-- testGetListContactDepartment -->
+                  <span class="method-name">testGetListContactDepartment</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetListContactOfAllTask">
+                  </a> <!-- testGetListContactOfAllTask -->
+                  <span class="method-name">testGetListContactOfAllTask</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetListContactOfMyTask">
+                  </a> <!-- testGetListContactOfMyTask -->
+                  <span class="method-name">testGetListContactOfMyTask</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetListContactOfMyTaskByHospPnsCode">
+                  </a> <!-- testGetListContactOfMyTaskByHospPnsCode -->
+                  <span class="method-name">testGetListContactOfMyTaskByHospPnsCode</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetNoticeLogByOfficeCode">
+                  </a> <!-- testGetNoticeLogByOfficeCode -->
+                  <span class="method-name">testGetNoticeLogByOfficeCode</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetScheItemFilterByStartToEndDate">
+                  </a> <!-- testGetScheItemFilterByStartToEndDate -->
+                  <span class="method-name">testGetScheItemFilterByStartToEndDate</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetSumTotalPayByHospDeptCode">
+                  </a> <!-- testGetSumTotalPayByHospDeptCode -->
+                  <span class="method-name">testGetSumTotalPayByHospDeptCode</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetTotalRepairCostCurrentMonthDepartment">
+                  </a> <!-- testGetTotalRepairCostCurrentMonthDepartment -->
+                  <span class="method-name">testGetTotalRepairCostCurrentMonthDepartment</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetTotalRepairCostCurrentMonthOfAllTask">
+                  </a> <!-- testGetTotalRepairCostCurrentMonthOfAllTask -->
+                  <span class="method-name">testGetTotalRepairCostCurrentMonthOfAllTask</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetTotalRepairCostCurrentMonthOfMyTask">
+                  </a> <!-- testGetTotalRepairCostCurrentMonthOfMyTask -->
+                  <span class="method-name">testGetTotalRepairCostCurrentMonthOfMyTask</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetTotalRepairCostCurrentMonthOfMyTaskByHospPnsCode">
+                  </a> <!-- testGetTotalRepairCostCurrentMonthOfMyTaskByHospPnsCode -->
+                  <span class="method-name">testGetTotalRepairCostCurrentMonthOfMyTaskByHospPnsCode</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetTotalRepairCurrentMonthOfAllTask">
+                  </a> <!-- testGetTotalRepairCurrentMonthOfAllTask -->
+                  <span class="method-name">testGetTotalRepairCurrentMonthOfAllTask</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetTotalRepairCurrentMonthOfMyTask">
+                  </a> <!-- testGetTotalRepairCurrentMonthOfMyTask -->
+                  <span class="method-name">testGetTotalRepairCurrentMonthOfMyTask</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetTotalRepairCurrentMonthOfMyTaskByHospPsnCode">
+                  </a> <!-- testGetTotalRepairCurrentMonthOfMyTaskByHospPsnCode -->
+                  <span class="method-name">testGetTotalRepairCurrentMonthOfMyTaskByHospPsnCode</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetTotalRepairDoingAllTask">
+                  </a> <!-- testGetTotalRepairDoingAllTask -->
+                  <span class="method-name">testGetTotalRepairDoingAllTask</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetTotalRepairDoingDepartment">
+                  </a> <!-- testGetTotalRepairDoingDepartment -->
+                  <span class="method-name">testGetTotalRepairDoingDepartment</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetTotalRepairDoingMyTask">
+                  </a> <!-- testGetTotalRepairDoingMyTask -->
+                  <span class="method-name">testGetTotalRepairDoingMyTask</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetTotalRepairDoingMyTaskByHospPnsCode">
+                  </a> <!-- testGetTotalRepairDoingMyTaskByHospPnsCode -->
+                  <span class="method-name">testGetTotalRepairDoingMyTaskByHospPnsCode</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetTotalRepairItemCostAllTasks">
+                  </a> <!-- testGetTotalRepairItemCostAllTasks -->
+                  <span class="method-name">testGetTotalRepairItemCostAllTasks</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetTotalRepairItemCostDepartment">
+                  </a> <!-- testGetTotalRepairItemCostDepartment -->
+                  <span class="method-name">testGetTotalRepairItemCostDepartment</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetTotalRepairItemOfYearAllTasks">
+                  </a> <!-- testGetTotalRepairItemOfYearAllTasks -->
+                  <span class="method-name">testGetTotalRepairItemOfYearAllTasks</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetTotalRepairItemOfYearDepartment">
+                  </a> <!-- testGetTotalRepairItemOfYearDepartment -->
+                  <span class="method-name">testGetTotalRepairItemOfYearDepartment</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetTotalRepairNotStartAllTask">
+                  </a> <!-- testGetTotalRepairNotStartAllTask -->
+                  <span class="method-name">testGetTotalRepairNotStartAllTask</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetTotalRepairNotStartDepartment">
+                  </a> <!-- testGetTotalRepairNotStartDepartment -->
+                  <span class="method-name">testGetTotalRepairNotStartDepartment</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetTotalRepairNotStartMyTask">
+                  </a> <!-- testGetTotalRepairNotStartMyTask -->
+                  <span class="method-name">testGetTotalRepairNotStartMyTask</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetTotalRepairNotStartMyTaskByHospPnsCode">
+                  </a> <!-- testGetTotalRepairNotStartMyTaskByHospPnsCode -->
+                  <span class="method-name">testGetTotalRepairNotStartMyTaskByHospPnsCode</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetTotalRepairOfCurrentMonthDepartment">
+                  </a> <!-- testGetTotalRepairOfCurrentMonthDepartment -->
+                  <span class="method-name">testGetTotalRepairOfCurrentMonthDepartment</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Default_suite-class-passed -->
+        </div> <!-- panel Default_suite -->
+        <div panel-name="test-xml-Default_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">/tmp/testng-eclipse--2045033982/testng-customsuite.xml</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE suite SYSTEM &quot;http://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite name=&quot;Default suite&quot;&gt;
+  &lt;test verbose=&quot;2&quot; name=&quot;Default test&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;arrow.mems.service.MasterDashboardServiceTest&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- Default test --&gt;
+&lt;/suite&gt; &lt;!-- Default suite --&gt;
+            </pre>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="testlist-Default_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Tests for Default suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <ul>
+              <li>
+                <span class="test-name">Default test (1 class)</span>
+              </li>
+            </ul>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="group-Default_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Groups for Default suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="times-Default_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Times for Default suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="times-div">
+              <script type="text/javascript">
+suiteTableInitFunctions.push('tableData_Default_suite');
+function tableData_Default_suite() {
+var data = new google.visualization.DataTable();
+data.addColumn('number', 'Number');
+data.addColumn('string', 'Method');
+data.addColumn('string', 'Class');
+data.addColumn('number', 'Time (ms)');
+data.addRows(33);
+data.setCell(0, 0, 0)
+data.setCell(0, 1, 'testGetActionLogByTotalPayAndPayDate')
+data.setCell(0, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(0, 3, 6306);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'testGetDeliverySchedule')
+data.setCell(1, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(1, 3, 6148);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'testGetTotalRepairOfCurrentMonthDepartment')
+data.setCell(2, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(2, 3, 5883);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'testGetScheItemFilterByStartToEndDate')
+data.setCell(3, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(3, 3, 5841);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'testGetListContactOfAllTask')
+data.setCell(4, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(4, 3, 5491);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'testGetTotalRepairCostCurrentMonthOfMyTaskByHospPnsCode')
+data.setCell(5, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(5, 3, 5484);
+data.setCell(6, 0, 6)
+data.setCell(6, 1, 'testGetListContactOfMyTaskByHospPnsCode')
+data.setCell(6, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(6, 3, 5179);
+data.setCell(7, 0, 7)
+data.setCell(7, 1, 'testGetListContactDepartment')
+data.setCell(7, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(7, 3, 5178);
+data.setCell(8, 0, 8)
+data.setCell(8, 1, 'testGetSumTotalPayByHospDeptCode')
+data.setCell(8, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(8, 3, 5118);
+data.setCell(9, 0, 9)
+data.setCell(9, 1, 'testGetListContactOfMyTask')
+data.setCell(9, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(9, 3, 5095);
+data.setCell(10, 0, 10)
+data.setCell(10, 1, 'testGetTotalRepairCostCurrentMonthOfMyTask')
+data.setCell(10, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(10, 3, 4975);
+data.setCell(11, 0, 11)
+data.setCell(11, 1, 'testGetTotalRepairNotStartAllTask')
+data.setCell(11, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(11, 3, 4902);
+data.setCell(12, 0, 12)
+data.setCell(12, 1, 'testGetActionLogForPaidList')
+data.setCell(12, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(12, 3, 4842);
+data.setCell(13, 0, 13)
+data.setCell(13, 1, 'testGetTotalRepairCostCurrentMonthDepartment')
+data.setCell(13, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(13, 3, 4787);
+data.setCell(14, 0, 14)
+data.setCell(14, 1, 'testGetCountScheItemFilterByStartToEndDate')
+data.setCell(14, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(14, 3, 4714);
+data.setCell(15, 0, 15)
+data.setCell(15, 1, 'testGetBudgetForBudgetStatus')
+data.setCell(15, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(15, 3, 4646);
+data.setCell(16, 0, 16)
+data.setCell(16, 1, 'testGetTotalRepairItemCostAllTasks')
+data.setCell(16, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(16, 3, 4634);
+data.setCell(17, 0, 17)
+data.setCell(17, 1, 'testGetTotalRepairDoingMyTaskByHospPnsCode')
+data.setCell(17, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(17, 3, 4622);
+data.setCell(18, 0, 18)
+data.setCell(18, 1, 'testGetHospitalDeptByOfficeCode')
+data.setCell(18, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(18, 3, 4579);
+data.setCell(19, 0, 19)
+data.setCell(19, 1, 'testGetNoticeLogByOfficeCode')
+data.setCell(19, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(19, 3, 4544);
+data.setCell(20, 0, 20)
+data.setCell(20, 1, 'testGetTotalRepairItemOfYearAllTasks')
+data.setCell(20, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(20, 3, 4541);
+data.setCell(21, 0, 21)
+data.setCell(21, 1, 'testGetTotalRepairNotStartMyTask')
+data.setCell(21, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(21, 3, 4541);
+data.setCell(22, 0, 22)
+data.setCell(22, 1, 'testGetTotalRepairCurrentMonthOfMyTask')
+data.setCell(22, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(22, 3, 4515);
+data.setCell(23, 0, 23)
+data.setCell(23, 1, 'testGetTotalRepairItemCostDepartment')
+data.setCell(23, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(23, 3, 4513);
+data.setCell(24, 0, 24)
+data.setCell(24, 1, 'testGetTotalRepairDoingAllTask')
+data.setCell(24, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(24, 3, 4497);
+data.setCell(25, 0, 25)
+data.setCell(25, 1, 'testGetTotalRepairNotStartDepartment')
+data.setCell(25, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(25, 3, 4496);
+data.setCell(26, 0, 26)
+data.setCell(26, 1, 'testGetTotalRepairCurrentMonthOfAllTask')
+data.setCell(26, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(26, 3, 4465);
+data.setCell(27, 0, 27)
+data.setCell(27, 1, 'testGetTotalRepairDoingMyTask')
+data.setCell(27, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(27, 3, 4462);
+data.setCell(28, 0, 28)
+data.setCell(28, 1, 'testGetTotalRepairCostCurrentMonthOfAllTask')
+data.setCell(28, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(28, 3, 4451);
+data.setCell(29, 0, 29)
+data.setCell(29, 1, 'testGetTotalRepairCurrentMonthOfMyTaskByHospPsnCode')
+data.setCell(29, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(29, 3, 4409);
+data.setCell(30, 0, 30)
+data.setCell(30, 1, 'testGetTotalRepairDoingDepartment')
+data.setCell(30, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(30, 3, 4374);
+data.setCell(31, 0, 31)
+data.setCell(31, 1, 'testGetTotalRepairNotStartMyTaskByHospPnsCode')
+data.setCell(31, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(31, 3, 4353);
+data.setCell(32, 0, 32)
+data.setCell(32, 1, 'testGetTotalRepairItemOfYearDepartment')
+data.setCell(32, 2, 'arrow.mems.service.MasterDashboardServiceTest')
+data.setCell(32, 3, 4321);
+window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
+return data;
+}
+              </script>
+              <span class="suite-total-time">Total running time: 2 minutes</span>
+              <div id="times-div-Default_suite">
+              </div> <!-- times-div-Default_suite -->
+            </div> <!-- times-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="reporter-Default_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Reporter output for Default suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="ignored-methods-Default_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">0 ignored methods</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="chronological-Default_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Methods in chronological order</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="chronological-class">
+              <div class="chronological-class-name">arrow.mems.service.MasterDashboardServiceTest</div> <!-- chronological-class-name -->
+              <div class="configuration-suite before">
+                <span class="method-name">arquillianBeforeSuite</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- configuration-suite before -->
+              <div class="configuration-class before">
+                <span class="method-name">arquillianBeforeClass</span>
+                <span class="method-start">2786 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetActionLogByTotalPayAndPayDate() thr...)</span>
+                <span class="method-start">19091 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetActionLogByTotalPayAndPayDate</span>
+                <span class="method-start">19096 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetActionLogByTotalPayAndPayDate() thr...)</span>
+                <span class="method-start">25402 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetActionLogForPaidList() throws java....)</span>
+                <span class="method-start">25414 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetActionLogForPaidList</span>
+                <span class="method-start">25415 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetActionLogForPaidList() throws java....)</span>
+                <span class="method-start">30257 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetBudgetForBudgetStatus() throws java...)</span>
+                <span class="method-start">30259 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetBudgetForBudgetStatus</span>
+                <span class="method-start">30259 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetBudgetForBudgetStatus() throws java...)</span>
+                <span class="method-start">34906 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetCountScheItemFilterByStartToEndDate...)</span>
+                <span class="method-start">34907 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetCountScheItemFilterByStartToEndDate</span>
+                <span class="method-start">34908 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetCountScheItemFilterByStartToEndDate...)</span>
+                <span class="method-start">39623 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetDeliverySchedule() throws java.lang...)</span>
+                <span class="method-start">39624 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetDeliverySchedule</span>
+                <span class="method-start">39625 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetDeliverySchedule() throws java.lang...)</span>
+                <span class="method-start">45774 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetHospitalDeptByOfficeCode() throws j...)</span>
+                <span class="method-start">45775 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetHospitalDeptByOfficeCode</span>
+                <span class="method-start">45776 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetHospitalDeptByOfficeCode() throws j...)</span>
+                <span class="method-start">50357 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetListContactDepartment() throws java...)</span>
+                <span class="method-start">50358 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetListContactDepartment</span>
+                <span class="method-start">50358 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetListContactDepartment() throws java...)</span>
+                <span class="method-start">55537 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetListContactOfAllTask() throws java....)</span>
+                <span class="method-start">55538 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetListContactOfAllTask</span>
+                <span class="method-start">55539 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetListContactOfAllTask() throws java....)</span>
+                <span class="method-start">61031 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetListContactOfMyTask() throws java.l...)</span>
+                <span class="method-start">61033 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetListContactOfMyTask</span>
+                <span class="method-start">61034 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetListContactOfMyTask() throws java.l...)</span>
+                <span class="method-start">66130 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetListContactOfMyTaskByHospPnsCode() ...)</span>
+                <span class="method-start">66131 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetListContactOfMyTaskByHospPnsCode</span>
+                <span class="method-start">66139 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetListContactOfMyTaskByHospPnsCode() ...)</span>
+                <span class="method-start">71318 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetNoticeLogByOfficeCode() throws java...)</span>
+                <span class="method-start">71319 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetNoticeLogByOfficeCode</span>
+                <span class="method-start">71320 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetNoticeLogByOfficeCode() throws java...)</span>
+                <span class="method-start">75864 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetScheItemFilterByStartToEndDate() th...)</span>
+                <span class="method-start">75866 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetScheItemFilterByStartToEndDate</span>
+                <span class="method-start">75867 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetScheItemFilterByStartToEndDate() th...)</span>
+                <span class="method-start">81709 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetSumTotalPayByHospDeptCode() throws ...)</span>
+                <span class="method-start">81710 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetSumTotalPayByHospDeptCode</span>
+                <span class="method-start">81710 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetSumTotalPayByHospDeptCode() throws ...)</span>
+                <span class="method-start">86829 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCostCurrentMonthDepartme...)</span>
+                <span class="method-start">86830 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetTotalRepairCostCurrentMonthDepartment</span>
+                <span class="method-start">86831 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCostCurrentMonthDepartme...)</span>
+                <span class="method-start">91618 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCostCurrentMonthOfAllTas...)</span>
+                <span class="method-start">91622 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetTotalRepairCostCurrentMonthOfAllTask</span>
+                <span class="method-start">91622 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCostCurrentMonthOfAllTas...)</span>
+                <span class="method-start">96073 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCostCurrentMonthOfMyTask...)</span>
+                <span class="method-start">96074 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetTotalRepairCostCurrentMonthOfMyTask</span>
+                <span class="method-start">96076 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCostCurrentMonthOfMyTask...)</span>
+                <span class="method-start">101051 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCostCurrentMonthOfMyTask...)</span>
+                <span class="method-start">101054 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetTotalRepairCostCurrentMonthOfMyTaskByHospPnsCode</span>
+                <span class="method-start">101055 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCostCurrentMonthOfMyTask...)</span>
+                <span class="method-start">106539 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCurrentMonthOfAllTask() ...)</span>
+                <span class="method-start">106540 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetTotalRepairCurrentMonthOfAllTask</span>
+                <span class="method-start">106541 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCurrentMonthOfAllTask() ...)</span>
+                <span class="method-start">111006 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCurrentMonthOfMyTask() t...)</span>
+                <span class="method-start">111007 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetTotalRepairCurrentMonthOfMyTask</span>
+                <span class="method-start">111007 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCurrentMonthOfMyTask() t...)</span>
+                <span class="method-start">115523 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCurrentMonthOfMyTaskByHo...)</span>
+                <span class="method-start">115524 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetTotalRepairCurrentMonthOfMyTaskByHospPsnCode</span>
+                <span class="method-start">115525 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCurrentMonthOfMyTaskByHo...)</span>
+                <span class="method-start">119935 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairDoingAllTask() throws ja...)</span>
+                <span class="method-start">119935 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetTotalRepairDoingAllTask</span>
+                <span class="method-start">119936 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairDoingAllTask() throws ja...)</span>
+                <span class="method-start">124434 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairDoingDepartment() throws...)</span>
+                <span class="method-start">124434 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetTotalRepairDoingDepartment</span>
+                <span class="method-start">124435 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairDoingDepartment() throws...)</span>
+                <span class="method-start">128809 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairDoingMyTask() throws jav...)</span>
+                <span class="method-start">128811 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetTotalRepairDoingMyTask</span>
+                <span class="method-start">128811 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairDoingMyTask() throws jav...)</span>
+                <span class="method-start">133273 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairDoingMyTaskByHospPnsCode...)</span>
+                <span class="method-start">133276 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetTotalRepairDoingMyTaskByHospPnsCode</span>
+                <span class="method-start">133277 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairDoingMyTaskByHospPnsCode...)</span>
+                <span class="method-start">137900 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairItemCostAllTasks() throw...)</span>
+                <span class="method-start">137900 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetTotalRepairItemCostAllTasks</span>
+                <span class="method-start">137901 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairItemCostAllTasks() throw...)</span>
+                <span class="method-start">142535 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairItemCostDepartment() thr...)</span>
+                <span class="method-start">142537 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetTotalRepairItemCostDepartment</span>
+                <span class="method-start">142538 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairItemCostDepartment() thr...)</span>
+                <span class="method-start">147051 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairItemOfYearAllTasks() thr...)</span>
+                <span class="method-start">147052 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetTotalRepairItemOfYearAllTasks</span>
+                <span class="method-start">147052 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairItemOfYearAllTasks() thr...)</span>
+                <span class="method-start">151593 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairItemOfYearDepartment() t...)</span>
+                <span class="method-start">151594 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetTotalRepairItemOfYearDepartment</span>
+                <span class="method-start">151595 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairItemOfYearDepartment() t...)</span>
+                <span class="method-start">155916 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairNotStartAllTask() throws...)</span>
+                <span class="method-start">155917 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetTotalRepairNotStartAllTask</span>
+                <span class="method-start">155918 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairNotStartAllTask() throws...)</span>
+                <span class="method-start">160820 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairNotStartDepartment() thr...)</span>
+                <span class="method-start">160821 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetTotalRepairNotStartDepartment</span>
+                <span class="method-start">160821 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairNotStartDepartment() thr...)</span>
+                <span class="method-start">165317 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairNotStartMyTask() throws ...)</span>
+                <span class="method-start">165318 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetTotalRepairNotStartMyTask</span>
+                <span class="method-start">165318 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairNotStartMyTask() throws ...)</span>
+                <span class="method-start">169859 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairNotStartMyTaskByHospPnsC...)</span>
+                <span class="method-start">169861 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetTotalRepairNotStartMyTaskByHospPnsCode</span>
+                <span class="method-start">169861 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairNotStartMyTaskByHospPnsC...)</span>
+                <span class="method-start">174214 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">arquillianBeforeTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairOfCurrentMonthDepartment...)</span>
+                <span class="method-start">174215 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testGetTotalRepairOfCurrentMonthDepartment</span>
+                <span class="method-start">174215 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">arquillianAfterTest(public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairOfCurrentMonthDepartment...)</span>
+                <span class="method-start">180098 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-class after">
+                <span class="method-name">arquillianAfterClass</span>
+                <span class="method-start">180099 ms</span>
+              </div> <!-- configuration-class after -->
+              <div class="configuration-suite after">
+                <span class="method-name">arquillianAfterSuite</span>
+                <span class="method-start">180111 ms</span>
+              </div> <!-- configuration-suite after -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+      </div> <!-- main-panel-root -->
+    </div> <!-- wrapper -->
+  </body>
+</html>

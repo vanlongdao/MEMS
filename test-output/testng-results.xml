@@ -1,0 +1,887 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="33" passed="33">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="177322" started-at="2014-10-08T11:06:53Z" finished-at="2014-10-08T11:09:50Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="177322" started-at="2014-10-08T11:06:53Z" finished-at="2014-10-08T11:09:50Z">
+      <class name="arrow.mems.service.MasterDashboardServiceTest">
+        <test-method status="PASS" signature="arquillianBeforeSuite()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeSuite" is-config="true" duration-ms="2780" started-at="2014-10-08T18:06:50Z" finished-at="2014-10-08T18:06:53Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeSuite -->
+        <test-method status="PASS" signature="arquillianBeforeClass()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeClass" is-config="true" duration-ms="16303" started-at="2014-10-08T18:06:53Z" finished-at="2014-10-08T18:07:09Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeClass -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="5" started-at="2014-10-08T18:07:09Z" finished-at="2014-10-08T18:07:09Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetActionLogByTotalPayAndPayDate() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="testGetActionLogByTotalPayAndPayDate()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetActionLogByTotalPayAndPayDate" duration-ms="6306" started-at="2014-10-08T18:07:09Z" finished-at="2014-10-08T18:07:15Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetActionLogByTotalPayAndPayDate -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="12" started-at="2014-10-08T18:07:15Z" finished-at="2014-10-08T18:07:15Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetActionLogByTotalPayAndPayDate() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:07:15Z" finished-at="2014-10-08T18:07:15Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetActionLogForPaidList() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="testGetActionLogForPaidList()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetActionLogForPaidList" duration-ms="4842" started-at="2014-10-08T18:07:15Z" finished-at="2014-10-08T18:07:20Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetActionLogForPaidList -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:07:20Z" finished-at="2014-10-08T18:07:20Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetActionLogForPaidList() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="0" started-at="2014-10-08T18:07:20Z" finished-at="2014-10-08T18:07:20Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetBudgetForBudgetStatus() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="testGetBudgetForBudgetStatus()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetBudgetForBudgetStatus" duration-ms="4646" started-at="2014-10-08T18:07:20Z" finished-at="2014-10-08T18:07:25Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetBudgetForBudgetStatus -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:07:25Z" finished-at="2014-10-08T18:07:25Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetBudgetForBudgetStatus() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="0" started-at="2014-10-08T18:07:25Z" finished-at="2014-10-08T18:07:25Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetCountScheItemFilterByStartToEndDate() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="testGetCountScheItemFilterByStartToEndDate()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetCountScheItemFilterByStartToEndDate" duration-ms="4714" started-at="2014-10-08T18:07:25Z" finished-at="2014-10-08T18:07:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetCountScheItemFilterByStartToEndDate -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:07:29Z" finished-at="2014-10-08T18:07:29Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetCountScheItemFilterByStartToEndDate() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:07:29Z" finished-at="2014-10-08T18:07:29Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetDeliverySchedule() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="testGetDeliverySchedule()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetDeliverySchedule" duration-ms="6148" started-at="2014-10-08T18:07:29Z" finished-at="2014-10-08T18:07:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetDeliverySchedule -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:07:36Z" finished-at="2014-10-08T18:07:36Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetDeliverySchedule() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:07:36Z" finished-at="2014-10-08T18:07:36Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetHospitalDeptByOfficeCode() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="testGetHospitalDeptByOfficeCode()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetHospitalDeptByOfficeCode" duration-ms="4579" started-at="2014-10-08T18:07:36Z" finished-at="2014-10-08T18:07:40Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetHospitalDeptByOfficeCode -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:07:40Z" finished-at="2014-10-08T18:07:40Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetHospitalDeptByOfficeCode() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="testGetListContactDepartment()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetListContactDepartment" duration-ms="5178" started-at="2014-10-08T18:07:40Z" finished-at="2014-10-08T18:07:45Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetListContactDepartment -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="0" started-at="2014-10-08T18:07:40Z" finished-at="2014-10-08T18:07:40Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetListContactDepartment() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:07:45Z" finished-at="2014-10-08T18:07:45Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetListContactDepartment() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:07:45Z" finished-at="2014-10-08T18:07:45Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetListContactOfAllTask() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="testGetListContactOfAllTask()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetListContactOfAllTask" duration-ms="5491" started-at="2014-10-08T18:07:45Z" finished-at="2014-10-08T18:07:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetListContactOfAllTask -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:07:51Z" finished-at="2014-10-08T18:07:51Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetListContactOfAllTask() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:07:51Z" finished-at="2014-10-08T18:07:51Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetListContactOfMyTask() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="testGetListContactOfMyTask()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetListContactOfMyTask" duration-ms="5095" started-at="2014-10-08T18:07:51Z" finished-at="2014-10-08T18:07:56Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetListContactOfMyTask -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:07:56Z" finished-at="2014-10-08T18:07:56Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetListContactOfMyTask() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="8" started-at="2014-10-08T18:07:56Z" finished-at="2014-10-08T18:07:56Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetListContactOfMyTaskByHospPnsCode() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="testGetListContactOfMyTaskByHospPnsCode()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetListContactOfMyTaskByHospPnsCode" duration-ms="5179" started-at="2014-10-08T18:07:56Z" finished-at="2014-10-08T18:08:01Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetListContactOfMyTaskByHospPnsCode -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:08:01Z" finished-at="2014-10-08T18:08:01Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetListContactOfMyTaskByHospPnsCode() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:08:01Z" finished-at="2014-10-08T18:08:01Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetNoticeLogByOfficeCode() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="testGetNoticeLogByOfficeCode()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetNoticeLogByOfficeCode" duration-ms="4544" started-at="2014-10-08T18:08:01Z" finished-at="2014-10-08T18:08:06Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetNoticeLogByOfficeCode -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:08:06Z" finished-at="2014-10-08T18:08:06Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetNoticeLogByOfficeCode() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:08:06Z" finished-at="2014-10-08T18:08:06Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetScheItemFilterByStartToEndDate() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="testGetScheItemFilterByStartToEndDate()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetScheItemFilterByStartToEndDate" duration-ms="5841" started-at="2014-10-08T18:08:06Z" finished-at="2014-10-08T18:08:11Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetScheItemFilterByStartToEndDate -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:08:11Z" finished-at="2014-10-08T18:08:11Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetScheItemFilterByStartToEndDate() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="0" started-at="2014-10-08T18:08:11Z" finished-at="2014-10-08T18:08:11Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetSumTotalPayByHospDeptCode() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="testGetSumTotalPayByHospDeptCode()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetSumTotalPayByHospDeptCode" duration-ms="5118" started-at="2014-10-08T18:08:11Z" finished-at="2014-10-08T18:08:17Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetSumTotalPayByHospDeptCode -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:08:17Z" finished-at="2014-10-08T18:08:17Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetSumTotalPayByHospDeptCode() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:08:17Z" finished-at="2014-10-08T18:08:17Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCostCurrentMonthDepartment() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="testGetTotalRepairCostCurrentMonthDepartment()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetTotalRepairCostCurrentMonthDepartment" duration-ms="4787" started-at="2014-10-08T18:08:17Z" finished-at="2014-10-08T18:08:21Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetTotalRepairCostCurrentMonthDepartment -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="3" started-at="2014-10-08T18:08:21Z" finished-at="2014-10-08T18:08:21Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCostCurrentMonthDepartment() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="testGetTotalRepairCostCurrentMonthOfAllTask()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetTotalRepairCostCurrentMonthOfAllTask" duration-ms="4451" started-at="2014-10-08T18:08:21Z" finished-at="2014-10-08T18:08:26Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetTotalRepairCostCurrentMonthOfAllTask -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="0" started-at="2014-10-08T18:08:21Z" finished-at="2014-10-08T18:08:21Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCostCurrentMonthOfAllTask() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:08:26Z" finished-at="2014-10-08T18:08:26Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCostCurrentMonthOfAllTask() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="2" started-at="2014-10-08T18:08:26Z" finished-at="2014-10-08T18:08:26Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCostCurrentMonthOfMyTask() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="testGetTotalRepairCostCurrentMonthOfMyTask()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetTotalRepairCostCurrentMonthOfMyTask" duration-ms="4975" started-at="2014-10-08T18:08:26Z" finished-at="2014-10-08T18:08:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetTotalRepairCostCurrentMonthOfMyTask -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="3" started-at="2014-10-08T18:08:31Z" finished-at="2014-10-08T18:08:31Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCostCurrentMonthOfMyTask() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:08:31Z" finished-at="2014-10-08T18:08:31Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCostCurrentMonthOfMyTaskByHospPnsCode() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="testGetTotalRepairCostCurrentMonthOfMyTaskByHospPnsCode()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetTotalRepairCostCurrentMonthOfMyTaskByHospPnsCode" duration-ms="5484" started-at="2014-10-08T18:08:31Z" finished-at="2014-10-08T18:08:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetTotalRepairCostCurrentMonthOfMyTaskByHospPnsCode -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:08:36Z" finished-at="2014-10-08T18:08:36Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCostCurrentMonthOfMyTaskByHospPnsCode() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:08:36Z" finished-at="2014-10-08T18:08:36Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCurrentMonthOfAllTask() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="testGetTotalRepairCurrentMonthOfAllTask()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetTotalRepairCurrentMonthOfAllTask" duration-ms="4465" started-at="2014-10-08T18:08:36Z" finished-at="2014-10-08T18:08:41Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetTotalRepairCurrentMonthOfAllTask -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:08:41Z" finished-at="2014-10-08T18:08:41Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCurrentMonthOfAllTask() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="0" started-at="2014-10-08T18:08:41Z" finished-at="2014-10-08T18:08:41Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCurrentMonthOfMyTask() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="testGetTotalRepairCurrentMonthOfMyTask()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetTotalRepairCurrentMonthOfMyTask" duration-ms="4515" started-at="2014-10-08T18:08:41Z" finished-at="2014-10-08T18:08:45Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetTotalRepairCurrentMonthOfMyTask -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:08:45Z" finished-at="2014-10-08T18:08:45Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCurrentMonthOfMyTask() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:08:45Z" finished-at="2014-10-08T18:08:45Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCurrentMonthOfMyTaskByHospPsnCode() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="testGetTotalRepairCurrentMonthOfMyTaskByHospPsnCode()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetTotalRepairCurrentMonthOfMyTaskByHospPsnCode" duration-ms="4409" started-at="2014-10-08T18:08:45Z" finished-at="2014-10-08T18:08:50Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetTotalRepairCurrentMonthOfMyTaskByHospPsnCode -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:08:50Z" finished-at="2014-10-08T18:08:50Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairDoingAllTask() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="0" started-at="2014-10-08T18:08:50Z" finished-at="2014-10-08T18:08:50Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCurrentMonthOfMyTaskByHospPsnCode() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="testGetTotalRepairDoingAllTask()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetTotalRepairDoingAllTask" duration-ms="4497" started-at="2014-10-08T18:08:50Z" finished-at="2014-10-08T18:08:54Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetTotalRepairDoingAllTask -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:08:54Z" finished-at="2014-10-08T18:08:54Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairDoingDepartment() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="0" started-at="2014-10-08T18:08:54Z" finished-at="2014-10-08T18:08:54Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairDoingAllTask() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="testGetTotalRepairDoingDepartment()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetTotalRepairDoingDepartment" duration-ms="4374" started-at="2014-10-08T18:08:54Z" finished-at="2014-10-08T18:08:59Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetTotalRepairDoingDepartment -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:08:59Z" finished-at="2014-10-08T18:08:59Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairDoingDepartment() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="testGetTotalRepairDoingMyTask()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetTotalRepairDoingMyTask" duration-ms="4462" started-at="2014-10-08T18:08:59Z" finished-at="2014-10-08T18:09:03Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetTotalRepairDoingMyTask -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="0" started-at="2014-10-08T18:08:59Z" finished-at="2014-10-08T18:08:59Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairDoingMyTask() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="3" started-at="2014-10-08T18:09:03Z" finished-at="2014-10-08T18:09:03Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairDoingMyTask() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:09:03Z" finished-at="2014-10-08T18:09:03Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairDoingMyTaskByHospPnsCode() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="testGetTotalRepairDoingMyTaskByHospPnsCode()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetTotalRepairDoingMyTaskByHospPnsCode" duration-ms="4622" started-at="2014-10-08T18:09:03Z" finished-at="2014-10-08T18:09:08Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetTotalRepairDoingMyTaskByHospPnsCode -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:09:08Z" finished-at="2014-10-08T18:09:08Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairItemCostAllTasks() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="0" started-at="2014-10-08T18:09:08Z" finished-at="2014-10-08T18:09:08Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairDoingMyTaskByHospPnsCode() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="testGetTotalRepairItemCostAllTasks()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetTotalRepairItemCostAllTasks" duration-ms="4634" started-at="2014-10-08T18:09:08Z" finished-at="2014-10-08T18:09:12Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetTotalRepairItemCostAllTasks -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:09:12Z" finished-at="2014-10-08T18:09:12Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairItemCostAllTasks() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:09:12Z" finished-at="2014-10-08T18:09:12Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairItemCostDepartment() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="testGetTotalRepairItemCostDepartment()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetTotalRepairItemCostDepartment" duration-ms="4513" started-at="2014-10-08T18:09:12Z" finished-at="2014-10-08T18:09:17Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetTotalRepairItemCostDepartment -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:09:17Z" finished-at="2014-10-08T18:09:17Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairItemCostDepartment() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="0" started-at="2014-10-08T18:09:17Z" finished-at="2014-10-08T18:09:17Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairItemOfYearAllTasks() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="testGetTotalRepairItemOfYearAllTasks()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetTotalRepairItemOfYearAllTasks" duration-ms="4541" started-at="2014-10-08T18:09:17Z" finished-at="2014-10-08T18:09:21Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetTotalRepairItemOfYearAllTasks -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:09:21Z" finished-at="2014-10-08T18:09:21Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairItemOfYearAllTasks() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:09:21Z" finished-at="2014-10-08T18:09:21Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairItemOfYearDepartment() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="testGetTotalRepairItemOfYearDepartment()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetTotalRepairItemOfYearDepartment" duration-ms="4321" started-at="2014-10-08T18:09:21Z" finished-at="2014-10-08T18:09:26Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetTotalRepairItemOfYearDepartment -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:09:26Z" finished-at="2014-10-08T18:09:26Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairItemOfYearDepartment() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:09:26Z" finished-at="2014-10-08T18:09:26Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairNotStartAllTask() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="testGetTotalRepairNotStartAllTask()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetTotalRepairNotStartAllTask" duration-ms="4902" started-at="2014-10-08T18:09:26Z" finished-at="2014-10-08T18:09:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetTotalRepairNotStartAllTask -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:09:31Z" finished-at="2014-10-08T18:09:31Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairNotStartAllTask() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="0" started-at="2014-10-08T18:09:31Z" finished-at="2014-10-08T18:09:31Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairNotStartDepartment() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="testGetTotalRepairNotStartDepartment()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetTotalRepairNotStartDepartment" duration-ms="4496" started-at="2014-10-08T18:09:31Z" finished-at="2014-10-08T18:09:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetTotalRepairNotStartDepartment -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:09:35Z" finished-at="2014-10-08T18:09:35Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairNotStartDepartment() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="testGetTotalRepairNotStartMyTask()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetTotalRepairNotStartMyTask" duration-ms="4541" started-at="2014-10-08T18:09:35Z" finished-at="2014-10-08T18:09:40Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetTotalRepairNotStartMyTask -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="0" started-at="2014-10-08T18:09:35Z" finished-at="2014-10-08T18:09:35Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairNotStartMyTask() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="2" started-at="2014-10-08T18:09:40Z" finished-at="2014-10-08T18:09:40Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairNotStartMyTask() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="0" started-at="2014-10-08T18:09:40Z" finished-at="2014-10-08T18:09:40Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairNotStartMyTaskByHospPnsCode() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="testGetTotalRepairNotStartMyTaskByHospPnsCode()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetTotalRepairNotStartMyTaskByHospPnsCode" duration-ms="4353" started-at="2014-10-08T18:09:40Z" finished-at="2014-10-08T18:09:44Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetTotalRepairNotStartMyTaskByHospPnsCode -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:09:44Z" finished-at="2014-10-08T18:09:44Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairNotStartMyTaskByHospPnsCode() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianBeforeTest" is-config="true" duration-ms="0" started-at="2014-10-08T18:09:44Z" finished-at="2014-10-08T18:09:44Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairOfCurrentMonthDepartment() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="PASS" signature="testGetTotalRepairOfCurrentMonthDepartment()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="testGetTotalRepairOfCurrentMonthDepartment" duration-ms="5883" started-at="2014-10-08T18:09:44Z" finished-at="2014-10-08T18:09:50Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetTotalRepairOfCurrentMonthDepartment -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterTest" is-config="true" duration-ms="1" started-at="2014-10-08T18:09:50Z" finished-at="2014-10-08T18:09:50Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairOfCurrentMonthDepartment() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="PASS" signature="arquillianAfterClass()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterClass" is-config="true" duration-ms="2" started-at="2014-10-08T18:09:50Z" finished-at="2014-10-08T18:09:50Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterClass -->
+        <test-method status="PASS" signature="arquillianAfterSuite()[pri:0, instance:arrow.mems.service.MasterDashboardServiceTest@56235b8e]" name="arquillianAfterSuite" is-config="true" duration-ms="2010" started-at="2014-10-08T18:09:50Z" finished-at="2014-10-08T18:09:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterSuite -->
+      </class> <!-- arrow.mems.service.MasterDashboardServiceTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

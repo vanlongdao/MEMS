@@ -1,0 +1,244 @@
+<html>
+<head>
+<title>TestNG:  Default test</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Default test</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>33/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Wed Oct 08 18:06:53 ICT 2014</td>
+</tr>
+<tr><td>Total time:</td><td>177 seconds (177322 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetActionLogByTotalPayAndPayDate()'><b>testGetActionLogByTotalPayAndPayDate</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>6</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetActionLogForPaidList()'><b>testGetActionLogForPaidList</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>4</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetBudgetForBudgetStatus()'><b>testGetBudgetForBudgetStatus</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>4</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetCountScheItemFilterByStartToEndDate()'><b>testGetCountScheItemFilterByStartToEndDate</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>4</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetDeliverySchedule()'><b>testGetDeliverySchedule</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>6</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetHospitalDeptByOfficeCode()'><b>testGetHospitalDeptByOfficeCode</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>4</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetListContactDepartment()'><b>testGetListContactDepartment</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>5</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetListContactOfAllTask()'><b>testGetListContactOfAllTask</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>5</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetListContactOfMyTask()'><b>testGetListContactOfMyTask</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>5</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetListContactOfMyTaskByHospPnsCode()'><b>testGetListContactOfMyTaskByHospPnsCode</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>5</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetNoticeLogByOfficeCode()'><b>testGetNoticeLogByOfficeCode</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>4</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetScheItemFilterByStartToEndDate()'><b>testGetScheItemFilterByStartToEndDate</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>5</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetSumTotalPayByHospDeptCode()'><b>testGetSumTotalPayByHospDeptCode</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>5</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCostCurrentMonthDepartment()'><b>testGetTotalRepairCostCurrentMonthDepartment</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>4</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCostCurrentMonthOfAllTask()'><b>testGetTotalRepairCostCurrentMonthOfAllTask</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>4</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCostCurrentMonthOfMyTask()'><b>testGetTotalRepairCostCurrentMonthOfMyTask</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>4</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCostCurrentMonthOfMyTaskByHospPnsCode()'><b>testGetTotalRepairCostCurrentMonthOfMyTaskByHospPnsCode</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>5</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCurrentMonthOfAllTask()'><b>testGetTotalRepairCurrentMonthOfAllTask</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>4</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCurrentMonthOfMyTask()'><b>testGetTotalRepairCurrentMonthOfMyTask</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>4</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairCurrentMonthOfMyTaskByHospPsnCode()'><b>testGetTotalRepairCurrentMonthOfMyTaskByHospPsnCode</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>4</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairDoingAllTask()'><b>testGetTotalRepairDoingAllTask</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>4</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairDoingDepartment()'><b>testGetTotalRepairDoingDepartment</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>4</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairDoingMyTask()'><b>testGetTotalRepairDoingMyTask</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>4</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairDoingMyTaskByHospPnsCode()'><b>testGetTotalRepairDoingMyTaskByHospPnsCode</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>4</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairItemCostAllTasks()'><b>testGetTotalRepairItemCostAllTasks</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>4</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairItemCostDepartment()'><b>testGetTotalRepairItemCostDepartment</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>4</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairItemOfYearAllTasks()'><b>testGetTotalRepairItemOfYearAllTasks</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>4</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairItemOfYearDepartment()'><b>testGetTotalRepairItemOfYearDepartment</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>4</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairNotStartAllTask()'><b>testGetTotalRepairNotStartAllTask</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>4</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairNotStartDepartment()'><b>testGetTotalRepairNotStartDepartment</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>4</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairNotStartMyTask()'><b>testGetTotalRepairNotStartMyTask</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>4</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairNotStartMyTaskByHospPnsCode()'><b>testGetTotalRepairNotStartMyTaskByHospPnsCode</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>4</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+<tr>
+<td title='arrow.mems.service.MasterDashboardServiceTest.testGetTotalRepairOfCurrentMonthDepartment()'><b>testGetTotalRepairOfCurrentMonthDepartment</b><br>Test class: arrow.mems.service.MasterDashboardServiceTest</td>
+<td></td>
+<td>5</td>
+<td>arrow.mems.service.MasterDashboardServiceTest@56235b8e</td></tr>
+</table><p>
+</body>
+</html>
